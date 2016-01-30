@@ -1,0 +1,8 @@
+Application/Runtime
+Application/Home/Conf/config.php
+Application/Common/Conf/config.php
+
+.idea/*
+
+.DS_Store
+DS_Store
