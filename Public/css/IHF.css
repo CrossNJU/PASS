@@ -27,8 +27,6 @@
     font-size: 14px;
 }
 
-
-
 ul{
     list-style: none;
 }
@@ -36,18 +34,14 @@ ul li{
     float: left;
 }
 
-.wrapper{
-    margin: 0 auto;
-    width: 940px;
-}
-
-
 .footer{
     position: absolute;
-    bottom: 0px;
+    height:20px;
     font-size: 14px;
     color: #A5A5A5;
     width: 100%;
+    bottom: 0;
+    clear:both;
 }
 
 input,textarea{

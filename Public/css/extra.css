@@ -1,11 +1,27 @@
+body,html{
+    height:100%;
+}
+.content{
+    min-height:100%;
+    background-color: #232323;
+
+
+    height: auto !important;
+    height: 100%; /*IE6不识别min-height*/
+    position: relative;
+}
+
+.wrapper{
+    padding-bottom: 20px;
+}
 .admi-class{
-    margin-top: 27px;
+    padding-top: 27px;
     margin-left: 24px;
     margin-bottom: 25px;
 
 }
 .text-find{
-    width:400px;
+    width:398px;
 }
 .btn-find,.btn-add{
     height: 44px;
@@ -23,12 +39,12 @@
 
 }
 .btn-find{
-    width: 150px;
+    width: 148px;
     background-color: #57BEED;
     color: #FFFFFF;
 }
 .btn-add{
     background-color: #FFFFFF;
     color: #57BEED;
-    width: 322px;
+    width: 320px;
 }
