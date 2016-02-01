@@ -6,7 +6,7 @@
     padding: 0px;
 }
 .header{
-    background-image: url("../img/header.png");
+    background-image: url("../../Public/img/header.png");
     background-color: #232323;
     height: 161px;
 }
@@ -43,7 +43,7 @@ ul li{
 
 
 .footer{
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     font-size: 14px;
     color: #A5A5A5;
@@ -54,9 +54,10 @@ input,textarea{
     border-radius: 4px 4px;
     border:1px solid #57BEED;
     color:#9A9A9A;
-    padding: 13px;
     font-size: 18px;
+    line-height: 44px;
 }
+
 .textarea{
     resize: none;
     width: 252px;

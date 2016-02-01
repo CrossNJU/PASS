@@ -1,0 +1,34 @@
+.admi-class{
+    margin-top: 27px;
+    margin-left: 24px;
+    margin-bottom: 25px;
+
+}
+.text-find{
+    width:400px;
+}
+.btn-find,.btn-add{
+    height: 44px;
+    /*padding:0px 40px 0px 40px;*/
+    margin-left: 10px;
+    margin-right: 0px;
+    line-height: 44px;
+    overflow: hidden;
+    border: 1px solid #57beed;
+
+    border-radius: 4px;
+    font-size:18px;
+    color: #FFFFFF;
+    text-align:center;
+
+}
+.btn-find{
+    width: 150px;
+    background-color: #57BEED;
+    color: #FFFFFF;
+}
+.btn-add{
+    background-color: #FFFFFF;
+    color: #57BEED;
+    width: 322px;
+}
