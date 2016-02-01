@@ -7,11 +7,10 @@
 }
 .header{
     background-image: url("../../Public/img/header.png");
-    background-color: #232323;
     height: 161px;
 }
 
-.wrapper1{
+.wrapper-header{
     margin: 0 auto;
     width: 960px;
 }
