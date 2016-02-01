@@ -7,34 +7,47 @@
 }
 .header{
     background-image: url("../img/header.png");
+    background-color: #232323;
     height: 161px;
 }
+
+.wrapper1{
+    margin: 0 auto;
+    width: 960px;
+}
 .title{
-    position: relative;
-    left: 250px;
-    top: 80px;
+    float: left;
+    margin-top: 80px;
 }
 .userbar{
-    position: relative;
-    top:19px;
-    left: 1060px;
+    margin-top:19px;
+    float: right;
 
     color: #FFFFFF;
     font-size: 14px;
 }
+
+
+
 ul{
     list-style: none;
 }
 ul li{
     float: left;
 }
-.footer{
-    position: relative;
-    bottom: 0px;
-    left:250px;
 
+.wrapper{
+    margin: 0 auto;
+    width: 940px;
+}
+
+
+.footer{
+    position: fixed;
+    bottom: 0px;
     font-size: 14px;
     color: #A5A5A5;
+    width: 100%;
 }
 
 input,textarea{
