@@ -3,8 +3,6 @@ body,html{
 }
 .content{
     min-height:100%;
-
-
     height: auto !important;
     height: 100%; /*IE6不识别min-height*/
     position: relative;
@@ -20,7 +18,7 @@ body,html{
 
 }
 .text-find{
-    width:398px;
+    width:393px;
 }
 .btn-find,.btn-add{
     height: 44px;
@@ -46,4 +44,28 @@ body,html{
     background-color: #FFFFFF;
     color: #57BEED;
     width: 320px;
+}
+
+.download{
+    color: #57BEED;
+    font-size: 14px;
+
+    margin-bottom: 11px;
+    text-decoration: underline;
+
+}
+
+table tr td:nth-child(2){
+    text-align: right;
+}
+
+.admi-class-detail{
+    width:853px;
+}
+/*.admi-class-info:hover{*/
+    /*background-color: #f3f8ff;*/
+/*}*/
+
+.teacher-info{
+    width: 530px;
 }

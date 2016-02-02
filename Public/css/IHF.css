@@ -35,14 +35,16 @@ ul li{
 
 .footer{
     position: absolute;
-    height:20px;
+    height:14px;
     font-size: 14px;
     color: #A5A5A5;
     width: 100%;
     bottom: 0;
     clear:both;
 }
-
+input[type="text"]{
+    padding-left: 5px;
+}
 input,textarea{
     border-radius: 4px 4px;
     border:1px solid #57BEED;
