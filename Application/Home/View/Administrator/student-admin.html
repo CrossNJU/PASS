@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>教师管理</title>
+    <title>学生管理</title>
 
     <link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
     <link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
@@ -31,25 +31,26 @@
 
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn nav-btn-active">教师管理</a>
-            <a class="nav-btn" href="#">学生管理</a>
+            <a class="nav-btn" href="#">教师管理</a>
+            <a class="nav-btn nav-btn-active">学生管理</a>
             <a class="nav-btn" href="#">课程管理</a>
         </div>
     </div>
 
     <div class="wrapper">
         <div class="card">
+
             <div class="admi-class">
-                <input class="text-find" type="text" value="输入教师姓名或工号以查询"/>
-                <input class="btn-find" type="button" value=" 查找教师"/>
-                <input class="btn-add" type="button" value="添加教师（目前共有23名）"/>
+                <input class="text-find" type="text" value="输入学生姓名或学号以查询"/>
+                <input class="btn btn-active" type="button" value="查找学生"/>
+                <input class="input-button-add btn" type="button" value="添加新学生（目前共有23名）"/>
+                <!--<a class="btn" style="display: inline">添加教师（目前共有23名）</a>-->
             </div>
-
-            <div class="admi-class-info homework homework-manage homework-active" >
-                <div class="homework-num">1</div>
+            <div class="homework homework-manage homework-active" >
+                <div class="num">1</div>
                 <div class="teacher-info homework-info">
-                    <p class="teacher-name homework-title">张亮（WR82256007）</p>
-                    <p class="teacher-class-num comment">2门课程</p>
+                    <p class="student-name homework-title">陈语（GF291002）</p>
+                    <p class="teacher-class-num comment"><span>宗教学系</span> <span>2014级</span> <span>共选<span>2</span>门课</span></p>
                     <br>
                     <table class="admi-class-detail">
                         <tr>
@@ -63,16 +64,15 @@
                 </div>
                 <a class="btn btn-small" href="#">移除</a>
                 <a class="btn btn-small" href="#">修改</a>
-                <a class="btn btn-small btn-active" href="#">添加课程</a>
+                <a class="btn btn-small" href="#">收起选课情况</a>
 
                 <div class="clear"></div>
             </div>
-
-            <div class="admi-class-info homework homework-manage" >
-                <div class="homework-num">2</div>
+            <div class="homework homework-manage" >
+                <div class="num">1</div>
                 <div class="teacher-info homework-info">
-                    <p class="teacher-name homework-title">张亮（WR82256007）</p>
-                    <p class="teacher-class-num comment">2门课程</p>
+                    <p class="student-name homework-title">陈语（GF291002）</p>
+                    <p class="teacher-class-num comment"><span>宗教学系</span> <span>2014级</span> <span>共选<span>2</span>门课</span></p>
                     <br>
                     <table class="admi-class-detail">
                         <tr>
@@ -86,11 +86,10 @@
                 </div>
                 <a class="btn btn-small" href="#">移除</a>
                 <a class="btn btn-small" href="#">修改</a>
-                <a class="btn btn-small btn-active" href="#">添加课程</a>
+                <a class="btn btn-small" href="#">收起选课情况</a>
 
                 <div class="clear"></div>
             </div>
-
         </div>
     </div>
 

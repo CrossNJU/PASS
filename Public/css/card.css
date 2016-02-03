@@ -210,7 +210,7 @@ a {
 	height: 153px;
 }
 
-.comment:last-child{
+.homework .comment :last-child{
 	margin-bottom: 0;
 }
 

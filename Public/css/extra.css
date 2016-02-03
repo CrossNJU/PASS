@@ -24,33 +24,34 @@ body,html{
     margin-bottom: 18px;
 }
 .text-find{
-    width:393px;
+    width:376px;
+    margin-right: 10px;
 }
-.btn-find,.btn-add{
-    height: 44px;
-    /*padding:0px 40px 0px 40px;*/
-    margin-left: 10px;
-    margin-right: 0px;
-    line-height: 44px;
-    overflow: hidden;
-    border: 1px solid #57beed;
+/*.btn-find,.btn-add{*/
+    /*height: 44px;*/
+    /*!*padding:0px 40px 0px 40px;*!*/
+    /*margin-left: 10px;*/
+    /*margin-right: 0px;*/
+    /*line-height: 44px;*/
+    /*overflow: hidden;*/
+    /*border: 1px solid #57beed;*/
 
-    border-radius: 4px;
-    font-size:18px;
-    color: #FFFFFF;
-    text-align:center;
+    /*border-radius: 4px;*/
+    /*font-size:18px;*/
+    /*color: #FFFFFF;*/
+    /*text-align:center;*/
 
-}
-.btn-find{
-    width: 148px;
-    background-color: #57BEED;
-    color: #FFFFFF;
-}
-.btn-add{
-    background-color: #FFFFFF;
-    color: #57BEED;
-    width: 320px;
-}
+/*}*/
+/*.btn-find{*/
+    /*width: 148px;*/
+    /*background-color: #57BEED;*/
+    /*color: #FFFFFF;*/
+/*}*/
+/*.btn-add{*/
+    /*background-color: #FFFFFF;*/
+    /*color: #57BEED;*/
+    /*width: 320px;*/
+/*}*/
 
 .download{
     color: #57BEED;
@@ -60,20 +61,23 @@ body,html{
     text-decoration: underline;
 
 }
-
+table tr td:nth-child(1){
+    width:680px;
+}
 table tr td:nth-child(2){
     text-align: right;
+    width:240px;
 }
 
-.admi-class-detail{
-    width:853px;
-}
+/*.admi-class-detail{*/
+    /*width:840px;*/
+/*}*/
 /*.admi-class-info:hover{*/
     /*background-color: #f3f8ff;*/
 /*}*/
 
 .teacher-info{
-    width: 530px;
+    width: 500px;
 }
 .admi-class-info-detil{
     margin-bottom: 18px;
@@ -114,4 +118,11 @@ table tr td:nth-child(2){
 }
 .respond-warning{
     background-color: #E3C150;
+}
+.input-button-add {
+    background-color: #FFFFFF;
+    width: 320px;
+}
+.admi-class-detail{
+    width:854px;
 }
