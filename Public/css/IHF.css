@@ -44,11 +44,17 @@ ul li{
 }
 
 input,textarea{
+    padding:10px 10px 10px 10px;
     border-radius: 4px 4px;
     border:1px solid #57BEED;
-    color:#9A9A9A;
+    /*color:#9A9A9A;*/
     font-size: 18px;
-    line-height: 44px;
+    line-height: 24px;
+}
+
+textarea:focus,input:focus {
+    outline: none;
+    box-shadow: 0 0 2px 1px #57BEED;
 }
 
 .textarea{
