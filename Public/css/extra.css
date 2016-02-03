@@ -15,7 +15,13 @@ body,html{
     padding-top: 27px;
     margin-left: 24px;
     margin-bottom: 25px;
-
+}
+.admi-class-info{
+    margin-left: 24px;
+    /*margin-bottom: 25px;*/
+}
+.admi-add-class{
+    margin-bottom: 18px;
 }
 .text-find{
     width:393px;
@@ -68,4 +74,44 @@ table tr td:nth-child(2){
 
 .teacher-info{
     width: 530px;
+}
+.admi-class-info-detil{
+    margin-bottom: 18px;
+}
+.admi-class-choose{
+    padding-bottom: 40px;
+}
+.admi-class-info-detail{
+    margin-bottom: 5px;
+}
+.class-homework-request{
+    padding-left: 5px;
+    font-size: 18px;
+    height:138px;
+    margin-bottom: 18px;
+    width: 538px;
+}
+
+.login-remember{
+    margin-bottom: 18px;
+}
+
+.respond-text{
+    text-align: center;
+    font-size: 18px;
+    line-height: 60px;
+    color: #FFFFFF;
+}
+.respond-danger{
+    background-color: #E35050;
+
+}
+.respond-success{
+    background-color: #50E3C4;
+}
+.respond-info{
+    background-color: #50A5E3;
+}
+.respond-warning{
+    background-color: #E3C150;
 }
