@@ -44,7 +44,7 @@ a {
 .btn {
 	height: 44px;
 	padding:0px 40px 0px 40px;
-	margin-right: 10px;
+	margin-right: 6px;
 	line-height: 44px;
 	overflow: hidden;
 	border: 1px solid #57beed;
@@ -55,7 +55,13 @@ a {
 }
 
 .btn-active {
-	background-color: #57beed;
+	background-color: #50a5e3;
+	color: #fff;
+}
+
+.btn:hover {
+	transition: all 0.1s linear 0s;
+	background-color: #50a5e3;
 	color: #fff;
 }
 
@@ -92,11 +98,23 @@ a {
 	line-height: 64px;
 	overflow: hidden;
 	font-size: 18px;
+	color: #a5a5a5;
 	text-align: center;
 }
 
-.nav-btn-active {
+.nav-btn:hover {
+	transition: all 0.1s linear 0s;
 	height: 60px;
+	overflow: hidden;
+	border-bottom: 4px solid #57beed;
+	background-color: #f3f8ff;
+	color:  #57beed;
+}
+
+.nav-btn-active {
+		/*transition: all 0.1s linear 0s;*/
+	height: 60px;
+	overflow: hidden;
 	border-bottom: 4px solid #57beed;
 	background-color: #f3f8ff;
 	color:  #57beed;
@@ -146,7 +164,7 @@ a {
 }
 
 .card-left {
-	width: 600px;
+	width: 630px;
 	float: left;
 }
 
@@ -207,10 +225,14 @@ a {
 }
 
 .homework-tch .rect {
-	height: 153px;
+	height: 143px;
 }
 
-.homework .comment :last-child{
+.homework-tch .btn {
+	margin-top: 6px;
+}
+
+.homework .comment:last-child{
 	margin-bottom: 0;
 }
 
