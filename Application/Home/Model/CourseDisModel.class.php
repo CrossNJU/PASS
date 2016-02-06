@@ -9,7 +9,7 @@
 namespace Home\Model;
 use Think\Model;
 
-class CourseDisModel extends Model
+class CoursedisModel extends Model
 {
     protected $fields = array(
         'stdNumber',

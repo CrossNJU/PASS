@@ -9,7 +9,7 @@
 namespace Home\Model;
 use Think\Model;
 
-class AssignmentDisModel extends Model
+class AssignmentdisModel extends Model
 {
     protected $fields = array(
         'stdNumber',
