@@ -13,16 +13,21 @@ class CourseModel extends Model
 {
     protected $fields = array(
         'number',
-        'name',
+        'title',
         'teacher',
         'depict',
         'selected',
+        'time',
+        'assignments',
+        '_autoinc' => true,
         '_type'=>array(
-            'number' => 'varchar',
-            'name' => 'varchar',
+            'number' => 'int',
+            'title' => 'varchar',
             'teacher' => 'varchar',
             'depict' => 'text',
             'selected' => 'int',
+            'time' => 'date',
+            'assignments' => 'int'
         )
     );
     protected $pk = 'number';

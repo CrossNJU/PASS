@@ -1,37 +1,36 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: raychen
- * Date: 16/1/30
- * Time: 20:05
+ * Date: 16/2/6
+ * Time: 21:15
  */
-namespace Home\Model;
-use Think\Model;
 
-class StudentModel extends Model
+namespace Home\Model;
+    use Think\Model;
+
+class UserModel extends Model
 {
     protected $fields=array(
         'number',
         'password',
         'email',
+        'permission',
         'name',
-        'id',
-        'acadamy',
+        'academy',
         'speciality',
         'grade',
-        'permission',
         '_type' => array(
             'number' => 'varchar',
             'password' => 'varchar',
             'email' => 'varchar',
-            'name' => 'varchar',
-            'id' => 'varchar',
-            'acadamy' => 'varchar',
-            'speciality' => 'varchar',
-            'grade' => 'int',
             'permission' => 'tinyint',
+            'name' => 'varchar',
+            'grade' => 'int',
+            'academy' => 'varchar',
+            'speciality' => 'varchar',
         )
     );
+
     protected $pk = 'number';
 }

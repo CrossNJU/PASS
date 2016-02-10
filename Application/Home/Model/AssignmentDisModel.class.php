@@ -14,17 +14,15 @@ class AssignmentdisModel extends Model
     protected $fields = array(
         'stdNumber',
         'assNumber',
+        'cNumber',
         'mark',
         'comm',
-        'submitted',
-        'examined',
         '_type'=>array(
             'stdNumber' => 'varchar',
             'assNumber' => 'varchar',
+            'cNumber' => 'varchar',
             'mark' => 'int',
             'comm' => 'text',
-            'submitted' => 'tinyint',
-            'examined' => 'tinyint',
         )
     );
 }

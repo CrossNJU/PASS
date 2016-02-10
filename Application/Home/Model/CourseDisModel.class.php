@@ -16,7 +16,7 @@ class CoursedisModel extends Model
         'cNumber',
         '_type'=>array(
             'stdNumber' => 'varchar',
-            'cNumber' => 'varchar'
+            'cNumber' => 'varchar',
         )
     );
 
