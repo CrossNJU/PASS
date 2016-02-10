@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Modify	</title>
+	<title>Modify</title>
 
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
@@ -11,8 +11,8 @@
 <body>
 	<div class="nav">
 		<div class="wrapper">
-			<a class="nav-btn" href="#">我的作业</a>
-			<a class="nav-btn nav-btn-active" href="#">我的课程</a>
+			<a class="nav-btn" href="/Teacher/Myhomework">我的作业</a>
+			<a class="nav-btn" href="/Teacher/Mycourse">我的课程</a>
  		</div>
 	</div>
 
@@ -20,7 +20,27 @@
 		<div class="wrapper">
 			<div class="card card-left preview-card">
 				<div class="card-info">
-					<p class="comment class-num">PC053 - 2016春</p>
+					<p class="comment class-num"><{$homework['num']}> - <{$homework['name']}></p>
+					<h3 class="card-title"><{$submit['name']}></h3>
+					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
+				</div>
+				<iframe class="pdf" src="../../../../Public/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
+			</div>
+			<div class="card card-right correct-card">
+				<div class="card-info">
+					<p class="comment">评语</p>
+					<textarea class="textarea comment-textarea"></textarea>
+					<p class="comment">评分</p>
+					<input class="grade-input">
+					<a class="btn" href="#">保存修改</a>
+					<a class="btn" href="#">取消修改</a>
+					<a class="btn" href="#">不作修改结束批阅</a>
+				</div>
+			</div>
+
+			<!-- <div class="card card-left preview-card">
+				<div class="card-info">
+					<p class="comment class-num">PA053 - 当代社会科学领域的马克思主义哲学</p>
 					<h3 class="card-title">当代社会科学领域的马克思主义哲学的思考</h3>
 					<p class="comment">陈语(GF291002)</p>
 				</div>
@@ -35,7 +55,7 @@
 					<a class="btn" href="#">取消修改</a>
 					<a class="btn" href="#">不作修改结束批阅</a>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	
