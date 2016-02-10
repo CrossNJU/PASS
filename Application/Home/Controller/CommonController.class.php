@@ -58,7 +58,7 @@ class CommonController extends Controller
             session("per", $row['permission']);
         }
 
-        $this->display('Common:_login');
+        $this->display('Common:Login');
     }
 
     public function logout(){//登出
