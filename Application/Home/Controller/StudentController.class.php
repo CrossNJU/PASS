@@ -8,6 +8,7 @@
 
 namespace Home\Controller;
 use Think\Controller;
+use Think\Upload;
 
 class StudentController extends Controller
 {
@@ -39,7 +40,7 @@ class StudentController extends Controller
             $user_model->where("number = '$stu'")->setField('password',$new);
         }
 
-        $this->display('Student:_sets');
+        $this->display('Student:setting-stu');
     }
 
     public function my_course(){//学生-我的课程
@@ -61,10 +62,10 @@ class StudentController extends Controller
         }
         $this->course = $course;
 
-        $this->display('Student:_course');
+        $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment(){//学生-我的作业
+    public function my_assignment(){//学生-我的作业..是否已提交?
         if(!session('?user') || session('per')!=1)
             $this->ajaxReturn(-1);
         $student_id = session('user');
@@ -85,7 +86,7 @@ class StudentController extends Controller
         }
 
         $this->assignments = $assignments;
-        $this->display('Student: _assignment');
+        $this->display('Student:myhomework-stu');
     }
 
     public function get_ass_in_course($course_id){//得到课程中的作业
@@ -159,7 +160,7 @@ class StudentController extends Controller
                 'selected' => $status
             );
         }
-        $this->display('Student:_course_in');
+        $this->display('Student:joincourse');
     }
 
     protected function get_course_status($course_all){
@@ -195,13 +196,48 @@ class StudentController extends Controller
         $data['cNumber'] = $course_id;
         $data['stdNumber'] = $student_id;
         $course_dis_model->add($data);
+        $this->ajaxReturn(1);
     }
 
-    public function assignment_see(){//预览作业
+    public function assignment_see($assignment_id){//预览作业
+        if(!session('?user') || session('per')!=1)
+            $this->ajaxReturn(-1);
+        $student_id = session('user');
 
+        $assignment_dis_model = M('Assignmentdis');
+        $assignment = $assignment_dis_model
+            ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")
+            ->select()[0];
+
+        $this->url = $assignment['url'].'source.pdf';
+        $this->display('Student:preview');
     }
 
-    public function assignment_submit(){//提交作业
+    public function assignment_submit($assignment_id){//提交作业
+        if(!session('?user') || session('per')!=1)
+            $this->ajaxReturn(-1);
+        $student_id = session('user');
 
+        $upload = new Upload();
+
+        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->exts = array('pdf');// 设置附件上传类型
+        $upload->rootPath = './Public/uploads/'; // 设置附件上传根目录
+        $upload->savePath = '';
+        $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
+        $upload->saveName = 'source';
+
+        if(isset($_POST['sub'])) {
+            $info = $upload->upload();
+            if(!$info) $this->ajaxReturn($upload->getError());//上传失败
+            $real_info = $info['file_key'];
+            $url = $real_info['savepath'];
+            $assignment_dis_model = M('Assignmentdis');
+            $data['url'] = $url;
+            $assignment_dis_model
+                ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
+                ->save($data);
+            $this->ajaxReturn(1);//上传成功
+        }
     }
 }

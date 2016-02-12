@@ -38,7 +38,7 @@ class CommonController extends Controller
             $data['permission'] = 1;
             $user_model->add($data);
         }
-        $this->display('Common:_register');
+        $this->display('Common:Register-student');
     }
 
     public function login()//登录
@@ -109,7 +109,7 @@ class CommonController extends Controller
             else $this->ajaxReturn(0);//发送失败
         }
 
-        $this->display('Common:_find_pwd');
+        $this->display('Common:Password-Find');
     }
 
     public function pwd_reset($id)//重置密码
@@ -121,6 +121,6 @@ class CommonController extends Controller
             $row['number'] = $id;
             $user->save($row);
         }
-        $this->display('Common:_reset');
+        $this->display('Common:Password-Reset');
     }
 }

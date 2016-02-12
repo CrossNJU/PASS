@@ -11,6 +11,10 @@ use Think\Controller;
 
 class AdministerController extends Controller
 {
+    public function index(){
+        $this->display('Administrator:student-admin');
+    }
+
     public function student_manage(){
         $all = $this->user_show(1);
         if(isset($_POST['find'])){//查找学生,空白默认查找全部
@@ -25,7 +29,7 @@ class AdministerController extends Controller
 
         $this->num = count($all);
         $this->students = $all;
-        $this->display('Administrator:_stu_mag');
+        $this->display('Administrator:student-admin');
     }
 
     protected function user_show($per){
@@ -78,6 +82,29 @@ class AdministerController extends Controller
         }
         $this->ajaxReturn($titles);
     }
+
+    public function student_add()//添加学生
+    {
+        if (isset($_POST['register'])) {
+            $user_model = M('User');
+
+            $student_id = I('post.stu_id');
+            $rows = $user_model->where("number = '$student_id'")->select();
+            if(count($rows)>0)
+                $this->ajaxReturn(-1);//已存在用户
+
+            $data['number'] = $student_id;
+            $data['password'] = I('post.pwd');
+            $data['email'] = I('post.email');
+            $data['name'] = I('post.name');
+            $data['academy'] = I('post.aca');
+            $data['speciality'] = I('post.spe');
+            $data['grade'] = I('post.grade');
+            $data['permission'] = 1;
+            $user_model->add($data);
+        }
+        $this->display('Administrator:student-add');
+    }
     //--------------------------------------------------------------------------
 
     public function course_manage(){
@@ -106,7 +133,7 @@ class AdministerController extends Controller
             'course' => $all,
             'assignments' => $this->course_show_assignments($all)
         );
-        $this->display('Administrator:_course_mag');
+        $this->display('Administrator:lesson-admin');
     }
 
     protected function course_show(){
@@ -154,10 +181,23 @@ class AdministerController extends Controller
             $data['time'] = I('post.time');
             $course_model->add($data);
         }
+        $this->display('Administrator:lesson-add');
     }
 
-    public function download(){//批量下载
-
+    public function download($assignment_id){//批量下载
+        $urls = array();
+        $assignment_dis_model = M('Assignmentdis');
+        $assignment_for_students = $assignment_dis_model
+            ->where("assNumber = '$assignment_id'")->select();
+        $i = 0;
+        foreach ($assignment_for_students as $assignment){
+            $url = array(
+                'source' => $assignment['url'].'source.pdf',
+                'modify' => $assignment['url'].'modify.pdf'
+            );
+            $urls[$i] = $url;
+        }
+        $this->ajaxReturn($urls);
     }
     //--------------------------------------------------------------------------
 
@@ -204,7 +244,7 @@ class AdministerController extends Controller
         }
         $assignment_model->where("teacher = '$teacher_id'")->delete();
         $course_model->where("teacher = '$teacher_id'")->delete();
-        $this->display('Administrator:_teacher_mag');
+        $this->display('Administrator:teacher-admin');
     }
 
     protected function teacher_show_courses($teachers){//显示课程作业
@@ -239,7 +279,7 @@ class AdministerController extends Controller
             $data['permission'] = 2;
             $user_model->add($data);
         }
-        $this->display('Administrator:_teacher_add');
+        $this->display('Administrator:teacher-add');
     }
 
 }

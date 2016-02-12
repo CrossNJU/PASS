@@ -17,12 +17,14 @@ class AssignmentdisModel extends Model
         'cNumber',
         'mark',
         'comm',
+        'url',
         '_type'=>array(
             'stdNumber' => 'varchar',
             'assNumber' => 'varchar',
             'cNumber' => 'varchar',
             'mark' => 'int',
             'comm' => 'text',
+            'url' => 'varchar',
         )
     );
 }

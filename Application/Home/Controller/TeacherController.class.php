@@ -8,6 +8,7 @@
 
 namespace Home\Controller;
 use Think\Controller;
+use PHPWord;
 
 class TeacherController extends Controller
 {
@@ -24,7 +25,7 @@ class TeacherController extends Controller
         $courses = $course_model->where("teacher = '$teacher_id'")->select();
 
         $this->course = $courses;
-        $this->display('Teacher:_course');
+        $this->display('Teacher:mycourse-tch');
     }
 
     public function my_assignments(){//教师:我布置的作业
@@ -41,7 +42,7 @@ class TeacherController extends Controller
         $assignments = $assignment_model->where("teacher = '$teacher'")->select();
 
         $this->assignments = $assignments;
-        $this->display('Teacher:_assignments');
+        $this->display('Teacher:myhomework-tch');
     }
 
     public function assignment_delete($assignment_id){//删除作业
@@ -71,11 +72,50 @@ class TeacherController extends Controller
 
         $this->assignment_detail = $assignments_detail[0];
         $this->assignment = $assignments;
-        $this->display('Teacher:_assignment_detail');
+        $this->display('Teacher:homework-details');
     }
 
-    public function assignment_modify(){//批改作业
+    public function assignment_to_modify($assignment_id,$student_id,$display){//批改作业
+        $assignment_dis_model = M('Assignmentdis');
+        $assignment_model = M('Assignment');
 
+        $assignment_dis = $assignment_dis_model
+            ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
+            ->select()[0];
+        $assignment = $assignment_model->where("number = '$assignment_id'")
+            ->select()[0];
+
+        if(isset($_POST['save'])){
+            $data['comm'] = I('post.comment');
+            $data['mark'] = I('post.mark');
+
+            $assignment_dis_model
+                ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
+                ->save($data);
+
+            $this->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
+        }
+
+        $this->url = $assignment_dis['url'];
+        $this->assignment = $assignment;
+        $this->display('Teacher:homework-'.$display);
+    }
+
+    protected function save_as_word($comments,$mark,$student_id,$assignment_id){
+        vendor('PHPWord.PHPWord');
+        $word = new PHPWord();
+
+        $section = $word->createSection();
+        $section->addTitle('Comments && marks:');
+        $section->addTextBreak(2);
+        $section->addText($comments);
+        $section->addTextBreak(2);
+        $section->addText($mark);
+
+        $output = \PHPWord_IOFactory::createWriter($word,'Word2007');
+        $output->save('./Public/uploads/'.$student_id.'/'.$assignment_id.'/modify.doc');
+
+        return 1;
     }
 
     public function assignment_deliver(){//布置新作业
@@ -111,7 +151,7 @@ class TeacherController extends Controller
             }
         }
 
-        $this->display('Teacher:_deliver');
+        $this->display('Teacher:homework-new');
     }
 
     protected function assignment_dis($course_id, $assignment_id, $student_id){

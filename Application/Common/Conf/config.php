@@ -11,4 +11,12 @@ return array(
 
     'TMPL_L_DELIM'          =>  '<{',            // 模板引擎普通标签开始标记
     'TMPL_R_DELIM'          =>  '}>',            // 模板引擎普通标签结束标记
+
+    // 配置邮件发送服务器
+    'MAIL_HOST' => 'smtp.163.com',//smtp服务器的名称
+    'MAIL_USERNAME' => 'wudiwudicr2',//你的邮箱名
+    'MAIL_FROM' =>'wudiwudicr2@163.com',//发件人地址
+    'MAIL_FROM_NAME'=>'pass',//发件人姓名
+    'MAIL_PASSWORD' =>'afdnaboovrdbiudz',//邮箱密码
+
 );
