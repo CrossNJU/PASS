@@ -4,12 +4,13 @@
 	<meta charset="UTF-8">
 	<title>My Course</title>
 
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 
 </head>
 <body>
+    <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
 			<a class="nav-btn" href="/Student/Myhomework">我的作业</a>
@@ -30,7 +31,7 @@
 					<p class="comment">描述: <{$course['description']}></p>
 					<p class="comment">作业: <{if condition="$course['numOfHomework'] gt 0"}>
 						已布置(<{$course['numOfHomework']}>)
-						<{else}>未布置
+						<{else /}>未布置
 						<{/if}></p>
 					<a class="btn" href="#">收起作业</a>
 					<a class="btn" href="#">退选课程</a>
@@ -38,15 +39,15 @@
 				<{foreach item="homework" name="course['homework']"}>
 				<div class="homework">
 					<div class="rect"></div>
-					<p class="comment">[<span><{if condition="homework['isSubmit'] eq true"}>已提交<{else}>未提交<{/if}></span>, 
-						<span><{if condition="homework['isEnd'] eq true"}>已截止<{else}>未截止<{/if}></span>]
+					<p class="comment">[<span><{if condition="homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+						<span><{if condition="homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span>]
 						<span><{$homework['num']}> - <{$homework['name']}></span></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="homework['isSubmit'] eq true"}>
-					<a class="btn btn-small" href="/Student/Preview">预览作业</a>
+					<a class="btn btn-small" href="#">预览作业</a>
 					<a class="btn btn-small" href="/Student/Submit">重新提交</a>
-					<{else}>
+					<{else /}>
 					<a class="btn btn-small" href="/Student/Submit">提交作业</a>
 					<{/if}>
 					<div class="clear"></div>
@@ -65,6 +66,6 @@
 			<{/foreach}>
 		</div>
 	</div>
-	
+    <{include file="Common/footer"/}>
 </body>
 </html>

@@ -4,12 +4,13 @@
 	<meta charset="UTF-8">
 	<title>My Homework</title>
 
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 
 </head>
 <body>
+    <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
 			<a class="nav-btn nav-btn-active" href="/Student/Myhomework">我的作业</a>
@@ -27,13 +28,13 @@
 					<p class="comment">课程: <{homework['courseName']}></p>
 					<p class="comment">要求: <{homework['require']}></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<p class="comment">状态: <{if condition="homework['isSubmit'] eq true"}>已提交<{else}>未提交<{/if}></span>, 
-						<span><{if condition="homework['isEnd'] eq true"}>已截止<{else}>未截止<{/if}></p>
+					<p class="comment">状态: <{if condition="homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+						<span><{if condition="homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></p>
 					<{if condition="homework['isSubmit'] eq true"}>
-					<a class="btn" href="#">预览作业</a>
-					<a class="btn" href="#">重新提交</a>
-					<{else}>
-					<a class="btn" href="#">提交作业</a>
+					<a class="btn" href="/Student/Preview/<{$homework['id']}>">预览作业</a>
+					<a class="btn" href="/Student/Submit">重新提交</a>
+					<{else /}>
+					<a class="btn" href="/Student/Submit">提交作业</a>
 					<{/if}>
 				</div>
 			</div>
@@ -65,6 +66,6 @@
 
 		</div>
 	</div>
-	
+    <{include file="Common/footer"/}>
 </body>
 </html>

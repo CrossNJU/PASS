@@ -3,22 +3,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>My Homework</title>
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 
 </head>
 <body>
+    <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
-			<a class="nav-btn nav-btn-active" href="/Teacher/Myhomework">我的作业</a>
+			<a class="nav-btn" href="/Teacher/Myhomework">我的作业</a>
 			<a class="nav-btn" href="/Teacher/Mycourse">我的课程</a>
 		</div>
 	</div>
 
 	<div class="content">
 		<div class="wrapper">
-			<{foreach item="homework" name="homeworks"}
 			<div class="card">
 				<div class="card-info">
 					<p class="comment class-num"><{$homework['num']}></p>
@@ -26,16 +26,16 @@
 					<p class="comment">课程: <{$homework['course']}></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else}>未截止<{/if}>, 
+					<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
 						已提交<{$homework['numOfSubmit']}>/<{homework['sum']}>, 
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
-						<{else}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
+						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['isEnd'] eq true"}>
-					<a class="btn" href="/Teacher/Correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
-					<{else}>
-					<a class="btn" href="/Teacher/Correct">查看/批阅已提交作业</a>
-					<a class="btn" href="/Teacher/Modify">修改</a>
+					<a class="btn" href="/Teacher/Correct/<{$homework['currentSubmitId']}>">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<{else /}>
+					<a class="btn" href="/Teacher/Details">查看/批阅已提交作业</a>
+					<a class="btn" href="/Teacher/New/<{$homework['id']}>">修改</a>
 					<a class="btn" href="#">移除</a>
 					<{/if}>
 				</div>
@@ -69,6 +69,6 @@
 
 		</div>
 	</div>
-	
+    <{include file="Common/footer"/}>
 </body>
 </html>

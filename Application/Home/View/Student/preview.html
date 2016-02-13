@@ -4,15 +4,9 @@
 	<meta charset="UTF-8">
 	<title>Preview</title>
 
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
-	<script type="text/javascript" src="../../../../Public/js/pdfobject.js"></script>
-	<script type="text/javascript">
-		window.onload = function (){
-		        var myPDF = new PDFObject({ url: "关于补码整数除法的改进.pdf" }).embed("pdf");
-			};
-	</script>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 </head>
 <body>
 	<div class="nav">
@@ -50,10 +44,10 @@
 					<h3 class="card-title"><{$submit['name']}></h3>
 					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
 				</div>
-				<iframe class="pdf" src="../../../../Public/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
+				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
 			</div>
 		</div>
 	</div>
-	
+    <{include file="Common/footer"/}>
 </body>
 </html>

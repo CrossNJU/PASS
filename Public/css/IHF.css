@@ -34,8 +34,8 @@ ul li{
 }
 
 .footer{
-    position: absolute;
     height:14px;
+    padding: 16px 0 20px 0;
     font-size: 14px;
     color: #A5A5A5;
     width: 100%;
@@ -46,7 +46,7 @@ input[type="text"]{
     padding-left: 5px;
 }
 input,textarea{
-    padding:10px 10px 10px 10px;
+    padding:10px 5px 10px 5px;
     border-radius: 4px 4px;
     border:1px solid #57BEED;
     color:#9A9A9A;

@@ -3,11 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>New</title>
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 </head>
 <body>
+    <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
 			<a class="nav-btn" href="/Teacher/Myhomework">我的作业</a>
@@ -30,13 +31,14 @@
 						<p class="comment">作业要求</p>
 						<textarea class="textarea" placeholder="作业要求"></textarea>
 						<br/>
-						<a class="btn btn-active" href="#">布置作业</a>
+						<a class="btn" href="#">布置作业</a>
 						<a class="btn" href="#">取消</a>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
+	<{include file="Common/footer" /}>
 </body>
 </html>
