@@ -13,12 +13,7 @@ a {
 	color: #000;
 }
 
-:before {
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
+
 
 .clear{
 	clear: both;
@@ -45,6 +40,13 @@ a {
 
 .content {
 	min-height: 669px;
+}
+
+.content:before {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
 }
 
 .wrapper{

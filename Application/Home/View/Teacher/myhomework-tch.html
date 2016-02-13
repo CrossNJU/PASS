@@ -12,13 +12,14 @@
     <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
-			<a class="nav-btn" href="/Teacher/Myhomework">我的作业</a>
-			<a class="nav-btn" href="/Teacher/Mycourse">我的课程</a>
+			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_assignments">我的作业</a>
+			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_course">我的课程</a>
 		</div>
 	</div>
 
 	<div class="content">
 		<div class="wrapper">
+			<{foreach item="homework" name="homeworks"}>
 			<div class="card">
 				<div class="card-info">
 					<p class="comment class-num"><{$homework['num']}></p>
@@ -32,10 +33,10 @@
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['isEnd'] eq true"}>
-					<a class="btn" href="/Teacher/Correct/<{$homework['currentSubmitId']}>">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
 					<{else /}>
-					<a class="btn" href="/Teacher/Details">查看/批阅已提交作业</a>
-					<a class="btn" href="/Teacher/New/<{$homework['id']}>">修改</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
 					<a class="btn" href="#">移除</a>
 					<{/if}>
 				</div>

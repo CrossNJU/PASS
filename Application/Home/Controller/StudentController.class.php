@@ -153,8 +153,8 @@ class StudentController extends Controller
     }
 
     public function course_in(){//学生-加入新课程
-        if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+//        if(!session('?user') || session('per')!=1)
+//            $this->ajaxReturn(-1);
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -171,7 +171,7 @@ class StudentController extends Controller
         $i = 0;
         $courses = array();
         for ($j = 0; $j<count($course_all); $j++){
-            if($status[$j] == false) continue;
+//            if($status[$j] == false) continue;
             $course = $course_all[$j];
             $course_single = array(
                 'num' => $course['number'],
