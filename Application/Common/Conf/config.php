@@ -19,4 +19,6 @@ return array(
     'MAIL_FROM_NAME'=>'pass',//发件人姓名
     'MAIL_PASSWORD' =>'afdnaboovrdbiudz',//邮箱密码
 
+    'TAGLIB_BEGIN'=>'<{',
+    'TAGLIB_END'=>'}>',
 );

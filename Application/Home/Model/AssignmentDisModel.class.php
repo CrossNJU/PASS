@@ -18,6 +18,10 @@ class AssignmentdisModel extends Model
         'mark',
         'comm',
         'url',
+        'isSubmitted',
+        'isExamined',
+        'submitTime',
+        'submitName',
         '_type'=>array(
             'stdNumber' => 'varchar',
             'assNumber' => 'varchar',
@@ -25,6 +29,10 @@ class AssignmentdisModel extends Model
             'mark' => 'int',
             'comm' => 'text',
             'url' => 'varchar',
+            'isSubmitted' => 'tinyint',
+            'isExamined' => 'tinyint',
+            'submitTime' => 'date',
+            'submitName' => 'varchar',
         )
     );
 }
