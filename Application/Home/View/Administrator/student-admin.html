@@ -12,75 +12,38 @@
 </head>
 <body>
 <div class="content">
-    <div class="header">
-        <div class="wrapper-header">
-            <div class="title">
-                <img src="__PUBLIC__/img/title.png">
-            </div>
-            <div class = "userbar">
-                <ul>
-                    <li class="username">用户名</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="setting">设置</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="logout">退出</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <{include file="Common/header"/}>
 
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn" href="#">教师管理</a>
-            <a class="nav-btn nav-btn-active">学生管理</a>
-            <a class="nav-btn" href="#">课程管理</a>
+            <a class="nav-btn" href="/Administrator/teacher-admin">教师管理</a>
+            <a class="nav-btn nav-btn-active" href="#">学生管理</a>
+            <a class="nav-btn" href="/Administrator/lesson-admin">课程管理</a>
         </div>
     </div>
 
     <div class="wrapper">
         <div class="card">
-
             <div class="admi-class">
                 <input class="text-find" type="text" value="输入学生姓名或学号以查询"/>
                 <input class="btn btn-active" type="button" value="查找学生"/>
                 <input class="input-button-add btn" type="button" value="添加新学生（目前共有23名）"/>
                 <!--<a class="btn" style="display: inline">添加教师（目前共有23名）</a>-->
             </div>
-            <div class="homework homework-manage homework-active" >
-                <div class="num">1</div>
-                <div class="teacher-info homework-info">
-                    <p class="student-name homework-title">陈语（GF291002）</p>
-                    <p class="teacher-class-num comment"><span>宗教学系</span> <span>2014级</span> <span>共选<span>2</span>门课</span></p>
-                    <br>
-                    <table class="admi-class-detail">
-                        <tr>
-                            <td><p class="homework-check comment">当代社会科学视域中的马克思主义哲学</p></td>
-                        </tr>
-                        <tr>
-                            <td> <p class="homework-ddl comment">当代社会科学视域中的马克思主义哲学（续）</p></td>
-                        </tr>
-                    </table>
 
-                </div>
-                <a class="btn btn-small" href="#">移除</a>
-                <a class="btn btn-small" href="#">修改</a>
-                <a class="btn btn-small" href="#">收起选课情况</a>
-
-                <div class="clear"></div>
-            </div>
+            <{foreach item="student" name="students"}>
             <div class="homework homework-manage" >
-                <div class="num">1</div>
+                <div class="num"><{$student['order']}></div>
                 <div class="teacher-info homework-info">
-                    <p class="student-name homework-title">陈语（GF291002）</p>
-                    <p class="teacher-class-num comment"><span>宗教学系</span> <span>2014级</span> <span>共选<span>2</span>门课</span></p>
+                    <p class="student-name homework-title"><{$student['name']}>（<{$student['num']}>）</p>
+                    <p class="teacher-class-num comment"><{$student['major']}> <{$student['grade']}> 共选<{$student['numOfClass']}>门课</p>
                     <br>
                     <table class="admi-class-detail">
+                        <{foreach item="class" name="classes"}>
                         <tr>
-                            <td><p class="homework-check comment">当代社会科学视域中的马克思主义哲学</p></td>
+                            <td><p class="homework-check comment"><{$class['name']}></p></td>
                         </tr>
-                        <tr>
-                            <td> <p class="homework-ddl comment">当代社会科学视域中的马克思主义哲学（续）</p></td>
-                        </tr>
+                        <{/foreach}>
                     </table>
 
                 </div>
@@ -90,19 +53,12 @@
 
                 <div class="clear"></div>
             </div>
+            <{/foreach}>
         </div>
     </div>
 
-    <div class="footer">
-        <div class="wrapper">
-            <p>Designed & Developed by Ray,Danni,Moo & Polaris &copy 2016 Cross</p>
-        </div>
-    </div>
+    <{include file="Common/footer"/}>
 </div>
-
-
-
-
 
 </body>
 </html>

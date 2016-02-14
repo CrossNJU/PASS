@@ -12,28 +12,12 @@
 </head>
 <body>
 <div class="content">
-    <div class="header">
-        <div class="wrapper-header">
-            <div class="title">
-                <img src="__PUBLIC__/img/title.png">
-            </div>
-            <div class = "userbar">
-                <ul>
-                    <li class="username">用户名</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="setting">设置</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="logout">退出</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <{include file="Common/header"/}>
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn nav-btn-active">教师管理</a>
-            <a class="nav-btn" href="#">学生管理</a>
-            <a class="nav-btn" href="#">课程管理</a>
+            <a class="nav-btn nav-btn-active" href="#">教师管理</a>
+            <a class="nav-btn" href="/Administrator/student-admin">学生管理</a>
+            <a class="nav-btn" href="/Administrator/lesson-admin">课程管理</a>
         </div>
     </div>
 
@@ -46,42 +30,19 @@
                 <!--<a class="btn" style="display: inline">添加教师（目前共有23名）</a>-->
             </div>
 
-            <div class="homework homework-manage homework-active" >
-                <div class="num">1</div>
-                <div class="teacher-info homework-info">
-                    <p class="teacher-name homework-title">张亮（WR82256007）</p>
-                    <p class="teacher-class-num comment">2门课程</p>
-                    <br>
-                    <table class="admi-class-detail">
-                        <tr>
-                            <td><p class="homework-check comment">当代社会科学视域中的马克思主义哲学</p></td>
-                        </tr>
-                        <tr>
-                            <td> <p class="homework-ddl comment">当代社会科学视域中的马克思主义哲学（续）</p></td>
-                        </tr>
-                    </table>
-
-                </div>
-                <a class="btn btn-small" href="#">移除</a>
-                <a class="btn btn-small" href="#">修改</a>
-                <a class="btn btn-small btn-active" href="#">添加课程</a>
-
-                <div class="clear"></div>
-            </div>
-
+            <{foreach item="teacher" name="teachers"}>
             <div class="homework homework-manage" >
-                <div class="num">1</div>
+                <div class="num"><{$teacher['order']}></div>
                 <div class="teacher-info homework-info">
-                    <p class="teacher-name homework-title">张亮（WR82256007）</p>
-                    <p class="teacher-class-num comment">2门课程</p>
+                    <p class="teacher-name homework-title"><{$teacher['name']}>（<{$teacher['num']}>）</p>
+                    <p class="teacher-class-num comment"><{$teacher['numOfClass']}>门课程</p>
                     <br>
                     <table class="admi-class-detail">
+                        <{foreach item="class" name="classes"}>
                         <tr>
-                            <td><p class="homework-check comment">当代社会科学视域中的马克思主义哲学</p></td>
+                            <td><p class="homework-check comment"><{$class['name']}></p></td>
                         </tr>
-                        <tr>
-                            <td> <p class="homework-ddl comment">当代社会科学视域中的马克思主义哲学（续）</p></td>
-                        </tr>
+                        <{/foreach}>
                     </table>
 
                 </div>
@@ -91,20 +52,12 @@
 
                 <div class="clear"></div>
             </div>
-
+            <{/foreach}>
         </div>
     </div>
 
-    <div class="footer">
-        <div class="wrapper">
-            <p>Designed & Developed by Ray,Danni,Moo & Polaris &copy 2016 Cross</p>
-        </div>
-    </div>
+    <{include file="Common/footer"/}>
 </div>
-
-
-
-
 
 </body>
 </html>

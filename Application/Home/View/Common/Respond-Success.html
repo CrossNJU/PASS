@@ -11,22 +11,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 </head>
 <body>
-<div class="header">
-    <div class="wrapper-header">
-        <div class="title">
-            <img src="__PUBLIC__/img/title.png">
-        </div>
-        <div class = "userbar">
-            <ul>
-                <li class="username">用户名</li>
-                <li class="split">&nbsp|&nbsp</li>
-                <li class="setting">设置</li>
-                <li class="split">&nbsp|&nbsp</li>
-                <li class="logout">退出</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<{include file="Common/header-common"/}>
 
 <div class="nav">
     <div class="wrapper">
@@ -44,24 +29,28 @@
             </div>
         </div>
 
+        <{foreach item="homework" name="homeworkDetails"}>
         <div class="card">
             <div class="card-info">
-                <p class="comment class-num">PA021</p>
-                <h3 class="card-title">当代社会科学领域的马克思主义哲学期末论文</h3>
-                <p class="comment">课程：当代社会科学领域的马克思主义哲学（张亮）</p>
-                <p class="comment">要求：8000以上，围绕当代社会科学领域的马克思主义哲学展开论文</p>
-                <p class="comment">时间：<span>2016.01.09</span> - <span>2016.02.20</span></p>
-                <p class="comment">状态：<span>未提交</span></p>
-                <a class="btn btn-active" href="#">提交作业</a>
+                <p class="comment class-num"><{homework['num']}></p>
+                <h3 class="card-title"><{homework['name']}></h3>
+                <p class="comment">课程: <{homework['courseName']}></p>
+                <p class="comment">要求: <{homework['require']}></p>
+                <p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
+                <p class="comment">状态: <{if condition="homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+                    <span><{if condition="homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></p>
+                <{if condition="homework['isSubmit'] eq true"}>
+                <a class="btn" href="/Student/Preview/<{$homework['id']}>">预览作业</a>
+                <a class="btn" href="/Student/Submit">重新提交</a>
+                <{else /}>
+                <a class="btn" href="/Student/Submit">提交作业</a>
+                <{/if}>
             </div>
         </div>
+        <{/foreach}>
 
     </div>
-    <div class="footer">
-        <div class="wrapper">
-            <p>Designed & Developed by Ray,Danni,Moo & Polaris &copy 2016 Cross</p>
-        </div>
-    </div>
+    <{include file="Common/footer"/}>
 </div>
 
 </body>
