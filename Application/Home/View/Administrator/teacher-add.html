@@ -12,28 +12,12 @@
 </head>
 <body>
 <div class="content">
-    <div class="header">
-        <div class="wrapper-header">
-            <div class="title">
-                <img src="__PUBLIC__/img/title.png">
-            </div>
-            <div class = "userbar">
-                <ul>
-                    <li class="username">用户名</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="setting">设置</li>
-                    <li class="split">&nbsp|&nbsp</li>
-                    <li class="logout">退出</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
+    <{include file="Common/header"/}>
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn">教师管理</a>
-            <a class="nav-btn" href="#">学生管理</a>
-            <a class="nav-btn" href="#">课程管理</a>
+            <a class="nav-btn" href="/Administrator/teacher-admin">教师管理</a>
+            <a class="nav-btn" href="/Administrator/student-admin">学生管理</a>
+            <a class="nav-btn" href="/Administrator/lesson-admin">课程管理</a>
         </div>
     </div>
 
@@ -46,27 +30,27 @@
             <div class="admi-class-info" >
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">工号</p>
-                    <input class="text" type="text" value="工号"/>
+                    <input class="text" type="text" placeholder="工号"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">姓名</p>
-                    <input class="text" type="text" value="姓名"/>
+                    <input class="text" type="text" placeholder="姓名"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">院系</p>
-                    <input class="text" type="text" value="院系"/>
+                    <input class="text" type="text" placeholder="院系"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">专业</p>
-                    <input class="text" type="text" value="专业"/>
+                    <input class="text" type="text" placeholder="专业"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">邮箱</p>
-                    <input class="text" type="text" value="邮箱"/>
+                    <input class="text" type="text" placeholder="邮箱"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">密码</p>
-                    <input class="text" type="text" value="密码"/>
+                    <input class="text" type="text" placeholder="密码"/>
                 </div>
 
             </div>
@@ -77,11 +61,7 @@
         </div>
     </div>
 
-    <div class="footer">
-        <div class="wrapper">
-            <p>Designed & Developed by Ray,Danni,Moo & Polaris &copy 2016 Cross</p>
-        </div>
-    </div>
+    <{include file="Common/footer"/}>
 </div>
 
 </body>

@@ -3,6 +3,15 @@
 <head>
     <title>样式</title>
     <!--<script src="jq/jquery-1.8.2.min.js"></script>-->
+    <script src="../js/jquery-1.8.2.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.file_submit').click(function(){$('.file').trigger('click');});
+            $('.file').change(function(){$('.file_text').val($('.file').val());});
+        })
+
+    </script>
 
     <meta charset="UTF-8">
     <link href="../css/IHF.css" rel="stylesheet" type="text/css" />
