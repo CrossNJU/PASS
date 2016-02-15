@@ -14,11 +14,11 @@ class TeacherController extends Controller
 {
     public function my_course(){//教师:我的课程
         if(!session('?per')){
-            $this->ajaxReturn(0);
+            $this->redirect('Common/login');
         }
         $status = session("per");
         if($status!=2){
-            $this->ajaxReturn(0);//未登录
+            $this->redirect('Common/login');
         }
         $course_model = M('Course');
         $teacher_id = session("user");
@@ -46,11 +46,11 @@ class TeacherController extends Controller
 
     public function my_assignments(){//教师:我布置的作业
         if(!session('?per')){
-            $this->ajaxReturn(0);
+            $this->redirect('Common/login');
         }
         $status = session("per");
         if($status!=2) {
-            $this->ajaxReturn(0);//未登录
+            $this->redirect('Common/login');
         }
 
         $teacher = session('user');
@@ -205,11 +205,11 @@ class TeacherController extends Controller
 
     public function assignment_deliver(){//布置新作业
         if(!session('?per')){
-            $this->ajaxReturn(0);
+            $this->redirect('Common/login');
         }
         $status = session("per");
         if($status!=2){
-            $this->ajaxReturn(0);//未登录
+            $this->redirect('Common/login');
         }
 
         $assignment_model = M('Assignment');

@@ -15,7 +15,7 @@ class StudentController extends Controller
 
     public function sets(){//学生-设置
         if(!session('?per') || session('per')!= 1)
-            $this->ajaxReturn(0);
+            $this->redirect('Common/login');
 
         $stu = session('user');
         $user_model = M('User');
@@ -45,7 +45,7 @@ class StudentController extends Controller
 
     public function my_course(){//学生-我的课程
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -78,7 +78,7 @@ class StudentController extends Controller
 
     public function my_assignment(){//学生-我的作业
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -139,7 +139,7 @@ class StudentController extends Controller
 
     public function course_remove($course_id){//退选课程
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -154,7 +154,7 @@ class StudentController extends Controller
 
     public function course_in(){//学生-加入新课程
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -211,7 +211,7 @@ class StudentController extends Controller
 
     public function course_add($course_id){//点击加入课程,之前的作业呢?
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -227,7 +227,7 @@ class StudentController extends Controller
 
     public function assignment_see($assignment_id){//预览作业...url还有问题
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $assignment_dis_model = M('Assignmentdis');
@@ -249,7 +249,7 @@ class StudentController extends Controller
 
     public function assignment_submit($assignment_id){//提交作业
         if(!session('?user') || session('per')!=1)
-            $this->ajaxReturn(-1);
+            $this->redirect('Common/login');
         $student_id = session('user');
 
         $upload = new Upload();
