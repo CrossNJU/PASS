@@ -44,9 +44,10 @@ class StudentController extends Controller
     }
 
     public function my_course(){//学生-我的课程
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
-        $student_id = session('user');
+//        if(!session('?user') || session('per')!=1)
+//            $this->redirect('Common/login');
+//        $student_id = session('user');
+        $student_id = 'S1';
 
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -68,12 +69,12 @@ class StudentController extends Controller
                 'numOfStu' =>$course['selected'],
                 'description' => $course['depict'],
                 'numOfHomework' => $course['assignments'],
-                'homework' => $course_logic->get_assignment($course_id)
+                'homework' => $course_logic->get_assignments_student($course_id)
             );
             $courses[$i] = $course_detail;
             $i ++;
         }
-        $this->course = $courses;
+        $this->courses = $courses;
 
         $this->display('Student:mycourse-stu');
     }

@@ -13,6 +13,7 @@ class CourseLogic
 {
 
     public function get_assignments_course($course_id){//查看作业,根据课程
+        $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
         $assignments = $assignment_model->where("course = '$course_id'")->select();
         $homework = array();
@@ -23,7 +24,7 @@ class CourseLogic
                 'name' => $this->get_assignment_name($assignment_detail['number']),
                 'start' => $assignment_detail['startTime'],
                 'end' => $assignment_detail['endTime'],
-                'isEnd' => $this->isEnded($assignment_detail['endTime']),
+                'isEnd' => $common_logic->isEnded($assignment_detail['endTime']),
                 'require' => $assignment_detail['requi'],
                 'numOfSubmit' => $assignment_detail['submitted'],
                 'corrected' => $assignment_detail['examined'],
@@ -38,6 +39,7 @@ class CourseLogic
         $student_id = session('user');
 
         $assignment_dis_model = M('Assignmentdis');
+        $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
         $assignment_dis_s = $assignment_dis_model
             ->where("stdNumber = '$student_id' AND cNumber = '$course_id'")
@@ -55,7 +57,7 @@ class CourseLogic
                 'start' => $assignment['startTime'],
                 'end' => $assignment['endTime'],
                 'isSubmit' => $var['isSubmitted'],
-                'isEnd' => $this->isEnded($assignment['endTime']),
+                'isEnd' => $common_logic->isEnded($assignment['endTime']),
 
                 'courseName' => $this->get_course_name($course_id),
             );

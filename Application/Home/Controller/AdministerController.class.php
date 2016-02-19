@@ -139,19 +139,21 @@ class AdministerController extends Controller
 
     public function course_manage(){
         $course_logic = D('Course','Logic');
+        $user_logic = D('User','Logic');
         $all = $this->course_show();
         $courses = array();
         $i = 0;
         foreach ($all as $course){
+            $ass = $course_logic->get_assignments_course($course['number']);
             $course_detail = array(
                 'num' => $course['number'],
 //                'period' => $course['time'],
                 'name' => $course['title'],
-                'nameOfTea' => $this->get_user_name($course['teacher']),
+                'nameOfTea' => $user_logic->get_user_name($course['teacher']),
 //                'numOfStu' =>$course['selected'],
 //                'description' => $course['depict'],
-                'numOfHomework' => $course['assignments'],
-                'homeworks' => $course_logic->get_assignments_course($course['number'])
+                'numOfHomework' => count($ass),
+                'homeworks' => $ass
             );
             $courses[$i] = $course_detail;
             $i ++;
@@ -169,7 +171,7 @@ class AdministerController extends Controller
                         'num' => $course['number'],
 //                'period' => $course['time'],
                         'name' => $course['title'],
-                        'nameOfTea' => $this->get_user_name($course['teacher']),
+                        'nameOfTea' => $user_logic->get_user_name($course['teacher']),
 //                'numOfStu' =>$course['selected'],
 //                'description' => $course['depict'],
                         'numOfHomework' => $course['assignments'],
