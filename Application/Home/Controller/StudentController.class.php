@@ -54,6 +54,8 @@ class StudentController extends Controller
             ->select();
         $i = 0;
         $courses = array();
+        $course_logic = D('Course','Logic');
+        $user_logic = D('User','Logic');
         foreach ($course_ids as $var){
             $course_id = $var['cNumber'];
             $course = $course_model->where("number = '$course_id'")
@@ -62,11 +64,11 @@ class StudentController extends Controller
                 'num' => $course['number'],
                 'period' => $course['time'],
                 'name' => $course['title'],
-                'teacher' => $this->get_user_name($course['teacher']),
+                'teacher' => $user_logic->get_user_name($course['teacher']),
                 'numOfStu' =>$course['selected'],
                 'description' => $course['depict'],
                 'numOfHomework' => $course['assignments'],
-                'homework' => $this->get_assignment($course_id)
+                'homework' => $course_logic->get_assignment($course_id)
             );
             $courses[$i] = $course_detail;
             $i ++;
@@ -86,9 +88,10 @@ class StudentController extends Controller
             ->select();
         $i = 0;
         $assignments = array();
+        $course_logic = D('Course','Logic');
         foreach ($course_ids as $var){
             $course_id = $var['cNumber'];
-            $assignment = $this->get_assignment($course_id);
+            $assignment = $course_logic->get_assignments_student($course_id);
             $assignments[$i] = $assignment;
             $i ++;
         }
@@ -104,38 +107,6 @@ class StudentController extends Controller
 //        $assignments = $this->get_assignment($course_id);
 //        $this->ajaxReturn($assignments['assignments']);
 //    }
-
-    protected function get_assignment($course_id){//得到具体某一门的的作业
-        $student_id = session('user');
-
-        $assignment_dis_model = M('Assignmentdis');
-        $assignment_model = M('Assignment');
-        $assignment_dis_s = $assignment_dis_model
-            ->where("stdNumber = '$student_id' AND cNumber = '$course_id'")
-            ->select();
-        $i = 0;
-        $assignments = array();
-        foreach ($assignment_dis_s as $var){
-            $assignment_id = $var['assNumber'];
-            $assignment = $assignment_model->where("number = '$assignment_id'")
-                ->select();
-            $assignment_detail = array(
-                'num' => $assignment['number'],
-                'name' => $assignment['title'],
-                'require' => $assignment['requi'],
-                'start' => $assignment['startTime'],
-                'end' => $assignment['endTime'],
-                'isSubmit' => $var['isSubmitted'],
-                'isEnd' => $this->isEnded($assignment['endTime']),
-
-                'courseName' => $this->get_course_name($course_id),
-            );
-            $assignments[$i] = $assignment_detail;
-            $i ++;
-        }
-
-        return $assignments;
-    }
 
     public function course_remove($course_id){//退选课程
         if(!session('?user') || session('per')!=1)
@@ -158,14 +129,16 @@ class StudentController extends Controller
 
         $course_model = M('Course');
         $course_all = $course_model->select();
-        $status = $this->get_course_status($course_all);
+        $course_logic = D('Course','Logic');
+        $user_logic = D('User','Logic');
+        $status = $course_logic->get_course_status($course_all);
 
         if(isset($_POST['search'])){
             $key = I('post.search');
             $course_all = $course_model
                 ->where("title = '$key' OR number = '$key'")
                 ->select();
-            $status = $this->get_course_status($course_all);
+            $status = $course_logic->get_course_status($course_all);
         }
 
         $i = 0;
@@ -177,7 +150,7 @@ class StudentController extends Controller
                 'num' => $course['number'],
                 'period' => $course['time'],
                 'name' => $course['title'],
-                'teacher' => $this->get_user_name($course['teacher']),
+                'teacher' => $user_logic->get_user_name($course['teacher']),
                 'numOfStu' => $course['selected'],
                 'description' => $course['depict']
             );
@@ -187,26 +160,6 @@ class StudentController extends Controller
 
         $this->courses = $courses;
         $this->display('Student:joincourse');
-    }
-
-    protected function get_course_status($course_all){
-        $student_id = session('user');
-        $course_dis_model = M('Coursedis');
-        $course_status = array();
-        $i = 0;
-        foreach ($course_all as $course){
-            $course_id = $course['number'];
-            $check = false;
-            $sel = $course_dis_model
-                ->where("cNumber = '$course_id' AND stdNumber = '$student_id'")
-                ->select();
-            if(count($sel)>0) $check = true;
-            if($check){
-                $course_status[$i] = true;
-            }else $course_status[$i] = false;
-            $i ++;
-        }
-        return $course_status;
     }
 
     public function course_add($course_id){//点击加入课程,之前的作业呢?
@@ -229,6 +182,7 @@ class StudentController extends Controller
         if(!session('?user') || session('per')!=1)
             $this->redirect('Common/login');
         $student_id = session('user');
+        $course_logic = D('Course','Logic');
 
         $assignment_dis_model = M('Assignmentdis');
         $assignment = $assignment_dis_model
@@ -242,7 +196,7 @@ class StudentController extends Controller
         );
         $this->homework = array(
             'num' => $assignment_id,
-            'name' => $this->get_assignment_name($assignment_id),
+            'name' => $course_logic->get_assignment_name($assignment_id),
         );
         $this->display('Student:preview');
     }
@@ -279,32 +233,5 @@ class StudentController extends Controller
             $assignment_model->where("number = '$assignment_id")->setInc('submitted');
             $this->ajaxReturn(1);//上传成功
         }
-    }
-
-    protected function get_user_name($user_id){
-        $user_model = M('User');
-        $user = $user_model->where("number = '$user_id'")
-            ->select()[0];
-        return $user['name'];
-    }
-
-    protected function get_course_name($course_id){
-        $course_model = M('Course');
-        $course = $course_model->where("number = '$course_id'")
-            ->select()[0];
-        return $course['title'];
-    }
-
-    protected function get_assignment_name($assignment_id){
-        $assignment_model = M('Assignment');
-        $assignment = $assignment_model->where("number = '$assignment_id'")
-            ->select()[0];
-        return $assignment['title'];
-    }
-
-    protected function isEnded($time){
-        $now = date("y-m-d h:i:s");
-        if(strtotime($time)<strtotime($now)) return true;
-        return false;
     }
 }

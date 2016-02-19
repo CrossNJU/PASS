@@ -17,18 +17,46 @@ class AdministerController extends Controller
 
     public function student_manage(){
         $all = $this->user_show(1);
+        $students = array();
+        $i = 0;
+        foreach ($all as $student){
+            $courses = $this->stu_show_course($student['number']);
+            $student_detail = array(
+                'name' => $student['name'],
+                'num' => $student['number'],
+                'major' => $student['academy'].'-'.$student['speciality'],
+                'grade' => $student['grade'],
+                'numOfClass' => count($courses),
+                'classes' => $courses
+            );
+            $students[$i] = $student_detail;
+            $i ++;
+        }
         if(isset($_POST['find'])){//查找学生,空白默认查找全部
             $key = I('post.search');
             if($key == ""){
-                $this->ajaxReturn($all);
+                $this->ajaxReturn($students);
             }else{
-                $ret = $this->user_find(1,$key);
-                $this->ajaxReturn($ret);
+                $all = $this->user_find(1,$key);
+                $i = 0;
+                foreach ($all as $student){
+                    $courses = $this->stu_show_course($student['number']);
+                    $student_detail = array(
+                        'name' => $student['name'],
+                        'num' => $student['number'],
+                        'major' => $student['academy'].'-'.$student['speciality'],
+                        'grade' => $student['grade'],
+                        'numOfClass' => count($courses),
+                        'classes' => $courses
+                    );
+                    $students[$i] = $student_detail;
+                    $i ++;
+                }
+                $this->ajaxReturn($students);
             }
         }
 
-        $this->num = count($all);
-        $this->students = $all;
+        $this->students = $students;
         $this->display('Administrator:student-admin');
     }
 
@@ -67,7 +95,7 @@ class AdministerController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function stu_show_course($stu_id){//显示学生所选课程名
+    protected function stu_show_course($stu_id){//显示学生所选课程名
         $course_dis_model = M('Coursedis');
         $course_model = M('Course');
         $rows = $course_dis_model->where("stdNumber = '$stu_id'")->select();
@@ -77,10 +105,12 @@ class AdministerController extends Controller
             $course_id = $course['cNumber'];
             $course_detail = $course_model->where("number = '$course_id'")
                 ->select() [0];
-            $titles[$i] = $course_detail['title'];
+            $titles[$i] = array(
+                'name' => $course_detail['title']
+            );
             $i++;
         }
-        $this->ajaxReturn($titles);
+        return $titles;
     }
 
     public function student_add()//添加学生
@@ -108,31 +138,51 @@ class AdministerController extends Controller
     //--------------------------------------------------------------------------
 
     public function course_manage(){
+        $course_logic = D('Course','Logic');
         $all = $this->course_show();
+        $courses = array();
+        $i = 0;
+        foreach ($all as $course){
+            $course_detail = array(
+                'num' => $course['number'],
+//                'period' => $course['time'],
+                'name' => $course['title'],
+                'nameOfTea' => $this->get_user_name($course['teacher']),
+//                'numOfStu' =>$course['selected'],
+//                'description' => $course['depict'],
+                'numOfHomework' => $course['assignments'],
+                'homework' => $course_logic->get_assignments_course($course['number'])
+            );
+            $courses[$i] = $course_detail;
+            $i ++;
+        }
 
         if(isset($_POST['find'])){//查找课程,空白默认查找全部
             $key = I('post.search');
             if($key == ""){
-                $ret = array(
-                    'course' => $all,
-                    'assignments' => $this->course_show_assignments($all)
-                );
-                $this->ajaxReturn($ret);
+                $this->ajaxReturn($courses);
             }else{
-                $courses = $this->course_find($key);
-                $ret = array(
-                    'course' => $courses,
-                    'assignments' => $this->course_show_assignments($courses)
-                );
-                $this->ajaxReturn($ret);
+                $all = $this->course_find($key);
+                $i = 0;
+                foreach ($all as $course){
+                    $course_detail = array(
+                        'num' => $course['number'],
+//                'period' => $course['time'],
+                        'name' => $course['title'],
+                        'nameOfTea' => $this->get_user_name($course['teacher']),
+//                'numOfStu' =>$course['selected'],
+//                'description' => $course['depict'],
+                        'numOfHomework' => $course['assignments'],
+                        'homework' => $course_logic->get_assignments_course($course['number'])
+                    );
+                    $courses[$i] = $course_detail;
+                    $i ++;
+                }
+                $this->ajaxReturn($courses);
             }
         }
 
-        $this->num = count($all);
-        $this->courses = array(
-            'course' => $all,
-            'assignments' => $this->course_show_assignments($all)
-        );
+        $this->courses = $courses;
         $this->display('Administrator:lesson-admin');
     }
 
@@ -203,29 +253,44 @@ class AdministerController extends Controller
 
     public function teacher_manage(){
         $all = $this->user_show(2);
+        $teachers = array();
+        $i = 0;
+        foreach ($all as $teacher){
+            $courses = $this->teacher_show_courses($teacher['number']);
+            $teacher_detail = array(
+                'order' => $teacher['number'],
+                'name' => $teacher['name'],
+                'num' => count($all),
+                'numOfClass' => count($courses),
+                'classes' => $courses,
+            );
+            $teachers[$i] = $teacher_detail;
+            $i ++;
+        }
         if(isset($_POST['find'])){//查找课程,空白默认查找全部
             $key = I('post.search');
             if($key == ""){
-                $ret = array(
-                    'teacher' => $all,
-                    'titles' => $this->teacher_show_courses($all)
-                );
-                $this->ajaxReturn($ret);
+                $this->ajaxReturn($teachers);
             }else{
-                $teachers = $this->user_find(2,$key);
-                $ret = array(
-                    'teacher' => $teachers,
-                    'titles' => $this->teacher_show_courses($teachers)
-                );
-                $this->ajaxReturn($ret);
+                $all = $this->user_find(2,$key);
+                $i = 0;
+                foreach ($all as $teacher){
+                    $courses = $this->teacher_show_courses($teacher['number']);
+                    $teacher_detail = array(
+                        'order' => $teacher['number'],
+                        'name' => $teacher['name'],
+                        'num' => count($all),
+                        'numOfClass' => count($courses),
+                        'classes' => $courses,
+                    );
+                    $teachers[$i] = $teacher_detail;
+                    $i ++;
+                }
+                $this->ajaxReturn($teachers);
             }
         }
 
-        $this->num = count($all);
-        $this->teachers = array(
-            'teacher' => $all,
-            'titles' => $this->teacher_show_courses($all)//课程的数组
-        );
+        $this->teachers = $teachers;
         $this->display('Administrator:_teacher_mag');
     }
 
@@ -255,7 +320,10 @@ class AdministerController extends Controller
             $teacher_id = $teacher['number'];
             $course = $course->where("teacher = '$teacher_id'")
                 ->select();
-            $courses[$i] = $course;
+            $course_detail = array(
+                'name' => $course['name']
+            );
+            $courses[$i] = $course_detail;
             $i ++;
         }
         return $courses;

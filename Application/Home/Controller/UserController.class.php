@@ -28,12 +28,16 @@ class UserController extends Controller
 //            ->where("cNumber = '1' AND stdNumber = 'cr' AND cName = '1'")->select();
 ////        dump($test);
 //        dump($res);
+        if(isset($_POST['bt'])){
+            echo "in";
+            $this->success("success",'test2');
+        }
+
         $this->display('User:test1');
     }
 
-    public function test_url($id1,$id2){
-        echo $id1." ".$id2;
-//        $this->display('User:test2');
+    public function test_url(){
+        $this->display('User:test2');
     }
 
     public function test2(){

@@ -6,6 +6,11 @@
 </head>
 <body>
     hello world! my test 1
-    <?php echo ($user); ?>
+    {$user}<br>
+    <form method="post">
+        <input name="in" type="text" width="200px"><br>
+        <input type="submit" name="bt" value="submit">
+    </form>
+    <!--<a href="http://localhost/PASS/index.php/Home/user/1">test</a>-->
 </body>
 </html>
