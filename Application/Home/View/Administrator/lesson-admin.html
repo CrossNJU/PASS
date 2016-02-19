@@ -37,14 +37,19 @@
                     <p class="homework-total comment">共  <{$course['numOfHomework']}> 份作业</p>
                     <br>
                     <table class="admi-class-detail">
+                        <{foreach item="homework" name="homeworks"}>
+                        <{if condition="homework['isOverdue'] eq true"}>
                         <tr>
-                            <td><p class="homework-check comment">[<{$course['markState']}> <{$course['numOfMarked']}>/<{$course['numOfStu']}>] 当代社会科学视域中的马克思主义哲学期末论文</p></td>
+                            <td><p class="homework-check comment">[已批阅 <{$homework['numOfMarked']}>/<{$homework['numOfStu']}>] <{$homework['name']}></p></td>
                             <td><a class="download" herf="#">批量下载</a></td>
                         </tr>
+                        <else />
                         <tr>
-                            <td> <p class="homework-ddl comment">[<{$course['ddlState']}>] <{$course['nameOfHomework']}></p></td>
+                            <td><p class="homework-check comment">[未截至] <{$homework['name']}></p></td>
                             <td><a class="download" herf="#">批量下载</a></td>
                         </tr>
+                        </foreach>
+
                     </table>
 
                 </div>
