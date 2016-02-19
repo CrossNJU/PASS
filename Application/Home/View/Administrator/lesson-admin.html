@@ -38,17 +38,17 @@
                     <br>
                     <table class="admi-class-detail">
                         <{foreach item="homework" name="homeworks"}>
-                        <{if condition="homework['isOverdue'] eq true"}>
+                        <{if condition="homework['isEnd'] eq true"}>
                         <tr>
-                            <td><p class="homework-check comment">[已批阅 <{$homework['numOfMarked']}>/<{$homework['numOfStu']}>] <{$homework['name']}></p></td>
+                            <td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>
                             <td><a class="download" herf="#">批量下载</a></td>
                         </tr>
-                        <else />
+                        <{else /}>
                         <tr>
                             <td><p class="homework-check comment">[未截至] <{$homework['name']}></p></td>
                             <td><a class="download" herf="#">批量下载</a></td>
                         </tr>
-                        </foreach>
+                        <{/foreach}>
 
                     </table>
 

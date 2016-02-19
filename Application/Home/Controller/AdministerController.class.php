@@ -151,7 +151,7 @@ class AdministerController extends Controller
 //                'numOfStu' =>$course['selected'],
 //                'description' => $course['depict'],
                 'numOfHomework' => $course['assignments'],
-                'homework' => $course_logic->get_assignments_course($course['number'])
+                'homeworks' => $course_logic->get_assignments_course($course['number'])
             );
             $courses[$i] = $course_detail;
             $i ++;
@@ -173,7 +173,7 @@ class AdministerController extends Controller
 //                'numOfStu' =>$course['selected'],
 //                'description' => $course['depict'],
                         'numOfHomework' => $course['assignments'],
-                        'homework' => $course_logic->get_assignments_course($course['number'])
+                        'homeworks' => $course_logic->get_assignments_course($course['number'])
                     );
                     $courses[$i] = $course_detail;
                     $i ++;
@@ -206,19 +206,6 @@ class AdministerController extends Controller
         $assignment_dis_model->where("cNumber = '$course_id'")->delete();
         $course_dis_model->where("cNumber = '$course_id'")->delete();
         $course_model->where("number = '$course_id'")->delete();
-    }
-
-    protected function course_show_assignments($courses){//显示课程作业
-        $assignment_model = M('Assignment');
-        $assignments = array();
-        $i = 0;
-        foreach ($courses as $course){
-            $course_id = $course['number'];
-            $assignments[$i] = $assignment_model->where("course = '$course_id'")
-                ->select();
-            $i ++;
-        }
-        return $assignments;
     }
 
     public function course_add(){//新增课程
