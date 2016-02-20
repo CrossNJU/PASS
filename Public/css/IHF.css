@@ -38,7 +38,7 @@ ul li{
     padding: 16px 0 20px 0;
     font-size: 14px;
     color: #A5A5A5;
-    width: 100%;
+    /*width: 100%;*/
     bottom: 0;
     clear:both;
 }
