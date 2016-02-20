@@ -100,13 +100,13 @@ class CommonController extends Controller
                 $student_id = $rows[0]['number'];
                 $body = $body.$student_id;
             }else
-                $this->ajaxReturn(-1);//邮箱不存在
+//                $this->ajaxReturn(-1);//邮箱不存在
             $mail->AddAddress($address);
             $mail->MsgHTML($body);
             if($mail->Send()){
                 $this->ajaxReturn(1);//发送成功
             }
-            else $this->ajaxReturn(0);//发送失败
+            else $this->ajaxReturn($mail->ErrorInfo);//发送失败
         }
 
         $this->display('Common:Password-Find');

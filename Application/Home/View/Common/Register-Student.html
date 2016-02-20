@@ -15,7 +15,7 @@
 
 <div class="nav">
     <div class="wrapper">
-        <a class="nav-btn" href="#">登陆</a>
+        <a class="nav-btn" href="__ROOT__/index.php/Home/Common/login">登陆</a>
         <a class="nav-btn nav-btn-active">学生注册</a>
     </div>
 </div>
@@ -27,40 +27,44 @@
                 <h3 class="card-title">学生注册</h3>
             </div>
 
+            <form method="post">
             <div class="admi-class-info" >
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">学号</p>
-                    <input class="text" type="text" placeholder="学号"/>
+                    <input class="text" type="text" name="stu_id" placeholder="学号"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">姓名</p>
-                    <input class="text" type="text" placeholder="姓名"/>
+                    <input class="text" type="text" name="name" placeholder="姓名"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">院系</p>
-                    <input class="text" type="text" placeholder="院系"/>
+                    <input class="text" type="text" name="aca" placeholder="院系"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">专业</p>
-                    <input class="text" type="text" placeholder="专业"/>
+                    <input class="text" type="text" name="spe" placeholder="专业"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">年级</p>
-                    <input class="text" type="text" placeholder="年级"/>
+                    <input class="text" type="text" name="grade" placeholder="年级"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">邮箱</p>
-                    <input class="text" type="text" placeholder="邮箱"/>
+                    <input class="text" type="text" name="email" placeholder="邮箱"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">密码</p>
-                    <input class="text" type="text" placeholder="密码"/>
+                    <input class="text" type="text" name="pwd" placeholder="密码"/>
                 </div>
 
             </div>
             <div class="admi-class-choose admi-class-info">
-                <a class="btn">&nbsp&nbsp&nbsp注册&nbsp&nbsp&nbsp</a>
+                <!--<a class="btn" href="__ROOT__/index.php/Home/Common/login">&nbsp&nbsp&nbsp注册&nbsp&nbsp&nbsp</a>-->
+                <!--<a class="btn" href="__ROOT__/index.php/Home/Common/login">&nbsp&nbsp&nbsp注册&nbsp&nbsp&nbsp</a>-->
+                <input type="submit" name="register" class="btn sbtn" value="   注册   ">
             </div>
+            </form>
 
         </div>
     </div>
