@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 </head>
 <body>
+<form method="post">
 <div class="content">
     <{include file="Common/header-common"/}>
 
@@ -30,11 +31,11 @@
             <div class="admi-class-info" >
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">学号</p>
-                    <input class="text" type="text" placeholder="学号"/>
+                    <input class="text" type="text" name="id" placeholder="学号"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">密码</p>
-                    <input class="text" type="text" placeholder="密码"/>
+                    <input class="text" type="text" name="pwd" placeholder="密码"/>
                 </div>
             </div>
             <div class="login-remember admi-class-info">
@@ -45,8 +46,8 @@
             </div>
             <div class="admi-class-choose admi-class-info">
                 <!--<a class="btn">&nbsp&nbsp&nbsp登录&nbsp&nbsp&nbsp</a>-->
-                <input type="submit" class="btn sbtn" value="   登陆   ">
-                <a class="btn">忘记密码</a>
+                <input type="submit" class="btn sbtn" name="login" value="   登陆   ">
+                <a class="btn" href="__ROOT__/index.php/Home/Common/find_pwd">忘记密码</a>
             </div>
 
         </div>
@@ -54,5 +55,6 @@
 
     <{include file="Common/footer"/}>
 </div>
+</form>
 </body>
 </html>
