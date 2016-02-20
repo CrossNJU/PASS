@@ -110,3 +110,6 @@ input[type="submit"]{
 .sbtn{
     vertical-align:top;
 }
+#respond{
+    display: none;
+}
