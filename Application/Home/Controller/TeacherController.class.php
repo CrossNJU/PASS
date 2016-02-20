@@ -67,9 +67,9 @@ class TeacherController extends Controller
                 'num' => $assignment['number'],
                 'name' => $course_logic->get_assignment_name($assignment['number']),
                 'course' => $course_logic->get_course_name($assignment['course']),
-                'start' => $assignment['startTime'],
-                'end' => $assignment['endTime'],
-                'isEnd' => $common_logic->isEnded($assignment['endTime']),
+                'start' => $assignment['starttime'],
+                'end' => $assignment['endtime'],
+                'isEnd' => $common_logic->isEnded($assignment['endtime']),
                 'require' => $assignment['requi'],
                 'numOfSubmit' => $assignment['submitted'],
                 'corrected' => $assignment['examined'],
@@ -113,9 +113,9 @@ class TeacherController extends Controller
         foreach ($assignments as $assignment){
             $submit[$i] = array(
                 'name' => $course_logic->get_assignment_name($assignment_id),
-                'studentName' => $user_logic->get_user_name($assignment['stdNumber']),
-                'studentNum' => $assignment['stdNumber'],
-                'isCorrected' => $assignment['isExamined'],
+                'studentName' => $user_logic->get_user_name($assignment['stdnumber']),
+                'studentNum' => $assignment['stdnumber'],
+                'isCorrected' => $assignment['isexamined'],
                 'comment' => $assignment['comm'],
                 'score' => $assignment['mark']
             );
@@ -126,9 +126,9 @@ class TeacherController extends Controller
             'num' => $assignment_id,
             'name' => $course_logic->get_assignment_name($assignment_id),
             'course' => $assignments_detail['course'],
-            'start' => $assignments_detail['startTime'],
-            'end' => $assignments_detail['endTime'],
-            'isEnd' => $common_logic->isEnded($assignments_detail['endTime']),
+            'start' => $assignments_detail['starttime'],
+            'end' => $assignments_detail['endtime'],
+            'isEnd' => $common_logic->isEnded($assignments_detail['endtime']),
             'require' => $assignments_detail['requi'],
             'numOfSubmit' => $assignments_detail['submitted'],
             'corrected' => $assignments_detail['examined'],
@@ -163,7 +163,7 @@ class TeacherController extends Controller
 
         $this->url = $assignment_dis['url'].'source.pdf';
         $this->submit = array(
-            'name' => $assignment['submitName'],
+            'name' => $assignment['submitname'],
             'studentName' => $user_logic->get_user_name($student_id),
             'studentNum' => $student_id
         );

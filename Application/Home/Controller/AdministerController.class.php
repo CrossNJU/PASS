@@ -87,7 +87,7 @@ class AdministerController extends Controller
         $user_model->where("number = '$stu_id' AND permission = 1")->delete();
         $courses = $course_dis_model->where("stdNumber = '$stu_id'")->select();
         foreach ($courses as $course){
-            $course_id = $course['cNumber'];
+            $course_id = $course['cnumber'];
             $course_model->where("number = '$course_id'")->setDec('selected');
         }
         $course_dis_model->where("stdNumber = '$stu_id'")->delete();
@@ -102,7 +102,7 @@ class AdministerController extends Controller
         $i = 0;
         $titles = array();
         foreach ($rows as $course){
-            $course_id = $course['cNumber'];
+            $course_id = $course['cnumber'];
             $course_detail = $course_model->where("number = '$course_id'")
                 ->select() [0];
             $titles[$i] = array(

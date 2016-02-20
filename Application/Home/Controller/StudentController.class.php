@@ -44,10 +44,10 @@ class StudentController extends Controller
     }
 
     public function my_course(){//学生-我的课程
-//        if(!session('?user') || session('per')!=1)
-//            $this->redirect('Common/login');
-//        $student_id = session('user');
-        $student_id = 'S1';
+        if(!session('?user') || session('per')!=1)
+            $this->redirect('Common/login');
+        $student_id = session('user');
+//        $student_id = 'S1';
 
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -58,7 +58,7 @@ class StudentController extends Controller
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
         foreach ($course_ids as $var){
-            $course_id = $var['cNumber'];
+            $course_id = $var['cnumber'];
             $course = $course_model->where("number = '$course_id'")
                 ->select() [0];
             $course_detail = array(
@@ -83,20 +83,20 @@ class StudentController extends Controller
         if(!session('?user') || session('per')!=1)
             $this->redirect('Common/login');
         $student_id = session('user');
+//        $student_id = 'S1';
 
         $course_dis_model = M('Coursedis');
-        $course_ids = $course_dis_model->where("stdNumber = '$student_id'")
+        $course_ids = $course_dis_model->where("stdnumber = '$student_id'")
             ->select();
         $i = 0;
         $assignments = array();
         $course_logic = D('Course','Logic');
         foreach ($course_ids as $var){
-            $course_id = $var['cNumber'];
+            $course_id = $var['cnumber'];
             $assignment = $course_logic->get_assignments_student($course_id);
             $assignments[$i] = $assignment;
             $i ++;
         }
-
         $this->homeworkDetails = $assignments;
         $this->display('Student:myhomework-stu');
     }
@@ -192,8 +192,8 @@ class StudentController extends Controller
 
         $this->url = $assignment['url'].'source.pdf';
         $this->submit = array(
-            'name' => $assignment['submitName'],
-            'time' => $assignment['submitTime']
+            'name' => $assignment['submitname'],
+            'time' => $assignment['submittime']
         );
         $this->homework = array(
             'num' => $assignment_id,

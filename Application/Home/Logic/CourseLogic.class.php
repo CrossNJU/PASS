@@ -22,9 +22,9 @@ class CourseLogic
             $assignment_detail = array(
                 'num' => $assignment_detail['number'],
                 'name' => $this->get_assignment_name($assignment_detail['number']),
-                'start' => $assignment_detail['startTime'],
-                'end' => $assignment_detail['endTime'],
-                'isEnd' => $common_logic->isEnded($assignment_detail['endTime']),
+                'start' => $assignment_detail['starttime'],
+                'end' => $assignment_detail['endtime'],
+                'isEnd' => $common_logic->isEnded($assignment_detail['endtime']),
                 'require' => $assignment_detail['requi'],
                 'numOfSubmit' => $assignment_detail['submitted'],
                 'corrected' => $assignment_detail['examined'],
@@ -47,17 +47,17 @@ class CourseLogic
         $i = 0;
         $assignments = array();
         foreach ($assignment_dis_s as $var){
-            $assignment_id = $var['assNumber'];
+            $assignment_id = $var['assnumber'];
             $assignment = $assignment_model->where("number = '$assignment_id'")
-                ->select();
+                ->select()[0];
             $assignment_detail = array(
                 'num' => $assignment['number'],
                 'name' => $assignment['title'],
                 'require' => $assignment['requi'],
-                'start' => $assignment['startTime'],
-                'end' => $assignment['endTime'],
-                'isSubmit' => $var['isSubmitted'],
-                'isEnd' => $common_logic->isEnded($assignment['endTime']),
+                'start' => $assignment['starttime'],
+                'end' => $assignment['endtime'],
+                'isSubmit' => $var['issubmitted'],
+                'isEnd' => $common_logic->isEnded($assignment['endtime']),
 
                 'courseName' => $this->get_course_name($course_id),
             );
