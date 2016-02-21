@@ -13,6 +13,7 @@ class AssignmentModel extends Model
 {
     protected $fields = array(
         'number',
+        'number_display',
         'requi',
         'title',
         'submitted',
@@ -24,6 +25,7 @@ class AssignmentModel extends Model
         '_autoinc' => true,
         '_type'=>array(
             'number' => 'int',
+            'number_display' => 'varchar',
             'requi' => 'text',
             'title' => 'varchar',
             'submitted' => 'int',

@@ -148,7 +148,7 @@ class AdministerController extends Controller
         foreach ($all as $course){
             $ass = $course_logic->get_assignments_course($course['number']);
             $course_detail = array(
-                'num' => $course['number'],
+                'num' => $course['number_display'],
 //                'period' => $course['time'],
                 'name' => $course['title'],
                 'nameOfTea' => $user_logic->get_user_name($course['teacher']),
@@ -177,7 +177,7 @@ class AdministerController extends Controller
 //                'numOfStu' =>$course['selected'],
 //                'description' => $course['depict'],
                         'numOfHomework' => $course['assignments'],
-                        'homeworks' => $course_logic->get_assignments_course($course['number'])
+                        'homeworks' => $course_logic->get_assignments_course($course['number_display'])
                     );
                     $courses[$i] = $course_detail;
                     $i ++;
@@ -215,15 +215,19 @@ class AdministerController extends Controller
 
     public function course_add(){//新增课程
         $course_model = M('Course');
+        $common_logic = D('Common', 'Logic');
         if(isset($_POST['add'])){
             $data['title'] = I('post.title');
             $data['teacher'] = I('post.teacher');
             $data['depict'] = I('post.depict');
             $data['selected'] = I('post.people');
             $data['time'] = I('post.time');
-            if($course_model->add($data))
+            if($course_id = $course_model->add($data)) {
+                $data['number'] = $course_id;
+                $data['number_display'] = $common_logic->get_display_number($course_id,1);
+                $course_model->save($data);
                 $this->ajaxReturn(1);
-            else $this->ajaxReturn(0);//加入失败
+            }else $this->ajaxReturn(0);//加入失败
         }
         $this->display('Administrator:lesson-add');
     }

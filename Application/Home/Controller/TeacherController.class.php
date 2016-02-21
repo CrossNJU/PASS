@@ -29,7 +29,7 @@ class TeacherController extends Controller
         $i = 0;
         foreach ($courses as $course){
             $course_detail = array(
-                'num' => $course['number'],
+                'num' => $course['number_display'],
                 'period' => $course['time'],
                 'name' => $course['title'],
                 'teacher' => $user_logic->get_user_name($course['teacher']),
@@ -64,7 +64,7 @@ class TeacherController extends Controller
         $i = 0;
         foreach ($assignments as $assignment){
             $assignment_detail = array(
-                'num' => $assignment['number'],
+                'num' => $assignment['number_display'],
                 'name' => $course_logic->get_assignment_name($assignment['number']),
                 'course' => $course_logic->get_course_name($assignment['course']),
                 'start' => $assignment['starttime'],
@@ -123,7 +123,7 @@ class TeacherController extends Controller
         }
 
         $this->homework = array(
-            'num' => $assignment_id,
+            'num' => $assignments_detail['number_display'],
             'name' => $course_logic->get_assignment_name($assignment_id),
             'course' => $assignments_detail['course'],
             'start' => $assignments_detail['starttime'],
@@ -168,7 +168,7 @@ class TeacherController extends Controller
             'studentNum' => $student_id
         );
         $this->homework = array(
-            'num' => $assignment_id,
+            'num' => $assignment['number_display'],
             'name' => $course_logic->get_assignment_name($assignment_id),
         );
         $this->display('Teacher:homework-'.$display);
@@ -186,6 +186,7 @@ class TeacherController extends Controller
         $assignment_model = M('Assignment');
         $course_dis_model = M('Coursedis');
         $course_logic = D('Course','Logic');
+        $common_logic = D('Common','Logic');
         $course_model = M('Course');
         if(isset($_POST['save'])){
             $course_id = I('post.course');
@@ -202,6 +203,9 @@ class TeacherController extends Controller
             $data['teacher'] = session('user');
 
             $assignment_id = $assignment_model->add($data);
+            $data['number_display'] = $common_logic->get_display_number($assignment_id,2);
+            $data['number'] = $assignment_id;
+            $assignment_model->save($data);
             $course_model->where("number = '$course_id'")->setInc('assignments');
             foreach ($students as $i){
                 $course_logic->assignment_dis($course_id, $assignment_id,$i['stdnumber']);

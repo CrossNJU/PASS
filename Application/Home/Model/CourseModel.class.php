@@ -13,6 +13,7 @@ class CourseModel extends Model
 {
     protected $fields = array(
         'number',
+        'number_display',
         'title',
         'teacher',
         'depict',
@@ -22,6 +23,7 @@ class CourseModel extends Model
         '_autoinc' => true,
         '_type'=>array(
             'number' => 'int',
+            'number_display' => 'varchar',
             'title' => 'varchar',
             'teacher' => 'varchar',
             'depict' => 'text',

@@ -37,7 +37,7 @@
                     <p class="homework-total comment">共  <{$course['numOfHomework']}> 份作业</p>
                     <br>
                     <table class="admi-class-detail">
-                        <{foreach item="homework" name="homeworks"}>
+                        <{foreach item="homework" name="course['homeworks']"}>
                         <{if condition="homework['isEnd'] eq true"}>
                         <tr>
                             <td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>

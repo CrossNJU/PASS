@@ -20,7 +20,7 @@ class CourseLogic
         $i = 0;
         foreach ($assignments as $assignment_detail) {
             $assignment_detail = array(
-                'num' => $assignment_detail['number'],
+                'num' => $assignment_detail['number_display'],
                 'name' => $this->get_assignment_name($assignment_detail['number']),
                 'start' => $assignment_detail['starttime'],
                 'end' => $assignment_detail['endtime'],
@@ -51,7 +51,7 @@ class CourseLogic
             $assignment = $assignment_model->where("number = '$assignment_id'")
                 ->select()[0];
             $assignment_detail = array(
-                'num' => $assignment['number'],
+                'num' => $assignment['number_diaplay'],
                 'name' => $assignment['title'],
                 'require' => $assignment['requi'],
                 'start' => $assignment['starttime'],

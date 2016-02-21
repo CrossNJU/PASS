@@ -36,4 +36,26 @@ class CommonLogic
         return false;
     }
 
+    public function get_display_number($number, $type){
+        if ($type == 1){//课程
+            return 'PC'.$this->get_string($number);
+        }else if ($type == 2){//作业
+            return 'PA'.$this->get_string($number);
+        }
+        return "NULL";
+    }
+
+    private function get_string($p){
+        $ret = '';
+        $len = 0;
+        $ps = $p;
+        while($ps>=1){
+            $len++;
+            $ps/=10;
+        }
+        for($i=0;$i<4-$len;$i++) $ret.='0';
+        $ret.=$p;
+        return $ret;
+    }
+
 }
