@@ -131,7 +131,9 @@ class AdministerController extends Controller
             $data['speciality'] = I('post.spe');
             $data['grade'] = I('post.grade');
             $data['permission'] = 1;
-            $user_model->add($data);
+            if($user_model->add($data))
+                $this->ajaxReturn(1);
+            else $this->ajaxReturn(0);//加入失败
         }
         $this->display('Administrator:student-add');
     }
@@ -208,6 +210,7 @@ class AdministerController extends Controller
         $assignment_dis_model->where("cNumber = '$course_id'")->delete();
         $course_dis_model->where("cNumber = '$course_id'")->delete();
         $course_model->where("number = '$course_id'")->delete();
+        $this->ajaxReturn(1);
     }
 
     public function course_add(){//新增课程
@@ -218,7 +221,9 @@ class AdministerController extends Controller
             $data['depict'] = I('post.depict');
             $data['selected'] = I('post.people');
             $data['time'] = I('post.time');
-            $course_model->add($data);
+            if($course_model->add($data))
+                $this->ajaxReturn(1);
+            else $this->ajaxReturn(0);//加入失败
         }
         $this->display('Administrator:lesson-add');
     }
@@ -280,7 +285,7 @@ class AdministerController extends Controller
         }
 
         $this->teachers = $teachers;
-        $this->display('Administrator:_teacher_mag');
+        $this->display('Administrator:teacher-admin');
     }
 
     public function teacher_del($teacher_id){//删除教师
@@ -298,7 +303,7 @@ class AdministerController extends Controller
         }
         $assignment_model->where("teacher = '$teacher_id'")->delete();
         $course_model->where("teacher = '$teacher_id'")->delete();
-        $this->display('Administrator:teacher-admin');
+        $this->ajaxReturn(1);
     }
 
     protected function teacher_show_courses($teachers){//显示课程作业
@@ -334,7 +339,9 @@ class AdministerController extends Controller
             $data['academy'] = I('post.aca');
             $data['speciality'] = I('post.spe');
             $data['permission'] = 2;
-            $user_model->add($data);
+            if($user_model->add($data))
+                $this->ajaxReturn(1);
+            else $this->ajaxReturn(0);//加入失败
         }
         $this->display('Administrator:teacher-add');
     }
