@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
-
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
+    <script  src="__PUBLIC__/js/login.js"></script>
 </head>
 <body>
 <form method="post">
@@ -31,16 +33,16 @@
             <div class="admi-class-info" >
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">学号</p>
-                    <input class="text" type="text" name="id" placeholder="学号"/>
+                    <input class="text" type="text" name="id" id="login-id" placeholder="学号"/>
                 </div>
                 <div class="admi-class-info-detil">
                     <p class="admi-class-info-detail comment">密码</p>
-                    <input class="text" type="password" name="pwd" placeholder="密码"/>
+                    <input class="text" type="password" name="pwd" id="login-pwd" placeholder="密码"/>
                 </div>
             </div>
             <div class="login-remember admi-class-info">
                 <form class="comment">
-                    <input type="checkbox" name="RememberMe">
+                    <input type="checkbox" name="rememberMe" id="rememberMe">
                     记住我
                 </form>
             </div>
