@@ -109,6 +109,7 @@ input[type="submit"]{
 }
 .sbtn{
     vertical-align:top;
+    background-color: #FFFFFF;
 }
 #respond{
     display: none;
