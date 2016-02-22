@@ -22,6 +22,7 @@ class AdministerController extends Controller
         foreach ($all as $student){
             $courses = $this->stu_show_course($student['number']);
             $student_detail = array(
+                'order' => $i+1,
                 'name' => $student['name'],
                 'num' => $student['number'],
                 'major' => $student['academy'].'-'.$student['speciality'],
@@ -42,6 +43,7 @@ class AdministerController extends Controller
                 foreach ($all as $student){
                     $courses = $this->stu_show_course($student['number']);
                     $student_detail = array(
+                        'order' => $i+1,
                         'name' => $student['name'],
                         'num' => $student['number'],
                         'major' => $student['academy'].'-'.$student['speciality'],
@@ -256,9 +258,9 @@ class AdministerController extends Controller
         foreach ($all as $teacher){
             $courses = $this->teacher_show_courses($teacher['number']);
             $teacher_detail = array(
-                'order' => $teacher['number'],
+                'order' => $i+1,
                 'name' => $teacher['name'],
-                'num' => count($all),
+                'num' => $teacher['number'],
                 'numOfClass' => count($courses),
                 'classes' => $courses,
             );
@@ -275,9 +277,9 @@ class AdministerController extends Controller
                 foreach ($all as $teacher){
                     $courses = $this->teacher_show_courses($teacher['number']);
                     $teacher_detail = array(
-                        'order' => $teacher['number'],
+                        'order' => $i+1,
                         'name' => $teacher['name'],
-                        'num' => count($all),
+                        'num' => $teacher['number'],
                         'numOfClass' => count($courses),
                         'classes' => $courses,
                     );
