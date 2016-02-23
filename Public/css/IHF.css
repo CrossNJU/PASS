@@ -38,7 +38,7 @@ ul li{
     padding: 16px 0 20px 0;
     font-size: 14px;
     color: #A5A5A5;
-    /*width: 100%;*/
+    width: 100%;
     bottom: 0;
     clear:both;
 }
@@ -54,7 +54,19 @@ input,textarea{
     line-height: 24px;
 }
 
-textarea:focus,input:focus {
+input[type="submit"],input[type="button"]{
+    display: inline-block;
+    height: 46px;
+    background-color: #fff;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+input[type="submit"]:focus,input[type="button"]:focus{
+    outline-style: none;
+}
+
+textarea:focus,input[type="text"]:focus {
     outline: none;
     box-shadow: 0 0 2px 1px #57BEED;
 }
@@ -69,7 +81,8 @@ textarea:focus,input:focus {
     width: 538px;
 }
 .time{
-    width: 264px;
+    width: 258px;
+    margin-right: 6px;
 }
 .file{
     width: 350px;
@@ -80,7 +93,7 @@ textarea:focus,input:focus {
     width:350px;
 }
 .file_submit{
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
     background-color: #57BEED;
     height: 44px;
 }

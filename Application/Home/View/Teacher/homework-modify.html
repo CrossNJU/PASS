@@ -29,13 +29,14 @@
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
+					<form id="modify-form" method="post" action=""></form>
 					<p class="comment">评语</p>
-					<textarea class="textarea comment-textarea"></textarea>
+					<textarea class="textarea comment-textarea" name="comment" form="modify-form" placeholder="评语"><{$comment}></textarea>
 					<p class="comment">评分</p>
-					<input class="grade-input">
-					<a class="btn" href="#">保存修改</a>
-					<a class="btn" href="#">取消修改</a>
-					<a class="btn" href="#">不作修改结束批阅</a>
+					<input class="grade-input" type="text" name="mark" placeholder="评分" value="<{$mark}>">
+					<input class="btn" type="submit" name="save" value="保存修改">
+					<!--<a class="btn" href="#">保存修改</a>-->
+					<a class="btn" href="javascript:history.go(-1)">取消修改</a>
 				</div>
 			</div>
 

@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
+	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
 </head>
 <body>
 	<{include file="Common/header"/}>
@@ -29,19 +32,22 @@
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
-					<p class="comment">评语</p>
-					<textarea class="textarea comment-textarea"></textarea>
-					<p class="comment">评分</p>
-					<input class="grade-input">
-					<a class="btn" href="#">确认并批阅下一份</a>
-					<a class="btn" href="#">确认并结束批阅</a>
-					<a class="btn" href="#">不作修改结束批阅</a>
+					<form id="correct-form" action="" method="post">
+						<p class="comment">评语</p>
+						<textarea class="textarea comment-textarea" name="comment" form="correct-form" placeholder="评语"><{$comment}></textarea>
+						<p class="comment">评分</p>
+						<input class="grade-input" type="text" name="mark" placeholder="评分" value="<{$mark}>">
+						<input class="btn" name="next" type="submit" value="确认并批阅下一份">
+						<input class="btn" name="save" type="submit" value="确认并结束批阅">
+						<!--<a class="btn" href="#">确认并批阅下一份</a>-->
+						<!--<a class="btn" href="#">确认并结束批阅</a>-->
+						<a class="btn" href="javascript:history.go(-1)">不作修改结束批阅</a>
+					</form>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 	</div>
-
 	<{include file="Common/footer"/}>
 </body>
 </html>

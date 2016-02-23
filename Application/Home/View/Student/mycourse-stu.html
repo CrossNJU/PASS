@@ -7,20 +7,24 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
+	<script src="__PUBLIC__/js/jquery.js"></script>
+	<script src="__PUBLIC__/js/main.js"></script>
+	<script	src="__PUBLIC__/js/mycourse-stu.js"></script>
 </head>
 <body>
     <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
 			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
-			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
+			<a class="nav-btn nav-btn-active" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
 			<a class="btn" href="__ROOT__/index.php/Home/Student/course_in">加入新课程 + </a>
 		</div>
 	</div>
 
 	<div class="content">
-		<div class="wrapper">
+		<div class="wrapper" id="wrapper-main">
 			<{foreach item="course" name="courses"}>
 			<div class="card">
 				<div class="card-info">
@@ -33,19 +37,19 @@
 						已布置(<{$course['numOfHomework']}>)
 						<{else /}>未布置
 						<{/if}></p>
-					<a class="btn" href="#">收起作业</a>
-					<a class="btn" href="#">退选课程</a>
+					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
+					<a class="btn remove-btn" data-id="<{$course['num']}>" href="javascript:void(0)">退选课程</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
 				<div class="homework">
 					<div class="rect"></div>
-					<p class="comment">[<span><{if condition="homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
-						<span><{if condition="homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span>]
+					<p class="comment">[<span><{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span>]
 						<span><{$homework['num']}> - <{$homework['name']}></span></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<{if condition="homework['isSubmit'] eq true"}>
-					<a class="btn btn-small" href="#">预览作业</a>
+					<{if condition="$homework['isSubmit'] eq true"}>
+					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-id="<{$homework['num']}>">预览作业</a>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 					<{else /}>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
@@ -65,7 +69,19 @@
 			</div>
 			<{/foreach}>
 		</div>
+
 	</div>
     <{include file="Common/footer"/}>
+	<div class="modal-wrapper" id="preview-modal">
+		<div class="card preview-card">
+			<div class="card-info">
+				<p class="comment class-num" id="preview-class-num"><{$homework['num']}> - <{$homework['name']}></p>
+				<h3 class="card-title" id="preview-name"><{$submit['name']}></h3>
+				<p class="comment" id="preview-time">于<{$submit['time']}>提交</p>
+			</div>
+			<iframe class="pdf" id="preview-pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
+		</div>
+	</div>
+
 </body>
 </html>

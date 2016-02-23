@@ -7,7 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/extra.css">
 <body>
+<div class="modal-wrapper">
+	<div class="card preview-card">
+		<div class="card-info">
+			<p class="comment class-num"><{$homework['num']}> - <{$homework['name']}></p>
+			<h3 class="card-title"><{$submit['name']}></h3>
+			<p class="comment">于<{$submit['time']}>提交</p>
+		</div>
+		<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
+	</div>
+</div>
     <{include file="Common/header"/}>
     <div class="nav">
 		<div class="wrapper">
@@ -21,36 +32,37 @@
 			<div class="card input-card">
 				<div class="card-info">
 					<h3 class="card-title">修改资料</h3>
-					<form>
+					<form id="setting-form" method="post" action="">
 						<p class="comment">学号</p>
-						<input type="text" placeholder="学号">
+						<input type="text" name="number" placeholder="学号" value="<{$student['number']}>">
 						<p class="comment">姓名</p>
-						<input type="text" placeholder="姓名">
+						<input type="text" name="name" placeholder="姓名" value="<{$student['name']}>">
 						<p class="comment">院系</p>
-						<input type="text" placeholder="院系">
+						<input type="text" name="academy" placeholder="院系" value="<{$student['academy']}>">
 						<p class="comment">专业</p>
-						<input type="text" placeholder="专业">
+						<input type="text" name="speciality" placeholder="专业" value="<{$student['speciality']}>">
 						<p class="comment">年级</p>
-						<input type="text" placeholder="年级">
+						<input type="text" name="grade" placeholder="年级" value="<{$student['grade']}>">
 						<p class="comment">邮箱</p>
-						<input type="text" placeholder="邮箱">
+						<input type="text" name="email" placeholder="邮箱" value="<{$student['email']}>">
 						<br/>
-						<a class="btn" href="#">修改资料</a>
+						<input class="btn" type="submit" name="save_info" value="修改资料">
 					</form>
 				</div>
 			</div>
 			<div class="card input-card">
 				<div class="card-info">
 					<h3 class="card-title">修改密码</h3>
-					<form>
+					<form id="password-form" method="post" action="">
 						<p class="comment">原密码</p>
-						<input type="text" placeholder="学号">
+						<input type="text" name="old_pwd" placeholder="原密码">
 						<p class="comment">新密码</p>
-						<input type="text" placeholder="姓名">
+						<input type="text" name="new_pwd" placeholder="新密码">
 						<p class="comment">重复新密码</p>
-						<input type="text" placeholder="院系">
+						<input type="text" placeholder="重复新密码">
 						<br/>
-						<a class="btn" href="#">修改密码</a>
+						<input class="btn" type="submit" name="save_pwd" value="修改密码">
+						<!--<a class="btn" href="#">修改密码</a>-->
 					</form>
 				</div>
 			</div>

@@ -7,6 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">-->
+	<script src="__PUBLIC__/js/jquery.js"></script>
+	<script src="__PUBLIC__/js/main.js"></script>
+	<script	src="__PUBLIC__/js/join.js"></script>
 </head>
 <body>
     <{include file="Common/header"/}>
@@ -14,13 +21,16 @@
 		<div class="wrapper">
 			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
 			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
-			<a class="btn" href="#">筛选课程</a>
-			<input class="search-bar input" type="text" placeholder="输入课程代号或名称进行筛选">
+			<form method="post" action="course_in">
+				<!--<a class="btn search-btn" href="javascript:void(0)">筛选课程</a>-->
+				<input class="btn" type="submit" value="筛选课程">
+				<input class="search-bar input" type="text" name="search" placeholder="输入课程代号或名称进行筛选">
+			</form>
 		</div>
 	</div>
 
 	<div class="content">
-		<div class="wrapper">
+		<div class="wrapper" id="wrapper-main">
 			<{foreach item="course" name="courses"}>
 			<div class="card">
 				<div class="card-info">
@@ -29,7 +39,7 @@
 					<p class="comment">教师: <{$course['teacher']}></p>
 					<p class="comment">人数: <{$course['numOfStu']}>人</p>
 					<p class="comment">描述: <{$course['description']}></p>
-					<a class="btn" href="#">加入课程</a>
+					<a class="btn join-btn" data-id="<{$course['num']}>" href="javascript:void(0)" data-state="join">加入课程</a>
 				</div>
 			</div>
 			<{/foreach}>

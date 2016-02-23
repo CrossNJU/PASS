@@ -6,6 +6,9 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+
+	<script src="__PUBLIC__/js/jquery.js"></script>
+	<script	src="__PUBLIC__/js/homework-new.js"></script>
 </head>
 <body>
     <{include file="Common/header"/}>
@@ -21,18 +24,19 @@
 			<div class="card input-card">
 				<div class="card-info">
 					<h3 class="card-title">布置新作业</h3>
-					<form>
+					<form id="new-form" name="new-form" method="post" action="" onsubmit="return validate();">
 						<p class="comment">所属课程</p>
-						<input type="text" placeholder="选择作业所属课程" value="<{$homework['course']}>">
+						<input type="text" name="course" placeholder="选择作业所属课程" value="<{$homework['course']}>"/>
 						<p class="comment" >作业名称</p>
-						<input type="text" placeholder="输入作业名称" value="<{$homework['name']}>">
+						<input type="text" name="title" placeholder="输入作业名称" value="<{$homework['name']}>"/>
 						<p class="comment">开始/截止时间</p>
-						<input type="text" placeholder="输入作业名称" >
+						<input class="time" name="startTime" type="date" value="<{$homework['start']}>"/>
+						<input class="time" name="endTime" type="date" value="<{$homework['end']}>"/>
 						<p class="comment">作业要求</p>
-						<textarea class="textarea" placeholder="作业要求"><{$homework['require']}></textarea>
+						<textarea class="textarea" name="requi" placeholder="作业要求"><{$homework['require']}></textarea>
 						<br/>
-						<a class="btn" href="#">布置作业</a>
-						<a class="btn" href="#">取消</a>
+						<input class="btn" name="save" type="submit" value="布置作业"/>
+						<a class="btn" href="javascript:history.go(-1)">取消</a>
 					</form>
 				</div>
 			</div>
