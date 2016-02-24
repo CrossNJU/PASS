@@ -70,7 +70,7 @@ class CommonController extends Controller
 
     public function logout(){//登出
         session(null);
-        $this->ajaxReturn(1);
+        $this->redirect('Common/login');
     }
 
     public function find_pwd()//找回密码
