@@ -13,12 +13,19 @@ use Think\Upload;
 class StudentController extends Controller
 {
 
+    public function index(){
+        $this->redirect('Student/my_course');
+    }
+
     public function sets(){//学生-设置
         if(!session('?per') || session('per')!= 1)
             $this->redirect('Common/login');
 
         $stu = session('user');
         $user_model = M('User');
+        $student = $user_model->where("number = '$stu'")->select()[0];
+        $this->info = $student;
+
         if(isset($_POST['save_info'])){
             $data['number'] = I('post.number');
             $data['name'] = I('post.name');
@@ -83,7 +90,6 @@ class StudentController extends Controller
         if(!session('?user') || session('per')!=1)
             $this->redirect('Common/login');
         $student_id = session('user');
-//        $student_id = 'S1';
 
         $course_dis_model = M('Coursedis');
         $course_ids = $course_dis_model->where("stdnumber = '$student_id'")
@@ -94,8 +100,10 @@ class StudentController extends Controller
         foreach ($course_ids as $var){
             $course_id = $var['cnumber'];
             $assignment = $course_logic->get_assignments_student($course_id);
-            $assignments[$i] = $assignment;
-            $i ++;
+            foreach ($assignment as $assignment_detail){
+                $assignments[$i] = $assignment_detail;
+                $i ++;
+            }
         }
         $this->homeworkDetails = $assignments;
         $this->display('Student:myhomework-stu');
@@ -145,7 +153,7 @@ class StudentController extends Controller
         $i = 0;
         $courses = array();
         for ($j = 0; $j<count($course_all); $j++){
-            if($status[$j] == false) continue;
+            if($status[$j] == true) continue;
             $course = $course_all[$j];
             $course_single = array(
                 'num' => $course['number'],

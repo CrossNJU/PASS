@@ -52,10 +52,17 @@ class CommonController extends Controller
                 $this->ajaxReturn(-1);//用户不存在
             if ($row[0]['password'] != $pwd)
                 $this->ajaxReturn(0);//密码错误
-            $this->ajaxReturn(1);//登录成功
+            $per = $row[0]['permission'];
+//            $this->ajaxReturn($per);//登录成功
 
             session("user", $id);
-            session("per", $row['permission']);
+            session("per", $per);
+            switch ($per){
+                case "1": $this->redirect('Student/my_course');break;
+                case "2": $this->redirect('Teacher/');break;
+                case "3": $this->redirect('Administer/');break;
+                default: $this->ajaxReturn(-1);
+            }
         }
 
         $this->display('Common:Login');
