@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/test.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>
 </head>
 <body>
 <div class="content">
@@ -19,9 +19,9 @@
 
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn" href="/Administrator/teacher-admin">教师管理</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/teacher_manage">教师管理</a>
             <a class="nav-btn nav-btn-active" href="#">学生管理</a>
-            <a class="nav-btn" href="/Administrator/lesson-admin">课程管理</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/course_manage">课程管理</a>
         </div>
     </div>
 
@@ -41,13 +41,15 @@
                     <p class="student-name homework-title"><{$student['name']}>（<{$student['num']}>）</p>
                     <p class="teacher-class-num comment"><{$student['major']}> <{$student['grade']}> 共选<{$student['numOfClass']}>门课</p>
                     <br>
-                    <table class="admi-class-detail test-1">
+                    <div class="admi-class-detail test-1">
                         <{foreach item="class" name="student['classes']"}>
-                        <tr>
-                            <td><p class="homework-check comment class-name"><{$class['name']}></p></td>
-                        </tr>
+                        <!--<tr>-->
+                            <!--<td><p class="homework-check comment class-name"><{$class['name']}></p></td>-->
+                        <!--</tr>-->
+                        <p class="homework-check comment class-name"><{$class['name']}></p>
+
                         <{/foreach}>
-                    </table>
+                    </div>
 
                 </div>
                 <a class="btn btn-small" href="#">移除</a>
