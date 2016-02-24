@@ -20,6 +20,7 @@ class CommonController extends Controller
 
     public function register()//学生注册
     {
+        $this->msg = "";
         if (isset($_POST['register'])) {
             $user_model = M('User');
 
@@ -36,13 +37,17 @@ class CommonController extends Controller
             $data['speciality'] = I('post.spe');
             $data['grade'] = I('post.grade');
             $data['permission'] = 1;
-            $user_model->add($data);
+            if($user_model->add($data)){
+                $this->redirect('Common/login/res/'.'register success!');
+            }else $this->msg = "register fail!";
         }
         $this->display('Common:Register-student');
     }
 
-    public function login()//登录
+    public function login($res = NULL)//登录
     {
+        $this->msg = "";
+        if($res!=NULL) $this->msg = $res;
         if (isset($_POST['login'])) {
             $id = I('post.id');
             $pwd = I('post.pwd');
@@ -59,7 +64,7 @@ class CommonController extends Controller
             session("per", $per);
             switch ($per){
                 case "1": $this->redirect('Student/my_course');break;
-                case "2": $this->redirect('Teacher/');break;
+                case "2": $this->redirect('Teacher/my_course');break;
                 case "3": $this->redirect('Administer/');break;
                 default: $this->ajaxReturn(-1);
             }
@@ -70,7 +75,7 @@ class CommonController extends Controller
 
     public function logout(){//登出
         session(null);
-        $this->redirect('Common/login');
+        $this->redirect('Common/login/');
     }
 
     public function find_pwd()//找回密码
@@ -107,7 +112,7 @@ class CommonController extends Controller
                 $student_id = $rows[0]['number'];
                 $body = $body.$student_id;
             }else
-//                $this->ajaxReturn(-1);//邮箱不存在
+                $this->ajaxReturn(-1);//邮箱不存在
             $mail->AddAddress($address);
             $mail->MsgHTML($body);
             if($mail->Send()){
@@ -126,7 +131,11 @@ class CommonController extends Controller
             $new_pwd = I('post.new_pwd');
             $row['password'] = $new_pwd;
             $row['number'] = $id;
-            $user->save($row);
+            if($user->save($row)){
+                $this->redirect('Common/login/res/'.'reset password successfully!');
+            }else
+                $this->redirect('Common/login/res/'.'fail to reset password!');
+
         }
         $this->display('Common:Password-Reset');
     }

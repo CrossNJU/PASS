@@ -25,7 +25,7 @@ class CommonLogic
         $section->addText($mark);
 
         $output = \PHPWord_IOFactory::createWriter($word,'Word2007');
-        $output->save('./Public/uploads/'.$student_id.'/'.$assignment_id.'/modify.doc');
+        $output->save('./Public/uploads/assignments'.$student_id.'-'.$assignment_id.'/modify.doc');
 
         return 1;
     }

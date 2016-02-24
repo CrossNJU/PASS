@@ -19,12 +19,14 @@ class StudentController extends Controller
 
     public function sets(){//学生-设置
         if(!session('?per') || session('per')!= 1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
+
+        $this->msg = "";//消息
 
         $stu = session('user');
         $user_model = M('User');
         $student = $user_model->where("number = '$stu'")->select()[0];
-        $this->info = $student;
+        $this->info = $student;//学生原始信息,字段参见数据库
 
         if(isset($_POST['save_info'])){
             $data['number'] = I('post.number');
@@ -33,28 +35,35 @@ class StudentController extends Controller
             $data['speciality'] = I('post.speciality');
             $data['grade'] = I('post.grade');
             $data['email'] = I('post.email');
-            $user_model->save($data);
-
-            session('user',$data['number']);
-            $stu = session('user');
+            if($user_model->save($data)) {
+                $this->msg = "save successfully!";
+                session('user',$data['number']);
+                $stu = session('user');
+                $student = $user_model->where("number = '$stu'")->select()[0];
+                $this->info = $student;
+            }
+            else $this->msg = "save failed";
         }
         if(isset($_POST['save_pwd'])){
             $old = I('post.old_pwd');
             $old_in_db = $user_model->where("number = '$stu'")->getField('password');
             if($old!=$old_in_db)
-                $this->ajaxReturn(-1);//原密码错误
+                $this->msg = "old password error!";//原密码错误
             $new = I('post.new_pwd');
-            $user_model->where("number = '$stu'")->setField('password',$new);
+            $res = $user_model->where("number = '$stu'")->setField('password',$new);
+            if($res) $this->msg = "save successfully!";
+            else $this->msg = "save failed";
         }
 
         $this->display('Student:setting-stu');
     }
 
-    public function my_course(){//学生-我的课程
+    public function my_course($res = NULL){//学生-我的课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
+        $this->msg = "";
+        if($res!=NULL) $this->msg = $res;
         $student_id = session('user');
-//        $student_id = 'S1';
 
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -88,7 +97,7 @@ class StudentController extends Controller
 
     public function my_assignment(){//学生-我的作业
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -109,17 +118,9 @@ class StudentController extends Controller
         $this->display('Student:myhomework-stu');
     }
 
-//    public function get_ass_in_course($course_id){//得到课程中的作业
-//        if(!session('?user') || session('per')!=1)
-//            $this->ajaxReturn(-1);
-//
-//        $assignments = $this->get_assignment($course_id);
-//        $this->ajaxReturn($assignments['assignments']);
-//    }
-
     public function course_remove($course_id){//退选课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -130,11 +131,12 @@ class StudentController extends Controller
         $course_model->where("number = '$course_id'")->setDec('selected');
         $course_dis_model->where("stdNumber = '$student_id' AND cNumber = '$course_id'")
             ->delete();
+        $this->ajaxReturn(1);
     }
 
     public function course_in(){//学生-加入新课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -171,9 +173,9 @@ class StudentController extends Controller
         $this->display('Student:joincourse');
     }
 
-    public function course_add($course_id){//点击加入课程,之前的作业呢?
+    public function course_add($course_id){//点击加入课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -184,12 +186,20 @@ class StudentController extends Controller
         $data['cNumber'] = $course_id;
         $data['stdNumber'] = $student_id;
         $course_dis_model->add($data);
+
+        $assignment_model = M('Assignment');
+        $course_logic = D('Course','Logic');
+        $assignments = $assignment_model->where("course = '$course_id'")->select();
+        foreach ($assignments as $assignment){
+            $course_logic->assignment_dis($course_id,$assignment['number'],$student_id);
+        }
+
         $this->ajaxReturn(1);
     }
 
     public function assignment_see($assignment_id){//预览作业...url还有问题
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         $student_id = session('user');
         $course_logic = D('Course','Logic');
 
@@ -212,7 +222,7 @@ class StudentController extends Controller
 
     public function assignment_submit($assignment_id){//提交作业
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         $student_id = session('user');
 
         $upload = new Upload();
@@ -221,7 +231,7 @@ class StudentController extends Controller
         $upload->exts = array('pdf');// 设置附件上传类型
         $upload->rootPath = './Public/uploads/'; // 设置附件上传根目录
         $upload->savePath = '';
-        $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
+        $upload->subName = 'assignments/'.$student_id.'-'.$assignment_id;
         $upload->saveName = 'source';
 
         if(isset($_POST['sub'])) {
@@ -242,5 +252,7 @@ class StudentController extends Controller
             $assignment_model->where("number = '$assignment_id")->setInc('submitted');
             $this->ajaxReturn(1);//上传成功
         }
+
+        $this->display('Student/#');
     }
 }

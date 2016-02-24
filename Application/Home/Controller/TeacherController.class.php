@@ -12,13 +12,15 @@ use PHPWord;
 
 class TeacherController extends Controller
 {
-    public function my_course(){//教师:我的课程
+    public function my_course($res = NULL){//教师:我的课程
         if(!session('?per')){
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
+        $this->msg = "";
+        if($res!=NULL) $this->msg = $res;
         $status = session("per");
         if($status!=2){
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
         $course_model = M('Course');
         $user_logic = D('User','Logic');
@@ -46,13 +48,15 @@ class TeacherController extends Controller
         $this->display('Teacher:mycourse-tch');
     }
 
-    public function my_assignments(){//教师:我布置的作业
+    public function my_assignments($res = NULL){//教师:我布置的作业
         if(!session('?per')){
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
         $status = session("per");
+        $this->msg = "";
+        if($res!=NULL) $this->msg = $res;
         if($status!=2) {
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
 
         $teacher = session('user');
@@ -93,10 +97,12 @@ class TeacherController extends Controller
         $assignment_dis_model->where("assNumber = '$assignment_id'")->delete();
         $course->where("number = '$course_id'")->setDec('assignments');
 
-        $this->ajaxReturn('delete success!');
+        $this->ajaxReturn(1);
     }
 
-    public function assignment_detail($assignment_id){//作业详情
+    public function assignment_detail($assignment_id,$res = NULL){//作业详情
+        $this->msg = "";
+        if($res!=NULL) $this->msg = $res;
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
@@ -144,6 +150,8 @@ class TeacherController extends Controller
         $user_logic = D('User','Logic');
         $common_logic = D('Common','Logic');
 
+        $this->msg = "";
+
         $assignment_dis = $assignment_dis_model
             ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
             ->select()[0];
@@ -153,12 +161,33 @@ class TeacherController extends Controller
         if(isset($_POST['save'])){
             $data['comm'] = I('post.comment');
             $data['mark'] = I('post.mark');
+            $data['isExamined'] = 1;
+
+            $assignment_dis_model
+                ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
+                ->save($data);
+
+            $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
+            if($ret) $this->redirect('Teacher/assignment_detail/assignment_id/'.$assignment_id.'/res/'.'save successfully!');
+            else $this->msg = "save failed";
+        }
+
+        if(isset($_POST['next'])){
+            $data['comm'] = I('post.comment');
+            $data['mark'] = I('post.mark');
+            $data['isExamined'] = 1;
 
             $assignment_dis_model
                 ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
                 ->save($data);
 
             $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
+            $assignment_next = $assignment_dis_model
+                ->where("assNumber = '$assignment_id' AND isExamined = 0")
+                ->select()[0];
+            $this->redirect('Teacher/assignment_to_modify/assignment_id/'
+                .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
+                .'/display/correct');
         }
 
         $this->url = $assignment_dis['url'].'source.pdf';
@@ -176,11 +205,11 @@ class TeacherController extends Controller
 
     public function assignment_deliver(){//布置新作业
         if(!session('?per')){
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
         $status = session("per");
         if($status!=2){
-            $this->redirect('Common/login');
+            $this->redirect('Common/login/res/'.'please login!');
         }
 
         $assignment_model = M('Assignment');
@@ -210,6 +239,8 @@ class TeacherController extends Controller
             foreach ($students as $i){
                 $course_logic->assignment_dis($course_id, $assignment_id,$i['stdnumber']);
             }
+
+            $this->redirect('Teacher/my_assignments/res/'.'deliver successfully!');
         }
 
         $this->display('Teacher:homework-new');
