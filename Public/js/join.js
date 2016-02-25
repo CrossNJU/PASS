@@ -5,8 +5,8 @@ $(document).ready(function () {
     $(document).on("click",".join-btn",fnClick=function (){
         var btn = $(this);
         var id = btn.attr("data-id");
-        var state = btn.attr("data-state");
-        if(state == "join"){
+        var status = btn.attr("data-status");
+        if(status == "join"){
             jQuery.ajax({
                 async: false,
                 data: "course_id="+id,
@@ -31,7 +31,7 @@ $(document).ready(function () {
                     showStateBar("danger", "课程添加失败");
                 },
             });
-        }else if(state == "remove") {
+        }else if(status == "remove") {
             jQuery.ajax({
                 async: false,
                 data: "course_id="+id,

@@ -72,16 +72,7 @@
 
 	</div>
     <{include file="Common/footer"/}>
-	<div class="modal-wrapper" id="preview-modal">
-		<div class="card preview-card">
-			<div class="card-info">
-				<p class="comment class-num" id="preview-class-num"><{$homework['num']}> - <{$homework['name']}></p>
-				<h3 class="card-title" id="preview-name"><{$submit['name']}></h3>
-				<p class="comment" id="preview-time">于<{$submit['time']}>提交</p>
-			</div>
-			<iframe class="pdf" id="preview-pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
-		</div>
-	</div>
+	<{include file="Student/preview"/}>
 
 </body>
 </html>

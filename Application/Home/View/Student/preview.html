@@ -1,53 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Preview</title>
-
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
-</head>
-<body>
-	<div class="nav">
-		<div class="wrapper">
-			<a class="nav-btn" href="/Teacher/Myhomework">我的作业</a>
-			<a class="nav-btn" href="/Teacher/Mycourse">我的课程</a>
- 		</div>
-	</div>
-
-	<div class="content">
-		<!-- <div class="wrapper">
-			<div class="card card-left preview-card">
-				<div class="card-info">
-					<p class="comment class-num"><{$homework['num']}> - <{$homework['name']}></p>
-					<h3 class="card-title"><{$submit['name']}></h3>
-					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
-				</div>
-			</div>
-			<div class="card card-right correct-card">
-				<div class="card-info">
-					<p class="comment">评语</p>
-					<textarea class="textarea comment-textarea"></textarea>
-					<p class="comment">评分</p>
-					<input class="grade-input">
-					<a class="btn" href="#">保存修改</a>
-					<a class="btn" href="#">取消修改</a>
-					<a class="btn" href="#">不作修改结束批阅</a>
-				</div>
-			</div>
-		</div> -->
-		<div class="modal-wrapper">
-			<div class="card preview-card">
-				<div class="card-info">
-					<p class="comment class-num"><{$homework['num']}> - <{$homework['name']}></p>
-					<h3 class="card-title"><{$submit['name']}></h3>
-					<p class="comment">于<{$submit['time']}>提交</p>
-				</div>
-				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
-			</div>
+<div class="modal-wrapper preview-wrapper" id="preview-modal">
+	<div class="card preview-card">
+		<div class="card-info">
+			<p class="comment class-num" id="preview-class-num"></p>
+			<h3 class="card-title" id="preview-name"></h3>
+			<p class="comment" id="preview-time"></p>
 		</div>
+		<iframe class="pdf" id="preview-pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=1.pdf"></iframe>
 	</div>
-    <{include file="Common/footer"/}>
-</body>
-</html>
+</div>

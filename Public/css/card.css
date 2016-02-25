@@ -1,341 +1,381 @@
-body{
-	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
-	background-color: #f4f4f4;
+body {
+    font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    background-color: #f4f4f4;
 }
 
 input, label, select, option, textarea, button, fieldset, legend {
-	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+    font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
 
 a {
-	display: inline-block;
-	text-decoration: none;
-	color: #000;
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
 }
 
 
-
-.clear{
-	clear: both;
+.clear {
+    clear: both;
 }
 
 .card-title {
-	margin-left: -2px;
-	margin-bottom: 11px;
-	font-size: 24px;
-	color: #4a4a4a;
+    margin-left: -2px;
+    margin-bottom: 11px;
+    font-size: 24px;
+    color: #4a4a4a;
 }
 
 .comment {
-	margin-bottom: 11px;
-	font-size: 14px;
-	line-height: 14px;
-	color: #787878;
+    margin-bottom: 11px;
+    font-size: 14px;
+    line-height: 14px;
+    color: #787878;
 }
 
 .warning-text {
-	color: #57beed;
-	font-weight: bold;
+    color: #57beed;
+    font-weight: bold;
 }
 
 .content {
-	position: relative;
-	min-height: 669px;
+    position: relative;
+    min-height: 669px;
 }
 
 .content:before {
-	content: ".";
-	display: block;
-	height: 0;
-	visibility: hidden;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
 
-.wrapper{
-	margin: 0 auto;
-	width: 940px;
+.wrapper {
+    margin: 0 auto;
+    width: 940px;
 }
 
 .modal-wrapper {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	line-height: 100%;
-	background-color: rgba(0,0,0,0.2);
-	z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 .btn {
-	height: 44px;
-	padding:0px 40px 0px 40px;
-	margin-right: 6px;
-	line-height: 44px;
-	overflow: hidden;
-	border: 1px solid #57beed;
-	border-radius: 4px;
-	font-size:18px;
-	color: #57beed;
-	text-align:center;
+    height: 44px;
+    padding: 0px 40px 0px 40px;
+    margin-right: 6px;
+    line-height: 44px;
+    overflow: hidden;
+    border: 1px solid #57beed;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #57beed;
+    text-align: center;
 }
 
 .btn-active {
-	background-color: #50a5e3;
-	color: #fff;
+    background-color: #50a5e3;
+    color: #fff;
 }
 
 .btn:hover {
-	transition: all 0.1s linear 0s;
-	background-color: #50a5e3;
-	color: #fff;
+    transition: all 0.1s linear 0s;
+    background-color: #50a5e3;
+    color: #fff;
 }
 
 .btn-small {
-	height: 36px;
-	padding:0px 22px 0px 22px;
-	line-height: 36px;
-	font-size: 14px;
-	line-height: 36px;
+    height: 36px;
+    padding: 0px 22px 0px 22px;
+    line-height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+}
+
+.close-btn{
+    width: 20px;
+    height: 20px;
 }
 
 .search-bar {
-	display: inline-block;
-	width: 300px;
-	height: 24px;
-	vertical-align: middle;
+    display: inline-block;
+    width: 300px;
+    height: 24px;
+    vertical-align: middle;
 }
 
-
 .nav {
-	position: relative;
-	width: 100%;
-	height: 64px;
-	line-height: 64px;
-	overflow: hidden;
-	background-color: #fff;
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+    position: relative;
+    width: 100%;
+    height: 64px;
+    line-height: 64px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn {
-	-webkit-box-sizing: border-box;
-  	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
-	display:inline-block;
-	width: 120px;
-	height: 64px;
-	margin-right: -5px;	
-	line-height: 64px;
-	overflow: hidden;
-	font-size: 18px;
-	color: #a5a5a5;
-	text-align: center;
+    display: inline-block;
+    width: 120px;
+    height: 64px;
+    margin-right: -5px;
+    line-height: 64px;
+    overflow: hidden;
+    font-size: 18px;
+    color: #a5a5a5;
+    text-align: center;
 }
 
 .nav-btn:hover {
-	transition: all 0.1s linear 0s;
-	overflow: hidden;
-	border-bottom: 4px solid #57beed;
-	background-color: #f3f8ff;
-	color:  #57beed;
+    transition: all 0.1s linear 0s;
+    overflow: hidden;
+    border-bottom: 4px solid #57beed;
+    background-color: #f3f8ff;
+    color: #57beed;
 }
 
 .nav-btn-active {
-	/*transition: all 0.1s linear 0s;*/
-	overflow: hidden;
-	border-bottom: 4px solid #57beed;
-	background-color: #f3f8ff;
-	color:  #57beed;
+    /*transition: all 0.1s linear 0s;*/
+    overflow: hidden;
+    border-bottom: 4px solid #57beed;
+    background-color: #f3f8ff;
+    color: #57beed;
 }
 
-.nav form{
-	float: right;
+.nav form {
+    float: right;
 }
 
 .nav .btn {
-	margin-top: 10px;
-	margin-right: 0;
-	float: right;
+    margin-top: 10px;
+    margin-right: 0;
+    float: right;
 }
 
-
 .nav .search-bar {
-	margin-top: 10px;
-	margin-right: 10px;
-	float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    float: right;
 }
 
 .rect {
-	width: 4px;
-	height: 128px;
-	margin-right: 19px;
-	float: left;
-	background-color: #57beed;
+    width: 4px;
+    height: 128px;
+    margin-right: 19px;
+    float: left;
+    background-color: #57beed;
 }
 
 .num {
-	width: 31px;
-	height: 38px;
-	line-height: 38px;
-	overflow: hidden;
-	background-color: #fff;
-	border: 1px solid #57beed;
-	border-radius: 4px;
-	font-size: 18px;
-	color: #57beed;
-	text-align: center;
-	float: left;
+    width: 31px;
+    height: 38px;
+    line-height: 38px;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #57beed;
+    border-radius: 4px;
+    font-size: 18px;
+    color: #57beed;
+    text-align: center;
+    float: left;
 }
 
+.dialog {
+    width: 370px;
+    height: 240px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
 
+.dialog p {
+    margin-top: 70px;
+    margin-bottom: 61px;
+    font-size: 18px;
+    color: #787878;
+    text-align: center;
+}
+
+.dialog .confirm-btn {
+    margin-left: 64px;
+    background-color: #E35050;
+    border-color: #E35050;
+    color: #fff;
+}
 
 .card {
-	margin-top: 24px;
-	background-color: #fff;
-	box-shadow: 0px 1px 1px rgba(0,0,0,0.2);
+    margin-top: 24px;
+    background-color: #fff;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .card-left {
-	width: 630px;
-	float: left;
+    width: 630px;
+    float: left;
 }
 
 .card-right {
-	width: 290px;
-	float: right;
+    width: 290px;
+    float: right;
 }
 
 .card-info {
-	padding-top: 27px;
-	padding-left: 24px;
-	padding-right: 24px;
-	padding-bottom: 25px;
+    padding-top: 27px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 25px;
 }
 
 .class-num {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .card-info .btn {
-	margin-top: 6px;
+    margin-top: 6px;
 }
 
 .homework {
-	padding-top: 23px;
-	padding-left: 24px;
-	padding-bottom: 23px;
-	padding-right: 10px;
+    padding-top: 23px;
+    padding-left: 24px;
+    padding-bottom: 23px;
+    padding-right: 10px;
 }
 
-
-
-.homework:nth-child(even){
-	background-color:#f3f8ff; 
+.homework:nth-child(even) {
+    background-color: #f3f8ff;
 }
 
-.homework .btn-small{
-	margin-top: 16px;
+.homework .btn-small {
+    margin-top: 16px;
 }
 
 .homework-title {
-	margin-bottom: 8px;
-	line-height: 18px;
-	font-size: 18px;
-	color: #57beed;
+    margin-bottom: 8px;
+    line-height: 18px;
+    font-size: 18px;
+    color: #57beed;
 }
 
 .homework-info {
-	width: 568px;
-	padding-left: 10px;
-	padding-right: 30px;
-	float: left;
+    width: 568px;
+    padding-left: 10px;
+    padding-right: 30px;
+    float: left;
 }
 
-.homework-manage .btn-small{
-	margin-top: 0;
-	float: right;
+.homework-manage {
+    height: 40px;
+}
+
+.homework-manage .btn-small {
+    margin-top: 0;
+    float: right;
+}
+
+.homework-manage .stu-info {
+    margin-bottom: 23px;
 }
 
 .homework-tch .rect {
-	height: 143px;
+    height: 143px;
 }
 
 .homework-tch .btn {
-	margin-top: 6px;
+    margin-top: 6px;
 }
 
-.homework .comment:last-child{
-	margin-bottom: 0;
+.homework .comment:last-child {
+    margin-bottom: 0;
 }
 
 .preview-card .card-title {
-	margin-top: 12px;
-	margin-bottom: 5px;
-	color: #57beed;
-	font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 5px;
+    color: #57beed;
+    font-weight: bold;
 }
 
 .comment-textarea {
-	width: 223px;
-	margin-bottom: 18px;
-	height: 152px;
+    width: 223px;
+    margin-bottom: 18px;
+    height: 152px;
 }
 
 .grade-input {
-	width: 223px;
-	margin-bottom: 18px;
+    width: 223px;
+    margin-bottom: 18px;
 }
 
 .correct-card .btn {
-	width: 235px;
-	box-sizing: border-box;
+    width: 235px;
+    box-sizing: border-box;
 }
 
-
 .input-card input[type="text"], .input-card .textarea {
-	width: 538px;
-	margin-bottom: 10px;
-	font-size: 18px;
+    width: 538px;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .input-card .comment {
-	margin-top: 8px;
-	margin-bottom: 5px;
+    margin-top: 8px;
+    margin-bottom: 5px;
 }
 
 .modal-wrapper .preview-card {
-	width: 940px;
-	position: absolute;
-	top:50%;
-	left: 50%;
-	transform: translate(-50%,-50%);	
+    width: 940px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .pdf {
-	-webkit-box-sizing: border-box;
-  	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
-  	border: none;
-	position: relative;
-	display: block;
-	height: 700px;
-	width: 100%;
-	padding-right: 24px;
-	padding-left: 24px;
-	padding-bottom: 27px;
+    border: none;
+    position: relative;
+    display: block;
+    height: 700px;
+    width: 100%;
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-bottom: 27px;
 }
 
 .toast {
-	position: fixed;
-	z-index: 1000;
-	width: 100%;
-	height: 80px;
-	background-color: rgba(0,0,0,0.2);
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .respond {
-	width: 940px;
-	height: 60px;
-	margin: 10px auto;
+    width: 940px;
+    height: 60px;
+    margin: 10px auto;
+}
+
+.submitted-comment {
+    margin-bottom: 20px;
+}
+
+.submit-form .file_submit {
+    margin-top: 0;
+    margin-left: 5px;
+    margin-bottom: 12px;
 }
 

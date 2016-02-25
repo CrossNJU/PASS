@@ -12,6 +12,9 @@
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
 
+	<script src="__PUBLIC__/js/jquery.js"></script>
+	<script	src="__PUBLIC__/js/main.js"></script>
+	<script	src="__PUBLIC__/js/homework-details.js"></script>
 </head>
 <body>
     <{include file="Common/header"/}>
@@ -24,92 +27,100 @@
 
 	<div class="content">
 		<div class="wrapper">
-			<!--<div class="card">-->
-				<!--<div class="card-info">-->
-					<!--<p class="comment class-num"><{$homework['num']}></p>-->
-					<!--<h3 class="card-title"><{$homework['name']}></h3>-->
-					<!--<p class="comment">课程: <{$homework['course']}></p>-->
-					<!--<p class="comment">要求: <span><{$homework['require']}></span></p>-->
-					<!--<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>-->
-					<!--<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,-->
-						<!--已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,-->
-						<!--<{if condition="$homework['corrected'] eq 0"}>未开始批阅-->
-						<!--<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>-->
-						<!--<{/if}></span></p>-->
-					<!--<{if condition="$homework['isEnd'] eq true"}>-->
-					<!--<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>-->
-					<!--<{else /}>-->
-					<!--<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>-->
-					<!--<a class="btn" href="#">移除</a>-->
-					<!--<{/if}>-->
-				<!--</div>-->
-				<!-- -->
-				<!--<{foreach item="submit" name="homework['submit']"}>-->
-				<!--<div class="homework homework-manage">-->
-					<!--<div class="num">1</div>-->
-					<!--<div class="homework-info">-->
-						<!--<p class="homework-title"><{$submit['name']}></p>-->
-						<!--<p class="stu-info comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>-->
-						<!--<{if condition="$submit['isCorrected'] eq true"}>-->
-						<!--<p class="homework-request comment"><{$submit['comment']}></p>-->
-						<!--<{/if}>-->
-					<!--</div>-->
-					<!--<{if condition="$submit['isCorrected'] eq true"}>-->
-					<!--<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>-->
-					<!--<a class="btn btn-small" href="#"><{$submit['score']}>分/收起评语</a>-->
-					<!--<{else /}>-->
-					<!--<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>-->
-					<!--<{/if}>-->
-					<!--<div class="clear"></div>-->
-				<!--</div>-->
-				<!--<{/foreach}>-->
-			<!--</div>-->
-
 			<div class="card">
 				<div class="card-info">
-					<p class="comment class-num">PC053 - 2016春</p>
-					<h3 class="card-title">当代社会科学领域的马克思主义哲学</h3>
-					<p class="comment">教师: 张亮</p>
-					<p class="comment">人数: 210人</p>
-					<p class="comment">描述: 围绕当代社会科学视域中的马克思主义哲学展开课程内容</p>
-					<p class="comment">作业: 已布置(1)</p>
-					<a class="btn" href="#">收起作业</a>
-					<a class="btn" href="#">退选课程</a>
+					<p class="comment class-num"><{$homework['num']}></p>
+					<h3 class="card-title"><{$homework['name']}></h3>
+					<p class="comment">课程: <{$homework['course']}></p>
+					<p class="comment">要求: <span><{$homework['require']}></span></p>
+					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
+					<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
+						已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
+						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
+						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
+						<{/if}></span></p>
+					<{if condition="$homework['isEnd'] eq true"}>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<{else /}>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
+					<a class="btn" href="#">移除</a>
+					<{/if}>
 				</div>
 
+				<{foreach item="submit" name="homework['submit']"}>
 				<div class="homework homework-manage">
 					<div class="num">1</div>
 					<div class="homework-info">
-						<p class="homework-title">关于当代社会马克思主义哲学的思考</p>
-						<p class="stu-info comment">陈语(GF291002)</p>
-						<p class="homework-request comment">论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义</p>
+						<p class="homework-title"><{$submit['name']}></p>
+						<p class="stu-info comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
+						<{if condition="$submit['isCorrected'] eq true"}>
+						<p class="homework-request comment"><{$submit['comment']}></p>
+						<{/if}>
 					</div>
-					<a class="btn btn-small" href="#">修改</a>
-					<a class="btn btn-small" href="#">94分/收起评语</a>
+					<{if condition="$submit['isCorrected'] eq true"}>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>
+					<a class="btn btn-small packup-btn" href="#"><{$submit['score']}>分/展开评语</a>
+					<{else /}>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>
+					<{/if}>
 					<div class="clear"></div>
 				</div>
-				<div class="homework homework-manage">
-					<div class="num">2</div>
-					<div class="homework-info">
-						<p class="homework-title">关于当代社会马克思主义哲学的思考</p>
-						<p class="stu-info comment">陈语(GF291002)</p>
-					</div>
-					<a class="btn btn-small" href="#">修改</a>
-					<a class="btn btn-small" href="#">94分/收起评语</a>
-					<div class="clear"></div>
-				</div>
-				<div class="homework homework-manage">
-					<div class="num">3</div>
-					<div class="homework-info">
-						<p class="homework-title">关于当代社会马克思主义哲学的思考</p>
-						<p class="stu-info comment">陈语(GF291002)</p>
-					</div>
-					<a class="btn btn-small btn-active" href="#">批阅作业</a>
-					<div class="clear"></div>
-				</div>
+				<{/foreach}>
 			</div>
+
+			<!--<div class="card">-->
+				<!--<div class="card-info">-->
+					<!--<p class="comment class-num">PC053 - 2016春</p>-->
+					<!--<h3 class="card-title">当代社会科学领域的马克思主义哲学</h3>-->
+					<!--<p class="comment">教师: 张亮</p>-->
+					<!--<p class="comment">人数: 210人</p>-->
+					<!--<p class="comment">描述: 围绕当代社会科学视域中的马克思主义哲学展开课程内容</p>-->
+					<!--<p class="comment">作业: 已布置(1)</p>-->
+					<!--<a class="btn" href="#">收起作业</a>-->
+					<!--<a class="btn" href="#">退选课程</a>-->
+				<!--</div>-->
+
+				<!--<div class="homework homework-manage">-->
+					<!--<div class="num">1</div>-->
+					<!--<div class="homework-info">-->
+						<!--<p class="homework-title">关于当代社会马克思主义哲学的思考</p>-->
+						<!--<p class="stu-info comment">陈语(GF291002)</p>-->
+						<!--<p class="homework-request comment">论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义论文选题有意义</p>-->
+					<!--</div>-->
+					<!--<a class="btn btn-small" href="#">修改</a>-->
+					<!--<a class="btn btn-small packup-btn" data href="#">94分/收起评语</a>-->
+					<!--<div class="clear"></div>-->
+				<!--</div>-->
+				<!--<div class="homework homework-manage">-->
+					<!--<div class="num">2</div>-->
+					<!--<div class="homework-info">-->
+						<!--<p class="homework-title">关于当代社会马克思主义哲学的思考</p>-->
+						<!--<p class="stu-info comment">陈语(GF291002)</p>-->
+					<!--</div>-->
+					<!--<a class="btn btn-small" href="#">修改</a>-->
+					<!--<a class="btn btn-small packup-btn" href="#">94分/收起评语</a>-->
+					<!--<div class="clear"></div>-->
+				<!--</div>-->
+				<!--<div class="homework homework-manage">-->
+					<!--<div class="num">3</div>-->
+					<!--<div class="homework-info">-->
+						<!--<p class="homework-title">关于当代社会马克思主义哲学的思考</p>-->
+						<!--<p class="stu-info comment">陈语(GF291002)</p>-->
+					<!--</div>-->
+					<!--<a class="btn btn-small btn-active" href="#">批阅作业</a>-->
+					<!--<div class="clear"></div>-->
+				<!--</div>-->
+			<!--</div>-->
 		</div>
 	</div>
     <{include file="Common/footer"/}>
+	<div class="modal-wrapper">
+		<div class="dialog">
+			<p>确定移除教师张亮？</p>
+			<a href="javascript:void(0)" class="btn danger-btn">确认</a>
+			<a href="javascript:void(0)" class="btn btn-active">取消</a>
+			<a href="javascript:void(0)" class="close-btn"><b class="cross"></b></a>
+		</div>
+	</div>
 </body>
 </html>
