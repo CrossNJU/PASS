@@ -51,7 +51,7 @@ class CourseLogic
             $assignment = $assignment_model->where("number = '$assignment_id'")
                 ->select()[0];
             $assignment_detail = array(
-                'num' => $assignment['number_diaplay'],
+                'num' => $this->get_assignment_display_number($assignment['number']),
                 'name' => $assignment['title'],
                 'require' => $assignment['requi'],
                 'start' => $assignment['starttime'],
@@ -110,6 +110,12 @@ class CourseLogic
         $assignment = $assignment_model->where("number = '$assignment_id'")
             ->select()[0];
         return $assignment['title'];
+    }
+
+    public function get_assignment_display_number($number){
+        $assignment_model = M('Assignment');
+        $assignment = $assignment_model->where("number = '$number'")->select()[0];
+        return $assignment['number_display'];
     }
 
 }

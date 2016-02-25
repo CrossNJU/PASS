@@ -111,10 +111,16 @@ class StudentController extends Controller
         $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment(){//学生-我的作业
+    public function my_assignment($res=NULL,$type=NULL){//学生-我的作业
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $student_id = session('user');
+
+        $this->msg = "";
+        if($res!=NULL){
+            $this->msg = $res;
+            $this->type = $type;
+        }
 
         $course_dis_model = M('Coursedis');
         $course_ids = $course_dis_model->where("stdnumber = '$student_id'")
@@ -242,9 +248,11 @@ class StudentController extends Controller
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $student_id = session('user');
 
+        $this->msg = "";
+
         $upload = new Upload();
 
-        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->maxSize = 1000000000 ;// 设置附件上传大小
         $upload->exts = array('pdf');// 设置附件上传类型
         $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
         $upload->savePath = '';
@@ -252,25 +260,30 @@ class StudentController extends Controller
         $upload->saveName = 'source';
         $upload->replace = true;
 
-        if(isset($_POST['sub'])) {
+        if(isset($_REQUEST['sub'])) {
             $info = $upload->upload();
-            if(!$info) $this->ajaxReturn($upload->getError());//上传失败
-            $real_info = $info['file_key'];
-            $url = $real_info['savepath'];
-            $assignment_dis_model = M('Assignmentdis');
-            $data['url'] = $url;
-            $data['isSubmitted'] = 1;
-            $data['submitTime'] = strtotime(date("y-m-d h:i"));
-            $data['submitName'] =
-            $assignment_dis_model
-                ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
-                ->save($data);
+            if(!$info) {
+                $this->msg = "上传失败!";
+                $this->type = "danger";
+            }
+            else{
+                $real_info = $info['file_key'];
+                $url = $real_info['savepath'];
+                $assignment_dis_model = M('Assignmentdis');
+                $data['url'] = $url;
+                $data['isSubmitted'] = 1;
+                $data['submitTime'] = strtotime(date("y-m-d h:i"));
+                $data['submitName'] =
+                    $assignment_dis_model
+                        ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
+                        ->save($data);
 
-            $assignment_model = M('Assignment');
-            $assignment_model->where("number = '$assignment_id")->setInc('submitted');
-            $this->ajaxReturn(1);//上传成功
+                $assignment_model = M('Assignment');
+                $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
+                $this->redirect('Home/Student/my_assignment/res/上传成功!/type/success');
+            }
         }
 
-        $this->display('Student/#');
+        $this->display('Student/submit');
     }
 }
