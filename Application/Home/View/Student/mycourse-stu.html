@@ -9,9 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
+
 	<script src="__PUBLIC__/js/jquery.js"></script>
 	<script src="__PUBLIC__/js/main.js"></script>
 	<script	src="__PUBLIC__/js/mycourse-stu.js"></script>
+
 </head>
 <body>
     <{include file="Common/header"/}>
@@ -50,9 +52,9 @@
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
 					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-id="<{$homework['num']}>">预览作业</a>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">重新提交</a>
 					<{else /}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">提交作业</a>
 					<{/if}>
 					<div class="clear"></div>
 				</div>

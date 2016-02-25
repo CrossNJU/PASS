@@ -34,10 +34,10 @@
 					<p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
 						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
-					<a class="btn" href="#">预览作业</a>
-					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit">重新提交</a>
+					<a class="btn preview-btn" href="javascript:void(0)">预览作业</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">重新提交</a>
 					<{else /}>
-					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit">提交作业</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">提交作业</a>
 					<{/if}>
 				</div>
 			</div>

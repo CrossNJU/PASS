@@ -2,8 +2,24 @@
  * Created by Lenovo on 2016/2/17.
  */
 $(document).ready(function (){
+    //判断是否需要显示状态栏
+    if(msg != ""){
+        showStateBar(type,msg);
+    }
+
+    //上传文件
     $('.file_submit').click(function(){$('.file').trigger('click');});
     $('.file').change(function(){$('.file_text').val($('.file').val());});
+
+    //关闭弹窗
+    function closeFunc (){
+        $(".modal-wrapper").fadeOut(function(){
+            $("body").css("overflow","auto");
+            $(".dialog-wrapper").remove();
+        });
+    };
+    $(document).on("click",".dialog .btn",closeFunc);
+    $(document).on("click",".modal-wrapper .close-btn",closeFunc);
 });
 
 function showStateBar(type,text){
