@@ -296,6 +296,7 @@ b:after {
 
 .homework-manage {
     height: 40px;
+    overflow: hidden;
 }
 
 .homework-manage .btn-small {
