@@ -15,8 +15,21 @@ class AdministerController extends Controller
         $this->display('Administrator:student-admin');
     }
 
-    public function student_manage(){
+    public function student_manage($res=NULL,$type=NULL){
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+
+        $this->msg = "";
+        if($res!=NULL){
+            $this->msg = $res;
+            $this->type = $type;
+        }
+
         $all = $this->user_show(1);
+        if(isset($_POST['find'])){//查找学生,空白默认查找全部
+            $key = I('post.search');
+            if($key != "") $all = $this->user_find(1,$key);
+        }
         $students = array();
         $i = 0;
         foreach ($all as $student){
@@ -33,31 +46,8 @@ class AdministerController extends Controller
             $students[$i] = $student_detail;
             $i ++;
         }
-        if(isset($_POST['find'])){//查找学生,空白默认查找全部
-            $key = I('post.search');
-            if($key == ""){
-                $this->ajaxReturn($students);
-            }else{
-                $all = $this->user_find(1,$key);
-                $i = 0;
-                foreach ($all as $student){
-                    $courses = $this->stu_show_course($student['number']);
-                    $student_detail = array(
-                        'order' => $i+1,
-                        'name' => $student['name'],
-                        'num' => $student['number'],
-                        'major' => $student['academy'].'-'.$student['speciality'],
-                        'grade' => $student['grade'],
-                        'numOfClass' => count($courses),
-                        'classes' => $courses
-                    );
-                    $students[$i] = $student_detail;
-                    $i ++;
-                }
-                $this->ajaxReturn($students);
-            }
-        }
 
+        $this->numbers = count($this->user_show(1));
         $this->students = $students;
         $this->display('Administrator:student-admin');
     }
@@ -117,6 +107,9 @@ class AdministerController extends Controller
 
     public function student_add()//添加学生
     {
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+        $this->msg = "";
         if (isset($_POST['register'])) {
             $user_model = M('User');
 
@@ -133,61 +126,51 @@ class AdministerController extends Controller
             $data['speciality'] = I('post.spe');
             $data['grade'] = I('post.grade');
             $data['permission'] = 1;
-            if($user_model->add($data))
-                $this->ajaxReturn(1);
-            else $this->ajaxReturn(0);//加入失败
+            if($user_model->add($data)){
+                $this->redirect('Home/Administer/student_manage/res/添加学生成功/type/success');
+            }
+            else {
+                $this->msg = "添加学生失败!";
+                $this->type = "danger";
+            }
         }
         $this->display('Administrator:student-add');
     }
     //--------------------------------------------------------------------------
 
-    public function course_manage(){
+    public function course_manage($res = NULL, $type = NULL){
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+
+        $this->msg = "";
+        if($res!=NULL){
+            $this->msg = $res;
+            $this->type = $type;
+        }
+
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
         $all = $this->course_show();
+        if (isset($_POST['find'])){
+            $key = I('post.search');
+            if($key!="") $all = $this->course_find($key);
+        }
         $courses = array();
         $i = 0;
         foreach ($all as $course){
-            $ass = $course_logic->get_assignments_course($course['number']);
             $course_detail = array(
-                'num' => $course['number_display'],
-//                'period' => $course['time'],
+                'order' => $i +1,
+                'num' => $course['number'],
                 'name' => $course['title'],
                 'nameOfTea' => $user_logic->get_user_name($course['teacher']),
-//                'numOfStu' =>$course['selected'],
-//                'description' => $course['depict'],
-                'numOfHomework' => count($ass),
-                'homeworks' => $ass
+                'numOfHomework' => $course['assignments'],
+                'homeworks' => $course_logic->get_assignments_course($course['number'])
             );
             $courses[$i] = $course_detail;
             $i ++;
         }
 
-        if(isset($_POST['find'])){//查找课程,空白默认查找全部
-            $key = I('post.search');
-            if($key == ""){
-                $this->ajaxReturn($courses);
-            }else{
-                $all = $this->course_find($key);
-                $i = 0;
-                foreach ($all as $course){
-                    $course_detail = array(
-                        'num' => $course['number'],
-//                'period' => $course['time'],
-                        'name' => $course['title'],
-                        'nameOfTea' => $user_logic->get_user_name($course['teacher']),
-//                'numOfStu' =>$course['selected'],
-//                'description' => $course['depict'],
-                        'numOfHomework' => $course['assignments'],
-                        'homeworks' => $course_logic->get_assignments_course($course['number_display'])
-                    );
-                    $courses[$i] = $course_detail;
-                    $i ++;
-                }
-                $this->ajaxReturn($courses);
-            }
-        }
-
+        $this->numbers = count($this->course_show());
         $this->courses = $courses;
         $this->display('Administrator:lesson-admin');
     }
@@ -216,6 +199,8 @@ class AdministerController extends Controller
     }
 
     public function course_add(){//新增课程
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $course_model = M('Course');
         $common_logic = D('Common', 'Logic');
         if(isset($_POST['add'])){
@@ -228,31 +213,36 @@ class AdministerController extends Controller
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);
-                $this->ajaxReturn(1);
-            }else $this->ajaxReturn(0);//加入失败
+                $this->redirect('Home/Administer/course_manage/res/添加课程成功/type/success');
+            }else {
+                $this->msg = "添加课程失败!";
+                $this->type = "danger";
+            }
         }
         $this->display('Administrator:lesson-add');
     }
 
     public function download($assignment_id){//批量下载
-        $urls = array();
-        $assignment_dis_model = M('Assignmentdis');
-        $assignment_for_students = $assignment_dis_model
-            ->where("assNumber = '$assignment_id'")->select();
-        $i = 0;
-        foreach ($assignment_for_students as $assignment){
-            $url = array(
-                'source' => $assignment['url'].'source.pdf',
-                'modify' => $assignment['url'].'modify.pdf'
-            );
-            $urls[$i] = $url;
-        }
-        $this->ajaxReturn($urls);
+        $common_logic = D('Common','Logic');
+        $url = $common_logic->addToZip($assignment_id);
+        $this->ajaxReturn($url);
     }
     //--------------------------------------------------------------------------
 
-    public function teacher_manage(){
+    public function teacher_manage($res=NULL,$type=NULL){
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $all = $this->user_show(2);
+
+        $this->msg = "";
+        if($res!=NULL){
+            $this->msg = $res;
+            $this->type = $type;
+        }
+        if(isset($_POST['find'])){//查找课程,空白默认查找全部
+            $key = I('post.search');
+            if($key != "") $all = $this->user_find(2,$key);
+        }
         $teachers = array();
         $i = 0;
         foreach ($all as $teacher){
@@ -267,29 +257,8 @@ class AdministerController extends Controller
             $teachers[$i] = $teacher_detail;
             $i ++;
         }
-        if(isset($_POST['find'])){//查找课程,空白默认查找全部
-            $key = I('post.search');
-            if($key == ""){
-                $this->ajaxReturn($teachers);
-            }else{
-                $all = $this->user_find(2,$key);
-                $i = 0;
-                foreach ($all as $teacher){
-                    $courses = $this->teacher_show_courses($teacher['number']);
-                    $teacher_detail = array(
-                        'order' => $i+1,
-                        'name' => $teacher['name'],
-                        'num' => $teacher['number'],
-                        'numOfClass' => count($courses),
-                        'classes' => $courses,
-                    );
-                    $teachers[$i] = $teacher_detail;
-                    $i ++;
-                }
-                $this->ajaxReturn($teachers);
-            }
-        }
 
+        $this->numbers = count($this->user_show(2));
         $this->teachers = $teachers;
         $this->display('Administrator:teacher-admin');
     }
@@ -312,25 +281,26 @@ class AdministerController extends Controller
         $this->ajaxReturn(1);
     }
 
-    protected function teacher_show_courses($teachers){//显示课程作业
-        $course = M('Course');
-        $courses = array();
+    protected function teacher_show_courses($teacher_id){//显示课程作业
+        $course_model = M('Course');
+        $courses = $course_model->where("teacher = '$teacher_id'")->select();
+        $course_details = array();
         $i = 0;
-        foreach ($teachers as $teacher){
-            $teacher_id = $teacher['number'];
-            $course = $course->where("teacher = '$teacher_id'")
-                ->select();
+        foreach ($courses as $course){
             $course_detail = array(
-                'name' => $course['name']
+                'name' => $course['title']
             );
-            $courses[$i] = $course_detail;
+            $course_details[$i] = $course_detail;
             $i ++;
         }
-        return $courses;
+        return $course_details;
     }
 
     public function teacher_add(){//新增教师
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $user_model = M('User');
+
         if(isset($_POST['add'])){
 
             $teacher_id = I('post.tea_id');
@@ -346,8 +316,11 @@ class AdministerController extends Controller
             $data['speciality'] = I('post.spe');
             $data['permission'] = 2;
             if($user_model->add($data))
-                $this->ajaxReturn(1);
-            else $this->ajaxReturn(0);//加入失败
+                $this->redirect('Home/Administer/teacher_manage/res/添加教师成功/type/success');
+            else{
+                $this->msg = "添加教师失败!";
+                $this->type = "danger";
+            }
         }
         $this->display('Administrator:teacher-add');
     }

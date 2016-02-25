@@ -16,6 +16,7 @@ class CommonLogic
     public function save_as_word($comments,$mark,$student_id,$assignment_id){
         vendor('PHPWord.PHPWord');
         $word = new PHPWord();
+        $url_base = C('URL_BASE');
 
         $section = $word->createSection();
         $section->addTitle('Comments && marks:');
@@ -25,7 +26,7 @@ class CommonLogic
         $section->addText($mark);
 
         $output = \PHPWord_IOFactory::createWriter($word,'Word2007');
-        $output->save('./Public/uploads/'.$student_id.'/'.$assignment_id.'/modify.doc');
+        $output->save($url_base.'assignments/'.$student_id.'/'.$assignment_id.'/modify.doc');
 
         return 1;
     }
@@ -56,6 +57,28 @@ class CommonLogic
         for($i=0;$i<4-$len;$i++) $ret.='0';
         $ret.=$p;
         return $ret;
+    }
+
+    public function addToZip($assignment_id){
+        $assignment_dis_model = M('Assignmentdis');
+        $zip = new \ZipArchive();
+        $url_base = C('URL_BASE');
+        $url = $url_base.'downloads/'.$assignment_id.'.zip';
+        $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
+
+        $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
+            ->select();
+        foreach ($assignments as $assignment) {
+            if($assignment['isSubmitted'] == 1){
+                $zip->addFile($url_base.$assignment['url'].'source.pdf','assignments/'.$assignment['stdNumber'].'/source.pdf');
+            }
+            if($assignment['isExamined'] == 1){
+                $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdNumber'].'/modify.doc');
+            }
+        }
+        $zip->close();
+        unset($zip);
+        return $url;
     }
 
 }

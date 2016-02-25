@@ -21,4 +21,6 @@ return array(
 
     'TAGLIB_BEGIN'=>'<{',
     'TAGLIB_END'=>'}>',
+
+    'URL_BASE' => './Public/uploads/',
 );

@@ -7,8 +7,11 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
-
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>
+
 </head>
 <body>
 <div class="content">
@@ -16,19 +19,20 @@
     <div class="nav">
         <div class="wrapper">
             <a class="nav-btn nav-btn-active" href="#">教师管理</a>
-            <a class="nav-btn" href="/Administrator/student-admin">学生管理</a>
-            <a class="nav-btn" href="/Administrator/lesson-admin">课程管理</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/student_manage">学生管理</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/course_manage">课程管理</a>
         </div>
     </div>
 
     <div class="wrapper">
         <div class="card">
+            <form method="post" action="teacher_manage">
             <div class="admi-class">
-                <input class="text-find" type="text" value="输入教师姓名或工号以查询"/>
-                <input class="btn sbtn" type="button" value="查找教师"/>
-                <input class="input-button-add btn" type="button" value="添加新教师（目前共有23名）"/>
+                <input class="text-find" type="text" name="search" placeholder="输入教师姓名或工号以查询"/>
+                <input class="btn sbtn" type="submit" name="find" value="查找教师"/>
+                <input class="input-button-add btn" id="btn-add-tea" type="button" value="添加新教师（目前共有<{$numbers}>名）"/>
             </div>
-
+            </form>
             <{foreach item="teacher" name="teachers"}>
             <div class="homework homework-manage" >
                 <div class="num"><{$teacher['order']}></div>
@@ -37,7 +41,7 @@
                     <p class="teacher-class-num comment"><{$teacher['numOfClass']}>门课程</p>
                     <br>
                     <table class="admi-class-detail">
-                        <{foreach item="class" name="classes"}>
+                        <{foreach item="class" name="teacher['classes']"}>
                         <tr>
                             <td><p class="homework-check comment"><{$class['name']}></p></td>
                         </tr>
