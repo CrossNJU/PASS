@@ -39,7 +39,7 @@
 					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
-				<div class="homework homework-tch" id="hw<{$homework['num']}>">
+				<div class="homework homework-tch" id="hw<{$homework['id']}>">
 					<div class="rect"></div>
 					<p class="comment"><span><{$homework['num']}> - <{$homework['name']}></span></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
@@ -50,11 +50,12 @@
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['isEnd'] eq true"}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<!--<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>-->
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<{else /}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['num']}>">查看/批阅已提交作业</a>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['num']}>">修改</a>
-					<a class="btn btn-small delete-btn" data-hwid="<{$homework['num']}>"  href="javascript:void(0)">移除</a>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
+					<a class="btn btn-small delete-btn" data-hwid="<{$homework['id']}>"  href="javascript:void(0)">移除</a>
 					<{/if}>
 					<div class="clear"></div>
 				</div>

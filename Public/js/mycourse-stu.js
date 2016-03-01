@@ -48,11 +48,17 @@ $(document).ready(function () {
         //        $("#preview-class-num").html(msg['homeworkNum'] + " - " +msg['homeworkName']);
         //        $("#preview-name").html(msg['studentName']);
         //        $("#preview-time").html("于" + msg['time'] + "提交");
-        //        $("#preview-pdf").attr("src",msg['pdfUrl']);
+        //        $("#preview-pdf").attr("src","__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/"+msg['pdfUrl']");
         //        $("#preview-modal").fadeIn();
         //        $("body").css("overflow","hidden");
         //    }
         //});
+        var url = $(this).attr("data-url")
+        if($(this).attr("data-type") == 'mp4'){
+            $("#preview-content").html("<video id='really-cool-video' class='video-js vjs-default-skin' controls = 'controls'preload='auto' height='360' data-setup='{}'> <source src='../../../uploads/assignments/"+url+" type='video/mp4'> </video>");
+        }else {
+            $("#preview-content").html("<iframe class='pdf' src='__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/"+url+"></iframe>");
+        }
         $("#preview-modal").fadeIn();
         $("body").css("overflow", "hidden");
     });

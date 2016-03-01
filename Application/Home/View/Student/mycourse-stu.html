@@ -40,7 +40,7 @@
 						<{else /}>未布置
 						<{/if}></p>
 					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
-					<a class="btn remove-btn" data-id="<{$course['num']}>" href="javascript:void(0)">退选课程</a>
+					<a class="btn remove-btn" data-id="<{$course['id']}>" href="javascript:void(0)">退选课程</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
 				<div class="homework">
@@ -51,10 +51,12 @@
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
-					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-id="<{$homework['num']}>">预览作业</a>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">重新提交</a>
+						<{if condition="$homework['type'] neq 'word'"}>
+					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-type="<{homework['type']}>" data-url="<{$homework['fileUrl']}>">预览作业</a>
+						<{/if}>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 					<{else /}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['num']}>">提交作业</a>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
 					<{/if}>
 					<div class="clear"></div>
 				</div>

@@ -36,7 +36,8 @@
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['isEnd'] eq true"}>
-					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<!--<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>-->
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<{else /}>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>

@@ -11,7 +11,7 @@ $(document).ready(function (){
         //        $("#preview-class-num").html(msg['homeworkNum'] + " - " +msg['homeworkName']);
         //        $("#preview-name").html(msg['studentName']);
         //        $("#preview-time").html("于" + msg['time'] + "提交");
-        //        $("#preview-pdf").attr("src",msg['pdfUrl']);
+        //        $("#preview-pdf").attr("src","__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/"+msg['pdfUrl']);
         //        $("#preview-modal").fadeIn();
         //        $("body").css("overflow","hidden");
         //    }

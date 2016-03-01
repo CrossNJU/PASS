@@ -39,9 +39,13 @@
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
-					<{if condition="$homework['isEnd'] eq true"}>
-					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
-					<{else /}>
+					<{if condition="$homework['type'] eq 'word'" }>
+					<a class="btn" href="javascript:void(0)" data-id="<{$homework['id']}>" >批量下载</a>
+					<{/else}>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+					<{/if}>
+
+					<{if condition="$homework['isEnd'] eq false"}>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
 					<a class="btn" href="#">移除</a>
 					<{/if}>
@@ -57,11 +61,15 @@
 						<p class="homework-request comment"><{$submit['comment']}></p>
 						<{/if}>
 					</div>
-					<{if condition="$submit['isCorrected'] eq true"}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>
-					<a class="btn btn-small packup-btn" href="#"><{$submit['score']}>分/展开评语</a>
+					<{if condition="$homework['type'] eq 'word'"}>
+						<a class="btn btn-small" href="__PUBLIC__/uploads/<{$submit['upload']}>">下载</a>
 					<{else /}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>
+						<{if condition="$submit['isCorrected'] eq true"}>
+						<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>
+						<a class="btn btn-small packup-btn" href="javascript:void(0)"><{$submit['score']}>分/展开评语</a>
+						<{else /}>
+						<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>
+						<{/if}>
 					<{/if}>
 					<div class="clear"></div>
 				</div>

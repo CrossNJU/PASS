@@ -6,9 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/plugins/video.js/video-js.min.css">
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+
+	<script type="text/javascript" src='__PUBLIC__/plugins/video.js/video.min.js'></script>
 </head>
 <body>
 	<{include file="Common/header"/}>
@@ -28,7 +31,14 @@
 					<h3 class="card-title"><{$submit['name']}></h3>
 					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
 				</div>
-				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=<{$submit['pdfURL']}>"></iframe>
+				<{if condition="$homework['type'] eq 'pdf'"}>
+				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/<{$submit['fileUrl']}>"></iframe>
+				<{else /}>
+				<video id="really-cool-video" class="video-js vjs-default-skin" controls = "controls"
+					   preload="auto" height="360" data-setup='{}'>
+					<source src="../../../uploads/assignments/<{$submit['fileUrl']}>" type="video/mp4">
+				</video>
+				<{/if}>
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
@@ -41,7 +51,7 @@
 						<input class="btn" name="save" type="submit" value="确认并结束批阅">
 						<!--<a class="btn" href="#">确认并批阅下一份</a>-->
 						<!--<a class="btn" href="#">确认并结束批阅</a>-->
-						<a class="btn" href="javascript:history.go(-1)">不作修改结束批阅</a>
+						<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/<{$homework['id']}>">不作修改结束批阅</a>
 					</form>
 				</div>
 			</div>
