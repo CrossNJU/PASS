@@ -14,7 +14,7 @@ body,html{
 .admi-class{
     padding-top: 27px;
     margin-left: 24px;
-    margin-bottom: 25px;
+    padding-bottom: 25px;
 }
 .admi-class-info{
     margin-left: 24px;
@@ -113,4 +113,8 @@ input[type="submit"]{
 }
 #respond{
     display: none;
+}
+
+.header-userbar{
+    color: #FFFFFF;
 }

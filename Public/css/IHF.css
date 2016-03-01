@@ -45,7 +45,7 @@ ul li{
 input[type="text"],input[type="password"]{
     padding-left: 5px;
 }
-input,textarea{
+input,textarea,select.text{
     padding:10px 5px 10px 5px;
     border-radius: 4px 4px;
     border:1px solid #57BEED;
@@ -80,6 +80,10 @@ textarea:focus,input[type="text"]:focus {
 .text{
     width: 538px;
 }
+select.text{
+    width: 551px;
+}
+
 .time{
     width: 258px;
     margin-right: 6px;

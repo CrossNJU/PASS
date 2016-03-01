@@ -8,12 +8,12 @@ $(document).ready(function(){
     });
 });
 
-$(document).ready(function(){
-    $('#btn-add-stu').click(function(){
-        window.location.href="student_add";
-
-    })
-})
+function toAdd(){
+    //$('#btn-add-stu').click(function(){
+        window.location.href="__ROOT__/index.php/Home/Administer/student_add";
+    //window.location
+    //})
+}
 
 $(document).ready(function(){
     $('#btn-add-cou').click(function(){

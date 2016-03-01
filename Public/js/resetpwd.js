@@ -19,6 +19,7 @@ $(document).ready(function(){
             return true;
         }
     });
+
 });
 
 $(document).ready(function(){

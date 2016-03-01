@@ -12,8 +12,13 @@
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>
+    <script src="__PUBLIC__/js/main.js"></script>
+    <script	src="__PUBLIC__/js/student-admin.js"></script>
 </head>
-<body>
+<body onload="show()">
+<input style="display: none" id="msg" value="<{$msg}>">
+<input style="display: none" id="type" value="<{$type}>">
+<!--<body>-->
 <div class="content">
     <{include file="Common/header"/}>
 
@@ -31,8 +36,8 @@
             <div class="admi-class">
                 <input class="text-find" type="text" name="search" placeholder="输入学生姓名或学号以查询"/>
                 <input class="btn sbtn" type="submit" name="find" value="查找学生"/>
-                <input class="input-button-add btn" id="btn-add-stu" type="button" value="添加新学生（目前共有<{$numbers}>名）"/>
-                <!--<a class="btn" style="display: inline">添加教师（目前共有23名）</a>-->
+                <!--<input class="input-button-add btn" id="btn-add-stu" type="button" value="添加新学生（目前共有<{$numbers}>名）" onclick="toAdd()"/>-->
+                <a class="input-button-add btn" id="btn-add-stu" style="display: inline" href="__ROOT__/index.php/Home/Administer/student_add">添加教师（目前共有23名）</a>
             </div>
             </form>
             <{foreach item="student" name="students"}>
@@ -53,7 +58,7 @@
                     </div>
 
                 </div>
-                <a class="btn btn-small" href="#">移除</a>
+                <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
                 <a class="btn btn-small" href="#">修改</a>
                 <a class="btn btn-small up" href="#">收起选课情况</a>
 
