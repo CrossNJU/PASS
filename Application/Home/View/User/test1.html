@@ -2,15 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/test.js"></script>
     <title>测试1</title>
 </head>
 <body>
     hello world! my test 1
     {$user}<br>
-    <form method="post">
-    <input name="in" type="text" width="200px"><br>
-    <button name="bt" type="submit">submit</button>
-    </form>
-    <a href="http://localhost/PASS/index.php/Home/user/1">test</a>
+        <!--<input name="in" type="text" width="200px"><br>-->
+        <!--<input type="submit" name="bt" value="submit">-->
+        <button type="submit" name="test1" id="test1">测试ajax</button>
+    <!--<a href="http://localhost/PASS/index.php/Home/user/1">test</a>-->
+    <!--<form method="post">-->
+        <button type="submit" name="test2" id="test2">测试ajax2</button>
+        <{$mess}>
+    <{$type}>
+    <!--</form>-->
 </body>
 </html>

@@ -77,7 +77,6 @@ function redirec(x){
 
 
 
-
 //$(document).ready(function () {
     //$(document).on("click","#add-stu-btn",fnClick=function (){
     //    if(<{$msg}> == "")

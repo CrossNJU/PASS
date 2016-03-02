@@ -16,6 +16,9 @@
 </head>
 <body>
 
+<form name="frm">
+
+</form>
 <div class="content">
     <{include file="Common/header"/}>
     <div class="nav">
@@ -27,7 +30,7 @@
     </div>
 
     <div class="wrapper">
-        <form method="post">
+        <form name="aca_spe_form" method="post">
             <div class="card">
                 <div class="admi-add-class admi-class">
                     <h3 class="card-title">添加新教师</h3>
@@ -43,7 +46,6 @@
                         <input class="text" type="text" name="name" id="tea_name" placeholder="姓名"/>
                     </div>
 
-                    <form name="aca_spe_form">
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
                         <!--<input class="text" type="text" name="aca" placeholder="院系"/>-->
@@ -79,7 +81,6 @@
                             <option value="4">海外教育学院</option>
                             <option value="5">建筑与城市规划学院</option>
                             <option value="5">计算中心</option>
-
                         </select>
 
                     </div>
@@ -95,7 +96,6 @@
 
                         </select>
                     </div>
-                    </form>
 
                     <!--<form name="frm">-->
                         <!--<select name="s1" onChange="redirec(document.frm.s1.options.selectedIndex)">-->
