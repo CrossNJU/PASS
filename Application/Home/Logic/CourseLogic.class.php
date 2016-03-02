@@ -21,6 +21,7 @@ class CourseLogic
         foreach ($assignments as $assignment_detail) {
             $assignment_detail = array(
                 'num' => $assignment_detail['number_display'],
+                'id' => $assignment_detail['number'],
                 'name' => $this->get_assignment_name($assignment_detail['number']),
                 'start' => $assignment_detail['starttime'],
                 'end' => $assignment_detail['endtime'],
@@ -28,6 +29,8 @@ class CourseLogic
                 'require' => $assignment_detail['requi'],
                 'numOfSubmit' => $assignment_detail['submitted'],
                 'corrected' => $assignment_detail['examined'],
+                'type' => $assignment_detail['type'],
+                'fileUrl' => $assignment_detail['url'].$assignment_detail['savename'],
             );
             $homework[$i] = $assignment_detail;
             $i++;
@@ -51,7 +54,8 @@ class CourseLogic
             $assignment = $assignment_model->where("number = '$assignment_id'")
                 ->select()[0];
             $assignment_detail = array(
-                'num' => $this->get_assignment_display_number($assignment['number']),
+                'num' => $assignment['number_display'],
+                'id' => $assignment['number'],
                 'name' => $assignment['title'],
                 'require' => $assignment['requi'],
                 'start' => $assignment['starttime'],
@@ -60,6 +64,8 @@ class CourseLogic
                 'isEnd' => $common_logic->isEnded($assignment['endtime']),
 
                 'courseName' => $this->get_course_name($course_id),
+                'type' => $assignment['type'],
+                'fileUrl' => $assignment['url'].$assignment['savename'],
             );
             $assignments[$i] = $assignment_detail;
             $i ++;
@@ -116,6 +122,12 @@ class CourseLogic
         $assignment_model = M('Assignment');
         $assignment = $assignment_model->where("number = '$number'")->select()[0];
         return $assignment['number_display'];
+    }
+
+    public function get_assignment_stus($number){
+        $assignment_dis_model = M('Assignmentdis');
+        $ass = $assignment_dis_model->where("assNumber = '$number'")->select();
+        return count($ass);
     }
 
 }

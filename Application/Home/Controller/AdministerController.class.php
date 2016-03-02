@@ -120,6 +120,7 @@ class AdministerController extends Controller
 
             $data['number'] = $student_id;
             $data['password'] = I('post.pwd');
+            $data['phone'] = I('post.phone');
             $data['email'] = I('post.email');
             $data['name'] = I('post.name');
             $data['academy'] = I('post.aca');
@@ -310,6 +311,7 @@ class AdministerController extends Controller
 
             $data['number'] = $teacher_id;
             $data['password'] = I('post.pwd');
+            $data['phone'] = I('post.phone');
             $data['email'] = I('post.email');
             $data['name'] = I('post.name');
             $data['academy'] = I('post.aca');

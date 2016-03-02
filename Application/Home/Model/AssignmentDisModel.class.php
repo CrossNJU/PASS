@@ -22,6 +22,8 @@ class AssignmentdisModel extends Model
         'isExamined',
         'submitTime',
         'submitName',
+        'saveName',
+        'saveType',
         '_type'=>array(
             'stdNumber' => 'varchar',
             'assNumber' => 'varchar',
@@ -33,6 +35,8 @@ class AssignmentdisModel extends Model
             'isExamined' => 'tinyint',
             'submitTime' => 'date',
             'submitName' => 'varchar',
+            'saveName' => 'varchar',
+            'saveType' => 'varchar',
         )
     );
 }

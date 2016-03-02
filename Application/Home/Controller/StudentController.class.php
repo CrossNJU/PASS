@@ -31,6 +31,7 @@ class StudentController extends Controller
         if(isset($_POST['save_info'])){
             $data['number'] = I('post.number');
             $data['name'] = I('post.name');
+            $data['phone'] = I('post.phone');
             $data['academy'] = I('post.academy');
             $data['speciality'] = I('post.speciality');
             $data['grade'] = I('post.grade');
@@ -94,7 +95,8 @@ class StudentController extends Controller
             $course = $course_model->where("number = '$course_id'")
                 ->select() [0];
             $course_detail = array(
-                'num' => $course['number'],
+                'num' => $course['number_display'],
+                'id' => $course['number'],
                 'period' => $course['time'],
                 'name' => $course['title'],
                 'teacher' => $user_logic->get_user_name($course['teacher']),
@@ -180,7 +182,8 @@ class StudentController extends Controller
             if($status[$j] == true) continue;
             $course = $course_all[$j];
             $course_single = array(
-                'num' => $course['number'],
+                'num' => $course['number_display'],
+                'id' => $course['number'],
                 'period' => $course['time'],
                 'name' => $course['title'],
                 'teacher' => $user_logic->get_user_name($course['teacher']),
@@ -253,7 +256,7 @@ class StudentController extends Controller
         $upload = new Upload();
 
         $upload->maxSize = 1000000000 ;// 设置附件上传大小
-        $upload->exts = array('pdf');// 设置附件上传类型
+        $upload->exts = array('pdf','doc','docx','ppt','pptx','mp4');// 设置附件上传类型
         $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
         $upload->savePath = '';
         $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
@@ -267,19 +270,25 @@ class StudentController extends Controller
                 $this->type = "danger";
             }
             else{
-                $real_info = $info['file_key'];
+                $real_info = $info['doc'];
                 $url = $real_info['savepath'];
                 $assignment_dis_model = M('Assignmentdis');
+                $assignment = $assignment_dis_model
+                    ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
+                    ->select()[0];
+                if($assignment['issubmitted']==0){
+                    $data['isSubmitted'] = 1;
+                    $assignment_model = M('Assignment');
+                    $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
+                }
                 $data['url'] = $url;
-                $data['isSubmitted'] = 1;
-                $data['submitTime'] = strtotime(date("y-m-d h:i"));
-                $data['submitName'] =
-                    $assignment_dis_model
-                        ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
-                        ->save($data);
-
-                $assignment_model = M('Assignment');
-                $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
+                $data['submitTime'] = date("y-m-d h:i");
+                $data['submitName'] = $real_info['name'];
+                $data['saveName'] = $real_info['savename'];
+                $data['saveType'] = $real_info['ext'];
+                $assignment_dis_model
+                    ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
+                    ->save($data);
                 $this->redirect('Home/Student/my_assignment/res/上传成功!/type/success');
             }
         }

@@ -22,6 +22,7 @@ class AssignmentModel extends Model
         'endTime',
         'course',
         'teacher',
+        'type',
         '_autoinc' => true,
         '_type'=>array(
             'number' => 'int',
@@ -34,6 +35,7 @@ class AssignmentModel extends Model
             'endTime' => 'date',
             'course' => 'varchar',
             'teacher' => 'varchar',
+            'type' => 'varchar',
         )
     );
     protected $pk = 'number';

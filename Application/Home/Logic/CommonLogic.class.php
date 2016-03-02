@@ -70,7 +70,7 @@ class CommonLogic
             ->select();
         foreach ($assignments as $assignment) {
             if($assignment['isSubmitted'] == 1){
-                $zip->addFile($url_base.$assignment['url'].'source.pdf','assignments/'.$assignment['stdNumber'].'/source.pdf');
+                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdNumber'].'/'.$assignment['savename']);
             }
             if($assignment['isExamined'] == 1){
                 $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdNumber'].'/modify.doc');

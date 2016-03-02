@@ -35,6 +35,7 @@ class TeacherController extends Controller
         foreach ($courses as $course){
             $course_detail = array(
                 'num' => $course['number_display'],
+                'id' => $course['number'],
                 'period' => $course['time'],
                 'name' => $course['title'],
                 'teacher' => $user_logic->get_user_name($course['teacher']),
@@ -75,6 +76,7 @@ class TeacherController extends Controller
         foreach ($assignments as $assignment){
             $assignment_detail = array(
                 'num' => $assignment['number_display'],
+                'id' => $assignment['number'],
                 'name' => $course_logic->get_assignment_name($assignment['number']),
                 'course' => $course_logic->get_course_name($assignment['course']),
                 'start' => $assignment['starttime'],
@@ -83,13 +85,14 @@ class TeacherController extends Controller
                 'require' => $assignment['requi'],
                 'numOfSubmit' => $assignment['submitted'],
                 'corrected' => $assignment['examined'],
-                'sum' => count($assignments),
+                'sum' => $course_logic->get_assignment_stus($assignment['number']),
+                'type' => $assignment['type'],
             );
             $assignment_ret[$i] = $assignment_detail;
             $i ++;
         }
-
-        $this->homworks = $assignment_ret;
+//        dump($assignment_ret);
+        $this->homeworks = $assignment_ret;
         $this->display('Teacher:myhomework-tch');
     }
 
@@ -132,13 +135,16 @@ class TeacherController extends Controller
                 'studentNum' => $assignment['stdnumber'],
                 'isCorrected' => $assignment['isexamined'],
                 'comment' => $assignment['comm'],
-                'score' => $assignment['mark']
+                'score' => $assignment['mark'],
+                'upload' => $assignment['url'].$assignment['savename'],
             );
             $i++;
         }
 
         $this->homework = array(
             'num' => $assignments_detail['number_display'],
+            'id' => $assignments_detail['number'],
+            'sum' => $course_logic->get_assignment_stus($assignments_detail['number']),
             'name' => $course_logic->get_assignment_name($assignment_id),
             'course' => $assignments_detail['course'],
             'start' => $assignments_detail['starttime'],
@@ -147,12 +153,13 @@ class TeacherController extends Controller
             'require' => $assignments_detail['requi'],
             'numOfSubmit' => $assignments_detail['submitted'],
             'corrected' => $assignments_detail['examined'],
-            'submit' => $submit
+            'submit' => $submit,
+            'type' => $assignments_detail['type']
         );
         $this->display('Teacher:homework-details');
     }
 
-    public function assignment_to_modify($assignment_id,$student_id,$display){//批改作业
+    public function assignment_to_modify($assignment_id,$student_id,$display){//批改/修改作业
         $assignment_dis_model = M('Assignmentdis');
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
@@ -168,6 +175,9 @@ class TeacherController extends Controller
             ->select()[0];
 
         if(isset($_POST['save'])){
+            if($display == "correct"){
+                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
+            }
             $data['comm'] = I('post.comment');
             $data['mark'] = I('post.mark');
             $data['isExamined'] = 1;
@@ -185,6 +195,9 @@ class TeacherController extends Controller
         }
 
         if(isset($_POST['next'])){
+            if($display == "correct"){
+                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
+            }
             $data['comm'] = I('post.comment');
             $data['mark'] = I('post.mark');
             $data['isExamined'] = 1;
@@ -202,16 +215,17 @@ class TeacherController extends Controller
                 .'/display/correct');
         }
 
-        $url_base = C('URL_BASE');
-        $this->url = $url_base.$assignment_dis['url'].'source.pdf';
         $this->submit = array(
             'name' => $assignment['submitname'],
             'studentName' => $user_logic->get_user_name($student_id),
-            'studentNum' => $student_id
+            'studentNum' => $student_id,
+            'fileUrl' => $assignment_dis['url'].$assignment_dis['savename'],
         );
         $this->homework = array(
             'num' => $assignment['number_display'],
+            'id' => $assignment['number'],
             'name' => $course_logic->get_assignment_name($assignment_id),
+            'type' => $assignment['type']
         );
         $this->display('Teacher:homework-'.$display);
     }
@@ -243,6 +257,7 @@ class TeacherController extends Controller
             $data['endTime'] = I('post.endTime');
             $data['course'] = $course_id;
             $data['teacher'] = session('user');
+            $data['type'] = I('post.type');
 
             $assignment_id = $assignment_model->add($data);
             $data['number_display'] = $common_logic->get_display_number($assignment_id,2);

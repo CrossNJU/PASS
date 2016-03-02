@@ -14,6 +14,7 @@ class UserModel extends Model
     protected $fields=array(
         'number',
         'password',
+        'phone',
         'email',
         'permission',
         'name',
@@ -24,6 +25,7 @@ class UserModel extends Model
             'number' => 'varchar',
             'password' => 'varchar',
             'email' => 'varchar',
+            'phone' => 'varchar',
             'permission' => 'tinyint',
             'name' => 'varchar',
             'grade' => 'int',
