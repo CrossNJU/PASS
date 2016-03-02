@@ -44,7 +44,7 @@ function redirec(x){
     for(i = 0;i < select_aca_len;i++){
         select_spe[i] = new Array();
     }
-    select_spe[0][0] = new Option("院系","");
+    select_spe[0][0] = new Option("专业","");
 
     select_spe[1][0] = new Option("中国语言文学类","");
     select_spe[1][1] = new Option("汉语言文学","");
@@ -232,22 +232,77 @@ function redirec(x){
     select_spe[23][7] = new Option("临床医学（军总）","");
     select_spe[23][8] = new Option("基础医学","");
 
-    select_spe[9][0] = new Option("应用文科强化班","");
-    select_spe[9][1] = new Option("理科强化班","");
-    select_spe[9][2] = new Option("理强（数理方向）","");
-    select_spe[9][3] = new Option("理强（生物化学）","");
-    select_spe[9][4] = new Option("英才计划（物理班）","");
-    select_spe[9][5] = new Option("财务管理","");
-    select_spe[9][6] = new Option("金融学","");
-    select_spe[9][7] = new Option("电子商务","");
-    select_spe[9][8] = new Option("市场营销","");
-    select_spe[9][9] = new Option("工商管理类","");
-    select_spe[9][10] = new Option("工商管理（二学位）","");
-    select_spe[9][11] = new Option("国际经济与贸易（二学位）","");
-    select_spe[9][12] = new Option("工商管理（人力资源管理方向）","");
-    select_spe[9][13] = new Option("保险","");
-    select_spe[9][14] = new Option("金融工程","");
-    select_spe[9][15] = new Option("经济学（产业经济方向）","");
+    select_spe[24][0] = new Option("应用文科强化班","");
+    select_spe[24][1] = new Option("理科强化班","");
+    select_spe[24][2] = new Option("理强（数理方向）","");
+    select_spe[24][3] = new Option("理强（生物化学）","");
+    select_spe[24][4] = new Option("英才计划（物理班）","");
+    select_spe[24][5] = new Option("英才计划(天文)","");
+    select_spe[24][6] = new Option("理强(大气基地)","");
+    select_spe[24][7] = new Option("英才计划(化学班)","");
+    select_spe[24][8] = new Option("英才计划(生命科学班)","");
+    select_spe[24][9] = new Option("理强(地科基地)","");
+    select_spe[24][10] = new Option("理强(地理基地)","");
+    select_spe[24][11] = new Option("理强(海洋基地)","");
+    select_spe[24][12] = new Option("理强(建筑基地)","");
+    select_spe[24][13] = new Option("理强(教育基地)","");
+    select_spe[24][14] = new Option("理强(中文基地)","");
+    select_spe[24][15] = new Option("理强(历史基地)","");
+    select_spe[24][16] = new Option("理强(哲学基地)","");
+    select_spe[24][17] = new Option("英才计划(大理科班)","");
+    select_spe[24][18] = new Option("英才计划(计算机班)","");
+    select_spe[24][19] = new Option("英才计划(数学班)","");
+    select_spe[24][20] = new Option("文强(经济学)","");
+    select_spe[24][21] = new Option("文强(金融学)","");
+    select_spe[24][22] = new Option("文强(国际经济与贸易)","");
+    select_spe[24][23] = new Option("文强(工商管理)","");
+    select_spe[24][24] = new Option("文强(会计学)","");
+    select_spe[24][25] = new Option("文强(电子商务)","");
+    select_spe[24][26] = new Option("文强(新闻学)","");
+    select_spe[24][27] = new Option("文强(法学)","");
+    select_spe[24][28] = new Option("文强(广告学)","");
+    select_spe[24][29] = new Option("文强(广播电视)","");
+    select_spe[24][30] = new Option("文强(财务管理)","");
+    select_spe[24][31] = new Option("文强(社会学)","");
+    select_spe[24][32] = new Option("文强(心理学)","");
+    select_spe[24][33] = new Option("文强(汉语言文学)","");
+    select_spe[24][34] = new Option("文强(金融工程)","");
+    select_spe[24][35] = new Option("理强(统计学)","");
+    select_spe[24][36] = new Option("理强(生物物理)","");
+    select_spe[24][37] = new Option("理强(物理)","");
+    select_spe[24][38] = new Option("理强(化学)","");
+    select_spe[24][39] = new Option("理强(数学与应用数学)","");
+    select_spe[24][40] = new Option("理强(天文学)","");
+    select_spe[24][41] = new Option("理强(计算机科学)","");
+    select_spe[24][42] = new Option("理强(信息与计算科学)","");
+    select_spe[24][43] = new Option("理强(生物学)","");
+
+    select_spe[25][0] = new Option("软件学类","");
+    select_spe[25][1] = new Option("软件工程","");
+
+    select_spe[26][0] = new Option("教育技术学类","");
+
+    select_spe[27][0] = new Option("管理科学与工程类","");
+    select_spe[27][1] = new Option("自动化","");
+    select_spe[27][2] = new Option("工业工程","");
+    select_spe[27][3] = new Option("金融工程","");
+    select_spe[27][4] = new Option("信息工程","");
+    select_spe[27][5] = new Option("工业工程类","");
+    select_spe[27][6] = new Option("自动化类","");
+    select_spe[27][7] = new Option("电气信息类","");
+
+    select_spe[28][0] = new Option("海外教育类","");
+    select_spe[28][1] = new Option("对外汉语","");
+    select_spe[28][2] = new Option("汉语言","");
+    select_spe[28][3] = new Option("汉语国际教育","");
+
+    select_spe[29][0] = new Option("建筑学","");
+    select_spe[29][1] = new Option("城市规划","");
+    select_spe[29][2] = new Option("城乡规划","");
+    select_spe[29][3] = new Option("建筑基地","");
+
+
+
 
     var temp = document.aca_spe_form.spe;
         for(i = 0;i < select_spe[x].length;i++){
