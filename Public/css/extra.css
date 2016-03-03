@@ -16,6 +16,10 @@ body,html{
     margin-left: 24px;
     padding-bottom: 25px;
 }
+.find-pwd-title{
+    padding-top: 27px;
+    margin-left: 24px;
+}
 .admi-class-info{
     margin-left: 24px;
     /*margin-bottom: 25px;*/
@@ -96,7 +100,10 @@ table tr td:nth-child(2){
 }
 .input-button-add {
     background-color: #FFFFFF;
-    width: 320px;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0px 20px;
+    width: 290px;
 }
 .admi-class-detail{
     width:854px;
@@ -111,7 +118,7 @@ input[type="submit"]{
     vertical-align:top;
     background-color: #FFFFFF;
 }
-#respond{
+#respond,#mail-attention-null,#mail-attention-wrong{
     display: none;
 }
 

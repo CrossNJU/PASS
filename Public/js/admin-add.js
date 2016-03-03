@@ -301,34 +301,16 @@ function redirec(x){
     select_spe[29][2] = new Option("城乡规划","");
     select_spe[29][3] = new Option("建筑基地","");
 
-
-
-
     var temp = document.aca_spe_form.spe;
-        for(i = 0;i < select_spe[x].length;i++){
+    //$("#search").find("option").remove();
+    temp.options.length=0;
+
+    for(i = 0;i < select_spe[x].length;i++){
             temp.options[i] = new Option(select_spe[x][i].text,
                 select_spe[x][i].value);
             temp.options[0].selected = true;
         }
 }
-    //function redirec(x) {
-    //    var select1_len = document.frm.s1.options.length;
-    //    var select2 = new Array(select1_len);
-    //    for (i = 0; i < select1_len; i++) {
-    //        select2[i] = new Array();
-    //    }
-    //    select2[0][0] = new Option("请选择", " ");
-    //
-    //    select2[1][0] = new Option("PHP", " ");
-    //    select2[1][1] = new Option("ASP", " ");
-    //    select2[1][2] = new Option("JSP", " ");
-
-    //    var temp = document.frm.s2;
-    //    for (i = 0; i < select2[x].length; i++) {
-    //        temp.options[i] = new Option(select2[x][i].text, select2[x][i].value);
-    //    }
-    //    temp.options[0].selected = true;
-    //}
 
 
 

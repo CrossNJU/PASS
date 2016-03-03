@@ -34,6 +34,17 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on("click", ".up", function () {
+        var btn = $(this);
+        $(this).siblings('.test').children('.test-1').slideToggle();
+        if (btn.html() == "收起选课情况") {
+            $(this).html("展开选课情况");
+        } else {
+            $(this).html("收起选课情况");
+        }
+    });
+
+
 })
 
 function show(){
