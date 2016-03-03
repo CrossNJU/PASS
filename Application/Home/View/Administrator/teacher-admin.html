@@ -12,7 +12,6 @@
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>
-    <!--<script src="__PUBLIC__/js/main.js"></script>-->
     <script	src="__PUBLIC__/js/teacher-admin.js"></script>
 
 </head>
@@ -33,7 +32,7 @@
             <div class="admi-class">
                 <input class="text-find" type="text" name="search" placeholder="输入教师姓名或工号以查询"/>
                 <input class="btn sbtn" type="submit" name="find" value="查找教师"/>
-                <input class="input-button-add btn" id="btn-add-tea" type="button" value="添加新教师（目前共有<{$numbers}>名）"/>
+                <a class="input-button-add btn" id="btn-add-tea" href="__ROOT__/index.php/Home/Administer/teacher_add">添加新教师（目前共有<{$numbers}>名）</a>
             </div>
             </form>
             <{foreach item="teacher" name="teachers"}>

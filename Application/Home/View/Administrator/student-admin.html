@@ -37,7 +37,7 @@
                 <input class="text-find" type="text" name="search" placeholder="输入学生姓名或学号以查询"/>
                 <input class="btn sbtn" type="submit" name="find" value="查找学生"/>
                 <!--<input class="input-button-add btn" id="btn-add-stu" type="button" value="添加新学生（目前共有<{$numbers}>名）" onclick="toAdd()"/>-->
-                <a class="input-button-add btn" id="btn-add-stu" style="display: inline" href="__ROOT__/index.php/Home/Administer/student_add">添加教师（目前共有23名）</a>
+                <a class="input-button-add btn" id="btn-add-stu" href="__ROOT__/index.php/Home/Administer/student_add">添加新学生（目前共有<{$numbers}>名）</a>
             </div>
             </form>
             <{foreach item="student" name="students"}>
@@ -60,7 +60,7 @@
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
                 <a class="btn btn-small" href="#">修改</a>
-                <a class="btn btn-small up" href="#">收起选课情况</a>
+                <a class="btn btn-small up" href="javascript:void(0)">收起选课情况</a>
 
                 <div class="clear"></div>
             </div>
