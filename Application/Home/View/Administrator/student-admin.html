@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>
+    <!--<script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>-->
     <script src="__PUBLIC__/js/main.js"></script>
     <script	src="__PUBLIC__/js/student-admin.js"></script>
 </head>
@@ -59,7 +59,7 @@
 
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
-                <a class="btn btn-small" href="#">修改</a>
+                <a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/index.php/Home/Administer/student_add/id/<{$student['num']}>">修改</a>
                 <a class="btn btn-small up" href="javascript:void(0)">收起选课情况</a>
 
                 <div class="clear"></div>

@@ -105,38 +105,53 @@ class AdministerController extends Controller
         return $titles;
     }
 
-    public function student_add()//添加学生
+    public function student_add($id = NULL)//添加学生
     {
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+
         $this->msg = "";
+        $user_model = M('User');
+
+        if($id != NULL)
+            $stu = $user_model->where("number = '$id'")->select()[0];
+
+        $this->student = $stu;//当前学生
+
         if (isset($_POST['register'])) {
-            $user_model = M('User');
 
             $student_id = I('post.stu_id');
             $rows = $user_model->where("number = '$student_id'")->select();
-            if(count($rows)>0)
-                $this->ajaxReturn(-1);//已存在用户
+            if($id == NULL && count($rows)>0){
+                $this->msg = "学生已存在!";
+                $this->type = "warning";
+            }else{
 
-            $data['number'] = $student_id;
-            $data['password'] = I('post.pwd');
-            $data['phone'] = I('post.phone');
-            $data['email'] = I('post.email');
-            $data['name'] = I('post.name');
-            $data['academy'] = I('post.aca');
-            $data['speciality'] = I('post.spe');
-            $data['grade'] = I('post.grade');
-            $data['permission'] = 1;
-            if($user_model->add($data)){
-                $this->redirect('Home/Administer/student_manage/res/添加学生成功/type/success');
-            }
-            else {
-                $this->msg = "添加学生失败!";
-                $this->type = "danger";
+                $data['number'] = $student_id;
+                $data['password'] = I('post.pwd');
+                $data['phone'] = I('post.phone');
+                $data['email'] = I('post.email');
+                $data['name'] = I('post.name');
+                $data['academy'] = I('post.aca');
+                $data['speciality'] = I('post.spe');
+                $data['grade'] = I('post.grade');
+                $data['permission'] = 1;
+                if($id == NULL && $user_model->add($data)){
+                    $this->redirect('Home/Administer/student_manage/res/添加学生成功/type/success');
+                }elseif ($id != NULL && $user_model->save($data)){
+                    $this->redirect('Home/Administer/student_manage/res/修改学生成功/type/success');
+                } else {
+                    $this->msg = "添加/修改学生失败!";
+                    $this->type = "danger";
+                }
+
             }
         }
-        $this->display('Administrator:student-add');
+
+        if($id == NULL) $this->display('Administrator:student-add');
+        else $this->display('Administrator:student-modify');
     }
+
     //--------------------------------------------------------------------------
 
     public function course_manage($res = NULL, $type = NULL){
@@ -199,28 +214,38 @@ class AdministerController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function course_add(){//新增课程
+    public function course_add($id = NULL){//新增课程
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $course_model = M('Course');
         $common_logic = D('Common', 'Logic');
+
+        $this->msg = "";
+
+        if($id != NULL)
+            $this->course = $course_model->where("number = '$id'")->select()[0];
+
         if(isset($_POST['add'])){
             $data['title'] = I('post.title');
             $data['teacher'] = I('post.teacher');
             $data['depict'] = I('post.depict');
             $data['selected'] = I('post.people');
             $data['time'] = I('post.time');
-            if($course_id = $course_model->add($data)) {
+            if($id == NULL && $course_id = $course_model->add($data)) {
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);
                 $this->redirect('Home/Administer/course_manage/res/添加课程成功/type/success');
+            }elseif($id != NULL && $course_model->save($data)){
+                $this->redirect('Home/Administer/course_manage/res/修改课程成功/type/success');
             }else {
-                $this->msg = "添加课程失败!";
+                $this->msg = "添加/修改课程失败!";
                 $this->type = "danger";
             }
         }
-        $this->display('Administrator:lesson-add');
+
+        if($id == NULL) $this->display('Administrator:lesson-add');
+        else $this->display('Administrator:lesson-modify');
     }
 
     public function download($assignment_id){//批量下载
@@ -297,34 +322,48 @@ class AdministerController extends Controller
         return $course_details;
     }
 
-    public function teacher_add(){//新增教师
+    public function teacher_add($id = NULL){//新增教师
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $user_model = M('User');
+
+        $this->msg = "";
+
+        if($id!= NULL)
+            $this->teacher = $user_model->where("number = '$id'")->select()[0];
 
         if(isset($_POST['add'])){
 
             $teacher_id = I('post.tea_id');
             $rows = $user_model->where("number = '$teacher_id'")->select();
-            if(count($rows)>0)
-                $this->ajaxReturn(-1);//已存在用户
+           if(id == NULL && count($rows)>0){
+               $this->msg = "已存在教师!";
+               $this->type = "warning";
+           }else {
 
-            $data['number'] = $teacher_id;
-            $data['password'] = I('post.pwd');
-            $data['phone'] = I('post.phone');
-            $data['email'] = I('post.email');
-            $data['name'] = I('post.name');
-            $data['academy'] = I('post.aca');
-            $data['speciality'] = I('post.spe');
-            $data['permission'] = 2;
-            if($user_model->add($data))
-                $this->redirect('Home/Administer/teacher_manage/res/添加教师成功/type/success');
-            else{
-                $this->msg = "添加教师失败!";
-                $this->type = "danger";
-            }
+               $data['number'] = $teacher_id;
+               $data['password'] = I('post.pwd');
+               $data['phone'] = I('post.phone');
+               $data['email'] = I('post.email');
+               $data['name'] = I('post.name');
+               $data['academy'] = I('post.aca');
+               $data['speciality'] = I('post.spe');
+               $data['permission'] = 2;
+               if($id == NULL && $user_model->add($data))
+                   $this->redirect('Home/Administer/teacher_manage/res/添加教师成功/type/success');
+               elseif($id!=NULL && $user_model->save($data)){
+                   $this->redirect('Home/Administer/teacher_manage/res/修改教师成功/type/success');
+               } else{
+                   $this->msg = "添加/修改教师失败!";
+                   $this->type = "danger";
+               }
+
+           }
+
         }
-        $this->display('Administrator:teacher-add');
+
+        if ($id== NULL) $this->display('Administrator:teacher-add');
+        else $this->display('Administrator:teacher-add');
     }
 
 }
