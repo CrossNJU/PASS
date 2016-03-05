@@ -231,6 +231,7 @@ class AdministerController extends Controller
             $data['depict'] = I('post.depict');
             $data['selected'] = I('post.people');
             $data['time'] = I('post.time');
+            $data['assignments'] = 0;
             if($id == NULL && $course_id = $course_model->add($data)) {
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);

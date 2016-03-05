@@ -13,32 +13,15 @@ use PHPWord;
 class UserController extends Controller
 {
     public function test(){
-//        $course_model = M('Coursedis');
-//        $students = $course_model->where("cNumber = '1'")
-//            ->field('stdNumber')->select();
-//        foreach ($students as $s){
-////            dump($s);
-//            echo $s['stdnumber'];
-//        }
-//        $course_dis_model = M('Coursedis');
-//        $data['cNumber'] = '1';
-//        $data['stdNumber'] = 'cr';
-//        $data['cName'] = '1';
-//        $res = $course_dis_model
-//            ->where("cNumber = '1' AND stdNumber = 'cr' AND cName = '1'")->select();
-////        dump($test);
-//        dump($res);
-        if(isset($_POST['test1'])){
-//            echo "in";
-            $data['info'] = "success";
-            $this->ajaxReturn($data);
-        }
-        if(isset($_POST['test2'])){
-            $this->assign('mess','bbc');
-//            return;
-        }
-        $this->mess = "a";
+
         $this->display('User:test1');
+    }
+
+    public function test_1(){
+        $ass = M('Assignmentdis');
+        $data['url'] = "test-url";
+        $ret = $ass->where("stdNumber = 'S1' AND assNumber = '1'")->save($data);
+        echo $ret;
     }
 
     public function test_url(){
