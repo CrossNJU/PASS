@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改课程信息</title>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+</head>
+<body>
+
+<{include file="Common/header"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/teacher_manage">教师管理</a>
+        <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/student_manage">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/course_manage">课程管理</a>
+    </div>
+</div>
+
+<div class="content">
+    <div class="wrapper">
+        <form method="post">
+            <div class="card">
+                <div class="admi-add-class admi-class">
+                    <h3 class="card-title">添加新课程</h3>
+                </div>
+
+                <div class="admi-class-info" >
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">课程名称</p>
+                        <input class="text" type="text" name="title" placeholder="课程名称"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">授课教师</p>
+                        <input class="text" type="text" name="teacher" placeholder="授课教师"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">人数</p>
+                        <input class="text" type="text" name="people" placeholder="人数"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">描述</p>
+                        <textarea class="class-homework-request textarea" name="depict" placeholder="描述"></textarea>
+                    </div>
+
+                </div>
+                <div class="admi-class-choose admi-class-info">
+                    <input type="submit" class="btn sbtn" name="add" value="添加新课程">
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+    <{include file="Common/footer"/}>
+</div>
+</body>
+</html>
