@@ -68,11 +68,12 @@ class CommonLogic
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
             ->select();
+        dump($assignments);
         foreach ($assignments as $assignment) {
-            if($assignment['isSubmitted'] == 1){
+            if($assignment['issubmitted'] == 1){
                 $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdNumber'].'/'.$assignment['savename']);
             }
-            if($assignment['isExamined'] == 1){
+            if($assignment['isexamined'] == 1){
                 $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdNumber'].'/modify.doc');
             }
         }
