@@ -9,6 +9,7 @@
 namespace Home\Logic;
 use Think\Model;
 use PHPWord;
+use PHPMailer;
 
 class CommonLogic
 {
@@ -80,6 +81,31 @@ class CommonLogic
         $zip->close();
         unset($zip);
         return $url;
+    }
+
+    public function sendEmail($sub, $address, $body){
+
+        Vendor('PHPMailer.class#phpmailer');
+
+        $mail = new PHPMailer();
+        $mail->CharSet = "UTF-8";
+        $mail->IsSMTP();
+        $mail->SMTPAuth = true;
+        $mail->SMTPSecure = "ssl";
+        $mail->Port = 465;
+
+        $mail->From = C('MAIL_FROM');
+        $mail->FromName = C('MAIL_FROM_NAME');
+        $mail->Host = C('MAIL_HOST');
+        $mail->Username = C('MAIL_USERNAME');
+        $mail->Password = C('MAIL_PASSWORD');
+
+        $mail->Subject = $sub;
+        $mail->AddAddress($address);
+        $mail->MsgHTML($body);
+
+        if($mail->Send()) return true;
+        else return false;
     }
 
 }

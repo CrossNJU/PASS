@@ -9,7 +9,6 @@
 namespace Home\Controller;
 
 use Think\Controller;
-use PHPMailer;
 
 class CommonController extends Controller
 {
@@ -99,25 +98,9 @@ class CommonController extends Controller
         $this->msg = "";
         $sub = '找回密码';
         $prefix = 'http://localhost/PASS/index.php/Home/Common/pwd_reset/id/';
-        $address = 'cr14@software.nju.edu.cn';
         $body = $prefix;
 
-        Vendor('PHPMailer.class#phpmailer');
-
-        $mail = new PHPMailer();
-        $mail->CharSet = "UTF-8";
-        $mail->IsSMTP();
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = "ssl";
-        $mail->Port = 465;
-
-        $mail->From = C('MAIL_FROM');
-        $mail->FromName = C('MAIL_FROM_NAME');
-        $mail->Host = C('MAIL_HOST');
-        $mail->Username = C('MAIL_USERNAME');
-        $mail->Password = C('MAIL_PASSWORD');
-
-        $mail->Subject = $sub;
+        $common_logic = D('Common','Logic');
 
         if(isset($_POST['send'])){
             $address = I('post.address');
@@ -127,16 +110,13 @@ class CommonController extends Controller
             $student_id = NULL;
             if(count($rows)>0){
                 $student_id = $rows[0]['number'];
-                echo $student_id;
                 $body = $body.$student_id;
-                $mail->AddAddress($address);
-                $mail->MsgHTML($body);
-                if($mail->Send()){
+                if($common_logic->sendEmail($sub,$address,$body)){
                     $this->msg = "发送成功!";
                     $this->type = "success";
                 }
                 else {
-                    $this->msg = "发送失败:".$mail->ErrorInfo;
+                    $this->msg = "发送失败!";
                     $this->type = "danger";
                 }
             }else{

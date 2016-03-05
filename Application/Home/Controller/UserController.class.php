@@ -137,7 +137,11 @@ class UserController extends Controller
         echo $zip->numFiles;
         $zip->close();
         unset($zip);
-//        $this->display('User:test_down');
+    }
+
+    public function down(){
+        $lo = D('Common','Logic');
+        echo $lo->addToZip(1);
     }
 
 }

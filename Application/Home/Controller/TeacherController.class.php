@@ -273,4 +273,49 @@ class TeacherController extends Controller
 
         $this->display('Teacher:homework-new');
     }
+
+    public function download($assignment_id){//教师-下载作业
+        $common_logic = D('Common','Logic');
+        $url = $common_logic->addToZip($assignment_id);
+        $this->ajaxReturn($url);
+    }
+
+    public function check_student_info($stu_id){//教师-查看学生信息界面
+        $user_model = M('User');
+        $student = $user_model->where("number = '$stu_id'")->select()[0];
+
+        $this->student = $student;
+        $this->display('Teacher:#');
+    }
+
+    public function reupload($stu_id,$assignment_id){//教师-发邮件要求学生重交作业
+        $assignment_model = M('Assignment');
+        $assignment_dis_model = M('Assignmentdis');
+        $user_model = M('User');
+        $course_logic = D('Course','Logic');
+        $user_logic = D('User','Logic');
+        $common_logic = D('Common','Logic');
+
+        $assignment_model->where("number = '$assignment_id'")->setDec('submitted');
+        $assignment = $assignment_dis_model
+            ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->select()[0];
+        $assignment['isSubmitted'] = 0;
+        $assignment_dis_model
+            ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->save($assignment);
+
+        $sub = "请重新提交作业!";
+        $course_name = $course_logic->get_course_name($assignment['cnumber']);
+        $teacher_name = $user_logic->get_user_name(session('user'));
+        $assignment_name = $course_logic->get_assignment_name($assignment['assnumber']);
+        $stu_name = $user_logic->get_user_name($stu_id);
+
+        $body = $stu_name."同学,你好!<br>"."<p>请重新提交'$teacher_name'老师的'$course_name'课程的
+            '$assignment_name'作业</p><br>";
+
+        $address = $user_model->where("number = '$stu_id'")->select()[0]['email'];
+
+        if($common_logic->sendEmail($sub,$address,$body))
+            $this->ajaxReturn(1);//发送成功
+        else $this->ajaxReturn(0);
+    }
 }
