@@ -28,17 +28,17 @@
         <form name="aca_spe_form" method="post">
             <div class="card">
                 <div class="admi-add-class admi-class">
-                    <h3 class="card-title">添加新教师</h3>
+                    <h3 class="card-title">修改教师信息</h3>
                 </div>
 
                 <div class="admi-class-info" >
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">工号</p>
-                        <input class="text" type="text" name="tea_id" id="tea_id" placeholder="工号"/>
+                        <input class="text" type="text" name="tea_id" id="tea_id" value="<{$teacher['number']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">姓名</p>
-                        <input class="text" type="text" name="name" id="tea_name" placeholder="姓名"/>
+                        <input class="text" type="text" name="name" id="tea_name" value="<{$teacher['name']}>"/>
                     </div>
 
                     <div class="admi-class-info-detil">
@@ -86,27 +86,27 @@
                         <!--onchange="redirec(document.aca_spe_form.spe.options.selectedIndex)">-->
                         <select class="text" name="spe" id="tea_spe">
                             <option value="31" selected>专业</option>
-                            <!--<option value="2">22-25</option>-->
-                            <!--<option value="3">26-29</option>-->
-                            <!--<option value="4">30-35</option>-->
-                            <!--<option value="5">Over35</option>-->
 
                         </select>
                     </div>
 
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">邮箱</p>
-                        <input class="text" type="text" name="email" id="tea_email" placeholder="邮箱"/>
+                        <input class="text" type="text" name="email" id="tea_email" value="<{$teacher['email']}>"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">手机</p>
+                        <input class="text" type="text" name="phone" id="tea_phone" value="<{$teacher['phone']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">密码</p>
-                        <input class="text" type="text" name="pwd" id="tea_pwd" placeholder="密码"/>
+                        <input class="text" type="text" name="pwd" id="tea_pwd" value="<{$teacher['password']}>"/>
                     </div>
 
                 </div>
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">添加新教师</a>-->
-                    <input type="submit" class="btn sbtn" id="add-tea" name="add" value="添加新教师">
+                    <input type="submit" class="btn sbtn" id="add-tea" name="add" value="完成修改">
                 </div>
 
             </div>

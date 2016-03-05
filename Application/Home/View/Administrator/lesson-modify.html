@@ -32,24 +32,28 @@
                 <div class="admi-class-info" >
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">课程名称</p>
-                        <input class="text" type="text" name="title" placeholder="课程名称"/>
+                        <input class="text" type="text" name="title" value="<{$course['title']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">授课教师</p>
-                        <input class="text" type="text" name="teacher" placeholder="授课教师"/>
+                        <input class="text" type="text" name="teacher" value="<{$course['teacher']}>"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">时间</p>
+                        <input class="text" type="text" name="time" value="<{$course['time']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">人数</p>
-                        <input class="text" type="text" name="people" placeholder="人数"/>
+                        <input class="text" type="text" name="people" value="<{$course['selected']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">描述</p>
-                        <textarea class="class-homework-request textarea" name="depict" placeholder="描述"></textarea>
+                        <textarea class="class-homework-request textarea" name="depict"><{$course['depict']}></textarea>
                     </div>
 
                 </div>
                 <div class="admi-class-choose admi-class-info">
-                    <input type="submit" class="btn sbtn" name="add" value="添加新课程">
+                    <input type="submit" class="btn sbtn" name="add" value="完成修改">
                 </div>
 
             </div>

@@ -38,11 +38,11 @@
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">姓名</p>
-                        <input class="text" type="text" name="name" placeholder="姓名"/>
+                        <input class="text" type="text" name="name" value="<{$student['name']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">年级</p>
-                        <input class="text" type="text" name="grade" placeholder="年级"/>
+                        <input class="text" type="text" name="grade" value="<{$student['grade']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
@@ -98,17 +98,21 @@
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">邮箱</p>
-                        <input class="text" type="text" name="email" placeholder="邮箱"/>
+                        <input class="text" type="text" name="email" value="<{$student['email']}>"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">手机</p>
+                        <input class="text" type="text" name="phone"  value="<{$student['phone']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">密码</p>
-                        <input class="text" type="text" name="pwd" placeholder="密码"/>
+                        <input class="text" type="text" name="pwd" value="<{$student['password']}>"/>
                     </div>
 
                 </div>
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">添加新学生</a>-->
-                    <input type="submit" class="btn sbtn" id="add-stu-btn" name="register" value="添加新学生">
+                    <input type="submit" class="btn sbtn" id="add-stu-btn" name="register" value="完成修改">
                 </div>
 
             </div>
