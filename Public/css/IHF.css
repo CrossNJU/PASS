@@ -31,6 +31,7 @@ ul{
 }
 ul li{
     float: left;
+    line-height: 20px;
 }
 
 .footer{
