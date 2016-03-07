@@ -64,22 +64,22 @@ class CommonController extends Controller
             if (count($row) == 0){
                 $this->msg = "用户不存在!";
                 $this->type = "danger";
-            }
-            if ($row[0]['password'] != $pwd){
+            }elseif ($row[0]['password'] != $pwd){
                 $this->msg = "密码错误!";
                 $this->type = "danger";
-            }
-            $per = $row[0]['permission'];
+            }else{
+                $per = $row[0]['permission'];
 
-            session("user", $id);
-            session("per", $per);
-            switch ($per){
-                case "1": $this->redirect('Student/my_course');break;
-                case "2": $this->redirect('Teacher/my_course');break;
-                case "3": $this->redirect('Administer/student_manage');break;
-                default: {
-                    $this->msg = "登录失败!";
-                    $this->type = "danger";
+                session("user", $id);
+                session("per", $per);
+                switch ($per){
+                    case "1": $this->redirect('Student/my_course');break;
+                    case "2": $this->redirect('Teacher/my_course');break;
+                    case "3": $this->redirect('Administer/student_manage');break;
+                    default: {
+                        $this->msg = "登录失败!";
+                        $this->type = "danger";
+                    }
                 }
             }
         }
