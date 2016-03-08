@@ -26,5 +26,12 @@ $(document).ready(function(){
             },
         });
     });
-
 })
+
+function show(){
+    var $p1 = $("#msg").val();
+    var $p2 = $("#type").val();
+    if ($p1!=""){
+        showStateBar($p2,$p1);
+    }
+}

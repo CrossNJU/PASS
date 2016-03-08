@@ -7,10 +7,17 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
-
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/validate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
 </head>
-<body>
+</head>
+<body onload="show()">
+<input style="display: none" id="msg" value="<{$msg}>">
+<input style="display: none" id="type" value="<{$type}>">
 
     <{include file="Common/header"/}>
     <div class="nav">
@@ -23,7 +30,7 @@
 
     <div class="content">
         <div class="wrapper">
-            <form method="post">
+            <form method="post" onsubmit="return checkLesson();return false;">
                 <div class="card">
                     <div class="admi-add-class admi-class">
                         <h3 class="card-title">添加新课程</h3>
@@ -32,23 +39,23 @@
                     <div class="admi-class-info" >
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">课程名称</p>
-                            <input class="text" type="text" name="title" placeholder="课程名称"/>
+                            <input class="text" type="text" name="title" id="cou_name" placeholder="课程名称"/>
                         </div>
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">授课教师</p>
-                            <input class="text" type="text" name="teacher" placeholder="授课教师"/>
+                            <input class="text" type="text" name="teacher"  id="cou_tea" placeholder="授课教师"/>
                         </div>
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">时间</p>
-                            <input class="text" type="text" name="time" placeholder="时间"/>
+                            <input class="text" type="text" name="time" id="cou_time" placeholder="时间"/>
                         </div>
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">人数</p>
-                            <input class="text" type="text" name="people" placeholder="人数"/>
+                            <input class="text" type="text" name="people" id="cou_num" placeholder="人数"/>
                         </div>
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">描述</p>
-                            <textarea class="class-homework-request textarea" name="depict" placeholder="描述"></textarea>
+                            <textarea class="class-homework-request textarea" id="cou_des" name="depict" placeholder="描述"></textarea>
                         </div>
 
                     </div>

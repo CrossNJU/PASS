@@ -231,13 +231,13 @@ class AdministerController extends Controller
             $data['depict'] = I('post.depict');
             $data['selected'] = I('post.people');
             $data['time'] = I('post.time');
-            $data['assignments'] = 0;
+            if($id == NULL) $data['assignments'] = 0;
             if($id == NULL && $course_id = $course_model->add($data)) {
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);
                 $this->redirect('Home/Administer/course_manage/res/添加课程成功/type/success');
-            }elseif($id != NULL && $course_model->save($data)){
+            }elseif($id != NULL && $course_model->where("number = '$id'")->save($data)){
                 $this->redirect('Home/Administer/course_manage/res/修改课程成功/type/success');
             }else {
                 $this->msg = "添加/修改课程失败!";
@@ -337,11 +337,10 @@ class AdministerController extends Controller
 
             $teacher_id = I('post.tea_id');
             $rows = $user_model->where("number = '$teacher_id'")->select();
-           if(id == NULL && count($rows)>0){
+           if($id == NULL && count($rows)>0){
                $this->msg = "已存在教师!";
                $this->type = "warning";
            }else {
-
                $data['number'] = $teacher_id;
                $data['password'] = I('post.pwd');
                $data['phone'] = I('post.phone');
@@ -364,7 +363,7 @@ class AdministerController extends Controller
         }
 
         if ($id== NULL) $this->display('Administrator:teacher-add');
-        else $this->display('Administrator:teacher-add');
+        else $this->display('Administrator:teacher-modify');
     }
 
 }
