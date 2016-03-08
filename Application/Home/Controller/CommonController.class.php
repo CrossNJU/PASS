@@ -28,22 +28,22 @@ class CommonController extends Controller
             if(count($rows)>0){
                 $this->msg = "用户已存在!";
                 $this->type = "danger";
-            }
-
-            $data['number'] = $student_id;
-            $data['password'] = I('post.pwd');
-            $data['phone'] = I('post.phone');
-            $data['email'] = I('post.email');
-            $data['name'] = I('post.name');
-            $data['academy'] = I('post.aca');
-            $data['speciality'] = I('post.spe');
-            $data['grade'] = I('post.grade');
-            $data['permission'] = 1;
-            if($user_model->add($data)){
-                $this->redirect('Home/Common/login/res/'.'注册成功!/type/'.'success');
-            }else {
-                $this->msg = "注册失败!";
-                $this->type = "danger";
+            }else{
+                $data['number'] = $student_id;
+                $data['password'] = I('post.pwd');
+                $data['phone'] = I('post.phone');
+                $data['email'] = I('post.email');
+                $data['name'] = I('post.name');
+                $data['academy'] = I('post.aca');
+                $data['speciality'] = I('post.spe');
+                $data['grade'] = I('post.grade');
+                $data['permission'] = 1;
+                if($user_model->add($data)){
+                    $this->redirect('Home/Common/login/res/'.'注册成功!/type/'.'success');
+                }else {
+                    $this->msg = "注册失败!";
+                    $this->type = "danger";
+                }
             }
         }
         $this->display('Common:Register-student');
