@@ -53,11 +53,13 @@ $(document).ready(function () {
         //        $("body").css("overflow","hidden");
         //    }
         //});
-        var url = $(this).attr("data-url")
-        if($(this).attr("data-type") == 'mp4'){
-            $("#preview-content").html("<video id='really-cool-video' class='video-js vjs-default-skin' controls = 'controls'preload='auto' height='360' data-setup='{}'> <source src='../../../uploads/assignments/"+url+" type='video/mp4'> </video>");
+        var url = $(this).attr("data-url");
+        var type = $(this).attr("data-type");
+        if(type == 'mp4'){
+            $("#preview-content").html("<video id='really-cool-video' class='video-js vjs-default-skin' controls = 'controls'preload='auto' height='360' data-setup='{}'> <source src='"+publicUrl+"/uploads/"+url+"' type='video/mp4'> </video>");
         }else {
-            $("#preview-content").html("<iframe class='pdf' src='__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/"+url+"></iframe>");
+            console.log("<iframe class='pdf' src='"+publicUrl+"/plugins/generic/web/viewer.html?file="+publicUrl+"/uploads/"+url+"'></iframe>");
+            $("#preview-content").html("<iframe class='pdf' src='"+publicUrl+"/plugins/generic/web/viewer.html?file="+publicUrl+"/uploads/"+url+"'></iframe>");
         }
         $("#preview-modal").fadeIn();
         $("body").css("overflow", "hidden");

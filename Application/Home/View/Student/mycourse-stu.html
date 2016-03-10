@@ -52,7 +52,7 @@
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
 						<{if condition="$homework['type'] neq 'word'"}>
-					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-type="<{homework['type']}>" data-url="<{$homework['fileUrl']}>">预览作业</a>
+					<a class="btn btn-small preview-btn" href="javascript:void(0)" data-type="<{$homework['type']}>" data-url="<{$homework['fileUrl']}>">预览作业</a>
 						<{/if}>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 					<{else /}>

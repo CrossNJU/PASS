@@ -76,6 +76,7 @@ a {
     font-size: 18px;
     color: #57beed;
     text-align: center;
+    cursor: pointer;
 }
 
 .btn-active {
@@ -288,7 +289,8 @@ b:after {
 }
 
 .homework-info {
-    width: 568px;
+    position: relative;
+    width: 500px;
     padding-left: 10px;
     padding-right: 30px;
     float: left;
@@ -398,5 +400,17 @@ b:after {
     margin-top: 0;
     margin-left: 5px;
     margin-bottom: 12px;
+}
+
+.student-card{
+    display: none;
+    box-sizing: border-box;
+    width: 300px;
+    padding: 30px;
+    position: absolute;
+    top:-340px;
+    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 

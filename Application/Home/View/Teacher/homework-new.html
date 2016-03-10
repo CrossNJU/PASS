@@ -29,6 +29,12 @@
 						<input type="text" name="course" placeholder="选择作业所属课程" value="<{$homework['course']}>"/>
 						<p class="comment" >作业名称</p>
 						<input type="text" name="title" placeholder="输入作业名称" value="<{$homework['name']}>"/>
+						<p class="comment" >作业类型</p>
+						<select class="text" name="type">
+							<option value="pdf">PDF(提供预览功能)</option>
+							<option value="word">WORD/PPT(提供下载功能)</option>
+							<option value="mp4">MP4(提供预览功能)</option>
+						</select>
 						<p class="comment">开始/截止时间</p>
 						<input class="time" name="startTime" type="date" value="<{$homework['start']}>"/>
 						<input class="time" name="endTime" type="date" value="<{$homework['end']}>"/>
@@ -36,7 +42,7 @@
 						<textarea class="textarea" name="requi" placeholder="作业要求"><{$homework['require']}></textarea>
 						<br/>
 						<input class="btn" name="save" type="submit" value="布置作业"/>
-						<a class="btn" href="javascript:history.go(-1)">取消</a>
+						<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/<{$homework['id']}>">取消</a>
 					</form>
 				</div>
 			</div>

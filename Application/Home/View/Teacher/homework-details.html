@@ -7,10 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/reset.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/IHF.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="../../../../Public/css/card.css">-->
 
 	<script src="__PUBLIC__/js/jquery.js"></script>
 	<script	src="__PUBLIC__/js/main.js"></script>
@@ -39,9 +40,9 @@
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
+					<a class="btn batch-btn" data-id="<{$homework['id']}>" >批量下载</a>
 					<{if condition="$homework['type'] eq 'word'" }>
-					<a class="btn" href="javascript:void(0)" data-id="<{$homework['id']}>" >批量下载</a>
-					<{/else}>
+					<{else /}>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
 					<{/if}>
 
@@ -56,25 +57,29 @@
 					<div class="num">1</div>
 					<div class="homework-info">
 						<p class="homework-title"><{$submit['name']}></p>
-						<p class="stu-info comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
+						<p class="stu-info comment"><span class="stu-info-text"><{$submit['studentName']}>(<{$submit['studentNum']}>)</span></p>
 						<{if condition="$submit['isCorrected'] eq true"}>
 						<p class="homework-request comment"><{$submit['comment']}></p>
 						<{/if}>
+
 					</div>
+					<a class="btn btn-small again-btn" data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">重新提交</a>
 					<{if condition="$homework['type'] eq 'word'"}>
-						<a class="btn btn-small" href="__PUBLIC__/uploads/<{$submit['upload']}>">下载</a>
+					<a class="btn btn-small" href="__PUBLIC__/uploads/<{$submit['upload']}>">下载</a>
 					<{else /}>
-						<{if condition="$submit['isCorrected'] eq true"}>
-						<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>
-						<a class="btn btn-small packup-btn" href="javascript:void(0)"><{$submit['score']}>分/展开评语</a>
-						<{else /}>
-						<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>
-						<{/if}>
+					<{if condition="$submit['isCorrected'] eq true"}>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/modify">修改</a>
+					<a class="btn btn-small packup-btn" href="javascript:void(0)"><{$submit['score']}>分/展开评语</a>
+					<{else /}>
+					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['student_id']}>/display/correct">批阅作业</a>
+					<{/if}>
 					<{/if}>
 					<div class="clear"></div>
 				</div>
 				<{/foreach}>
 			</div>
+
+
 
 			<!--<div class="card">-->
 				<!--<div class="card-info">-->
@@ -129,6 +134,15 @@
 			<a href="javascript:void(0)" class="btn btn-active">取消</a>
 			<a href="javascript:void(0)" class="close-btn"><b class="cross"></b></a>
 		</div>
+	</div>
+
+	<div class="student-card">
+		<h3 class="card-title">陈雪瑞</h3>
+		<p class="comment">学号:141250000</p>
+		<p class="comment">院系:软件学院</p>
+		<p class="comment">年级:大二</p>
+		<p class="comment">邮箱:xxx</p>
+		<p class="comment">手机:xxx</p>
 	</div>
 </body>
 </html>
