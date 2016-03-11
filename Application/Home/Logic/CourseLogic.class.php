@@ -65,7 +65,7 @@ class CourseLogic
 
                 'courseName' => $this->get_course_name($course_id),
                 'type' => $assignment['type'],
-                'fileUrl' => $assignment['url'].$assignment['savename'],
+                'fileUrl' => $var['url'].$var['savename'],
             );
             $assignments[$i] = $assignment_detail;
             $i ++;

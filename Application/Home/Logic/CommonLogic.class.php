@@ -69,9 +69,7 @@ class CommonLogic
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
             ->select();
-//        dump($assignments);
         foreach ($assignments as $assignment) {
-//            dump($assignment);
             if($assignment['issubmitted'] == 1){
                 $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdnumber'].'/'.$assignment['savename']);
             }

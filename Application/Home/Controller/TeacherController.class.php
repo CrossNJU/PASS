@@ -227,6 +227,10 @@ class TeacherController extends Controller
             'name' => $course_logic->get_assignment_name($assignment_id),
             'type' => $assignment['type']
         );
+        if($display == "modify"){
+            $this->score = $assignment_dis['mark'];
+            $this->comment = $assignment_dis['comm'];
+        }
         $this->display('Teacher:homework-'.$display);
     }
 

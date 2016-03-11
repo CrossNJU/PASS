@@ -233,8 +233,7 @@ class StudentController extends Controller
             ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")
             ->select()[0];
 
-        $url_base = C('URL_BASE');
-        $this->url = $url_base.$assignment['url'].'source.pdf';
+//        $url_base = C('URL_BASE');
         $this->submit = array(
             'name' => $assignment['submitname'],
             'time' => $assignment['submittime']
@@ -294,5 +293,19 @@ class StudentController extends Controller
         }
 
         $this->display('Student/submit');
+    }
+
+    public function student_detail($student_id){//学生详情界面
+        $user_model = M('User');
+        $student = $user_model->where("number = '$student_id'")->select()[0];
+        $student_detail = array(
+            'name' => $student['name'],
+            'id' => $student['number'],
+            'academy' => $student['academy'],
+            'email' => $student['email'],
+            'grade' => $student['grade'],
+            'phone' => $student['phone'],
+        );
+        $this->ajaxReturn($student_detail);
     }
 }

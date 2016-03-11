@@ -253,7 +253,6 @@ class AdministerController extends Controller
     public function download($assignment_id){//批量下载
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
-//        $this->ajaxReturn(1);
         $this->ajaxReturn($url);
     }
     //--------------------------------------------------------------------------
