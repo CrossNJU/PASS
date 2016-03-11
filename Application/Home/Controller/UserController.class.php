@@ -144,4 +144,11 @@ class UserController extends Controller
         $lo->addToZip(1);
     }
 
+    public function ts(){
+//        dump(session())
+        $t = D('User');
+        $u = $t->where("number = 'St4'")->select()[0];
+        echo md5($u['password']);
+    }
+
 }

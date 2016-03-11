@@ -19,10 +19,12 @@ class AdministerController extends Controller
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
 
+        $common_logic = D('Common','Logic');
         $this->msg = "";
-        if($res!=NULL){
-            $this->msg = $res;
-            $this->type = $type;
+        if($res!=NULL) {
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
 
         $all = $this->user_show(1);
@@ -158,10 +160,12 @@ class AdministerController extends Controller
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
 
+        $common_logic = D('Common','Logic');
         $this->msg = "";
-        if($res!=NULL){
-            $this->msg = $res;
-            $this->type = $type;
+        if($res!=NULL) {
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
 
         $course_logic = D('Course','Logic');
@@ -262,11 +266,14 @@ class AdministerController extends Controller
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $all = $this->user_show(2);
 
+        $common_logic = D('Common','Logic');
         $this->msg = "";
-        if($res!=NULL){
-            $this->msg = $res;
-            $this->type = $type;
+        if($res!=NULL) {
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
+
         if(isset($_POST['find'])){//查找课程,空白默认查找全部
             $key = I('post.search');
             if($key != "") $all = $this->user_find(2,$key);

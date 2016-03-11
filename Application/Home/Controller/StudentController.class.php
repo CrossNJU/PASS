@@ -75,10 +75,12 @@ class StudentController extends Controller
     public function my_course($res = NULL,$type = NULL){//学生-我的课程
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+        $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
-            $this->msg = $res;
-            $this->type = $type;
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
         $student_id = session('user');
 
@@ -118,10 +120,12 @@ class StudentController extends Controller
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         $student_id = session('user');
 
+        $common_logic = D('Common','Logic');
         $this->msg = "";
-        if($res!=NULL){
-            $this->msg = $res;
-            $this->type = $type;
+        if($res!=NULL) {
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
 
         $course_dis_model = M('Coursedis');

@@ -35,4 +35,8 @@ class UserModel extends Model
     );
 
     protected $pk = 'number';
+
+    protected $_auto = array(
+        array('password','md5',3,'function')
+    );
 }

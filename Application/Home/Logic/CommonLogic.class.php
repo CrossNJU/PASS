@@ -107,4 +107,25 @@ class CommonLogic
         else return false;
     }
 
+    public function getMessage($res,$type){
+        $ret = array();
+        switch($type){
+            case 'suc':$ret['type'] = 'success';break;
+            case 'err':$ret['type'] = 'danger';break;
+            case 'war':$ret['type'] = 'warning';break;
+            default:$ret['type'] = '';
+        }
+        if($ret['type'] == ''){
+            $ret['res'] = '';
+            return $ret;
+        }else{
+            switch ($res){
+                case "reg-suc":$ret['res'] = '注册成功!';break;
+                case "reset-suc":$ret['res'] = '重置成功!';break;
+                default: $ret['res'] = ''; $ret['type'] = '';
+            }
+            return $ret;
+        }
+    }
+
 }

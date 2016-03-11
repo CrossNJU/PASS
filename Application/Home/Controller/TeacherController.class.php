@@ -16,10 +16,12 @@ class TeacherController extends Controller
         if(!session('?per')){
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         }
+        $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
-            $this->msg = $res;
-            $this->type = $type;
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
         $status = session("per");
         if($status!=2){
@@ -57,10 +59,12 @@ class TeacherController extends Controller
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
         }
         $status = session("per");
+        $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
-            $this->msg = $res;
-            $this->type = $type;
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
         if($status!=2) {
             $this->redirect('Home/Common/login/res/尚未登录/type/warning');
@@ -69,7 +73,6 @@ class TeacherController extends Controller
         $teacher = session('user');
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
-        $common_logic = D('Common','Logic');
         $assignments = $assignment_model->where("teacher = '$teacher'")->select();
         $assignment_ret = array();
         $i = 0;
@@ -110,15 +113,16 @@ class TeacherController extends Controller
     }
 
     public function assignment_detail($assignment_id,$res = NULL, $type = NULL){//作业详情
+        $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
-            $this->msg = $res;
-            $this->type = $type;
+            $message = $common_logic->getMessage($res,$type);
+            $this->msg = $message['res'];
+            $this->type = $message['type'];
         }
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
-        $common_logic = D('Common','Logic');
         $assignments_detail = $assignment_model->where("number = '$assignment_id'")
             ->select()[0];
         $assignment_dis_model = M('Assignmentdis');
