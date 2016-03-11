@@ -14,7 +14,7 @@ class TeacherController extends Controller
 {
     public function my_course($res = NULL,$type = NULL){//教师:我的课程
         if(!session('?per')){
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -25,7 +25,7 @@ class TeacherController extends Controller
         }
         $status = session("per");
         if($status!=2){
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
         $course_model = M('Course');
         $user_logic = D('User','Logic');
@@ -56,7 +56,7 @@ class TeacherController extends Controller
 
     public function my_assignments($res = NULL, $type = NULL){//教师:我布置的作业
         if(!session('?per')){
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
         $status = session("per");
         $common_logic = D('Common','Logic');
@@ -67,7 +67,7 @@ class TeacherController extends Controller
             $this->type = $message['type'];
         }
         if($status!=2) {
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
 
         $teacher = session('user');
@@ -191,7 +191,7 @@ class TeacherController extends Controller
                 ->save($data);
 
             $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
-            if($ret) $this->redirect('Home/Teacher/assignment_detail/assignment_id/'.$assignment_id.'/res/保存成功/type/success');
+            if($ret) $this->redirect('Home/Teacher/assignment_detail/assignment_id/'.$assignment_id.'/res/save-suc/type/suc');
             else {
                 $this->msg = "保存失败!";
                 $this->type = "danger";
@@ -240,11 +240,11 @@ class TeacherController extends Controller
 
     public function assignment_deliver(){//布置新作业
         if(!session('?per')){
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
         $status = session("per");
         if($status!=2){
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
 
         $assignment_model = M('Assignment');
@@ -276,7 +276,7 @@ class TeacherController extends Controller
                 $course_logic->assignment_dis($course_id, $assignment_id,$i['stdnumber']);
             }
 
-            $this->redirect('Home/Teacher/my_assignments/res/发布成功/type/success');
+            $this->redirect('Home/Teacher/my_assignments/res/del-suc/type/suc');
         }
 
         $this->display('Teacher:homework-new');

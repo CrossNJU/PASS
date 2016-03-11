@@ -122,6 +122,16 @@ class CommonLogic
             switch ($res){
                 case "reg-suc":$ret['res'] = '注册成功!';break;
                 case "reset-suc":$ret['res'] = '重置成功!';break;
+                case "login-war":$ret['res'] = '尚未登录!';break;
+                case "upload-suc":$ret['res'] = '上传成功!';break;
+                case "save-suc":$ret['res'] = '保存成功!';break;
+                case "del-suc":$ret['res'] = '发布成功!';break;
+                case "add-stu-suc":$ret['res'] = '增加学生成功!';break;
+                case "mod-stu-suc":$ret['res'] = '修改学生成功!';break;
+                case "add-tea-suc":$ret['res'] = '增加老师成功!';break;
+                case "mod-tea-suc":$ret['res'] = '修改老师成功!';break;
+                case "add-cou-suc":$ret['res'] = '增加课程成功!';break;
+                case "mod-cou-suc":$ret['res'] = '修改课程成功!';break;
                 default: $ret['res'] = ''; $ret['type'] = '';
             }
             return $ret;

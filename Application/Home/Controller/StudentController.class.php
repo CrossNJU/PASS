@@ -19,12 +19,12 @@ class StudentController extends Controller
 
     public function sets(){//学生-设置
         if(!session('?per') || session('per')!= 1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $this->msg = "";//消息
 
         $stu = session('user');
-        $user_model = M('User');
+        $user_model = D('User');
         $student = $user_model->where("number = '$stu'")->select()[0];
         $this->info = $student;//学生原始信息,字段参见数据库
 
@@ -52,14 +52,17 @@ class StudentController extends Controller
         if(isset($_POST['save_pwd'])){
             $old = I('post.old_pwd');
             $old_in_db = $user_model->where("number = '$stu'")->getField('password');
-            if($old!=$old_in_db) {
+            if(md5($old)!=$old_in_db) {
                 $this->msg = "原密码错误!";
                 $this->type = "danger";
             }
 
             $new = I('post.new_pwd');
-            $res = $user_model->where("number = '$stu'")->setField('password',$new);
+            $row['password'] = $new;
+            $row['number'] = $stu;
+            $res = $user_model->create($row);
             if($res) {
+                $user_model->save();
                 $this->msg = "保存成功!";
                 $this->type = "success";
             }
@@ -74,7 +77,7 @@ class StudentController extends Controller
 
     public function my_course($res = NULL,$type = NULL){//学生-我的课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
@@ -117,7 +120,7 @@ class StudentController extends Controller
 
     public function my_assignment($res=NULL,$type=NULL){//学生-我的作业
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
 
         $common_logic = D('Common','Logic');
@@ -148,7 +151,7 @@ class StudentController extends Controller
 
     public function course_remove($course_id){//退选课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -164,7 +167,7 @@ class StudentController extends Controller
 
     public function course_in(){//学生-加入新课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -204,7 +207,7 @@ class StudentController extends Controller
 
     public function course_add($course_id){//点击加入课程
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -228,7 +231,7 @@ class StudentController extends Controller
 
     public function assignment_see($assignment_id){//预览作业...url还有问题
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
         $course_logic = D('Course','Logic');
 
@@ -251,7 +254,7 @@ class StudentController extends Controller
 
     public function assignment_submit($assignment_id){//提交作业
         if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
 
         $this->msg = "";
@@ -292,7 +295,7 @@ class StudentController extends Controller
                 $assignment_dis_model
                     ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
                     ->save($data);
-                $this->redirect('Home/Student/my_assignment/res/上传成功!/type/success');
+                $this->redirect('Home/Student/my_assignment/res/upload-suc/type/suc');
             }
         }
 

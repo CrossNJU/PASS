@@ -17,7 +17,7 @@ class AdministerController extends Controller
 
     public function student_manage($res=NULL,$type=NULL){
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -110,10 +110,10 @@ class AdministerController extends Controller
     public function student_add($id = NULL)//添加学生
     {
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $this->msg = "";
-        $user_model = M('User');
+        $user_model = D('User');
 
         if($id != NULL)
             $stu = $user_model->where("number = '$id'")->select()[0];
@@ -138,10 +138,12 @@ class AdministerController extends Controller
                 $data['speciality'] = I('post.spe');
                 $data['grade'] = I('post.grade');
                 $data['permission'] = 1;
-                if($id == NULL && $user_model->add($data)){
-                    $this->redirect('Home/Administer/student_manage/res/添加学生成功/type/success');
-                }elseif ($id != NULL && $user_model->save($data)){
-                    $this->redirect('Home/Administer/student_manage/res/修改学生成功/type/success');
+                if($id == NULL && $user_model->create($data)){
+                    $user_model->add();
+                    $this->redirect('Home/Administer/student_manage/res/add-stu-suc/type/suc');
+                }elseif ($id != NULL && $user_model->create($data)){
+                    $user_model->add();
+                    $this->redirect('Home/Administer/student_manage/res/mod-stu-suc/type/suc');
                 } else {
                     $this->msg = "添加/修改学生失败!";
                     $this->type = "danger";
@@ -158,7 +160,7 @@ class AdministerController extends Controller
 
     public function course_manage($res = NULL, $type = NULL){
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -221,7 +223,7 @@ class AdministerController extends Controller
 
     public function course_add($id = NULL){//新增课程
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $course_model = M('Course');
         $common_logic = D('Common', 'Logic');
 
@@ -241,9 +243,9 @@ class AdministerController extends Controller
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);
-                $this->redirect('Home/Administer/course_manage/res/添加课程成功/type/success');
+                $this->redirect('Home/Administer/course_manage/res/add-cou-suc/type/suc');
             }elseif($id != NULL && $course_model->where("number = '$id'")->save($data)){
-                $this->redirect('Home/Administer/course_manage/res/修改课程成功/type/success');
+                $this->redirect('Home/Administer/course_manage/res/mod-cou-suc/type/suc');
             }else {
                 $this->msg = "添加/修改课程失败!";
                 $this->type = "danger";
@@ -263,7 +265,7 @@ class AdministerController extends Controller
 
     public function teacher_manage($res=NULL,$type=NULL){
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
         $all = $this->user_show(2);
 
         $common_logic = D('Common','Logic');
@@ -333,8 +335,8 @@ class AdministerController extends Controller
 
     public function teacher_add($id = NULL){//新增教师
         if(!session('?user') || session('per')!=3)
-            $this->redirect('Home/Common/login/res/尚未登录/type/warning');
-        $user_model = M('User');
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+        $user_model = D('User');
 
         $this->msg = "";
 
@@ -357,10 +359,13 @@ class AdministerController extends Controller
                $data['academy'] = I('post.aca');
                $data['speciality'] = I('post.spe');
                $data['permission'] = 2;
-               if($id == NULL && $user_model->add($data))
-                   $this->redirect('Home/Administer/teacher_manage/res/添加教师成功/type/success');
-               elseif($id!=NULL && $user_model->save($data)){
-                   $this->redirect('Home/Administer/teacher_manage/res/修改教师成功/type/success');
+               if($id == NULL && $user_model->create($data)){
+                   $user_model->add();
+                   $this->redirect('Home/Administer/teacher_manage/res/add-tea-suc/type/suc');
+               }
+               elseif($id!=NULL && $user_model->create($data)){
+                   $user_model->save();
+                   $this->redirect('Home/Administer/teacher_manage/res/mod-tea-suc/type/suc');
                } else{
                    $this->msg = "添加/修改教师失败!";
                    $this->type = "danger";

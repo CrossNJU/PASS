@@ -143,8 +143,8 @@ class CommonController extends Controller
             $new_pwd = I('post.new_pwd');
             $row['password'] = $new_pwd;
             $row['number'] = $id;
-            $user->create($row);
-            if($user->save()){
+            if($user->create($row)){
+                $user->save();
                 session('reset_ip','null');
                 $this->redirect('Home/Common/login/res/reset-suc/type/suc');
             }else{
