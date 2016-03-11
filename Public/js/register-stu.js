@@ -23,7 +23,7 @@ function checkRegister(){
         //this.grade.focus();
         return false;
     }
-    if(document.getElementById("add_grade").value == ""||document.getElementById("add_grade").value == null){
+    if($('#add_grade option:selected').text() == '年级'){
         showStateBar("danger","请输入年级");
         //this.grade.focus();
         return false;

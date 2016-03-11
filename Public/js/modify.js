@@ -6,6 +6,7 @@
 $(document).ready(function(){
     var aca = $("#tea_aca_temp").val();
     var spe = $("#tea_spe_temp").val();
+    var grade = $("#stu_grade_temp").val();
     //alert(aca);
     //alert(spe);
     //$("#tea_aca option[value = aca]").attr("selected", true);
@@ -25,8 +26,14 @@ $(document).ready(function(){
     var s2 = document.getElementById("tea_spe");
     for(var i = 0;i < s2.length;i++){
         if(s2[i].value == spe){
-            //alert("inspe");
             s2[i].selected = true;
+            break;
+        }
+    }
+    var s3 = document.getElementById("stu_grade");
+    for(var i = 0;i < s3.length;i++){
+        if(s3[i].value == grade){
+            s3[i].selected = true;
             break;
         }
     }
@@ -92,11 +99,6 @@ function checkStu(){
         //this.grade.focus();
         return false;
     }
-    if(document.getElementById("stu_grade").value == ""||document.getElementById("stu_grade").value == null){
-        showStateBar("danger","请输入年级");
-        //this.grade.focus();
-        return false;
-    }
     if($('#tea_aca  option:selected').text() == '院系'){
         //alert("院系");
         showStateBar("danger","请选择院系");
@@ -104,6 +106,11 @@ function checkStu(){
     }
     if($('#tea_spe  option:selected').text() == '专业'){
         showStateBar("danger","请选择专业");
+        //this.grade.focus();
+        return false;
+    }
+    if($('#stu_grade  option:selected').text() == '年级'){
+        showStateBar("danger","请输入年级");
         //this.grade.focus();
         return false;
     }

@@ -2,33 +2,21 @@
  * Created by danni on 2016/2/20.
  */
 
-$(document).ready(function(){
-    $("#new_pwd2").blur(function(){
-        var $new_pwd = $("#new_pwd").val();
-        var $new_pwd2 = $("#new_pwd2").val();
-        if($new_pwd != $new_pwd2){
-            $("#respond").show();
-            //document.getElementById("rset").isDisabled = true;
-            $("#rset").attr("disabled", true);
+function checkReset(){
+    var p1 = document.getElementById("new_pwd").value;
+    var p2 = document.getElementById("new_pwd2").value;
 
-
-        }else{
-            $("#respond").hide();
-            //document.getElementById("rset").isDisabled = false;
-            $("#rset").attr("disabled", false);
-            return true;
-        }
-    });
-
-});
-
-$(document).ready(function(){
-    $("#rset").click(function(){
-        if ($("#new_pwd").val()==""){
-            $("#rset").attr("disabled", true);
-        }else
-        {
-            $("#pwdform").submit();
-        }
-    });
-});
+    if(p1 == "" || p1 == null){
+        showStateBar("danger","请输入新密码");
+        return false;
+    }
+    if(p2 == "" || p2 == null){
+        showStateBar("danger","请再次输入密码");
+        return false;
+    }
+    if(p1 != p2){
+        showStateBar("danger","两次密码输入不一致");
+        return false;
+    }
+    return true;
+}

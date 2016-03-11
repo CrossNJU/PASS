@@ -24,9 +24,9 @@
 
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/teacher_manage">教师管理</a>
-            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/student_manage">学生管理</a>
-            <a class="nav-btn" href="__ROOT__/index.php/Home/Administer/course_manage">课程管理</a>
+            <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
+            <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
+            <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
         </div>
     </div>
 
@@ -46,10 +46,7 @@
                         <p class="admi-class-info-detail comment">姓名</p>
                         <input class="text" type="text" name="name" id="stu_name" placeholder="姓名"/>
                     </div>
-                    <div class="admi-class-info-detil">
-                        <p class="admi-class-info-detail comment">年级</p>
-                        <input class="text" type="text" name="grade" id="stu_grade" placeholder="年级"/>
-                    </div>
+
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
                         <!--<input class="text" type="text" name="aca" placeholder="院系"/>-->
@@ -86,7 +83,6 @@
                             <option value="海外教育学院">海外教育学院</option>
                             <option value="建筑与城市规划学院">建筑与城市规划学院</option>
                         </select>
-
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">专业</p>
@@ -103,6 +99,18 @@
                         </select>
                     </div>
                     <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">年级</p>
+                        <select class="text" name="grade" id="stu_grade">
+                            <option value="年级" selected>年级</option>
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div>
+                    <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">邮箱</p>
                         <input class="text" type="text" name="email" id="stu_email" placeholder="邮箱"/>
                     </div>
@@ -112,7 +120,7 @@
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">密码</p>
-                        <input class="text" type="text" name="pwd" id="stu_pwd" placeholder="密码"/>
+                        <input class="text" type="password" name="pwd" id="stu_pwd" placeholder="密码"/>
                     </div>
 
                 </div>
