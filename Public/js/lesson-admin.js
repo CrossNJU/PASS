@@ -41,18 +41,10 @@ $(document).ready(function(){
             url:"download",
             type: "post",
             success: function(msg){
-                //alert(msg);
-                window.location.href = msg;
-
-                try{
-                    var elemIF = document.createElement("iframe");
-                    elemIF.src = msg;
-                    elemIF.style.display = "none";
-                    document.body.appendChild(elemIF);
-                }catch(e){
-                    showStateBar("danger","下载失败。。")
-                }
-
+                alert(msg);
+                //this.attr("herf","_ROOT__/index.php/Home/" + msg);
+                //window.location.herf = msg;
+                window.location.href = "http://localhost/PASS/" + msg;
 
 
             },
@@ -61,6 +53,7 @@ $(document).ready(function(){
             }
         });
     });
+
 })
 
 
