@@ -6,6 +6,7 @@ $(document).ready(function(){
         var btn = $(this);
         console.log($(this));
         var id = btn.attr("data-id");
+
         jQuery.ajax({
             async: false,
             data: "course_id="+id,
@@ -27,4 +28,43 @@ $(document).ready(function(){
         });
     });
 
+
+    $(document).on("click",".download-hwk",function(){
+        var asid = $(this).parent().next().text();
+        //alert(asid);
+
+        console.log($(this));
+
+        jQuery.ajax({
+            async: false,
+            data: "assignment_id="+asid,
+            url:"download",
+            type: "post",
+            success: function(msg){
+                //alert(msg);
+                window.location.href = msg;
+
+                try{
+                    var elemIF = document.createElement("iframe");
+                    elemIF.src = msg;
+                    elemIF.style.display = "none";
+                    document.body.appendChild(elemIF);
+                }catch(e){
+                    showStateBar("danger","下载失败。。")
+                }
+
+
+
+            },
+            error: function(){
+                showStateBar("danger","批量下载失败");
+            }
+        });
+    });
 })
+
+
+
+
+
+

@@ -203,11 +203,12 @@ class AdministerController extends Controller
     }
 
     public function course_del($course_id){//删除课程
+
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
         $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
-        $assignment_model->where("course = '$course_id")->delete();
+        $assignment_model->where("course = '$course_id'")->delete();
         $assignment_dis_model->where("cNumber = '$course_id'")->delete();
         $course_dis_model->where("cNumber = '$course_id'")->delete();
         $course_model->where("number = '$course_id'")->delete();
@@ -252,6 +253,7 @@ class AdministerController extends Controller
     public function download($assignment_id){//批量下载
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
+//        $this->ajaxReturn(1);
         $this->ajaxReturn($url);
     }
     //--------------------------------------------------------------------------

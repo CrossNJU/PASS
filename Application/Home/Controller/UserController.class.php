@@ -141,7 +141,7 @@ class UserController extends Controller
 
     public function down(){
         $lo = D('Common','Logic');
-        echo $lo->addToZip(1);
+        $lo->addToZip(1);
     }
 
 }

@@ -2,13 +2,6 @@
  * Created by Lenovo on 2016/2/25.
  */
 $(document).ready(function(){
-    //window.onload=function(){
-    //    if(<{$msg}> == ''){
-    //
-    //    }
-    //
-    //    alert(userName);
-    //}
     $(document).on("click",".admin-remove-btn",function(){
         var btn = $(this);
         console.log($(this));

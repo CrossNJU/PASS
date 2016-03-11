@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
-    <!--<script type="text/javascript" src="__PUBLIC__/js/admin.js"></script>-->
     <script src="__PUBLIC__/js/main.js"></script>
     <script	src="__PUBLIC__/js/lesson-admin.js"></script>
 </head>
@@ -47,12 +46,13 @@
                         <{if condition="homework['isEnd'] eq true"}>
                         <tr>
                             <td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>
-                            <td><a class="download" herf="#">批量下载</a></td>
+                            <td><a class="download download-hwk" herf="#">批量下载</a></td>
+                            <td style="display: none" class="hwk_id"><{$homework['id']}></td>
                         </tr>
                         <{else /}>
                         <tr>
                             <td><p class="homework-check comment">[未截至] <{$homework['name']}></p></td>
-                            <td><a class="download" herf="#">批量下载</a></td>
+                            <td><a class="download download-hwk" herf="#">批量下载</a></td>
                         </tr>
                         <{/if}>
                         <{/foreach}>
