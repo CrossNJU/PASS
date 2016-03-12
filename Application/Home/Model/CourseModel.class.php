@@ -28,7 +28,7 @@ class CourseModel extends Model
             'teacher' => 'varchar',
             'depict' => 'text',
             'selected' => 'int',
-            'time' => 'date',
+            'time' => 'varchar',
             'assignments' => 'int'
         )
     );

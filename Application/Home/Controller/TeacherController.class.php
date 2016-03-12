@@ -238,7 +238,7 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-'.$display);
     }
 
-    public function assignment_deliver(){//布置新作业
+    public function assignment_deliver($assignment_id=NULL){//布置新作业
         if(!session('?per')){
             $this->redirect('Home/Common/login/res/login-war/type/war');
         }
@@ -253,30 +253,54 @@ class TeacherController extends Controller
         $common_logic = D('Common','Logic');
         $course_model = M('Course');
         if(isset($_POST['save'])){
-            $course_id = I('post.course');
+            $course_name = I('post.course');
+            $course_id = $course_model->where("title = '$course_name'")->select()[0]['number'];
             $students = $course_dis_model->where("cNumber = '$course_id'")
                 ->select();
 
             $data['requi'] = I('post.requi');
             $data['title'] = I('post.title');
-            $data['submitted'] = 0;
-            $data['examined'] = 0;
+            if($assignment_id == NULL){
+                $data['submitted'] = 0;
+                $data['examined'] = 0;
+            }
             $data['startTime'] = I('post.startTime');
             $data['endTime'] = I('post.endTime');
             $data['course'] = $course_id;
             $data['teacher'] = session('user');
             $data['type'] = I('post.type');
 
-            $assignment_id = $assignment_model->add($data);
-            $data['number_display'] = $common_logic->get_display_number($assignment_id,2);
-            $data['number'] = $assignment_id;
-            $assignment_model->save($data);
-            $course_model->where("number = '$course_id'")->setInc('assignments');
-            foreach ($students as $i){
-                $course_logic->assignment_dis($course_id, $assignment_id,$i['stdnumber']);
+            if($assignment_id == NULL){
+                $assignment_id_new = $assignment_model->add($data);
+                $data['number_display'] = $common_logic->get_display_number($assignment_id_new,2);
+                $data['number'] = $assignment_id_new;
+                $assignment_model->save($data);
+                $course_model->where("number = '$course_id'")->setInc('assignments');
+                foreach ($students as $i){
+                    $course_logic->assignment_dis($course_id, $assignment_id_new,$i['stdnumber']);
+                }
+            }else{
+                $assignment_model->where("number = '$assignment_id'")->save($data);
             }
 
             $this->redirect('Home/Teacher/my_assignments/res/del-suc/type/suc');
+        }
+
+        $this->isModify = false;
+        if($assignment_id!=NULL){
+            $assignment = $assignment_model->where("number = '$assignment_id'")->select()[0];
+            $assignment_detail = array(
+                'num' => $assignment['number_display'],
+                'id' => $assignment['number'],
+                'name' => $assignment['title'],
+                'require' => $assignment['requi'],
+                'start' => $assignment['starttime'],
+                'end' => $assignment['endtime'],
+                'course' => $course_logic->get_course_name($assignment['course']),
+                'type' => $assignment['type'],
+            );
+            $this->homework = $assignment_detail;
+            $this->isModify = true;
         }
 
         $this->display('Teacher:homework-new');

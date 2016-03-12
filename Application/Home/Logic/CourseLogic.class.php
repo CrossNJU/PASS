@@ -15,13 +15,16 @@ class CourseLogic
     public function get_assignments_course($course_id){//查看作业,根据课程
         $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
+        $assignment_dis_model = M('Assignmentdis');
         $assignments = $assignment_model->where("course = '$course_id'")->select();
         $homework = array();
         $i = 0;
         foreach ($assignments as $assignment_detail) {
+            $assignment_id = $assignment_detail['number'];
+            $students = count($assignment_dis_model->where("assNumber = '$assignment_id'")->select());
             $assignment_detail = array(
                 'num' => $assignment_detail['number_display'],
-                'id' => $assignment_detail['number'],
+                'id' => $assignment_id,
                 'name' => $this->get_assignment_name($assignment_detail['number']),
                 'start' => $assignment_detail['starttime'],
                 'end' => $assignment_detail['endtime'],
@@ -31,6 +34,7 @@ class CourseLogic
                 'corrected' => $assignment_detail['examined'],
                 'type' => $assignment_detail['type'],
                 'fileUrl' => $assignment_detail['url'].$assignment_detail['savename'],
+                'sum' => $students,
             );
             $homework[$i] = $assignment_detail;
             $i++;
