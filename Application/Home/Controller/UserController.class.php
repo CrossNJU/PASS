@@ -53,7 +53,7 @@ class UserController extends Controller
         $word = new PHPWord();
 
         $section = $word->createSection();
-        $section->addText("my name is cr");
+        $section->addText(iconv('utf-8', 'GB2312//IGNORE', 'PHP点点通'));
         $section->addTextBreak(2);
         $section->addText(98);
 

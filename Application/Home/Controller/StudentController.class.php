@@ -248,6 +248,8 @@ class StudentController extends Controller
         $this->homework = array(
             'num' => $assignment_id,
             'name' => $course_logic->get_assignment_name($assignment_id),
+            'submitName' => $assignment['submittime'],
+            'submitTime' => $assignment['submitName']
         );
         $this->display('Student:preview');
     }

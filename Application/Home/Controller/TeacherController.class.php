@@ -112,11 +112,11 @@ class TeacherController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function assignment_detail($assignment_id,$res = NULL, $type = NULL){//作业详情
+    public function assignment_detail($assignment_id, $res = NULL, $type = NULL){//作业详情
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
+            $message = $common_logic->getMessage($res, $type);
             $this->msg = $message['res'];
             $this->type = $message['type'];
         }
@@ -145,6 +145,10 @@ class TeacherController extends Controller
             $i++;
         }
 
+        $assignment_not_examine = $assignment_dis_model
+            ->where("assNumber = '$assignment_id' AND isSubmitted = 0")
+            ->select()[0];
+
         $this->homework = array(
             'num' => $assignments_detail['number_display'],
             'id' => $assignments_detail['number'],
@@ -158,7 +162,8 @@ class TeacherController extends Controller
             'numOfSubmit' => $assignments_detail['submitted'],
             'corrected' => $assignments_detail['examined'],
             'submit' => $submit,
-            'type' => $assignments_detail['type']
+            'type' => $assignments_detail['type'],
+            'next_student_id' => $assignment_not_examine['stdnumber']
         );
         $this->display('Teacher:homework-details');
     }
