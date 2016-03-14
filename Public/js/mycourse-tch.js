@@ -17,22 +17,24 @@ $(document).ready(function () {
     $(".delete-btn").click(function () {
         var hwid = $(this).attr("data-hwid");
         var btn = $(this);
-        jQuery.ajax({
-            async: false,
-            url: "assignment_delete",
-            data: "assignment_id=" + hwid,
-            dataType: "json",
-            success: function (msg) {
-                var statebar = undefined;
-                if (msg == "delete success!") {
-                    btn.parent(".homework").slideUp(function () {
-                        btn.parent(".homework").remove();
-                    });
-                    showStateBar("success", "作业删除成功");
-                } else {
-                    showStateBar("success", "作业删除失败");
-                }
-            },
+        showDialog("是否删除这个作业?");
+        $(".confirm-btn").click(function() {
+            jQuery.ajax({
+                async: false,
+                url: "assignment_delete",
+                data: "assignment_id=" + hwid,
+                dataType: "json",
+                success: function (msg) {
+                    if (msg == 1) {
+                        btn.parent(".homework").slideUp(function () {
+                            btn.parent(".homework").remove();
+                        });
+                        showStateBar("success", "作业删除成功");
+                    } else {
+                        showStateBar("danger", "作业删除失败");
+                    }
+                },
+            });
         });
     });
 });

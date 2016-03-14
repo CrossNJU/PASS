@@ -26,22 +26,23 @@
 					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
 				</div>
 				<{if condition="$homework['type'] eq 'pdf'"}>
-				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/<{$submit['fileUrl']}>"></iframe>
+				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=__PUBLIC__/uploads/<{$submit['fileUrl']}>"></iframe>
 				<{else /}>
 				<video id="really-cool-video" class="video-js vjs-default-skin" controls = "controls"
-					   preload="auto" height="360" data-setup='{}'>
-					<source src="../../../uploads/<{$submit['fileUrl']}>" type="video/mp4">
+					   preload="auto" data-setup='{}'>
+					<source src="__PUBLIC__/uploads/<{$submit['fileUrl']}>" type="video/mp4">
 				</video>
 				<{/if}>
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
-					<form id="modify-form" method="post" action=""></form>
-					<p class="comment">评语</p>
-					<textarea class="textarea comment-textarea" name="comment" form="modify-form" placeholder="评语"><{$comment}></textarea>
-					<p class="comment">评分</p>
-					<input class="grade-input" type="text" name="mark" placeholder="评分" value="<{$score}>">
-					<input class="btn" type="submit" name="save" value="保存修改">
+					<form id="modify-form" method="post" action="">
+						<p class="comment">评语</p>
+						<textarea class="textarea comment-textarea" name="comment" form="modify-form" placeholder="评语"><{$comment}></textarea>
+						<p class="comment">评分</p>
+						<input class="grade-input" type="text" name="mark" placeholder="评分" value="<{$score}>">
+						<input class="btn" type="submit" name="save" value="保存修改">
+					</form>
 					<!--<a class="btn" href="#">保存修改</a>-->
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">取消修改</a>
 				</div>

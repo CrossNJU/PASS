@@ -39,6 +39,7 @@ function showStateBar(type,text){
 function showDialog(text){
     $("body").prepend("<div class='modal-wrapper dialog-wrapper'> <div class='dialog'> <p class='warning-text'>"+text+"</p> <a href='javascript:void(0)' class='btn confirm-btn'>确认</a> <a href='javascript:void(0)' class='btn btn-active'>取消</a> </div> </div>");
     $('.dialog-wrapper').fadeIn();
+    $("body").css("overflow","hidden");
     function cancelFunc (){
         $(".dialog-wrapper").fadeOut(function(){
             $("body").css("overflow","auto");

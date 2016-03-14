@@ -40,19 +40,6 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".preview-btn", function () {
-        //jQuery.ajax({
-        //    data: $(this).attr("data-id"),
-        //    url: "assignment_see",
-        //    type: "get",
-        //    success: function(msg){
-        //        $("#preview-class-num").html(msg['homeworkNum'] + " - " +msg['homeworkName']);
-        //        $("#preview-name").html(msg['studentName']);
-        //        $("#preview-time").html("于" + msg['time'] + "提交");
-        //        $("#preview-pdf").attr("src","__PUBLIC__/plugins/generic/web/viewer.html?file=../../../uploads/assignments/"+msg['pdfUrl']");
-        //        $("#preview-modal").fadeIn();
-        //        $("body").css("overflow","hidden");
-        //    }
-        //});
         var url = $(this).attr("data-url");
         var type = $(this).attr("data-type");
         if(type == 'mp4'){

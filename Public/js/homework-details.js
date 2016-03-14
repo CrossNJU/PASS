@@ -2,6 +2,8 @@
  * Created by Lenovo on 2016/2/24.
  */
 $(document).ready(function (){
+    var submitAgainFn;
+
     $(document).on("click",".packup-btn",function(){
         var btn = $(this);
         var comment = btn.parent();
@@ -18,12 +20,12 @@ $(document).ready(function (){
         }
     });
 
-    $(document).on("click",".again-btn",function(){
+    $(document).on("click",".again-btn",submitAgainFn = function(){
         var btn = $(this);
         var studentId = btn.attr("data-stuid");
         var homeworkId = btn.attr("data-hwid");
         jQuery.ajax({
-            async:true,
+            async:false,
             type:"post",
             url:"../../reupload",
             data:"stu_id=S1"+"&assignment_id="+homeworkId,
@@ -35,6 +37,9 @@ $(document).ready(function (){
                 }
             },
         });
+        console.log("hhh");
+        btn.addClass("btn-disabled");
+        $(document).unbind("click",submitAgainFn);
     });
 
     $(document).on("click",".batch-btn",function(){
@@ -46,7 +51,7 @@ $(document).ready(function (){
             data:"assignment_id=" + homeworkId,
             type:"get",
             success: function (msg) {
-                window.location.href = publicUrl+"/upload/"+msg;
+                window.location.href = publicUrl+"/uploads/"+msg;
             }
         })
     })

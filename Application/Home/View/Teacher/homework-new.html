@@ -23,7 +23,11 @@
 		<div class="wrapper">
 			<div class="card input-card">
 				<div class="card-info">
+					<{if condition="$isModify eq false" }>
 					<h3 class="card-title">布置新作业</h3>
+					<{else /}>
+					<h3 class="card-title">修改作业</h3>
+					<{/if}>
 					<form id="new-form" name="new-form" method="post" action="" onsubmit="return validate();">
 						<p class="comment">所属课程</p>
 						<input type="text" name="course" placeholder="选择作业所属课程" value="<{$homework['course']}>"/>
@@ -41,7 +45,11 @@
 						<p class="comment">作业要求</p>
 						<textarea class="textarea" name="requi" placeholder="作业要求"><{$homework['require']}></textarea>
 						<br/>
+						<{if condition="$isModify eq false" }>
 						<input class="btn" name="save" type="submit" value="布置作业"/>
+						<{else /}>
+						<input class="btn" name="save" type="submit" value="修改作业"/>
+						<{/if}>
 						<a class="btn" href="__ROOT__/index.php/Home/Teacher/my_assignments">取消</a>
 					</form>
 				</div>
