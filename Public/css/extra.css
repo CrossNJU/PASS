@@ -1,12 +1,3 @@
-body,html{
-    height:100%;
-}
-.content{
-    min-height:100%;
-    height: auto !important;
-    height: 100%; /*IE6不识别min-height*/
-    position: relative;
-}
 
 .wrapper{
     padding-bottom: 20px;

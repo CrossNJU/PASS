@@ -38,7 +38,6 @@ a {
 
 .content {
     position: relative;
-    min-height: 669px;
 }
 
 .content:before {
@@ -398,7 +397,7 @@ b:after {
 
 .card-left #really-cool-video {
     display: block;
-    height: 500px;
+    height: 338px;
     width: 580px;
     margin: 0 auto;
     margin-bottom: 24px;

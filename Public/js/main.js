@@ -12,14 +12,12 @@ $(document).ready(function (){
     $('.file').change(function(){$('.file_text').val($('.file').val());});
 
     //关闭弹窗
-    function closeFunc (){
-        $(".modal-wrapper").fadeOut(function(){
-            $("body").css("overflow","auto");
-            $(".dialog-wrapper").remove();
-        });
-    };
     $(document).on("click",".dialog .btn",closeFunc);
     $(document).on("click",".modal-wrapper .close-btn",closeFunc);
+
+    //设置页面最小高度
+    minHeight();
+    $(window).resize(minHeight);
 });
 
 function showStateBar(type,text){
@@ -50,3 +48,15 @@ function showDialog(text){
     $(".dialog .close-btn").on("click",cancelFunc);
 }
 
+function closeFunc (){
+    $(".modal-wrapper").fadeOut(function(){
+        $("body").css("overflow","auto");
+        $(".dialog-wrapper").remove();
+    });
+}
+
+function minHeight(){
+    console.log(window.innerHeight);
+    var minHeight = window.innerHeight - 280;
+    $(".content").css("minHeight",minHeight+"px");
+}

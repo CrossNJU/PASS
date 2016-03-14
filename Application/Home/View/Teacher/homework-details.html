@@ -52,7 +52,7 @@
 
 					<{if condition="$homework['isEnd'] eq false"}>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
-					<a class="btn" href="#">移除</a>
+					<a class="btn delete-btn" data-hwid="<{$homework['id']}>">移除</a>
 					<{/if}>
 				</div>
 
@@ -67,7 +67,7 @@
 						<{/if}>
 
 					</div>
-					<a class="btn btn-small again-btn" data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">重新提交</a>
+					<a class="btn btn-small again-btn" data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">提醒重交</a>
 					<{if condition="$homework['type'] eq 'word'"}>
 					<a class="btn btn-small" href="__PUBLIC__/uploads/<{$submit['upload']}>">下载</a>
 					<{else /}>
