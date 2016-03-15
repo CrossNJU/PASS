@@ -7,10 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/plugins/video.js/video-js.min.css">
 
 	<script src="__PUBLIC__/js/jquery.js"></script>
 	<script	src="__PUBLIC__/js/main.js"></script>
+	<script	src="__PUBLIC__/js/validate.js"></script>
+	<script	src="__PUBLIC__/js/homework-correct.js"></script>
 	<script type="text/javascript" src='__PUBLIC__/plugins/video.js/video.min.js'></script>
 
 </head>
@@ -42,7 +45,7 @@
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
-					<form id="modify-form" method="post" action="">
+					<form id="modify-form" method="post" action="" onsubmit="return validate()">
 						<p class="comment">评语</p>
 						<textarea class="textarea comment-textarea" name="comment" form="modify-form" placeholder="评语"><{$comment}></textarea>
 						<p class="comment">评分</p>
