@@ -154,7 +154,7 @@ class TeacherController extends Controller
             'id' => $assignments_detail['number'],
             'sum' => $course_logic->get_assignment_stus($assignments_detail['number']),
             'name' => $course_logic->get_assignment_name($assignment_id),
-            'course' => $assignments_detail['course'],
+            'course' => $course_logic->get_course_name($assignments_detail['course']),
             'start' => $assignments_detail['starttime'],
             'end' => $assignments_detail['endtime'],
             'isEnd' => $common_logic->isEnded($assignments_detail['endtime']),
@@ -243,7 +243,7 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-'.$display);
     }
 
-    public function assignment_deliver($assignment_id=NULL){//布置新作业
+    public function assignment_deliver($assignment_id=NULL,$course_id=NULL){//布置新作业
         if(!session('?per')){
             $this->redirect('Home/Common/login/res/login-war/type/war');
         }
@@ -291,6 +291,7 @@ class TeacherController extends Controller
             $this->redirect('Home/Teacher/my_assignments/res/del-suc/type/suc');
         }
 
+        $this->course = $course_logic->get_course_name($course_id);
         $this->isModify = false;
         if($assignment_id!=NULL){
             $assignment = $assignment_model->where("number = '$assignment_id'")->select()[0];
@@ -314,7 +315,8 @@ class TeacherController extends Controller
     public function download($assignment_id){//教师-下载作业
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
-        $this->ajaxReturn($url);
+        if($url) $this->ajaxReturn(1);
+        else $this->ajaxReturn(0);
     }
 
     public function check_student_info($stu_id){//教师-查看学生信息界面
@@ -337,6 +339,7 @@ class TeacherController extends Controller
         $assignment = $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->select()[0];
         $assignment['isSubmitted'] = 0;
+        $assignment['isExamined'] = 0;
         $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->save($assignment);
 
@@ -354,5 +357,19 @@ class TeacherController extends Controller
         if($common_logic->sendEmail($sub,$address,$body))
             $this->ajaxReturn(1);//发送成功
         else $this->ajaxReturn(0);
+    }
+
+    public function student_detail($student_id){//学生详情界面
+        $user_model = M('User');
+        $student = $user_model->where("number = '$student_id'")->select()[0];
+        $student_detail = array(
+            'name' => $student['name'],
+            'id' => $student['number'],
+            'academy' => $student['academy'],
+            'email' => $student['email'],
+            'grade' => $student['grade'],
+            'phone' => $student['phone'],
+        );
+        $this->ajaxReturn($student_detail);
     }
 }

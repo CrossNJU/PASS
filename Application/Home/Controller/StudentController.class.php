@@ -301,20 +301,9 @@ class StudentController extends Controller
             }
         }
 
+        $assignment_model = M('Assignment');
+        $assignment_detail = $assignment_model->where("number = '$assignment_id'")->select()[0];
+        $this->type = $assignment_detail['type'];
         $this->display('Student/submit');
-    }
-
-    public function student_detail($student_id){//学生详情界面
-        $user_model = M('User');
-        $student = $user_model->where("number = '$student_id'")->select()[0];
-        $student_detail = array(
-            'name' => $student['name'],
-            'id' => $student['number'],
-            'academy' => $student['academy'],
-            'email' => $student['email'],
-            'grade' => $student['grade'],
-            'phone' => $student['phone'],
-        );
-        $this->ajaxReturn($student_detail);
     }
 }
