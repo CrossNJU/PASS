@@ -319,6 +319,16 @@ b:after {
     margin-bottom: 23px;
 }
 
+.homework-manage .stu-info-detail {
+    margin-left: 10px;
+}
+
+.homework-manage .stu-info-detail:hover {
+    transition: all 0.1s linear 0s;
+    color: #57BEED;
+    cursor: pointer;
+}
+
 .homework-tch .rect {
     height: 143px;
 }
@@ -457,5 +467,7 @@ b:after {
 .time[name='endTime'] {
     margin-right: 0;
 }
+
+
 
 

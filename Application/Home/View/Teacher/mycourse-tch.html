@@ -35,7 +35,7 @@
 						已布置(<{$course['numOfHomework']}>)
 						<{else /}>未布置
 						<{/if}></p>
-					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver">布置新作业</a>
+					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/course_id/<{$course['id']}>">布置新作业</a>
 					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
@@ -49,12 +49,9 @@
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
-					<{if condition="$homework['isEnd'] eq true"}>
-					<!--<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['num']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>-->
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
-					<{else /}>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
+					<{if condition="$homework['isEnd'] eq false"}>
 					<a class="btn btn-small delete-btn" data-hwid="<{$homework['id']}>"  href="javascript:void(0)">移除</a>
 					<{/if}>
 					<div class="clear"></div>

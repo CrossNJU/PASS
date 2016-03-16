@@ -52,7 +52,7 @@ $(document).ready(function (){
 
     /*
     添加提醒学生重新提交的按钮监听
-     */
+    */
     var submitAgainFn;
     $(document).on("click",".again-btn",submitAgainFn = function(){
         var btn = $(this);
@@ -90,7 +90,7 @@ $(document).ready(function (){
             data:"assignment_id=" + homeworkId,
             type:"get",
             success: function (msg) {
-                window.location.href = publicUrl+"/uploads/"+msg;
+                window.location.href = publicUrl+"/uploads/downloads/"+homeworkId+".zip";
             }
         })
     })
@@ -98,12 +98,21 @@ $(document).ready(function (){
     /*
     添加查看学生信息的按钮监听
      */
-    $(document).on("mouseover",".stu-info-text",function(event){
+    $(document).on("mouseover",".stu-info-detail",function(event){
         $.ajax({
-            url:"../../check_student_info",
-            data:"stu_id=S1",
-            type:"post",
-            success: function(){
+            url:"../../student_detail",
+            data:"student_id=S1",
+            type:"get",
+            success: function(msg){
+                $("body").append(
+                    "<div class='student-card'>"+
+                        "<h3 class='card-title'>"+msg['name']+"</h3>"+
+                        "<p class='comment'>学号:"+msg['id']+"</p>"+
+                        "<p class='comment'>院系:"+msg['academy']+"</p>"+
+                        "<p class='comment'>年级:"+msg['grade']+"</p>"+
+                        "<p class='comment'>邮箱:"+msg['email']+"</p>"+
+                        "<p class='comment'>手机:"+msg['phone']+"</p>"+
+                    "</div>");
                 var card = $(".student-card");
                 var top = event.clientY-card.height()-70;
                 var left = event.clientX-card.width()/2;
@@ -115,6 +124,8 @@ $(document).ready(function (){
     })
     $(document).on("mouseout",".stu-info",function(event){
         //$(".student-card").css("top",event.clientY+"px","left",event.clientX+"px");
-        $(".student-card").fadeOut();
+        $(".student-card").fadeOut(function(){
+            $(".student-card").remove();
+        });
     })
 });
