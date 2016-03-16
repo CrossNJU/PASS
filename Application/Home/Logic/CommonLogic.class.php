@@ -132,6 +132,7 @@ class CommonLogic
                 case "mod-tea-suc":$ret['res'] = '修改老师成功!';break;
                 case "add-cou-suc":$ret['res'] = '增加课程成功!';break;
                 case "mod-cou-suc":$ret['res'] = '修改课程成功!';break;
+                case "modify-suc":$ret['res'] = '批阅完成!';break;
                 default: $ret['res'] = ''; $ret['type'] = '';
             }
             return $ret;

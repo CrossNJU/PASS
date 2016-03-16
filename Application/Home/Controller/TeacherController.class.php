@@ -146,8 +146,10 @@ class TeacherController extends Controller
         }
 
         $assignment_not_examine = $assignment_dis_model
-            ->where("assNumber = '$assignment_id' AND isSubmitted = 0")
+            ->where("assNumber = '$assignment_id' AND isExamined = 0")
             ->select()[0];
+
+//        dump($assignment_not_examine);
 
         $this->homework = array(
             'num' => $assignments_detail['number_display'],
@@ -219,9 +221,14 @@ class TeacherController extends Controller
             $assignment_next = $assignment_dis_model
                 ->where("assNumber = '$assignment_id' AND isExamined = 0")
                 ->select()[0];
-            $this->redirect('Home/Teacher/assignment_to_modify/assignment_id/'
-                .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
-                .'/display/correct');
+            if($assignment_next == null){
+                $this->redirect('Home/Teacher/assignment_detail/assignment_id/'
+                    .$assignment_id.'/res/modify-suc/type/suc');
+            }else{
+                $this->redirect('Home/Teacher/assignment_to_modify/assignment_id/'
+                    .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
+                    .'/display/correct');
+            }
         }
 
         $this->submit = array(
