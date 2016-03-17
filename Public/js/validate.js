@@ -60,6 +60,46 @@ function validate_num(value,startEdge,endEdge) {
     return "包含非数字字符";
 }
 
+function validate_aca(str){
+    if (str == '院系'){
+        return "请选择院系";
+    }else {
+        return null;
+    }
+}
+
+function validate_spe(str){
+    if (str == '专业'){
+        return "请选择专业";
+    }else {
+        return null;
+    }
+}
+
+function validate_grade(str){
+    if (str == '年级'){
+        return "请选择年级";
+    }else {
+        return null;
+    }
+}
+
+function validate_year(str){
+    if (str == '年份'){
+        return "请选择年份";
+    }else {
+        return null;
+    }
+}
+
+function validate_season(str){
+    if (str == '季节'){
+        return "请选择季节";
+    }else {
+        return null;
+    }
+}
+
 function showValidateError(){
     showStateBar("danger","信息填写错误");
 }

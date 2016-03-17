@@ -7,6 +7,8 @@ $(document).ready(function(){
     var aca = $("#tea_aca_temp").val();
     var spe = $("#tea_spe_temp").val();
     var grade = $("#stu_grade_temp").val();
+    var cou_year = $("#cou_year_temp").val();
+    var cou_sea = $("#cou_sea_temp").val();
     //alert(aca);
     //alert(spe);
     //$("#tea_aca option[value = aca]").attr("selected", true);
@@ -37,134 +39,193 @@ $(document).ready(function(){
             break;
         }
     }
-})
+
+    var syear = document.getElementById("cou_year");
+    for(var i = 0;i < syear.length;i++){
+        if(syear[i].value == cou_year){
+            syear[i].selected = true;
+            break;
+        }
+    }
+
+    var ssea = document.getElementById("cou_sea");
+    for(var i = 0;i < ssea.length;i++){
+        if(ssea[i].value == cou_sea){
+            ssea[i].selected = true;
+            break;
+        }
+    }
+
+    showHint();
+});
+
 
 /**
  * Created by Lenovo on 2016/3/5.
  */
+
+function showHint(){
+    $("input[name!='add'],textarea,select").after("<span class='hint'></span>");
+}
+
 function checkTea(){
-    //alert("inin")
-    if(document.getElementById("tea_id").value == ""||document.getElementById("tea_id").value == null){
-        showStateBar("danger","请输入教师工号");
-        //this.stu_id.focus();
-        return false;
+
+    var result = true;
+
+    var tea_id = document.getElementById("tea_id").value;
+    var tea_name = document.getElementById("tea_name").value;
+    var tea_aca = $('#tea_aca  option:selected').text();
+    var tea_spe = $('#tea_spe  option:selected').text();
+    var tea_email = document.getElementById("tea_email").value;
+    var tea_phone = document.getElementById("tea_phone").value;
+    var tea_pwd = document.getElementById("tea_pwd").value;
+
+    var valiResult;
+    $(".hint").html("");
+
+    if(valiResult = validate_null(tea_id)){
+        showValidateError();
+        $("input[id = 'tea_id']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("tea_name").value == ""||document.getElementById("tea_name").value == null){
-        showStateBar("danger","请输入教师姓名");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(tea_name)){
+        showValidateError();
+        $("input[id = 'tea_name']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_aca  option:selected').text() == '院系'){
-        //alert("院系");
-        showStateBar("danger","请选择院系");
-        return false;
+    if(valiResult = validate_aca(tea_aca)){
+        showValidateError();
+        $("select[id = 'tea_aca']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_spe  option:selected').text() == '专业'){
-        showStateBar("danger","请选择专业");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_spe(tea_spe)){
+        showValidateError();
+        $("select[id = 'tea_spe']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("tea_email").value == ""||document.getElementById("tea_email").value == null){
-        showStateBar("danger","请输入邮箱");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_email(tea_email)){
+        showValidateError();
+        $("input[id = 'tea_email']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(!/^[-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$/.test(document.getElementById("tea_email").value)){
-        showStateBar("danger","邮箱格式好像哪里不对");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(tea_phone)){
+        showValidateError();
+        $("input[id = 'tea_phone']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("tea_phone").value == ""||document.getElementById("tea_phone").value == null){
-        showStateBar("danger","请填写手机");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(tea_pwd)){
+        showValidateError();
+        $("input[id = 'tea_pwd']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("tea_pwd").value == ""||document.getElementById("tea_pwd").value == null){
-        showStateBar("danger","请填写密码");
-        //this.grade.focus();
-        return false;
-    }
-    return true;
+    return result;
 }
 
 function checkStu(){
-    //alert("inin")
-    if(document.getElementById("stu_id").value == ""||document.getElementById("stu_id").value == null){
-        showStateBar("danger","请输入学号");
-        //this.stu_id.focus();
-        return false;
+
+    var result = true;
+
+    var stu_id = document.getElementById("stu_id").value;
+    var stu_name = document.getElementById("stu_name").value;
+    var stu_aca = $('#tea_aca  option:selected').text();
+    var stu_spe = $('#tea_spe  option:selected').text();
+    var stu_grade = $('#stu_grade  option:selected').text();
+    var stu_email = document.getElementById("stu_email").value;
+    var stu_phone = document.getElementById("stu_phone").value;
+    var stu_pwd = document.getElementById("stu_pwd").value;
+
+    var valiResult;
+    $(".hint").html("");
+
+    if(valiResult = validate_null(stu_id)){
+        showValidateError();
+        $("input[id = 'stu_id']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("stu_name").value == ""||document.getElementById("stu_name").value == null){
-        showStateBar("danger","请输入姓名");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_name)){
+        showValidateError();
+        $("input[id = 'stu_name']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_aca  option:selected').text() == '院系'){
-        //alert("院系");
-        showStateBar("danger","请选择院系");
-        return false;
+    if(valiResult = validate_aca(stu_aca)){
+        showValidateError();
+        $("select[id = 'tea_aca']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_spe  option:selected').text() == '专业'){
-        showStateBar("danger","请选择专业");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_spe(stu_spe)){
+        showValidateError();
+        $("select[id = 'tea_spe']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#stu_grade  option:selected').text() == '年级'){
-        showStateBar("danger","请输入年级");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_grade(stu_grade)){
+        showValidateError();
+        $("select[id = 'stu_grade']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("stu_email").value == ""||document.getElementById("stu_email").value == null){
-        showStateBar("danger","请输入邮箱");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_email(stu_email)){
+        showValidateError();
+        $("input[id = 'stu_email']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(!/^[-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$/.test(document.getElementById("stu_email").value)){
-        showStateBar("danger","邮箱格式好像哪里不对");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_phone)){
+        showValidateError();
+        $("input[id = 'stu_phone']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("stu_phone").value == ""||document.getElementById("stu_phone").value == null){
-        showStateBar("danger","请填写手机");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_pwd)){
+        showValidateError();
+        $("input[id = 'stu_pwd']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("stu_pwd").value == ""||document.getElementById("stu_pwd").value == null){
-        showStateBar("danger","请填写密码");
-        //this.grade.focus();
-        return false;
-    }
-    return true;
+    return result;
 }
 
 function checkLesson(){
-    //alert("inin")
-    if(document.getElementById("cou_name").value == ""||document.getElementById("cou_name").value == null){
-        showStateBar("danger","请输入课程名");
-        //this.grade.focus();
-        return false;
+
+    var result = true;
+
+    var cou_name = document.getElementById("cou_name").value;
+    var cou_tea = document.getElementById("cou_tea").value;
+    var cou_year = $('#cou_year  option:selected').text();
+    var cou_sea = $('#cou_sea  option:selected').text();
+    var cou_num = document.getElementById("cou_num").value;
+    var cou_des = document.getElementById("cou_des").value;
+
+    var valiResult;
+    $(".hint").html("");
+
+    if(valiResult = validate_null(cou_name)){
+        showValidateError();
+        $("input[name = 'title']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("cou_tea").value == ""||document.getElementById("cou_tea").value == null){
-        showStateBar("danger","请输入授课教师");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(cou_tea)){
+        showValidateError();
+        $("input[id = 'cou_tea']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("cou_time").value == ""||document.getElementById("cou_time").value == null){
-        showStateBar("danger","请输入授课时间");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_year(cou_year)){
+        showValidateError();
+        $("input[id = 'cou_year']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("cou_num").value == ""||document.getElementById("cou_num").value == null){
-        showStateBar("danger","请填参与人数");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_season(cou_sea)){
+        showValidateError();
+        $("input[id = 'cou_sea']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("cou_des").value == ""||document.getElementById("cou_des").value == null){
-        showStateBar("danger","请填写课程描述");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(cou_num)){
+        showValidateError();
+        $("input[id = 'cou_num']").next(".hint").html(valiResult);
+        result = false;
     }
-    return true;
+    if(valiResult = validate_null(cou_des)){
+        showValidateError();
+        $("textarea[id = 'cou_des']").next(".hint").html(valiResult);
+        result = false;
+    }
+
+    return result;
 }
 
 function show(){

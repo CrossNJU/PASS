@@ -1,54 +1,72 @@
 /**
  * Created by Lenovo on 2016/3/5.
  */
+$(document).ready(function(){
+    showHint();
+});
+
+function showHint(){
+    $("input[name!='register'],textarea,select").after("<span class='hint'></span>");
+}
+
 function checkRegister(){
-    //alert("inin")
-    if(document.getElementById("add_id").value == ""||document.getElementById("add_id").value == null){
-        showStateBar("danger","请输入学号");
-        //this.stu_id.focus();
-        return false;
+
+    var result = true;
+
+    var stu_id = document.getElementById("add_id").value;
+    var stu_name = document.getElementById("add_name").value;
+    var stu_aca = $('#tea_aca  option:selected').text();
+    var stu_spe = $('#tea_spe  option:selected').text();
+    var stu_grade = $('#add_grade  option:selected').text();
+    var stu_email = document.getElementById("add_email").value;
+    var stu_phone = document.getElementById("add_phone").value;
+    var stu_pwd = document.getElementById("add_pwd").value;
+
+    var valiResult;
+    $(".hint").html("");
+
+    if(valiResult = validate_null(stu_id)){
+        showValidateError();
+        $("input[id = 'add_id']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("add_name").value == ""||document.getElementById("add_name").value == null){
-        showStateBar("danger","请输入姓名");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_name)){
+        showValidateError();
+        $("input[id = 'add_name']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_aca  option:selected').text() == '院系'){
-        //alert("院系");
-        showStateBar("danger","请选择院系");
-        return false;
+
+    if(valiResult = validate_aca(stu_aca)){
+        showValidateError();
+        $("select[id = 'tea_aca']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#tea_spe  option:selected').text() == '专业'){
-        showStateBar("danger","请选择专业");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_spe(stu_spe)){
+        showValidateError();
+        $("select[id = 'tea_spe']").next(".hint").html(valiResult);
+        result = false;
     }
-    if($('#add_grade option:selected').text() == '年级'){
-        showStateBar("danger","请输入年级");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_grade(stu_grade)){
+        showValidateError();
+        $("select[id = 'add_grade']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("add_email").value == ""||document.getElementById("add_email").value == null){
-        showStateBar("danger","请输入邮箱");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_email(stu_email)){
+        showValidateError();
+        $("input[id = 'add_email']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(!/^[-_A-Za-z0-9]+@([_A-Za-z0-9]+\.)+[A-Za-z0-9]{2,3}$/.test(document.getElementById("add_email").value)){
-        showStateBar("danger","邮箱格式好像哪里不对");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_phone)){
+        showValidateError();
+        $("input[id = 'add_phone']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("add_phone").value == ""||document.getElementById("add_phone").value == null){
-        showStateBar("danger","请填写手机");
-        //this.grade.focus();
-        return false;
+    if(valiResult = validate_null(stu_pwd)){
+        showValidateError();
+        $("input[id = 'add_pwd']").next(".hint").html(valiResult);
+        result = false;
     }
-    if(document.getElementById("add_pwd").value == ""||document.getElementById("add_pwd").value == null){
-        showStateBar("danger","请填写密码");
-        //this.grade.focus();
-        return false;
-    }
-    return true;
+    return result;
 }
 
 function show(){

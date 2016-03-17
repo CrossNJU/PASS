@@ -3,6 +3,9 @@
  */
 $(document).ready(function(){
     $(document).on("click",".admin-remove-btn",function(){
+
+        //alert("ininin");
+
         var btn = $(this);
         console.log($(this));
         var id = btn.attr("data-id");

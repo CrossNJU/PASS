@@ -116,3 +116,12 @@ input[type="submit"]{
 .header-userbar{
     color: #FFFFFF;
 }
+
+.student-manage {
+    overflow: hidden;
+}
+
+.student-manage .btn-small {
+    margin-top: 0;
+    float: right;
+}
