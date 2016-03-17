@@ -53,6 +53,7 @@ class CommonController extends Controller
     public function login($res = NULL,$type = NULL)//登录
     {
         $common_logic = D('Common','Logic');
+        $user_logic = D('User','Logic');
         $this->msg = "";
         if($res!=NULL) {
             $message = $common_logic->getMessage($res,$type);
@@ -75,6 +76,7 @@ class CommonController extends Controller
 
                 session("user", $id);
                 session("per", $per);
+                session("username",$user_logic->get_user_name($id));
                 switch ($per){
                     case "1": $this->redirect('Student/my_course');break;
                     case "2": $this->redirect('Teacher/my_course');break;
