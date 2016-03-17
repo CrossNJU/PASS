@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加新课程</title>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/validate.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/modify.js"></script>
+</head>
+</head>
+<body onload="show()">
+<input style="display: none" id="msg" value="<{$msg}>">
+<input style="display: none" id="type" value="<{$type}>">
+
+<{include file="Common/header-admin"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
+        <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
+    </div>
+</div>
+
+<div class="content">
+    <div class="wrapper">
+        <form method="post" onsubmit="return checkLesson();return false;">
+            <div class="card">
+                <div class="admi-add-class admi-class">
+                    <h3 class="card-title">添加新课程</h3>
+                </div>
+
+                <div class="admi-class-info" >
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">课程名称</p>
+                        <input class="text" type="text" name="title" id="cou_name" placeholder="课程名称"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">授课教师</p>
+                        <input class="text" type="text" name="teacher"  id="cou_tea" value="<{$teacher['name']}>"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">时间</p>
+                        <!--<input class="text" type="text" name="time" id="cou_time" placeholder="时间"/>-->
+                        <select class="text" style="width: 273px" name="year" id="cou_year">
+                            <option value = "年份" selected>年份</option>
+                            <option value = "2016年">2016年</option>
+                            <option value = "2017年">2017年</option>
+                            <option value = "2018年">2018年</option>
+                        </select>
+                        <select class="text" style="width: 273px" name="season" id="cou_sea">
+                            <option value = "季节" selected>季节</option>
+                            <option value = "春季">春季</option>
+                            <option value = "秋季">秋季</option>
+                        </select>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">人数</p>
+                        <input class="text" type="text" name="people" id="cou_num" placeholder="人数"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">描述</p>
+                        <textarea class="class-homework-request textarea" id="cou_des" name="depict" placeholder="描述"></textarea>
+                    </div>
+
+                </div>
+                <div class="admi-class-choose admi-class-info">
+                    <input type="submit" class="btn sbtn" name="add" value="添加新课程">
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+    <{include file="Common/footer"/}>
+</div>
+</body>
+
+</html>
