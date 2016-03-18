@@ -232,7 +232,7 @@ class TeacherController extends Controller
         }
 
         $this->submit = array(
-            'name' => $assignment['submitname'],
+            'name' => $assignment_dis['submitname'],
             'studentName' => $user_logic->get_user_name($student_id),
             'studentNum' => $student_id,
             'fileUrl' => $assignment_dis['url'].$assignment_dis['savename'],
