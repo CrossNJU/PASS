@@ -221,7 +221,7 @@ class AdministerController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function course_add($id = NULL){//新增课程
+    public function course_add($id = NULL,$teacher_id = NULL){//新增课程
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $course_model = M('Course');
@@ -255,8 +255,12 @@ class AdministerController extends Controller
             }
         }
 
-        if($id == NULL) $this->display('Administrator:lesson-add');
-        else $this->display('Administrator:lesson-modify');
+        if($id!= NULL) $this->display('Administrator:lesson-modify');
+        else if($teacher_id!= NULL){
+            $this->teacher = $teacher_id;
+            $this->display('Administrator:teacher-lesson-add');
+        } else $this->display('Administrator:lesson-add');
+
     }
 
     public function download($assignment_id){//批量下载
