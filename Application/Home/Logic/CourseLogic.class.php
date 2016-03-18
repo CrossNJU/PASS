@@ -70,6 +70,8 @@ class CourseLogic
                 'courseName' => $this->get_course_name($course_id),
                 'type' => $assignment['type'],
                 'fileUrl' => $var['url'].$var['savename'],
+                'submitTime' => $var['submittime'],
+                'submitName' => $var['submitname']
             );
             $assignments[$i] = $assignment_detail;
             $i ++;
