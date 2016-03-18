@@ -12,20 +12,16 @@ use PHPWord;
 
 class TeacherController extends Controller
 {
-    public function my_course($res = NULL,$type = NULL){//教师:我的课程
-        if(!session('?per')){
+    public function my_course($res = NULL,$type = NULL){//..................................................教师:我的课程
+        if(!session('?per') || session('per')!= 2)
             $this->redirect('Home/Common/login/res/login-war/type/war');
-        }
+
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
             $message = $common_logic->getMessage($res,$type);
             $this->msg = $message['res'];
             $this->type = $message['type'];
-        }
-        $status = session("per");
-        if($status!=2){
-            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
         $course_model = M('Course');
         $user_logic = D('User','Logic');
@@ -54,20 +50,16 @@ class TeacherController extends Controller
         $this->display('Teacher:mycourse-tch');
     }
 
-    public function my_assignments($res = NULL, $type = NULL){//教师:我布置的作业
-        if(!session('?per')){
+    public function my_assignments($res = NULL, $type = NULL){//..........................................教师:我布置的作业
+        if(!session('?per') || session('per')!= 2)
             $this->redirect('Home/Common/login/res/login-war/type/war');
-        }
-        $status = session("per");
+
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
             $message = $common_logic->getMessage($res,$type);
             $this->msg = $message['res'];
             $this->type = $message['type'];
-        }
-        if($status!=2) {
-            $this->redirect('Home/Common/login/res/login-war/type/war');
         }
 
         $teacher = session('user');
@@ -86,8 +78,8 @@ class TeacherController extends Controller
                 'end' => $assignment['endtime'],
                 'isEnd' => $common_logic->isEnded($assignment['endtime']),
                 'require' => $assignment['requi'],
-                'numOfSubmit' => $assignment['submitted'],
-                'corrected' => $assignment['examined'],
+                'numOfSubmit' => $course_logic->get_sub_exa($assignment['number'],1),
+                'corrected' => $course_logic->get_sub_exa($assignment['number'],2),
                 'sum' => $course_logic->get_assignment_stus($assignment['number']),
                 'type' => $assignment['type'],
             );
@@ -99,7 +91,10 @@ class TeacherController extends Controller
         $this->display('Teacher:myhomework-tch');
     }
 
-    public function assignment_delete($assignment_id){//删除作业
+    public function assignment_delete($assignment_id){//.........................................................删除作业
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
         $course = M('Course');
@@ -112,7 +107,10 @@ class TeacherController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function assignment_detail($assignment_id, $res = NULL, $type = NULL){//作业详情
+    public function assignment_detail($assignment_id, $res = NULL, $type = NULL){//..............................作业详情
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
@@ -161,8 +159,8 @@ class TeacherController extends Controller
             'end' => $assignments_detail['endtime'],
             'isEnd' => $common_logic->isEnded($assignments_detail['endtime']),
             'require' => $assignments_detail['requi'],
-            'numOfSubmit' => $assignments_detail['submitted'],
-            'corrected' => $assignments_detail['examined'],
+            'numOfSubmit' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
+            'corrected' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
             'submit' => $submit,
             'type' => $assignments_detail['type'],
             'next_student_id' => $assignment_not_examine['stdnumber']
@@ -170,7 +168,10 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-details');
     }
 
-    public function assignment_to_modify($assignment_id,$student_id,$display){//批改/修改作业
+    public function assignment_to_modify($assignment_id,$student_id,$display){//............................批改/修改作业
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $assignment_dis_model = M('Assignmentdis');
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
@@ -187,7 +188,7 @@ class TeacherController extends Controller
 
         if(isset($_POST['save'])){
             if($display == "correct"){
-                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
+//                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
             }
             $data['comm'] = I('post.comment');
             $data['mark'] = I('post.mark');
@@ -207,7 +208,7 @@ class TeacherController extends Controller
 
         if(isset($_POST['next'])){
             if($display == "correct"){
-                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
+//                $assignment_model->where("number = '$assignment_id'")->setInc('examined');
             }
             $data['comm'] = I('post.comment');
             $data['mark'] = I('post.mark');
@@ -250,14 +251,9 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-'.$display);
     }
 
-    public function assignment_deliver($assignment_id=NULL,$course_id=NULL){//布置新作业
-        if(!session('?per')){
+    public function assignment_deliver($assignment_id=NULL,$course_id=NULL){//..................................布置新作业
+        if(!session('?per') || session('per')!= 2)
             $this->redirect('Home/Common/login/res/login-war/type/war');
-        }
-        $status = session("per");
-        if($status!=2){
-            $this->redirect('Home/Common/login/res/login-war/type/war');
-        }
 
         $assignment_model = M('Assignment');
         $course_dis_model = M('Coursedis');
@@ -273,8 +269,8 @@ class TeacherController extends Controller
             $data['requi'] = I('post.requi');
             $data['title'] = I('post.title');
             if($assignment_id == NULL){
-                $data['submitted'] = 0;
-                $data['examined'] = 0;
+//                $data['submitted'] = 0;
+//                $data['examined'] = 0;
             }
             $data['startTime'] = I('post.startTime');
             $data['endTime'] = I('post.endTime');
@@ -319,30 +315,36 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-new');
     }
 
-    public function download($assignment_id){//教师-下载作业
+    public function download($assignment_id){//.............................................................教师-下载作业
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
         if($url) $this->ajaxReturn(1);
         else $this->ajaxReturn(0);
     }
 
-    public function check_student_info($stu_id){//教师-查看学生信息界面
-        $user_model = M('User');
-        $student = $user_model->where("number = '$stu_id'")->select()[0];
+//    public function check_student_info($stu_id){//...教师-查看学生信息界面
+//        $user_model = M('User');
+//        $student = $user_model->where("number = '$stu_id'")->select()[0];
+//
+//        $this->student = $student;
+//        $this->display('Teacher:#');
+//    }
 
-        $this->student = $student;
-        $this->display('Teacher:#');
-    }
+    public function reupload($stu_id,$assignment_id){//..............................................教师-发邮件要求学生重交作业
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
-    public function reupload($stu_id,$assignment_id){//教师-发邮件要求学生重交作业
-        $assignment_model = M('Assignment');
+//        $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
         $user_model = M('User');
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
         $common_logic = D('Common','Logic');
 
-        $assignment_model->where("number = '$assignment_id'")->setDec('submitted');
+//        $assignment_model->where("number = '$assignment_id'")->setDec('submitted');
         $assignment = $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->select()[0];
         $assignment['isSubmitted'] = 0;
@@ -366,7 +368,10 @@ class TeacherController extends Controller
         else $this->ajaxReturn(0);
     }
 
-    public function student_detail($student_id){//学生详情界面
+    public function student_detail($student_id){//...........................................................学生详情界面
+        if(!session('?per') || session('per')!= 2)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $user_model = M('User');
         $student = $user_model->where("number = '$student_id'")->select()[0];
         $student_detail = array(

@@ -17,7 +17,7 @@ class CommonController extends Controller
         $this->display('Common:Login');
     }
 
-    public function register()//学生注册
+    public function register()//.................................................................................学生注册
     {
         $this->msg = "";
         if (isset($_POST['register'])) {
@@ -50,7 +50,7 @@ class CommonController extends Controller
         $this->display('Common:Register-student');
     }
 
-    public function login($res = NULL,$type = NULL)//登录
+    public function login($res = NULL,$type = NULL)//................................................................登录
     {
         $common_logic = D('Common','Logic');
         $user_logic = D('User','Logic');
@@ -92,12 +92,12 @@ class CommonController extends Controller
         $this->display('Common:Login');
     }
 
-    public function logout(){//登出
+    public function logout(){//.....................................................................................登出
         session(null);
         $this->redirect('Common/login/');
     }
 
-    public function find_pwd()//找回密码
+    public function find_pwd()//................................................................................找回密码
     {
 
         $this->msg = "";
@@ -134,7 +134,7 @@ class CommonController extends Controller
         $this->display('Common:Password-Find');
     }
 
-    public function pwd_reset($id)//重置密码
+    public function pwd_reset($id)//.............................................................................重置密码
     {
         if (session('reset_ip')!= get_client_ip()){
             $this->ajaxReturn("error!you are not allowed to see this page!");

@@ -14,10 +14,13 @@ class StudentController extends Controller
 {
 
     public function index(){
+        if(!session('?per') || session('per')!= 1)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $this->redirect('Student/my_course');
     }
 
-    public function sets(){//学生-设置
+    public function sets(){//...................................................................................学生-设置
         if(!session('?per') || session('per')!= 1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
 
@@ -75,9 +78,10 @@ class StudentController extends Controller
         $this->display('Student:setting-stu');
     }
 
-    public function my_course($res = NULL,$type = NULL){//学生-我的课程
+    public function my_course($res = NULL,$type = NULL){//..................................................学生-我的课程
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $common_logic = D('Common','Logic');
         $this->msg = "";
         if($res!=NULL) {
@@ -118,7 +122,7 @@ class StudentController extends Controller
         $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment($res=NULL,$type=NULL){//学生-我的作业
+    public function my_assignment($res=NULL,$type=NULL){//..................................................学生-我的作业
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
@@ -149,7 +153,7 @@ class StudentController extends Controller
         $this->display('Student:myhomework-stu');
     }
 
-    public function course_remove($course_id){//退选课程
+    public function course_remove($course_id){//.................................................................退选课程
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
@@ -165,7 +169,7 @@ class StudentController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function course_in(){//学生-加入新课程
+    public function course_in(){//.........................................................................学生-加入新课程
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
 
@@ -205,7 +209,7 @@ class StudentController extends Controller
         $this->display('Student:joincourse');
     }
 
-    public function course_add($course_id){//点击加入课程
+    public function course_add($course_id){//................................................................点击加入课程
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
@@ -229,32 +233,32 @@ class StudentController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function assignment_see($assignment_id){//预览作业...url还有问题
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
-        $student_id = session('user');
-        $course_logic = D('Course','Logic');
+//    public function assignment_see($assignment_id){//.................预览作业
+//        if(!session('?user') || session('per')!=1)
+//            $this->redirect('Home/Common/login/res/login-war/type/war');
+//        $student_id = session('user');
+//        $course_logic = D('Course','Logic');
+//
+//        $assignment_dis_model = M('Assignmentdis');
+//        $assignment = $assignment_dis_model
+//            ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")
+//            ->select()[0];
+//
+////        $url_base = C('URL_BASE');
+//        $this->submit = array(
+//            'name' => $assignment['submitname'],
+//            'time' => $assignment['submittime']
+//        );
+//        $this->homework = array(
+//            'num' => $assignment_id,
+//            'name' => $course_logic->get_assignment_name($assignment_id),
+//            'submitName' => $assignment['submitname'],
+//            'submitTime' => $assignment['submittime']
+//        );
+//        $this->display('Student:preview');
+//    }
 
-        $assignment_dis_model = M('Assignmentdis');
-        $assignment = $assignment_dis_model
-            ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")
-            ->select()[0];
-
-//        $url_base = C('URL_BASE');
-        $this->submit = array(
-            'name' => $assignment['submitname'],
-            'time' => $assignment['submittime']
-        );
-        $this->homework = array(
-            'num' => $assignment_id,
-            'name' => $course_logic->get_assignment_name($assignment_id),
-            'submitName' => $assignment['submitname'],
-            'submitTime' => $assignment['submittime']
-        );
-        $this->display('Student:preview');
-    }
-
-    public function assignment_submit($assignment_id){//提交作业
+    public function assignment_submit($assignment_id){//.........................................................提交作业
         if(!session('?user') || session('per')!=1)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $student_id = session('user');
@@ -287,7 +291,7 @@ class StudentController extends Controller
                 if($assignment['issubmitted']==0){
                     $data['isSubmitted'] = 1;
                     $assignment_model = M('Assignment');
-                    $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
+//                    $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
                 }
                 $data['url'] = $url;
                 $data['submitTime'] = date("y-m-d h:i");

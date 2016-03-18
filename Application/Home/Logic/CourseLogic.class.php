@@ -12,6 +12,17 @@ use Think\Model;
 class CourseLogic
 {
 
+    public function get_sub_exa($assNumber,$type){
+        $assignment_dis_model = M('Assignmentdis');
+        $assignments = $assignment_dis_model->where("assNumber = '$assNumber'")->select();
+        $cou = 0;
+        foreach ($assignments as $assignment){
+            if(($type == 1 && $assignment['issubmitted'] == 1)||($type == 2 && $assignment['isexamined'] == 1))
+                $cou ++;
+        }
+        return $cou;
+    }
+
     public function get_assignments_course($course_id){//查看作业,根据课程
         $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
@@ -30,8 +41,8 @@ class CourseLogic
                 'end' => $assignment_detail['endtime'],
                 'isEnd' => $common_logic->isEnded($assignment_detail['endtime']),
                 'require' => $assignment_detail['requi'],
-                'numOfSubmit' => $assignment_detail['submitted'],
-                'corrected' => $assignment_detail['examined'],
+                'numOfSubmit' => $this->get_sub_exa($assignment_id,1),
+                'corrected' => $this->get_sub_exa($assignment_id,2),
                 'type' => $assignment_detail['type'],
                 'fileUrl' => $assignment_detail['url'].$assignment_detail['savename'],
                 'sum' => $students,

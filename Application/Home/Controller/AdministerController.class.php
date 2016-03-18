@@ -12,10 +12,13 @@ use Think\Controller;
 class AdministerController extends Controller
 {
     public function index(){
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $this->display('Administrator:student-admin');
     }
 
-    public function student_manage($res=NULL,$type=NULL){
+    public function student_manage($res=NULL,$type=NULL){//......................................................学生管理
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
 
@@ -73,7 +76,10 @@ class AdministerController extends Controller
         return $ret;
     }
 
-    public function stu_del($stu_id){//删除学生
+    public function stu_del($stu_id){//..........................................................................删除学生
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $user_model = M('User');
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -107,7 +113,7 @@ class AdministerController extends Controller
         return $titles;
     }
 
-    public function student_add($id = NULL)//添加学生
+    public function student_add($id = NULL)//....................................................................添加学生
     {
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
@@ -158,7 +164,7 @@ class AdministerController extends Controller
 
     //--------------------------------------------------------------------------
 
-    public function course_manage($res = NULL, $type = NULL){
+    public function course_manage($res = NULL, $type = NULL){//..................................................课程管理
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
 
@@ -208,7 +214,9 @@ class AdministerController extends Controller
             OR teacher = '$key'")->select();
     }
 
-    public function course_del($course_id){//删除课程
+    public function course_del($course_id){//....................................................................删除课程
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
 
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -221,7 +229,7 @@ class AdministerController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function course_add($id = NULL,$teacher_id = NULL){//新增课程
+    public function course_add($id = NULL,$teacher_id = NULL){//.................................................新增课程
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $course_model = M('Course');
@@ -263,14 +271,17 @@ class AdministerController extends Controller
 
     }
 
-    public function download($assignment_id){//批量下载
+    public function download($assignment_id){//..................................................................批量下载
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
         $this->ajaxReturn($url);
     }
     //--------------------------------------------------------------------------
 
-    public function teacher_manage($res=NULL,$type=NULL){
+    public function teacher_manage($res=NULL,$type=NULL){//......................................................教师管理
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $all = $this->user_show(2);
@@ -307,7 +318,10 @@ class AdministerController extends Controller
         $this->display('Administrator:teacher-admin');
     }
 
-    public function teacher_del($teacher_id){//删除教师
+    public function teacher_del($teacher_id){//..................................................................删除教师
+        if(!session('?user') || session('per')!=3)
+            $this->redirect('Home/Common/login/res/login-war/type/war');
+
         $user_model = M('User');
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -340,7 +354,7 @@ class AdministerController extends Controller
         return $course_details;
     }
 
-    public function teacher_add($id = NULL){//新增教师
+    public function teacher_add($id = NULL){//...................................................................新增教师
         if(!session('?user') || session('per')!=3)
             $this->redirect('Home/Common/login/res/login-war/type/war');
         $user_model = D('User');
