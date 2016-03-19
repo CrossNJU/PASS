@@ -148,7 +148,7 @@ class AdministerController extends Controller
                     $user_model->add();
                     $this->redirect('Home/Administer/student_manage/res/add-stu-suc/type/suc');
                 }elseif ($id != NULL && $user_model->create($data)){
-                    $user_model->add();
+                    $user_model->save();
                     $this->redirect('Home/Administer/student_manage/res/mod-stu-suc/type/suc');
                 } else {
                     $this->msg = "添加/修改学生失败!";
