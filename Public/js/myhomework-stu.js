@@ -10,7 +10,7 @@ $(document).ready(function (){
         var time = $(this).attr("data-time");
         $("#preview-class-num").html(num);
         $("#preview-name").html(name);
-        $("#preview-time").html(time);
+        $("#preview-time").html("于"+time+"提交");
 
         if(type == 'mp4'){
             $("#preview-content").html(

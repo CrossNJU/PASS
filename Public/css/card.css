@@ -348,8 +348,8 @@ b:after {
 }
 
 .preview-card .card-title {
-    margin-top: 12px;
-    margin-bottom: 5px;
+    margin-top: 8px;
+    margin-bottom: 12px;
     color: #57beed;
     font-weight: bold;
 }
@@ -406,7 +406,7 @@ b:after {
 .modal-wrapper #really-cool-video {
     display: block;
     height: 500px;
-    max-width: 890px;
+    width: 890px;
     margin: 0 auto;
     margin-bottom: 24px;
 }

@@ -38,8 +38,8 @@
 						已布置(<{$course['numOfHomework']}>)
 						<{else /}>未布置
 						<{/if}></p>
-					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
-					<a class="btn remove-btn" data-id="<{$course['id']}>" href="javascript:void(0)">退选课程</a>
+					<a class="btn packup-btn">收起作业</a>
+					<a class="btn remove-btn" data-id="<{$course['id']}>">退选课程</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
 				<div class="homework">
@@ -51,7 +51,7 @@
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
 						<{if condition="$homework['type'] neq 'word'"}>
-						<a class="btn btn-small preview-btn" href="javascript:void(0)"
+						<a class="btn btn-small preview-btn"
 						   data-type="<{$homework['type']}>"
 						   data-url="<{$homework['fileUrl']}>"
 						   data-classNum="<{$homework['num']}>"

@@ -9,13 +9,12 @@ $(document).ready(function() {
         $(".confirm-btn").click(function() {
             jQuery.ajax({
                 async: false,
-                url: "assignment_delete",
+                url: "/PASS/index.php/Home/Teacher/assignment_delete",
                 data: "assignment_id=" + hwid,
-                dataType: "json",
                 success: function (msg) {
                     if (msg == 1) {
-                        btn.parent(".homework").slideUp(function () {
-                            btn.parent(".homework").remove();
+                        btn.parents(".card").slideUp(function () {
+                            btn.parents(".card").remove();
                         });
                         showStateBar("success", "作业移除成功");
                     } else {

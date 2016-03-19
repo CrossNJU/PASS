@@ -11,12 +11,13 @@
 
     <script src="__PUBLIC__/js/jquery.js"></script>
     <script src="__PUBLIC__/js/main.js"></script>
+    <script src="__PUBLIC__/js/submit.js"></script>
 </head>
 <body>
     <{include file="Common/header"/}>
     <div class="nav">
         <div class="wrapper">
-            <a class="nav-btn nav-btn-active " href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
             <a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
         </div>
     </div>
@@ -27,8 +28,9 @@
                 <div class="card-info">
                     <div class="card-title">提交: <{$submit['homeworkName']}></div>
                     <div class="comment submitted-comment">已提交文件: <{$submit['submitted']}></div>
-                    <form class="submit-form" action="" method="post" enctype="multipart/form-data">
-                        <input class="file" type="file" name="doc" accept=".mp4, .pdf"/>
+                    <form class="submit-form" action="" method="post" enctype="multipart/form-data" onsubmit="return validate('<{$type}>')">
+                        <input class="file" type="file" name="doc"
+                               accept="<{if condition='$type eq mp4' }>.mp4<{elseif condition='$type eq pdf'/}>.pdf<{elseif condition='$type eq word'/}>.doc,.docx,.ppt,.pptx<{/if}>"/>
                         <input class="file_text" type="text"/>
                         <input class="file_submit btn" type="button" value="选择文件"/>
                         <br/>

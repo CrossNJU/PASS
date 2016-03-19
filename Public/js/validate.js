@@ -31,10 +31,8 @@ function validate_time(start, end, startEdge){
     var startDate = new Date(startArray[0],startArray[1]-1,startArray[2]);
     var endArray = end.split('-');
     var endDate = new Date(endArray[0],endArray[1]-1,endArray[2]);
-    //var edgeArray = startEdge.split('/');
-    //var edgeDate = new Date(edgeArray[0],edgeArray[1]-1,edgeArray[2]);
-
-    console.log(startDate+" "+endDate+" "+edgeDate);
+    var edgeArray = startEdge.split('-');
+    var edgeDate = new Date(edgeArray[0],edgeArray[1]-1,edgeArray[2]);
 
     if(endDate.getTime() < startDate.getTime()){
         return "结束日期不能早于开始日期";

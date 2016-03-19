@@ -8,8 +8,7 @@ $(document).ready(function (){
         if($(option).val() == homeworkType){
             $(option).attr("selected",true);
         }
-    })
-
+    });
 });
 
 function showHint(){
@@ -28,21 +27,24 @@ function validate(){
     $(".hint").html("");
 
     if(valiResult = validate_null(title)){
+        console.log("title");
+        result = false;
         showValidateError();
         $("input[name='title']").next(".hint").html(valiResult);
-        result = false;
     }
 
     if(valiResult = validate_time(startTime,endTime)){
+        console.log("time");
+        result = false;
         showValidateError();
         $("input[name='endTime']").next(".hint").html(valiResult);
-        result = false;
     }
 
     if(valiResult = validate_null(require)) {
+        console.log("requi");
+        result = false;
         showValidateError();
         $("textarea[name='requi']").next(".hint").html(valiResult);
-        result = false;
     }
 
     return result;
