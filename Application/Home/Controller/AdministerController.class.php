@@ -244,15 +244,20 @@ class AdministerController extends Controller
 
         $this->msg = "";
 
-        if($id != NULL)
-            $this->course = $course_model->where("number = '$id'")->select()[0];
+        if($id != NULL){
+            $cou = $course_model->where("number = '$id'")->select()[0];
+            $spl = explode(' ',$cou['time']);
+            $cou['year'] = $spl[0];
+            $cou['season'] = $spl[1];
+            $this->course = $cou;
+        }
 
         if(isset($_POST['add'])){
             $data['title'] = I('post.title');
             $data['teacher'] = I('post.teacher');
             $data['depict'] = I('post.depict');
             $data['students'] = I('post.people');
-            $data['time'] = I('post.year').I('post.season');
+            $data['time'] = I('post.year')." ".I('post.season');
             if($id == NULL) {
                 $data['assignments'] = 0;
                 $data['selected'] = 0;
