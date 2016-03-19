@@ -190,14 +190,16 @@ function checkLesson(){
     var cou_sea = $('#cou_sea  option:selected').text();
     var cou_num = document.getElementById("cou_num").value;
     var cou_des = document.getElementById("cou_des").value;
-
+    var time = true;
     var valiResult;
     $(".hint").html("");
 
     if(valiResult = validate_null(cou_name)){
         showValidateError();
+        alert(valiResult);
         $("input[name = 'title']").next(".hint").html(valiResult);
-        //$("input[name = 'title']").style.backgroundColor = "black";
+        //$("input[name = 'title']").css("display","none");
+        //document.getElementById("cou_name").style.visibility = 'hidden';
         result = false;
     }
     if(valiResult = validate_null(cou_tea)){
@@ -207,14 +209,21 @@ function checkLesson(){
     }
     if(valiResult = validate_year(cou_year)){
         showValidateError();
-        $("input[id = 'cou_year']").next(".hint").html(valiResult);
+        //$("input[id = 'cou_year']").next(".hint").html(valiResult);
+        time = false;
         result = false;
     }
     if(valiResult = validate_season(cou_sea)){
         showValidateError();
-        $("input[id = 'cou_sea']").next(".hint").html(valiResult);
+        //$("input[id = 'cou_sea']").next(".hint").html(valiResult);
+        time = false;
         result = false;
     }
+    if(!time){
+        $("input[id = 'cou_sea']").next(".hint").html("请选择时间");
+    }
+
+
     if(valiResult = validate_null(cou_num)){
         showValidateError();
         $("input[id = 'cou_num']").next(".hint").html(valiResult);

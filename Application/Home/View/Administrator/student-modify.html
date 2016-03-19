@@ -41,10 +41,12 @@
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">学号</p>
                         <input class="text" type="text" name="stu_id" id="stu_id" value="<{$student['number']}>"/>
+                        <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">姓名</p>
                         <input class="text" type="text" name="name" id="stu_name" value="<{$student['name']}>"/>
+                        <span class="hint"></span>
                     </div>
 
                     <input style="display: none" id="tea_aca_temp" value="<{$student['academy']}>">
@@ -88,6 +90,7 @@
                             <option value="海外教育学院">海外教育学院</option>
                             <option value="建筑与城市规划学院">建筑与城市规划学院</option>
                         </select>
+                        <span class="hint"></span>
 
                     </div>
                     <div class="admi-class-info-detil">
@@ -97,12 +100,8 @@
                         <!--onchange="redirec(document.aca_spe_form.spe.options.selectedIndex)">-->
                         <select class="text" name="spe" id="tea_spe">
                             <option value="专业" selected>专业</option>
-                            <!--<option value="2">22-25</option>-->
-                            <!--<option value="3">26-29</option>-->
-                            <!--<option value="4">30-35</option>-->
-                            <!--<option value="5">Over35</option>-->
-
                         </select>
+                        <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">年级</p>
@@ -115,18 +114,22 @@
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
                         </select>
+                        <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">邮箱</p>
                         <input class="text" type="text" name="email" id="stu_email" value="<{$student['email']}>"/>
+                        <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">手机</p>
                         <input class="text" type="text" name="phone" id="stu_phone"  value="<{$student['phone']}>"/>
+                        <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">密码</p>
                         <input class="text" type="password" name="pwd" id="stu_pwd" value="<{$student['password']}>"/>
+                        <span class="hint"></span>
                     </div>
 
                 </div>
