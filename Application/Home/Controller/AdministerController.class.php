@@ -245,7 +245,7 @@ class AdministerController extends Controller
             $data['teacher'] = I('post.teacher');
             $data['depict'] = I('post.depict');
             $data['students'] = I('post.people');
-            $data['time'] = I('post.time');
+            $data['time'] = I('post.year').I('post.season');
             if($id == NULL) {
                 $data['assignments'] = 0;
                 $data['selected'] = 0;

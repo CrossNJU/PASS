@@ -13,8 +13,8 @@ use PHPWord;
 class UserController extends Controller
 {
     public function test(){
-
-        $this->display('User:test1');
+        $data_logic = D('Data','Logic');
+        $data_logic->createOriginDataBase();
     }
 
     public function test_1(){
