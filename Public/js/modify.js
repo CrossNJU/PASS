@@ -2,6 +2,7 @@
  * Created by Lenovo on 2016/3/6.
  */
 
+var pwd = false;
 
 $(document).ready(function(){
     var aca = $("#tea_aca_temp").val();
@@ -16,6 +17,7 @@ $(document).ready(function(){
 
 
     var s1 = document.getElementById("tea_aca");
+    if (s1!=null)
     for(var i = 0;i < s1.length;i++){
         if(s1[i].value == aca){
             //alert("in");
@@ -26,6 +28,7 @@ $(document).ready(function(){
     }
 
     var s2 = document.getElementById("tea_spe");
+    if (s2!=null)
     for(var i = 0;i < s2.length;i++){
         if(s2[i].value == spe){
             s2[i].selected = true;
@@ -33,6 +36,7 @@ $(document).ready(function(){
         }
     }
     var s3 = document.getElementById("stu_grade");
+    if (s3!=null)
     for(var i = 0;i < s3.length;i++){
         if(s3[i].value == grade){
             s3[i].selected = true;
@@ -41,6 +45,7 @@ $(document).ready(function(){
     }
 
     var syear = document.getElementById("cou_year");
+    if (syear!=null)
     for(var i = 0;i < syear.length;i++){
         if(syear[i].value == cou_year){
             syear[i].selected = true;
@@ -49,6 +54,7 @@ $(document).ready(function(){
     }
 
     var ssea = document.getElementById("cou_sea");
+    if (ssea!=null)
     for(var i = 0;i < ssea.length;i++){
         if(ssea[i].value == cou_sea){
             ssea[i].selected = true;
@@ -57,6 +63,19 @@ $(document).ready(function(){
     }
 
     showHint();
+
+    $(".set-pwd").on('focus',function(){
+        if (pwd == false) $(this).val("");
+    });
+    $(".set-pwd").on('blur',function(){
+        if ($(this).val() == ""){
+            pwd = false;
+            $(this).val("12345678");
+        }else {
+            pwd = true;
+        }
+        console.log(pwd);
+    });
 });
 
 
@@ -118,6 +137,9 @@ function checkTea(){
         $("input[id = 'tea_pwd']").next(".hint").html(valiResult);
         result = false;
     }
+    if (pwd == false){
+        $(".set-pwd").attr('disabled',true);
+    }
     return result;
 }
 
@@ -176,6 +198,9 @@ function checkStu(){
         showValidateError();
         $("input[id = 'stu_pwd']").next(".hint").html(valiResult);
         result = false;
+    }
+    if (pwd == false){
+        $(".set-pwd").attr('disabled',true);
     }
     return result;
 }
