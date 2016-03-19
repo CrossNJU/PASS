@@ -197,6 +197,7 @@ function checkLesson(){
     if(valiResult = validate_null(cou_name)){
         showValidateError();
         $("input[name = 'title']").next(".hint").html(valiResult);
+        //$("input[name = 'title']").style.backgroundColor = "black";
         result = false;
     }
     if(valiResult = validate_null(cou_tea)){

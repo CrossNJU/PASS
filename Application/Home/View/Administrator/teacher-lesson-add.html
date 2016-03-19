@@ -22,10 +22,10 @@
 <{include file="Common/header-admin"/}>
 <div class="nav">
     <div class="wrapper">
-        <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
-        <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
-        <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
-    </div>
+    <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
+    <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
+    <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
+</div>
 </div>
 
 <div class="content">
@@ -42,8 +42,8 @@
                         <input class="text" type="text" name="title" id="cou_name" placeholder="课程名称"/>
                     </div>
                     <div class="admi-class-info-detil">
-                        <p class="admi-class-info-detail comment">授课教师</p>
-                        <input class="text" type="text" name="teacher"  id="cou_tea" value="<{$teacher['name']}>"/>
+                        <p class="admi-class-info-detail comment">授课教师工号</p>
+                        <input class="text" type="text" name="teacher"  id="cou_tea" value="<{$teacher['num']}>"/>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">时间</p>
