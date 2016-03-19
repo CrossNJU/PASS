@@ -2,7 +2,14 @@
  * Created by Lenovo on 2016/2/16.
  */
 $(document).ready(function (){
-   showHint();
+    showHint();
+    var options = $("select[name='type']").children("option");
+    $.each(options,function(n,option) {
+        if($(option).val() == homeworkType){
+            $(option).attr("selected",true);
+        }
+    })
+
 });
 
 function showHint(){

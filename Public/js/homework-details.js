@@ -2,7 +2,6 @@
  * Created by Lenovo on 2016/2/24.
  */
 $(document).ready(function (){
-
     /*
     添加收起展开评语的按钮监听
      */
@@ -12,14 +11,16 @@ $(document).ready(function (){
         var contentStr = btn.html().split('/');
         if(contentStr[1] == "收起评语"){
             btn.html(contentStr[0]+"/展开评语");
-            comment.css("overflow","hidden");
-            comment.animate({height: "40px",});
+            //comment.css("overflow","hidden");
+            //comment.animate({height: "40px",});
         }else if(contentStr[1] == "展开评语"){
             btn.html(contentStr[0]+"/收起评语");
-            comment.css("overflow","auto");
-            var oldHeight = comment[0].scrollHeight-(comment.outerHeight()-comment.height());
-            comment.animate({height: oldHeight+"px"});
+            //comment.css("overflow","auto");
+            //var oldHeight = comment[0].scrollHeight-(comment.outerHeight()-comment.height())+15;
+            //console.log(comment[0].scrollHeight+ " " +comment.outerHeight()+" "+comment.height());
+            //comment.animate({height: oldHeight+"px"});
         }
+        $(this).siblings(".homework-info").children(".homework-request").slideToggle();
     });
 
     /*

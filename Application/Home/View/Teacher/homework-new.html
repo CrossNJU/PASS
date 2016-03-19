@@ -37,7 +37,7 @@
 						<p class="comment" >作业名称</p>
 						<input type="text" name="title" placeholder="输入作业名称" value="<{$homework['name']}>"/>
 						<p class="comment" >作业类型</p>
-						<select class="text" name="type">
+						<select class="text" name="type" <{if condition="$isModify eq true"}>onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;"<{/if}>>
 							<option value="pdf">PDF(提供预览功能)</option>
 							<option value="word">WORD/PPT(提供下载功能)</option>
 							<option value="mp4">MP4(提供预览功能)</option>
@@ -60,6 +60,9 @@
 		</div>
 	</div>
 
+	<script>
+		var homeworkType = "<{$homework['type']}>";
+	</script>
 	<{include file="Common/footer" /}>
 </body>
 </html>

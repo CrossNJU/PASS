@@ -48,6 +48,7 @@ a {
 }
 
 .wrapper {
+    padding-left: calc(100vw - 100%);
     margin: 0 auto;
     width: 940px;
 }
@@ -306,8 +307,8 @@ b:after {
 }
 
 .homework-manage {
-    height: 40px;
-    overflow: hidden;
+    /*height: 40px;*/
+    /*overflow: hidden;*/
 }
 
 .homework-manage .btn-small {
@@ -316,7 +317,7 @@ b:after {
 }
 
 .homework-manage .stu-info {
-    margin-bottom: 23px;
+    margin-bottom: 0px;
 }
 
 .homework-manage .stu-info-detail {
@@ -327,6 +328,11 @@ b:after {
     transition: all 0.1s linear 0s;
     color: #57BEED;
     cursor: pointer;
+}
+
+.homework-manage .homework-request {
+    display: none;
+    margin-top: 20px;
 }
 
 .homework-tch .rect {

@@ -56,7 +56,7 @@ function closeFunc (){
 }
 
 function minHeight(){
-    console.log(window.innerHeight);
+    //console.log(window.innerHeight);
     var minHeight = window.innerHeight - 280;
     $(".content").css("minHeight",minHeight+"px");
 }
