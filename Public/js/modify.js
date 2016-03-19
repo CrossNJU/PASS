@@ -84,7 +84,7 @@ $(document).ready(function(){
  */
 
 function showHint(){
-    $("input[name!='add'],textarea,select").after("<span class='hint'></span>");
+    $("input[name!='add'][id!='msg'][id!='type'],textarea,select").after("<span class='hint'></span>");
 }
 
 function checkTea(){
