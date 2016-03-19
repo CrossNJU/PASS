@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>New</title>
+	<{if condition="$isModify eq false"}>
+	<title>布置新作业</title>
+	<{else/}>
+	<title>修改作业信息</title>
+	<{/if}>
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
