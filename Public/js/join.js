@@ -10,7 +10,7 @@ $(document).ready(function () {
             jQuery.ajax({
                 async: false,
                 data: "course_id="+id,
-                url: "course_add",
+                url: "/PASS/index.php/Home/Student/course_in",
                 type: "post",
                 success: function (msg) {
                     if (msg == -1) {
@@ -35,7 +35,7 @@ $(document).ready(function () {
             jQuery.ajax({
                 async: false,
                 data: "course_id="+id,
-                url: "course_remove",
+                url: "/PASS/index.php/Home/Student/course_remove",
                 type: "post",
                 success: function (msg) {
                     if (msg == -1) {

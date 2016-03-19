@@ -33,7 +33,7 @@ $(document).ready(function (){
         $(".confirm-btn").click(function() {
             jQuery.ajax({
                 async: false,
-                url: "assignment_delete",
+                url: "/PASS/index.php/Home/Teacher/assignment_delete",
                 data: "assignment_id=" + hwid,
                 dataType: "json",
                 success: function (msg) {
@@ -64,7 +64,7 @@ $(document).ready(function (){
             jQuery.ajax({
                 async:true,
                 type:"post",
-                url:"../../reupload",
+                url:"/PASS/index.php/Home/Teacher/reupload",
                 data:"stu_id=S1"+"&assignment_id="+homeworkId,
                 success: function(msg){
                     if(msg == 1){
@@ -101,7 +101,7 @@ $(document).ready(function (){
      */
     $(document).on("mouseover",".stu-info-detail",function(event){
         $.ajax({
-            url:"../../student_detail",
+            url:"/PASS/index.php/Home/Teacher/student_detail",
             data:"student_id=S1",
             type:"get",
             success: function(msg){
@@ -121,7 +121,6 @@ $(document).ready(function (){
                 card.fadeIn();
             }
         })
-
     })
     $(document).on("mouseout",".stu-info",function(event){
         //$(".student-card").css("top",event.clientY+"px","left",event.clientX+"px");
