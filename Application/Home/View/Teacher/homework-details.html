@@ -63,7 +63,9 @@
 						<p class="homework-title"><{$submit['name']}></p>
 						<p class="stu-info comment"><span class="stu-info-text"><{$submit['studentName']}>(<{$submit['studentNum']}>)</span><span class="stu-info-detail">查看学生详情</span></p>
 						<{if condition="$submit['isCorrected'] eq true"}>
-						<p class="homework-request comment"><{$submit['comment']}></p>
+						<div class="request">
+							<p class="homework-request comment"><{$submit['comment']}></p>
+						</div>
 						<{/if}>
 
 					</div>

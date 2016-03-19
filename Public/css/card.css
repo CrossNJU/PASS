@@ -1,4 +1,5 @@
 body {
+    word-break:break-all;
     font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, "Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC", "Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC", "Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei", "ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
     background-color: #f4f4f4;
 }
@@ -66,6 +67,7 @@ a {
 }
 
 .btn {
+    transition: all 0.1s linear 0s;
     height: 44px;
     padding: 0px 40px 0px 40px;
     margin-right: 6px;
@@ -152,6 +154,7 @@ b:after {
 }
 
 .nav-btn {
+    transition: all 0.1s linear 0s;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -159,6 +162,7 @@ b:after {
     width: 120px;
     height: 64px;
     margin-right: -5px;
+    border-bottom: 0px solid #57beed;
     line-height: 64px;
     overflow: hidden;
     font-size: 18px;
@@ -331,8 +335,12 @@ b:after {
 }
 
 .homework-manage .homework-request {
-    display: none;
     margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.homework-manage .request {
+    display: none;
 }
 
 .homework-tch .rect {

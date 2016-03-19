@@ -20,7 +20,7 @@ $(document).ready(function (){
             //console.log(comment[0].scrollHeight+ " " +comment.outerHeight()+" "+comment.height());
             //comment.animate({height: oldHeight+"px"});
         }
-        $(this).siblings(".homework-info").children(".homework-request").slideToggle();
+        $(this).siblings(".homework-info").children(".request").slideToggle();
     });
 
     /*
