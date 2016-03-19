@@ -121,22 +121,27 @@ class AdministerController extends Controller
         $this->msg = "";
         $user_model = D('User');
 
-        if($id != NULL)
+        if($id != NULL){
             $stu = $user_model->where("number = '$id'")->select()[0];
-
-        $this->student = $stu;//当前学生
+            $stu['password'] = '12345678';
+            $this->student = $stu;//当前学生
+        }
 
         if (isset($_POST['register'])) {
 
             $student_id = I('post.stu_id');
             $rows = $user_model->where("number = '$student_id'")->select();
+            $change_pwd = false;
             if($id == NULL && count($rows)>0){
                 $this->msg = "学生已存在!";
                 $this->type = "warning";
             }else{
 
                 $data['number'] = $student_id;
-                $data['password'] = I('post.pwd');
+                if(I('post.pwd')!=null){
+                    $data['password'] = I('post.pwd');
+                    $change_pwd = true;
+                }
                 $data['phone'] = I('post.phone');
                 $data['email'] = I('post.email');
                 $data['name'] = I('post.name');
@@ -147,8 +152,10 @@ class AdministerController extends Controller
                 if($id == NULL && $user_model->create($data)){
                     $user_model->add();
                     $this->redirect('Home/Administer/student_manage/res/add-stu-suc/type/suc');
-                }elseif ($id != NULL && $user_model->create($data)){
+                }elseif ($id != NULL && $change_pwd && $user_model->create($data)){
                     $user_model->save();
+                    $this->redirect('Home/Administer/student_manage/res/mod-stu-suc/type/suc');
+                }elseif ($id != NULL && !$change_pwd && $user_model->save($data)){
                     $this->redirect('Home/Administer/student_manage/res/mod-stu-suc/type/suc');
                 } else {
                     $this->msg = "添加/修改学生失败!";
@@ -361,19 +368,26 @@ class AdministerController extends Controller
 
         $this->msg = "";
 
-        if($id!= NULL)
-            $this->teacher = $user_model->where("number = '$id'")->select()[0];
+        if($id!= NULL){
+            $tea = $user_model->where("number = '$id'")->select()[0];
+            $tea['password'] = '12345678';
+            $this->teacher = $tea;
+        }
 
         if(isset($_POST['add'])){
 
             $teacher_id = I('post.tea_id');
             $rows = $user_model->where("number = '$teacher_id'")->select();
+            $change_pwd = false;
            if($id == NULL && count($rows)>0){
                $this->msg = "已存在教师!";
                $this->type = "warning";
            }else {
                $data['number'] = $teacher_id;
-               $data['password'] = I('post.pwd');
+               if(I('post.pwd')!=null) {
+                   $data['password'] = I('post.pwd');
+                   $change_pwd = true;
+               }
                $data['phone'] = I('post.phone');
                $data['email'] = I('post.email');
                $data['name'] = I('post.name');
@@ -384,8 +398,11 @@ class AdministerController extends Controller
                    $user_model->add();
                    $this->redirect('Home/Administer/teacher_manage/res/add-tea-suc/type/suc');
                }
-               elseif($id!=NULL && $user_model->create($data)){
+               elseif($id!=NULL && $change_pwd && $user_model->create($data)){
                    $user_model->save();
+                   $this->redirect('Home/Administer/teacher_manage/res/mod-tea-suc/type/suc');
+               }
+               elseif($id!=NULL && !$change_pwd && $user_model->save($data)){
                    $this->redirect('Home/Administer/teacher_manage/res/mod-tea-suc/type/suc');
                } else{
                    $this->msg = "添加/修改教师失败!";
