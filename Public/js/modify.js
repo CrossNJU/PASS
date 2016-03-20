@@ -5,9 +5,6 @@
 var pwd = false;
 
 $(document).ready(function(){
-    var aca = $("#tea_aca_temp").val();
-    var spe = $("#tea_spe_temp").val();
-    var grade = $("#stu_grade_temp").val();
     var cou_year = $("#cou_year_temp").val();
     var cou_sea = $("#cou_sea_temp").val();
     //alert(aca);

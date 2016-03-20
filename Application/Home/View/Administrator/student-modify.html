@@ -17,18 +17,24 @@
 
 </head>
 <body onload="show()">
-<input style="display: none" id="msg" value="<{$msg}>">
-<input style="display: none" id="type" value="<{$type}>">
 <div class="content">
     <{include file="Common/header-admin"/}>
 
+
+
     <div class="nav">
         <div class="wrapper">
+            <{if condition="$isAdmin eq true"}>
             <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
             <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
             <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
+            <{else /}>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
+            <a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
+            <{/if}>
         </div>
     </div>
+
 
     <div class="wrapper">
         <form name="aca_spe_form" id="aca_spe_form" method="post" onsubmit="return checkStu();return false;">
@@ -48,11 +54,6 @@
                         <input class="text" type="text" name="name" id="stu_name" value="<{$student['name']}>"/>
                         <span class="hint"></span>
                     </div>
-
-                    <input style="display: none" id="tea_aca_temp" value="<{$student['academy']}>">
-                    <input style="display: none" id="tea_spe_temp" value="<{$student['speciality']}>">
-                    <input style="display: none" id="stu_grade_temp" value="<{$student['grade']}>">
-
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
                         <!--<input class="text" type="text" name="aca" placeholder="院系"/>-->
@@ -126,13 +127,15 @@
                         <input class="text" type="text" name="phone" id="stu_phone"  value="<{$student['phone']}>"/>
                         <span class="hint"></span>
                     </div>
+                    <{if condition="$isAdmin eq true"}>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">密码</p>
                         <input class="text set-pwd" type="password" name="pwd" id="stu_pwd" value="<{$student['password']}>"/>
                         <span class="hint"></span>
                     </div>
-
+                    <{/if}>
                 </div>
+
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">添加新学生</a>-->
                     <input type="submit" class="btn sbtn" id="add-stu-btn" name="register" value="完成修改">
@@ -140,10 +143,38 @@
 
             </div>
         </form>
+
+        <{if condition="$isAdmin neq true"}>
+        <div class="card input-card">
+            <div class="card-info">
+                <h3 class="card-title">修改密码</h3>
+                <form id="password-form" method="post" action="">
+                    <p class="comment">原密码</p>
+                    <input type="text" name="old_pwd" placeholder="原密码">
+                    <p class="comment">新密码</p>
+                    <input type="text" name="new_pwd" placeholder="新密码">
+                    <p class="comment">重复新密码</p>
+                    <input type="text" placeholder="重复新密码">
+                    <br/>
+                    <input class="btn" type="submit" name="save_pwd" value="修改密码">
+                    <!--<a class="btn" href="#">修改密码</a>-->
+                </form>
+            </div>
+        </div>
+        <{/if}>
+
+        <{include file="Common/footer"/}>
     </div>
 
-    <{include file="Common/footer"/}>
+
+    <script>
+        var aca = "<{$student['academy']}>";
+        var spe = "<{$student['speciality']}>";
+        var grade = "<{$student['grade']}>";
+    </script>
 </div>
+<input style="display: none" id="msg" value="<{$msg}>">
+<input style="display: none" id="type" value="<{$type}>">
 
 </body>
 </html>
