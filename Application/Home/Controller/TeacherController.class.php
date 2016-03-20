@@ -159,7 +159,7 @@ class TeacherController extends Controller
             'end' => $assignments_detail['endtime'],
             'isEnd' => $common_logic->isEnded($assignments_detail['endtime']),
             'require' => $assignments_detail['requi'],
-            'numOfSubmit' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
+            'numOfSubmit' =>  $course_logic->get_sub_exa($assignments_detail['number'],1),
             'corrected' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
             'submit' => $submit,
             'type' => $assignments_detail['type'],
