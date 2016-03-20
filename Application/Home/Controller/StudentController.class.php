@@ -29,7 +29,8 @@ class StudentController extends Controller
         $stu = session('user');
         $user_model = D('User');
         $student = $user_model->where("number = '$stu'")->select()[0];
-        $this->info = $student;//学生原始信息,字段参见数据库
+        $this->student = $student;//学生原始信息,字段参见数据库
+        $this->isAdmin = false;
 
         if(isset($_POST['save_info'])){
             $data['number'] = I('post.number');
@@ -75,7 +76,7 @@ class StudentController extends Controller
             }
         }
 
-        $this->display('Student:setting-stu');
+        $this->display('Administrator:student-modify');
     }
 
     public function my_course($res = NULL,$type = NULL){//..................................................学生-我的课程

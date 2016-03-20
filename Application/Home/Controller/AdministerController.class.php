@@ -125,6 +125,7 @@ class AdministerController extends Controller
             $stu = $user_model->where("number = '$id'")->select()[0];
             $stu['password'] = '12345678';
             $this->student = $stu;//当前学生
+            $this->isAdmin = true;
         }
 
         if (isset($_POST['register'])) {
