@@ -10,7 +10,7 @@ $(document).ready(function(){
         jQuery.ajax({
             async: false,
             data: "course_id="+id,
-            url:"course_del",
+            url:"/PASS/Home/Administer/course_del",
             type: "post",
             success: function(msg){
                 if(msg == -1){
@@ -31,8 +31,6 @@ $(document).ready(function(){
 
     $(document).on("click",".download-hwk",function(){
         var asid = $(this).parent().next().text();
-        //alert(asid);
-
         console.log($(this));
 
         jQuery.ajax({
@@ -41,9 +39,6 @@ $(document).ready(function(){
             url:"download",
             type: "post",
             success: function(msg){
-                alert(msg);
-                //this.attr("herf","_ROOT__/index.php/Home/" + msg);
-                //window.location.herf = msg;
                 window.location.href = "http://localhost/PASS/" + msg;
 
 

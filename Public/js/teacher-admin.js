@@ -3,16 +3,14 @@
  */
 $(document).ready(function(){
     $(document).on("click",".admin-remove-btn",function(){
-
-        //alert("ininin");
-
         var btn = $(this);
         console.log($(this));
         var id = btn.attr("data-id");
         jQuery.ajax({
             async: false,
             data: "teacher_id="+id,
-            url:"teacher_del",
+            //url:"teacher_del",
+            url:"/PASS/Home/Administer/teacher_del",
             type: "post",
             success: function(msg){
                 if(msg == -1){
