@@ -261,6 +261,8 @@ function checkLesson(){
 }
 
 function validatePwd() {
+    var result = true;
+
     var old_pwd = $("input[name='old_pwd']").val();
     var new_pwd = $("input[name='new_pwd']").val();
     var new_pwd_repeat = $("input#new_pwd_repeat").val();

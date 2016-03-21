@@ -25,6 +25,7 @@ $(document).ready(function () {
                         }, function(){
                             btn.html("已添加课程");
                         });
+                        btn.removeClass("btn-primary");
                     }
                 },
                 error: function () {
@@ -46,6 +47,7 @@ $(document).ready(function () {
                         btn.unbind("mouseenter").unbind("mouseleave");
                         btn.html("加入课程");
                         btn.css("width","auto");
+                        btn.addClass("btn-primary");
                     }
                 },
                 error: function () {

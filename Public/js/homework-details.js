@@ -57,6 +57,9 @@ $(document).ready(function (){
     var submitAgainFn;
     $(document).on("click",".again-btn",submitAgainFn = function(){
         var btn = $(this);
+        if(btn.hasClass("btn-disabled")){
+            return ;
+        }
         var studentId = btn.attr("data-stuid");
         var homeworkId = btn.attr("data-hwid");
         showDialog("确定以邮件提醒学生重新提交作业？");
@@ -69,13 +72,14 @@ $(document).ready(function (){
                 success: function(msg){
                     if(msg == 1){
                         showStateBar("success","提醒重新提交成功");
+                        btn.html("已提醒重交")
                     }else if(msg == 0) {
                         showStateBar("danger","提醒重新提交失败，请稍后再试");
+                        btn.removeClass("btn-disabled");
                     }
                 },
             });
             btn.addClass("btn-disabled");
-            $(document).unbind("click",submitAgainFn);
         })
     });
 

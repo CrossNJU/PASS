@@ -88,8 +88,9 @@ a {
 }
 
 .btn-disabled {
-    border-color: #a5a5a5;
-    color:#a5a5a5;
+    background-color: #f4f4f4;
+    border-color: #A5A5A5;
+    color:#A5A5A5;
 }
 
 .btn-active {
@@ -104,7 +105,7 @@ a {
 }
 
 .btn-disabled:hover {
-    background: none;
+    background-color: #f4f4f4;
     color: #a5a5a5;
 }
 
@@ -165,9 +166,10 @@ b:after {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: inline-block;
-    width: 120px;
+    /*width: 120px;*/
     height: 64px;
     margin-right: -5px;
+    padding: 0 26px 0 26px ;
     border-bottom: 0px solid #57beed;
     line-height: 64px;
     overflow: hidden;

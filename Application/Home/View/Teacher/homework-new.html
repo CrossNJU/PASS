@@ -7,6 +7,9 @@
 	<{else/}>
 	<title>修改作业信息</title>
 	<{/if}>
+
+	<link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico" >
+
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
@@ -21,8 +24,7 @@
     <{include file="Common/header"/}>
 	<div class="nav">
 		<div class="wrapper">
-			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_assignments">我的作业</a>
-			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_course">我的课程</a>
+			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_course">&lt 返回我的课程</a>
  		</div>
 	</div>
 
@@ -40,7 +42,12 @@
 						<input type="text" name="course" readonly="readonly" placeholder="选择作业所属课程" value="<{$homework['course']}><{$course}>"/>
 						<p class="comment" >作业名称</p>
 						<input type="text" name="title" placeholder="输入作业名称" value="<{$homework['name']}>"/>
-						<p class="comment" >作业类型</p>
+						<p class="comment" >作业类型
+							<{if condition="$isModify eq false" }>
+							<span class="warning-text">一旦设定不能修改</span>
+							<{else /}>
+							<span class="warning-text">不能修改</span>
+							<{/if}></p>
 						<select class="text" name="type" <{if condition="$isModify eq true"}>onfocus="this.defaultIndex=this.selectedIndex;" onchange="this.selectedIndex=this.defaultIndex;"<{/if}>>
 							<option value="pdf">PDF(提供预览功能)</option>
 							<option value="word">WORD/PPT(提供下载功能)</option>
