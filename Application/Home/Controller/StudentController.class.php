@@ -14,15 +14,21 @@ class StudentController extends Controller
 {
 
     public function index(){
-        if(!session('?per') || session('per')!= 1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?per') || session('per')!= 1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
 
         $this->redirect('Student/my_course');
     }
 
     public function sets(){//...................................................................................学生-设置
-        if(!session('?per') || session('per')!= 1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?per') || session('per')!= 1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
 
         $this->msg = "";//消息
 
@@ -80,8 +86,11 @@ class StudentController extends Controller
     }
 
     public function my_course($res = NULL,$type = NULL){//..................................................学生-我的课程
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -124,8 +133,11 @@ class StudentController extends Controller
     }
 
     public function my_assignment($res=NULL,$type=NULL){//..................................................学生-我的作业
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
         $student_id = session('user');
 
         $common_logic = D('Common','Logic');
@@ -155,8 +167,11 @@ class StudentController extends Controller
     }
 
     public function course_remove($course_id){//.................................................................退选课程
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -171,8 +186,11 @@ class StudentController extends Controller
     }
 
     public function course_in(){//.........................................................................学生-加入新课程
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -212,8 +230,11 @@ class StudentController extends Controller
     }
 
     public function course_add($course_id){//................................................................点击加入课程
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -261,8 +282,11 @@ class StudentController extends Controller
 //    }
 
     public function assignment_submit($assignment_id){//.........................................................提交作业
-        if(!session('?user') || session('per')!=1)
-            $this->redirect('Common/login/res/login-war/type/war');
+        if(!session('?user') || session('per')!=1){
+            session('msg','尚未登录');
+            session('type','warning');
+            $this->redirect('Common/login');
+        }
         $student_id = session('user');
 
         $this->msg = "";
