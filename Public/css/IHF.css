@@ -59,7 +59,6 @@ input,textarea,select.text{
 input[type="submit"],input[type="button"]{
     display: inline-block;
     height: 46px;
-    background-color: #fff;
     vertical-align: top;
     cursor: pointer;
 }

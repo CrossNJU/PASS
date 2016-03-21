@@ -81,13 +81,18 @@ a {
     cursor: pointer;
 }
 
+.btn-primary {
+    background-color: #57beed;
+    color: #fff;
+}
+
 .btn-disabled {
     border-color: #a5a5a5;
     color:#a5a5a5;
 }
 
 .btn-active {
-    background-color: #50a5e3;
+    background-color: #57beed;
     color: #fff;
 }
 
