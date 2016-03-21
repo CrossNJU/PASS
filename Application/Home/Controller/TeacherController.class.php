@@ -143,9 +143,12 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $assignment_not_examine = $assignment_dis_model
+        $assignment_not_examine_all = $assignment_dis_model
             ->where("assNumber = '$assignment_id' AND isExamined = 0")
-            ->select()[0];
+            ->select();
+        if(count($assignment_not_examine_all)>0)
+            $assignment_not_examine = $assignment_not_examine_all[0]['stdnumber'];
+        else $assignment_not_examine = -1;
 
 //        dump($assignment_not_examine);
 
@@ -163,7 +166,7 @@ class TeacherController extends Controller
             'corrected' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
             'submit' => $submit,
             'type' => $assignments_detail['type'],
-            'next_student_id' => $assignment_not_examine['stdnumber']
+            'next_student_id' => $assignment_not_examine
         );
         $this->display('Teacher:homework-details');
     }
