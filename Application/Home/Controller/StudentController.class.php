@@ -15,7 +15,7 @@ class StudentController extends Controller
 
     public function index(){
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $this->redirect('Student/my_course');
@@ -24,7 +24,7 @@ class StudentController extends Controller
     public function sets(){//...................................................................................学生-设置
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $stu = session('user');
@@ -78,7 +78,7 @@ class StudentController extends Controller
     public function my_course(){//..................................................学生-我的课程
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $student_id = session('user');
@@ -115,10 +115,14 @@ class StudentController extends Controller
         $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment(){//..................................................学生-我的作业
+    public function my_assignment($reload=0){//..................................................学生-我的作业
+
+        if($reload == 1)
+            session('forUrl','Student/my_assignment');
+        else session('forUrl',null);
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $student_id = session('user');
@@ -145,7 +149,7 @@ class StudentController extends Controller
     public function course_remove($course_id){//.................................................................退选课程
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $student_id = session('user');
@@ -164,7 +168,7 @@ class StudentController extends Controller
     public function course_in(){//.........................................................................学生-加入新课程
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $course_model = M('Course');
@@ -208,7 +212,7 @@ class StudentController extends Controller
     public function course_add($course_id){//................................................................点击加入课程
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $student_id = session('user');
@@ -235,7 +239,7 @@ class StudentController extends Controller
     public function assignment_submit($assignment_id){//.........................................................提交作业
 
         $validate_logic = D('Validate','Logic');
-        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
         $validate_logic->setSession();
 
         $student_id = session('user');
@@ -279,7 +283,17 @@ class StudentController extends Controller
         }
 
         $assignment_model = M('Assignment');
+        $assignment_dis_model = M('Assignmentdis');
         $assignment_detail = $assignment_model->where("number = '$assignment_id'")->select()[0];
+        $assignment_dis_detail = $assignment_dis_model->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")->select()[0];
+        $sub = array(
+            'homeworkName' => $assignment_detail['title'],
+            'submitted' => -1
+        );
+        if($assignment_dis_detail['issubmitted'] == 1){
+            $sub['submitted'] = $assignment_dis_detail['submitname'];
+        }
+        $this->submit = $sub;
         $this->type = $assignment_detail['type'];
         $this->display('Student/submit');
     }

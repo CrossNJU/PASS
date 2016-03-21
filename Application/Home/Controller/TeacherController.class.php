@@ -159,7 +159,7 @@ class TeacherController extends Controller
             'corrected' =>  $course_logic->get_sub_exa($assignments_detail['number'],2),
             'submit' => $submit,
             'type' => $assignments_detail['type'],
-            'next_student_id' => $assignment_not_examine
+            'next_student_id' => $assignment_not_examine,
         );
         $this->display('Teacher:homework-details');
     }
@@ -332,8 +332,8 @@ class TeacherController extends Controller
 
         $assignment = $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->select()[0];
-        $assignment['isSubmitted'] = 0;
-        $assignment['isExamined'] = 0;
+        $assignment['isSubmitted'] = 1;
+        $assignment['isExamined'] = -1;
         $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->save($assignment);
 
@@ -342,9 +342,12 @@ class TeacherController extends Controller
         $teacher_name = $user_logic->get_user_name(session('user'));
         $assignment_name = $course_logic->get_assignment_name($assignment['assnumber']);
         $stu_name = $user_logic->get_user_name($stu_id);
+        $prefix = C('URL_HEAD').'Student/my_assignment/reload/1';
 
-        $body = $stu_name."同学,你好!<br>"."<p>请重新提交'$teacher_name'老师的'$course_name'课程的
-            '$assignment_name'作业</p><br>";
+        $body = $stu_name."同学,你好!<br>"."<p>你的老师 $teacher_name 要求你重新提交<em>
+            课程 $course_name</em> 的作业:<em> $assignment_name </em></p><br>"."详情请与老师联系!<br>"
+            ."<br> 你可以点击以下链接进入<你的作业界面>:<br>"
+            .$prefix;
 
         $address = $user_model->where("number = '$stu_id'")->select()[0]['email'];
 

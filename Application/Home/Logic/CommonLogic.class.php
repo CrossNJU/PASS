@@ -73,6 +73,7 @@ class CommonLogic
         $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
+            ->order('submittime desc')
             ->select();
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){

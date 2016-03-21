@@ -78,7 +78,8 @@ class CommonController extends Controller
                 session("per", $per);
                 session("username",$user_logic->get_user_name($id));
                 switch ($per){
-                    case "1": $this->redirect('Student/my_course');break;
+                    case "1": if(session('?forUrl')) $this->redirect(session('forUrl'));
+                        else $this->redirect('Student/my_course');break;
                     case "2": $this->redirect('Teacher/my_course');break;
                     case "3": $this->redirect('Administer/student_manage');break;
                     default: {

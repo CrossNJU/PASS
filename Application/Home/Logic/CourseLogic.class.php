@@ -14,10 +14,10 @@ class CourseLogic
 
     public function get_sub_exa($assNumber,$type){
         $assignment_dis_model = M('Assignmentdis');
-        $assignments = $assignment_dis_model->where("assNumber = '$assNumber'")->select();
+        $assignments = $assignment_dis_model->where("assNumber = '$assNumber'")->order('submittime desc')->select();
         $cou = 0;
         foreach ($assignments as $assignment){
-            if(($type == 1 && $assignment['issubmitted'] == 1)||($type == 2 && $assignment['isexamined'] == 1))
+            if(($type == 1 && $assignment['issubmitted'] == 1)||($type == 2 && $assignment['isexamined'] != 1))
                 $cou ++;
         }
         return $cou;
@@ -27,7 +27,7 @@ class CourseLogic
         $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
-        $assignments = $assignment_model->where("course = '$course_id'")->select();
+        $assignments = $assignment_model->where("course = '$course_id'")->order('endtime desc')->select();
         $homework = array();
         $i = 0;
         foreach ($assignments as $assignment_detail) {
@@ -61,6 +61,7 @@ class CourseLogic
         $assignment_model = M('Assignment');
         $assignment_dis_s = $assignment_dis_model
             ->where("stdNumber = '$student_id' AND cNumber = '$course_id'")
+            ->order('submittime desc')
             ->select();
         $i = 0;
         $assignments = array();
