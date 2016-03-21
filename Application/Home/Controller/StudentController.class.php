@@ -182,8 +182,9 @@ class StudentController extends Controller
 
         if(isset($_POST['search'])){
             $key = I('post.search');
+            $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%")';
             $course_all = $course_model
-                ->where("title = '$key' OR number = '$key'")
+                ->where($where)
                 ->select();
             $status = $course_logic->get_course_status($course_all);
         }

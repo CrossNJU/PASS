@@ -64,7 +64,8 @@ class AdministerController extends Controller
 
     protected function user_find($per, $key){
         $user_model = M('User');
-        $all = $user_model->where("name = '$key' OR number = '$key'")->select();
+        $where['_string']='(name like "%'.$key.'%")  OR (number like "%'.$key.'%")';
+        $all = $user_model->where($where)->select();
         $ret = array();
         $i = 0;
         foreach ($all as $user){
@@ -218,8 +219,8 @@ class AdministerController extends Controller
 
     protected function course_find($key){
         $course = M('Course');
-        return $course->where("title = '$key' OR number = '$key'
-            OR teacher = '$key'")->select();
+        $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%") OR (teacher like "%'.$key.'%")';
+        return $course->where($where)->select();
     }
 
     public function course_del($course_id){//....................................................................删除课程
