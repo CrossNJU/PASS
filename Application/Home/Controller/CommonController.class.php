@@ -14,20 +14,23 @@ class CommonController extends Controller
 {
     public function index()
     {
+        $validate_logic = D('Validate','Logic');
+        $validate_logic->setSession();
         $this->display('Common:Login');
     }
 
     public function register()//.................................................................................学生注册
     {
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        $validate_logic->setSession();
+
         if (isset($_POST['register'])) {
             $user_model = D('User');
 
             $student_id = I('post.stu_id');
             $rows = $user_model->where("number = '$student_id'")->select();
             if(count($rows)>0){
-                $this->msg = "用户已存在!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('用户已存在','warning');
             }else{
                 $data['number'] = $student_id;
                 $data['password'] = I('post.pwd');
@@ -42,35 +45,29 @@ class CommonController extends Controller
                     $user_model->add();
                     $this->redirect('Common/login/res/'.'reg-suc/type/'.'suc');
                 }else {
-                    $this->msg = "注册失败!";
-                    $this->type = "danger";
+                    $validate_logic->sendMsg('注册失败','danger');
                 }
             }
         }
         $this->display('Common:Register-student');
     }
 
-    public function login($res = NULL,$type = NULL)//................................................................登录
+    public function login()//................................................................登录
     {
-        $common_logic = D('Common','Logic');
+        $validate_logic = D('Validate','Logic');
+        $validate_logic->setSession();
+
         $user_logic = D('User','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
+
         if (isset($_POST['login'])) {
             $id = I('post.id');
             $pwd = I('post.pwd');
             $user_model = M('User');
             $row = $user_model->where("number = '$id'")->select();
             if (count($row) == 0){
-                $this->msg = "用户不存在!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('用户不存在','warning');
             }elseif ($row[0]['password'] != md5($pwd)){
-                $this->msg = "密码错误!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('密码错误','danger');
             }else{
                 $per = $row[0]['permission'];
 
@@ -82,8 +79,7 @@ class CommonController extends Controller
                     case "2": $this->redirect('Teacher/my_course');break;
                     case "3": $this->redirect('Administer/student_manage');break;
                     default: {
-                        $this->msg = "登录失败!";
-                        $this->type = "danger";
+                        $validate_logic->sendMsg('登录失败','danger');
                     }
                 }
             }
@@ -100,7 +96,9 @@ class CommonController extends Controller
     public function find_pwd()//................................................................................找回密码
     {
 
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        $validate_logic->setSession();
+
         $sub = '找回密码';
         $prefix = C('URL_HEAD').'Common/pwd_reset/id/';
         $body = '点击一下链接,或复制链接到浏览器打开:<br>'.$prefix;
@@ -118,16 +116,13 @@ class CommonController extends Controller
                 $body = $body.$student_id;
                 if($common_logic->sendEmail($sub,$address,$body)){
                     session('reset_ip',get_client_ip());
-                    $this->msg = "发送成功!";
-                    $this->type = "success";
+                    $validate_logic->sendMsg('发送成功','success');
                 }
                 else {
-                    $this->msg = "发送失败!";
-                    $this->type = "danger";
+                    $validate_logic->sendMsg('发送失败','danger');
                 }
             }else{
-                $this->msg = "用户不存在!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('用户不存在','warning');
             }
         }
 
@@ -139,7 +134,9 @@ class CommonController extends Controller
         if (session('reset_ip')!= get_client_ip()){
             $this->ajaxReturn("error!you are not allowed to see this page!");
         }
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        $validate_logic->setSession();
+
         $user = D('User');
         if (isset($_POST['rset'])) {
             $new_pwd = I('post.new_pwd');
@@ -150,8 +147,7 @@ class CommonController extends Controller
                 session('reset_ip','null');
                 $this->redirect('Common/login/res/reset-suc/type/suc');
             }else{
-                $this->msg = "重置失败!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('重置失败','danger');
             }
 
         }

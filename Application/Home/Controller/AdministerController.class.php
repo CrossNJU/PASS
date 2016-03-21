@@ -12,29 +12,18 @@ use Think\Controller;
 class AdministerController extends Controller
 {
     public function index(){
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $this->display('Administrator:student-admin');
     }
 
-    public function student_manage($res=NULL,$type=NULL){//......................................................学生管理
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+    public function student_manage(){//......................................................学生管理
 
-        $common_logic = D('Common','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $all = $this->user_show(1);
         if(isset($_POST['find'])){//查找学生,空白默认查找全部
@@ -84,11 +73,10 @@ class AdministerController extends Controller
     }
 
     public function stu_del($stu_id){//..........................................................................删除学生
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $user_model = M('User');
         $course_model = M('Course');
@@ -125,13 +113,11 @@ class AdministerController extends Controller
 
     public function student_add($id = NULL)//....................................................................添加学生
     {
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
 
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $user_model = D('User');
 
         if($id != NULL){
@@ -147,8 +133,7 @@ class AdministerController extends Controller
             $rows = $user_model->where("number = '$student_id'")->select();
             $change_pwd = false;
             if($id == NULL && count($rows)>0){
-                $this->msg = "学生已存在!";
-                $this->type = "warning";
+                $validate_logic->sendMsg('学生已存在','warning');
             }else{
 
                 $data['number'] = $student_id;
@@ -165,15 +150,17 @@ class AdministerController extends Controller
                 $data['permission'] = 1;
                 if($id == NULL && $user_model->create($data)){
                     $user_model->add();
-                    $this->redirect('Administer/student_manage/res/add-stu-suc/type/suc');
+                    $validate_logic->sendMsg('增加成功','success');
+                    $this->redirect('Administer/student_manage');
                 }elseif ($id != NULL && $change_pwd && $user_model->create($data)){
                     $user_model->save();
-                    $this->redirect('Administer/student_manage/res/mod-stu-suc/type/suc');
+                    $validate_logic->sendMsg('修改成功','success');
+                    $this->redirect('Administer/student_manage');
                 }elseif ($id != NULL && !$change_pwd && $user_model->save($data)){
-                    $this->redirect('Administer/student_manage/res/mod-stu-suc/type/suc');
+                    $validate_logic->sendMsg('修改成功','success');
+                    $this->redirect('Administer/student_manage');
                 } else {
-                    $this->msg = "添加/修改学生失败!";
-                    $this->type = "danger";
+                    $validate_logic->sendMsg('增加/修改学生失败','danger');
                 }
 
             }
@@ -185,20 +172,11 @@ class AdministerController extends Controller
 
     //--------------------------------------------------------------------------
 
-    public function course_manage($res = NULL, $type = NULL){//..................................................课程管理
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+    public function course_manage(){//..................................................课程管理
 
-        $common_logic = D('Common','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
@@ -239,11 +217,10 @@ class AdministerController extends Controller
     }
 
     public function course_del($course_id){//....................................................................删除课程
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
@@ -257,16 +234,13 @@ class AdministerController extends Controller
     }
 
     public function course_add($id = NULL,$teacher_id = NULL){//.................................................新增课程
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
         $course_model = M('Course');
         $user_model = M('User');
         $common_logic = D('Common', 'Logic');
-
-        $this->msg = "";
 
         if($id != NULL){
             $cou = $course_model->where("number = '$id'")->select()[0];
@@ -289,8 +263,7 @@ class AdministerController extends Controller
             $teacher = $data['teacher'];
             $search_teacher = $user_model->where("number = '$teacher'")->select();
             if(count($search_teacher)==0){
-                session('msg','教师不存在');
-                session('type','warning');
+                $validate_logic->sendMsg('教师不存在','warning');
             }elseif($id == NULL && $course_id = $course_model->add($data)) {
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
@@ -299,8 +272,7 @@ class AdministerController extends Controller
             }elseif($id != NULL && $course_model->where("number = '$id'")->save($data)){
                 $this->redirect('Administer/course_manage/res/mod-cou-suc/type/suc');
             }else {
-                session('msg','添加/修改课程失败');
-                session('type','danger');
+                $validate_logic->sendMsg('添加/修改课程失败','danger');
             }
         }
 
@@ -313,11 +285,10 @@ class AdministerController extends Controller
     }
 
     public function download($assignment_id){//..................................................................批量下载
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
@@ -326,20 +297,14 @@ class AdministerController extends Controller
     //--------------------------------------------------------------------------
 
     public function teacher_manage($res=NULL,$type=NULL){//......................................................教师管理
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $all = $this->user_show(2);
 
         $common_logic = D('Common','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
 
         if(isset($_POST['find'])){//查找课程,空白默认查找全部
             $key = I('post.search');
@@ -366,11 +331,10 @@ class AdministerController extends Controller
     }
 
     public function teacher_del($teacher_id){//..................................................................删除教师
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $user_model = M('User');
         $course_model = M('Course');
@@ -405,14 +369,12 @@ class AdministerController extends Controller
     }
 
     public function teacher_add($id = NULL){//...................................................................新增教师
-        if(!session('?user') || session('per')!=3){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
-        $user_model = D('User');
 
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $user_model = D('User');
 
         if($id!= NULL){
             $tea = $user_model->where("number = '$id'")->select()[0];
@@ -426,8 +388,7 @@ class AdministerController extends Controller
             $rows = $user_model->where("number = '$teacher_id'")->select();
             $change_pwd = false;
            if($id == NULL && count($rows)>0){
-               $this->msg = "已存在教师!";
-               $this->type = "warning";
+               $validate_logic->sendMsg('已存在教师','warning');
            }else {
                $data['number'] = $teacher_id;
                if(I('post.pwd')!=null) {
@@ -451,8 +412,7 @@ class AdministerController extends Controller
                elseif($id!=NULL && !$change_pwd && $user_model->save($data)){
                    $this->redirect('Administer/teacher_manage/res/mod-tea-suc/type/suc');
                } else{
-                   $this->msg = "添加/修改教师失败!";
-                   $this->type = "danger";
+                   $validate_logic->sendMsg('增加/修改教师失败','danger');
                }
 
            }

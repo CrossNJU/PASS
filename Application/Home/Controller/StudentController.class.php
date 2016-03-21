@@ -14,23 +14,18 @@ class StudentController extends Controller
 {
 
     public function index(){
-        if(!session('?per') || session('per')!= 1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $this->redirect('Student/my_course');
     }
 
     public function sets(){//...................................................................................学生-设置
-        if(!session('?per') || session('per')!= 1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
 
-        $this->msg = "";//消息
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $stu = session('user');
         $user_model = D('User');
@@ -47,24 +42,21 @@ class StudentController extends Controller
             $data['grade'] = I('post.grade');
             $data['email'] = I('post.email');
             if($user_model->save($data)) {
-                $this->msg = "保存成功!";
-                $this->type = "success";
+                $validate_logic->sendMsg('保存成功','success');
                 session('user',$data['number']);
                 $stu = session('user');
                 $student = $user_model->where("number = '$stu'")->select()[0];
                 $this->student = $student;
             }
             else {
-                $this->msg = "保存失败!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('保存失败','danger');
             }
         }
         if(isset($_POST['save_pwd'])){
             $old = I('post.old_pwd');
             $old_in_db = $user_model->where("number = '$stu'")->getField('password');
             if(md5($old)!=$old_in_db) {
-                $this->msg = "原密码错误!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('原密码错误','danger');
             }
 
             $new = I('post.new_pwd');
@@ -73,32 +65,22 @@ class StudentController extends Controller
             $res = $user_model->create($row);
             if($res) {
                 $user_model->save();
-                $this->msg = "保存成功!";
-                $this->type = "success";
+                $validate_logic->sendMsg('保存成功','success');
             }
             else {
-                $this->msg = "保存失败!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('保存失败','danger');
             }
         }
 
         $this->display('Administrator:student-modify');
     }
 
-    public function my_course($res = NULL,$type = NULL){//..................................................学生-我的课程
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+    public function my_course(){//..................................................学生-我的课程
 
-        $common_logic = D('Common','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -132,21 +114,13 @@ class StudentController extends Controller
         $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment($res=NULL,$type=NULL){//..................................................学生-我的作业
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
-        $student_id = session('user');
+    public function my_assignment(){//..................................................学生-我的作业
 
-        $common_logic = D('Common','Logic');
-        $this->msg = "";
-        if($res!=NULL) {
-            $message = $common_logic->getMessage($res,$type);
-            $this->msg = $message['res'];
-            $this->type = $message['type'];
-        }
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
         $course_ids = $course_dis_model->where("stdnumber = '$student_id'")
@@ -167,11 +141,11 @@ class StudentController extends Controller
     }
 
     public function course_remove($course_id){//.................................................................退选课程
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $student_id = session('user');
 
         $course_dis_model = M('Coursedis');
@@ -186,11 +160,10 @@ class StudentController extends Controller
     }
 
     public function course_in(){//.........................................................................学生-加入新课程
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
 
         $course_model = M('Course');
         $course_all = $course_model->select();
@@ -230,11 +203,11 @@ class StudentController extends Controller
     }
 
     public function course_add($course_id){//................................................................点击加入课程
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $student_id = session('user');
 
         $course_model = M('Course');
@@ -256,40 +229,13 @@ class StudentController extends Controller
         $this->ajaxReturn(1);
     }
 
-//    public function assignment_see($assignment_id){//.................预览作业
-//        if(!session('?user') || session('per')!=1)
-//            $this->redirect('Common/login/res/login-war/type/war');
-//        $student_id = session('user');
-//        $course_logic = D('Course','Logic');
-//
-//        $assignment_dis_model = M('Assignmentdis');
-//        $assignment = $assignment_dis_model
-//            ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")
-//            ->select()[0];
-//
-////        $url_base = C('URL_BASE');
-//        $this->submit = array(
-//            'name' => $assignment['submitname'],
-//            'time' => $assignment['submittime']
-//        );
-//        $this->homework = array(
-//            'num' => $assignment_id,
-//            'name' => $course_logic->get_assignment_name($assignment_id),
-//            'submitName' => $assignment['submitname'],
-//            'submitTime' => $assignment['submittime']
-//        );
-//        $this->display('Student:preview');
-//    }
-
     public function assignment_submit($assignment_id){//.........................................................提交作业
-        if(!session('?user') || session('per')!=1){
-            session('msg','尚未登录');
-            session('type','warning');
-            $this->redirect('Common/login');
-        }
-        $student_id = session('user');
 
-        $this->msg = "";
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $student_id = session('user');
 
         $upload = new Upload();
 
@@ -304,8 +250,7 @@ class StudentController extends Controller
         if(isset($_REQUEST['sub'])) {
             $info = $upload->upload();
             if(!$info) {
-                $this->msg = "上传失败!";
-                $this->type = "danger";
+                $validate_logic->sendMsg('上传失败','danger');
             }
             else{
                 $real_info = $info['doc'];
@@ -316,8 +261,6 @@ class StudentController extends Controller
                     ->select()[0];
                 if($assignment['issubmitted']==0){
                     $data['isSubmitted'] = 1;
-                    $assignment_model = M('Assignment');
-//                    $assignment_model->where("number = '$assignment_id'")->setInc('submitted');
                 }
                 $data['url'] = $url;
                 $data['submitTime'] = date("y-m-d h:i");
