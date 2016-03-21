@@ -34,6 +34,5 @@ class ValidateLogic
         session('type',$type);
         session('changed',1);
         if($in == 0) session('changed',0);
-        echo "into send"."\n";
     }
 }
