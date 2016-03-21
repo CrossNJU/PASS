@@ -30,7 +30,7 @@ class CommonController extends Controller
             $student_id = I('post.stu_id');
             $rows = $user_model->where("number = '$student_id'")->select();
             if(count($rows)>0){
-                $validate_logic->sendMsg('用户已存在','warning');
+                $validate_logic->sendMsg('用户已存在','warning',0);
             }else{
                 $data['number'] = $student_id;
                 $data['password'] = I('post.pwd');
@@ -43,9 +43,10 @@ class CommonController extends Controller
                 $data['permission'] = 1;
                 if($user_model->create($data)){
                     $user_model->add();
+                    $validate_logic->sendMsg('注册成功','success');
                     $this->redirect('Common/login/res/'.'reg-suc/type/'.'suc');
                 }else {
-                    $validate_logic->sendMsg('注册失败','danger');
+                    $validate_logic->sendMsg('注册失败','danger',0);
                 }
             }
         }
@@ -55,7 +56,9 @@ class CommonController extends Controller
     public function login()//................................................................登录
     {
         $validate_logic = D('Validate','Logic');
+//        echo "before: ".session('changed')."\n";
         $validate_logic->setSession();
+//        echo "after: ".session('changed')."\n";
 
         $user_logic = D('User','Logic');
 
@@ -65,9 +68,9 @@ class CommonController extends Controller
             $user_model = M('User');
             $row = $user_model->where("number = '$id'")->select();
             if (count($row) == 0){
-                $validate_logic->sendMsg('用户不存在','warning');
+                $validate_logic->sendMsg('用户不存在','warning',0);
             }elseif ($row[0]['password'] != md5($pwd)){
-                $validate_logic->sendMsg('密码错误','danger');
+                $validate_logic->sendMsg('密码错误','danger',0);
             }else{
                 $per = $row[0]['permission'];
 
@@ -79,12 +82,11 @@ class CommonController extends Controller
                     case "2": $this->redirect('Teacher/my_course');break;
                     case "3": $this->redirect('Administer/student_manage');break;
                     default: {
-                        $validate_logic->sendMsg('登录失败','danger');
+                        $validate_logic->sendMsg('登录失败','danger',0);
                     }
                 }
             }
         }
-
         $this->display('Common:Login');
     }
 
@@ -116,13 +118,13 @@ class CommonController extends Controller
                 $body = $body.$student_id;
                 if($common_logic->sendEmail($sub,$address,$body)){
                     session('reset_ip',get_client_ip());
-                    $validate_logic->sendMsg('发送成功','success');
+                    $validate_logic->sendMsg('发送成功','success',0);
                 }
                 else {
-                    $validate_logic->sendMsg('发送失败','danger');
+                    $validate_logic->sendMsg('发送失败','danger',0);
                 }
             }else{
-                $validate_logic->sendMsg('用户不存在','warning');
+                $validate_logic->sendMsg('用户不存在','warning',0);
             }
         }
 
@@ -145,9 +147,10 @@ class CommonController extends Controller
             if($user->create($row)){
                 $user->save();
                 session('reset_ip','null');
-                $this->redirect('Common/login/res/reset-suc/type/suc');
+                $validate_logic->sendMsg('重置成功','success');
+                $this->redirect('Common/login');
             }else{
-                $validate_logic->sendMsg('重置失败','danger');
+                $validate_logic->sendMsg('重置失败','danger',0);
             }
 
         }

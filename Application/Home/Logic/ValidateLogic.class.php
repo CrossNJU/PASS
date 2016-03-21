@@ -23,16 +23,17 @@ class ValidateLogic
 
     public function checkLogin($per){
         if(!session('?per') || session('per')!= $per){
-            session('msg','尚未登录');
-            session('type','warning');
+            $this->sendMsg('尚未登录','warning');
             return false;
         }
         return true;
     }
 
-    public  function sendMsg($msg,$type){
+    public function sendMsg($msg,$type,$in=1){
         session('msg',$msg);
         session('type',$type);
         session('changed',1);
+        if($in == 0) session('changed',0);
+        echo "into send"."\n";
     }
 }

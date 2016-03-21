@@ -42,21 +42,21 @@ class StudentController extends Controller
             $data['grade'] = I('post.grade');
             $data['email'] = I('post.email');
             if($user_model->save($data)) {
-                $validate_logic->sendMsg('保存成功','success');
+                $validate_logic->sendMsg('保存成功','success',0);
                 session('user',$data['number']);
                 $stu = session('user');
                 $student = $user_model->where("number = '$stu'")->select()[0];
                 $this->student = $student;
             }
             else {
-                $validate_logic->sendMsg('保存失败','danger');
+                $validate_logic->sendMsg('保存失败','danger',0);
             }
         }
         if(isset($_POST['save_pwd'])){
             $old = I('post.old_pwd');
             $old_in_db = $user_model->where("number = '$stu'")->getField('password');
             if(md5($old)!=$old_in_db) {
-                $validate_logic->sendMsg('原密码错误','danger');
+                $validate_logic->sendMsg('原密码错误','danger',0);
             }
 
             $new = I('post.new_pwd');
@@ -65,10 +65,10 @@ class StudentController extends Controller
             $res = $user_model->create($row);
             if($res) {
                 $user_model->save();
-                $validate_logic->sendMsg('保存成功','success');
+                $validate_logic->sendMsg('保存成功','success',0);
             }
             else {
-                $validate_logic->sendMsg('保存失败','danger');
+                $validate_logic->sendMsg('保存失败','danger',0);
             }
         }
 
@@ -253,7 +253,7 @@ class StudentController extends Controller
         if(isset($_REQUEST['sub'])) {
             $info = $upload->upload();
             if(!$info) {
-                $validate_logic->sendMsg('上传失败','danger');
+                $validate_logic->sendMsg('上传失败','danger',0);
             }
             else{
                 $real_info = $info['doc'];
@@ -273,7 +273,8 @@ class StudentController extends Controller
                 $assignment_dis_model
                     ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
                     ->save($data);
-                $this->redirect('Student/my_assignment/res/upload-suc/type/suc');
+                $validate_logic->sendMsg('上传成功','success');
+                $this->redirect('Student/my_assignment');
             }
         }
 

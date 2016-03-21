@@ -196,7 +196,7 @@ class TeacherController extends Controller
                 $validate_logic->sendMsg('保存成功','success');
                 $this->redirect('Teacher/assignment_detail/assignment_id/'.$assignment_id);
             } else {
-                $validate_logic->sendMsg('保存失败','danger');
+                $validate_logic->sendMsg('保存失败','danger',0);
             }
         }
 
