@@ -62,19 +62,24 @@ class CommonLogic
 
     public function addToZip($assignment_id){
         $assignment_dis_model = M('Assignmentdis');
+        $assignment_model = M('Assignment');
+        $user_logic = D('User','Logic');
+
+        $assignment_true_id = $assignment_model->where("number = '$assignment_id'")->select()[0]['number_display'];
+
         $zip = new \ZipArchive();
         $url_base = C('URL_BASE');
-        $url = $url_base.'downloads/'.$assignment_id.'.zip';
+        $url = $url_base.'downloads/'.$assignment_true_id.'.zip';
         $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
             ->select();
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){
-                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdnumber'].'/'.$assignment['savename']);
+                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
             }
             if($assignment['isexamined'] == 1){
-                $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdnumber'].'/modify.doc');
+                $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc');
             }
         }
         $zip->close();
@@ -105,38 +110,6 @@ class CommonLogic
 
         if($mail->Send()) return true;
         else return false;
-    }
-
-    public function getMessage($res,$type){
-        $ret = array();
-        switch($type){
-            case 'suc':$ret['type'] = 'success';break;
-            case 'err':$ret['type'] = 'danger';break;
-            case 'war':$ret['type'] = 'warning';break;
-            default:$ret['type'] = '';
-        }
-        if($ret['type'] == ''){
-            $ret['res'] = '';
-            return $ret;
-        }else{
-            switch ($res){
-                case "reg-suc":$ret['res'] = '注册成功!';break;
-                case "reset-suc":$ret['res'] = '重置成功!';break;
-                case "login-war":$ret['res'] = '尚未登录!';break;
-                case "upload-suc":$ret['res'] = '上传成功!';break;
-                case "save-suc":$ret['res'] = '保存成功!';break;
-                case "del-suc":$ret['res'] = '发布成功!';break;
-                case "add-stu-suc":$ret['res'] = '增加学生成功!';break;
-                case "mod-stu-suc":$ret['res'] = '修改学生成功!';break;
-                case "add-tea-suc":$ret['res'] = '增加老师成功!';break;
-                case "mod-tea-suc":$ret['res'] = '修改老师成功!';break;
-                case "add-cou-suc":$ret['res'] = '增加课程成功!';break;
-                case "mod-cou-suc":$ret['res'] = '修改课程成功!';break;
-                case "modify-suc":$ret['res'] = '批阅完成!';break;
-                default: $ret['res'] = ''; $ret['type'] = '';
-            }
-            return $ret;
-        }
     }
 
 }

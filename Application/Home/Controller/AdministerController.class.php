@@ -54,13 +54,13 @@ class AdministerController extends Controller
 
     protected function user_show($per){
         $user_model = M('User');
-        return $user_model->where("permission = '$per'")->select();
+        return $user_model->where("permission = '$per'")->order('save_time desc')->select();
     }
 
     protected function user_find($per, $key){
         $user_model = M('User');
         $where['_string']='(name like "%'.$key.'%")  OR (number like "%'.$key.'%")';
-        $all = $user_model->where($where)->select();
+        $all = $user_model->where($where)->order('save_time desc')->select();
         $ret = array();
         $i = 0;
         foreach ($all as $user){
@@ -96,7 +96,7 @@ class AdministerController extends Controller
     protected function stu_show_course($stu_id){//显示学生所选课程名
         $course_dis_model = M('Coursedis');
         $course_model = M('Course');
-        $rows = $course_dis_model->where("stdNumber = '$stu_id'")->select();
+        $rows = $course_dis_model->where("stdNumber = '$stu_id'")->order('add_time desc')->select();
         $i = 0;
         $titles = array();
         foreach ($rows as $course){
@@ -207,13 +207,13 @@ class AdministerController extends Controller
 
     protected function course_show(){
         $course = M('Course');
-        return $course->select();
+        return $course->order('create_time desc')->select();
     }
 
     protected function course_find($key){
         $course = M('Course');
         $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%") OR (teacher like "%'.$key.'%")';
-        return $course->where($where)->select();
+        return $course->where($where)->order('create_time desc')->select();
     }
 
     public function course_del($course_id){//....................................................................删除课程
@@ -304,8 +304,6 @@ class AdministerController extends Controller
 
         $all = $this->user_show(2);
 
-        $common_logic = D('Common','Logic');
-
         if(isset($_POST['find'])){//查找课程,空白默认查找全部
             $key = I('post.search');
             if($key != "") $all = $this->user_find(2,$key);
@@ -355,7 +353,7 @@ class AdministerController extends Controller
 
     protected function teacher_show_courses($teacher_id){//显示课程作业
         $course_model = M('Course');
-        $courses = $course_model->where("teacher = '$teacher_id'")->select();
+        $courses = $course_model->where("teacher = '$teacher_id'")->order('create_time desc')->select();
         $course_details = array();
         $i = 0;
         foreach ($courses as $course){

@@ -86,6 +86,7 @@ class StudentController extends Controller
         $course_model = M('Course');
         $course_dis_model = M('Coursedis');
         $course_ids = $course_dis_model->where("stdNumber = '$student_id'")
+            ->order('add_time desc')
             ->select();
         $i = 0;
         $courses = array();
@@ -124,6 +125,7 @@ class StudentController extends Controller
 
         $course_dis_model = M('Coursedis');
         $course_ids = $course_dis_model->where("stdnumber = '$student_id'")
+            ->order('add_time desc')
             ->select();
         $i = 0;
         $assignments = array();
@@ -166,7 +168,7 @@ class StudentController extends Controller
         $validate_logic->setSession();
 
         $course_model = M('Course');
-        $course_all = $course_model->select();
+        $course_all = $course_model->order('create_time desc')->select();
         $course_logic = D('Course','Logic');
         $user_logic = D('User','Logic');
         $status = $course_logic->get_course_status($course_all);
@@ -176,6 +178,7 @@ class StudentController extends Controller
             $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%")';
             $course_all = $course_model
                 ->where($where)
+                ->order('create_time desc')
                 ->select();
             $status = $course_logic->get_course_status($course_all);
         }
@@ -221,7 +224,7 @@ class StudentController extends Controller
 
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
-        $assignments = $assignment_model->where("course = '$course_id'")->select();
+        $assignments = $assignment_model->where("course = '$course_id'")->order('endtime desc')->select();
         foreach ($assignments as $assignment){
             $course_logic->assignment_dis($course_id,$assignment['number'],$student_id);
         }

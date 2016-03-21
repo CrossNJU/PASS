@@ -21,7 +21,7 @@ class TeacherController extends Controller
         $user_logic = D('User','Logic');
         $course_logic = D('Course','Logic');
         $teacher_id = session("user");
-        $courses = $course_model->where("teacher = '$teacher_id'")->select();
+        $courses = $course_model->where("teacher = '$teacher_id'")->order('create_time desc')->select();
         $course_ret = array();
         $i = 0;
         foreach ($courses as $course){
@@ -60,7 +60,7 @@ class TeacherController extends Controller
         $teacher = session('user');
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
-        $assignments = $assignment_model->where("teacher = '$teacher'")->select();
+        $assignments = $assignment_model->where("teacher = '$teacher'")->order('endtime desc')->select();
         $assignment_ret = array();
         $i = 0;
         foreach ($assignments as $assignment){
@@ -119,6 +119,7 @@ class TeacherController extends Controller
         $assignment_dis_model = M('Assignmentdis');
         $assignments = $assignment_dis_model
             ->where("assNumber = '$assignment_id' AND isSubmitted = 1")
+            ->order('submittime desc')
             ->select();
 
         $submit = array();
@@ -138,6 +139,7 @@ class TeacherController extends Controller
 
         $assignment_not_examine_all = $assignment_dis_model
             ->where("assNumber = '$assignment_id' AND isExamined = 0")
+            ->order('submittime')
             ->select();
         if(count($assignment_not_examine_all)>0)
             $assignment_not_examine = $assignment_not_examine_all[0]['stdnumber'];
