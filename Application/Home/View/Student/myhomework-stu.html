@@ -32,7 +32,12 @@
 					<p class="comment class-num"><{$homework['num']}></p>
 					<h3 class="card-title"><{$homework['name']}></h3>
 					<p class="comment">课程: <{$homework['courseName']}></p>
-					<p class="comment">要求: <{$homework['require']}></p>
+					<p class="comment">要求: <span class="warning-text">[<{switch name="$homework['type']"}>
+								<{case value="pdf"}>PDF格式<{/case}>
+								<{case value="word"}>WORD/PPT格式<{/case}>
+								<{case value="mp4"}>MP4格式<{/case}>
+								<{default /}>未知格式
+							<{/switch}>]</span><{$homework['require']}></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
 						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
@@ -52,6 +57,10 @@
 				</div>
 			</div>
 			<{/foreach}>
+
+			<{empty name="homeworkDetails"}>
+			<div class="tip">(●′ω`●)恭喜你还没有任何作业，快回去打撸啊撸吧</div>
+			<{/empty}>
 
 			<!-- <div class="card">
 				<div class="card-info">

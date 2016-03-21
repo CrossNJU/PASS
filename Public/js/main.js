@@ -17,6 +17,12 @@ $(document).ready(function (){
     //设置页面最小高度
     minHeight();
     $(window).resize(minHeight);
+
+    $(".rect").each(function() {
+        var height = $(this).parent().height();
+        console.log($(this).parent().height());
+        $(this).css("height",height+"px");
+    });
 });
 
 function showStateBar(type,text){

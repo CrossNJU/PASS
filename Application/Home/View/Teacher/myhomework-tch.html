@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>我布置的作业</title>
-	
+
 	<link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico" >
 
 
@@ -32,7 +32,13 @@
 					<p class="comment class-num"><{$homework['num']}></p>
 					<h3 class="card-title"><{$homework['name']}></h3>
 					<p class="comment">课程: <{$homework['course']}></p>
-					<p class="comment">要求: <span><{$homework['require']}></span></p>
+					<p class="comment">要求: <span class="warning-text">[<{switch name="$homework['type']"}>
+								<{case value="pdf"}>PDF格式<{/case}>
+								<{case value="word"}>WORD/PPT格式<{/case}>
+								<{case value="mp4"}>MP4格式<{/case}>
+								<{default /}>未知格式
+							<{/switch}>]</span>
+						<span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<p class="comment">状态: <span class="warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
 						已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
@@ -48,6 +54,9 @@
 			</div>
 			<{/foreach}>
 
+			<{empty name="homeworks"}>
+			<div class="tip">(●′ω`●)对学生不能太仁慈，快点在我的课程页面布置新的作业哦</div>
+			<{/empty}>
 			<!-- <div class="card">
 				<div class="card-info">
 					<p class="comment class-num">PA053</p>

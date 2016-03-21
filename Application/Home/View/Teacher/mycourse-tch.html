@@ -32,7 +32,7 @@
 					<h3 class="card-title"><{$course['name']}></h3>
 					<p class="comment">教师: <{$course['teacher']}></p>
 					<p class="comment">人数: <{$course['numOfStu']}>人</p>
-					<p class="comment">描述: <{$course['description']}></p>
+					<p class="comment">描述:<{$course['description']}></p>
 					<p class="comment">作业: <{if condition="$course['numOfHomework'] gt 0"}>
 						已布置(<{$course['numOfHomework']}>)
 						<{else /}>未布置
@@ -44,13 +44,20 @@
 				<div class="homework homework-tch" id="hw<{$homework['id']}>">
 					<div class="rect"></div>
 					<p class="comment"><span><{$homework['num']}> - <{$homework['name']}></span></p>
-					<p class="comment">要求: <span><{$homework['require']}></span></p>
+					<p class="comment">要求:
+						<span class="warning-text">[<{switch name="$homework['type']"}>
+								<{case value="pdf"}>PDF格式<{/case}>
+								<{case value="word"}>WORD/PPT格式<{/case}>
+								<{case value="mp4"}>MP4格式<{/case}>
+								<{default /}>未知格式
+							<{/switch}>]</span>
+						<span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<p class="comment">状态: <span class="warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
-						已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
-						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
-						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
-						<{/if}></span></p>
+					已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
+					<{if condition="$homework['corrected'] eq 0"}>未开始批阅
+					<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
+					<{/if}></span></p>
 					<a class="btn btn-primary btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
 					<{if condition="$homework['isEnd'] eq false"}>
@@ -62,6 +69,9 @@
 			</div>
 			<{/foreach}>
 
+			<{empty name="courses"}>
+			<div class="tip"> _(:3 」∠)_居然还没拥有任何课程，可以向系统管理员申请增加新课程哦</div>
+			<{/empty}>
 
 			<!-- <div class="card">
 				<div class="card-info">
