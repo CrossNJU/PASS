@@ -17,7 +17,6 @@
 </head>
 <body>
 	<{include file="Common/header"/}>
-
 	<div class="nav">
 		<div class="wrapper">
 			<a class="nav-btn" href="__ROOT__/index.php/Home/Teacher/my_assignments">我的作业</a>
@@ -44,12 +43,12 @@
 			</div>
 			<div class="card card-right correct-card">
 				<div class="card-info">
-					<form id="correct-form" action="" method="post">
+					<form id="correct-form" action="" method="post" onsubmit="return validate()">
 						<p class="comment">评语</p>
 						<textarea class="textarea comment-textarea" name="comment" form="correct-form" placeholder="评语"><{$comment}></textarea>
 						<p class="comment">评分</p>
 						<input class="grade-input" type="text" name="mark" placeholder="评分" value="<{$mark}>">
-						<input class="btn" name="next" type="submit" value="确认并批阅下一份">
+						<input class="btn btn-primary" name="next" type="submit" value="确认并批阅下一份">
 						<input class="btn" name="save" type="submit" value="确认并结束批阅">
 						<!--<a class="btn" href="#">确认并批阅下一份</a>-->
 						<!--<a class="btn" href="#">确认并结束批阅</a>-->

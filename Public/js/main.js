@@ -6,7 +6,6 @@ $(document).ready(function (){
     if(msg != ""){
         showStateBar(type,msg);
     }
-
     //上传文件
     $('.file_submit').click(function(){$('.file').trigger('click');});
     $('.file').change(function(){$('.file_text').val($('.file').val());});

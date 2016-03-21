@@ -148,14 +148,19 @@
         <div class="card input-card">
             <div class="card-info">
                 <h3 class="card-title">修改密码</h3>
-                <form id="password-form" method="post" action="">
-                    <p class="comment">原密码</p>
-                    <input type="text" name="old_pwd" placeholder="原密码">
-                    <p class="comment">新密码</p>
-                    <input type="text" name="new_pwd" placeholder="新密码">
-                    <p class="comment">重复新密码</p>
-                    <input type="text" placeholder="重复新密码">
-                    <br/>
+                <form id="password-form" method="post" action="" onsubmit="validatePwd()">
+                    <div class="admi-class-info-detil">
+                        <p class="comment">原密码</p>
+                        <input  class="text set-pwd" type="password" name="old_pwd" placeholder="原密码">
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="comment">新密码</p>
+                        <input  class="text set-pwd" type="password" name="new_pwd" placeholder="新密码">
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="comment">重复新密码</p>
+                        <input  class="text set-pwd" type="password" id="new_pwd_repeat" placeholder="重复新密码">
+                    </div>
                     <input class="btn" type="submit" name="save_pwd" value="修改密码">
                     <!--<a class="btn" href="#">修改密码</a>-->
                 </form>

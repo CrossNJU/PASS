@@ -20,7 +20,7 @@
 		<div class="wrapper">
 			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
 			<a class="nav-btn nav-btn-active" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
-			<a class="btn" href="__ROOT__/index.php/Home/Student/course_in">加入新课程 + </a>
+			<a class="btn btn-primary" href="__ROOT__/index.php/Home/Student/course_in">加入新课程 + </a>
 		</div>
 	</div>
 
@@ -50,6 +50,7 @@
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
+						<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 						<{if condition="$homework['type'] neq 'word'"}>
 						<a class="btn btn-small preview-btn"
 						   data-type="<{$homework['type']}>"
@@ -58,9 +59,8 @@
 						   data-name="<{$homework['submitName']}>"
 						   data-time="<{$homework['submitTime']}>">预览作业</a>
 						<{/if}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 					<{else /}>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
+					<a class="btn btn-primary btn-small" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
 					<{/if}>
 					<div class="clear"></div>
 				</div>

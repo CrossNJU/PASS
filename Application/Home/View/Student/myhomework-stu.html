@@ -35,17 +35,17 @@
 					<p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
 						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
+					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 						<{if condition="$homework['type'] neq 'word'"}>
 						<a class="btn preview-btn"
-						   data-type="<{$homework['type']}>"
-						   data-url="<{$homework['fileUrl']}>"
-						   data-classNum="<{$homework['num']}>"
-						   data-name="<{$homework['submitName']}>"
+							   data-type="<{$homework['type']}>"
+							   data-url="<{$homework['fileUrl']}>"
+							   data-classNum="<{$homework['num']}>"
+							   data-name="<{$homework['submitName']}>"
 						   data-time="<{$homework['submitTime']}>">预览作业</a>
 						<{/if}>
-					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
 					<{else /}>
-					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
+					<a class="btn btn-primary" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
 					<{/if}>
 				</div>
 			</div>

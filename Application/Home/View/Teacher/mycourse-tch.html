@@ -35,7 +35,7 @@
 						已布置(<{$course['numOfHomework']}>)
 						<{else /}>未布置
 						<{/if}></p>
-					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/course_id/<{$course['id']}>">布置新作业</a>
+					<a class="btn btn-primary" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/course_id/<{$course['id']}>">布置新作业</a>
 					<a class="btn packup-btn" href="javascript:void(0)">收起作业</a>
 				</div>
 				<{foreach item="homework" name="course['homework']"}>
@@ -44,12 +44,12 @@
 					<p class="comment"><span><{$homework['num']}> - <{$homework['name']}></span></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
+					<p class="comment">状态: <span class="warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
 						已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
-					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
+					<a class="btn btn-primary btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<a class="btn btn-small" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
 					<{if condition="$homework['isEnd'] eq false"}>
 					<a class="btn btn-small delete-btn" data-hwid="<{$homework['id']}>"  href="javascript:void(0)">移除</a>

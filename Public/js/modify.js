@@ -260,6 +260,35 @@ function checkLesson(){
     return result;
 }
 
+function validatePwd() {
+    var old_pwd = $("input[name='old_pwd']").val();
+    var new_pwd = $("input[name='new_pwd']").val();
+    var new_pwd_repeat = $("input#new_pwd_repeat").val();
+
+    var valiResult;
+    if(valiResult = validate_null(old_pwd)){
+        showValidateError();
+        $("input[name='old_pwd']").next(".hint").html(valiResult);
+        result = false;
+    }
+    if(valiResult = validate_null(new_pwd)){
+        showValidateError();
+        $("input[name='new_pwd']").next(".hint").html(valiResult);
+        result = false;
+    }
+    if(valiResult = validate_null(old_pwd)){
+        showValidateError();
+        $("input#new_pwd_repeat").next(".hint").html(valiResult);
+        result = false;
+    }
+    if(new_pwd != new_pwd_repeat) {
+        $("input[name='new_pwd']").next(".hint").html("两次密码输入不一致");
+        result = false;
+    }
+
+    return result;
+}
+
 function show(){
     var $p1 = $("#msg").val();
     var $p2 = $("#type").val();

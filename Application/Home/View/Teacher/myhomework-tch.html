@@ -30,12 +30,12 @@
 					<p class="comment">课程: <{$homework['course']}></p>
 					<p class="comment">要求: <span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<p class="comment">状态: <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
+					<p class="comment">状态: <span class="warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>,
 						已提交<{$homework['numOfSubmit']}>/<{$homework['sum']}>,
 						<{if condition="$homework['corrected'] eq 0"}>未开始批阅
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
-					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
+					<a class="btn btn-primary" href="__ROOT__/index.php/Home/Teacher/assignment_detail/assignment_id/<{$homework['id']}>">查看/批阅已提交作业</a>
 					<a class="btn" href="__ROOT__/index.php/Home/Teacher/assignment_deliver/assignment_id/<{$homework['id']}>">修改</a>
 					<{if condition="$homework['isEnd'] eq false"}>
 					<a class="btn delete-btn" data-hwid="<{$homework['id']}>">移除</a>
