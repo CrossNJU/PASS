@@ -14,7 +14,7 @@ class TeacherController extends Controller
 {
     public function my_course($res = NULL,$type = NULL){//..................................................教师:我的课程
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -52,7 +52,7 @@ class TeacherController extends Controller
 
     public function my_assignments($res = NULL, $type = NULL){//..........................................教师:我布置的作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -93,7 +93,7 @@ class TeacherController extends Controller
 
     public function assignment_delete($assignment_id){//.........................................................删除作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
@@ -109,7 +109,7 @@ class TeacherController extends Controller
 
     public function assignment_detail($assignment_id, $res = NULL, $type = NULL){//..............................作业详情
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $this->msg = "";
@@ -170,7 +170,7 @@ class TeacherController extends Controller
 
     public function assignment_to_modify($assignment_id,$student_id,$display){//............................批改/修改作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $assignment_dis_model = M('Assignmentdis');
         $assignment_model = M('Assignment');
@@ -199,7 +199,7 @@ class TeacherController extends Controller
                 ->save($data);
 
             $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
-            if($ret) $this->redirect('Home/Teacher/assignment_detail/assignment_id/'.$assignment_id.'/res/save-suc/type/suc');
+            if($ret) $this->redirect('Teacher/assignment_detail/assignment_id/'.$assignment_id.'/res/save-suc/type/suc');
             else {
                 $this->msg = "保存失败!";
                 $this->type = "danger";
@@ -223,10 +223,10 @@ class TeacherController extends Controller
                 ->where("assNumber = '$assignment_id' AND isExamined = 0")
                 ->select()[0];
             if($assignment_next == null){
-                $this->redirect('Home/Teacher/assignment_detail/assignment_id/'
+                $this->redirect('Teacher/assignment_detail/assignment_id/'
                     .$assignment_id.'/res/modify-suc/type/suc');
             }else{
-                $this->redirect('Home/Teacher/assignment_to_modify/assignment_id/'
+                $this->redirect('Teacher/assignment_to_modify/assignment_id/'
                     .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
                     .'/display/correct');
             }
@@ -253,7 +253,7 @@ class TeacherController extends Controller
 
     public function assignment_deliver($assignment_id=NULL,$course_id=NULL){//..................................布置新作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $assignment_model = M('Assignment');
         $course_dis_model = M('Coursedis');
@@ -291,7 +291,7 @@ class TeacherController extends Controller
                 $assignment_model->where("number = '$assignment_id'")->save($data);
             }
 
-            $this->redirect('Home/Teacher/my_assignments/res/del-suc/type/suc');
+            $this->redirect('Teacher/my_assignments/res/del-suc/type/suc');
         }
 
         $this->course = $course_logic->get_course_name($course_id);
@@ -317,7 +317,7 @@ class TeacherController extends Controller
 
     public function download($assignment_id){//.............................................................教师-下载作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
@@ -335,7 +335,7 @@ class TeacherController extends Controller
 
     public function reupload($stu_id,$assignment_id){//..............................................教师-发邮件要求学生重交作业
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
 //        $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
@@ -370,7 +370,7 @@ class TeacherController extends Controller
 
     public function student_detail($student_id){//...........................................................学生详情界面
         if(!session('?per') || session('per')!= 2)
-            $this->redirect('Home/Common/login/res/login-war/type/war');
+            $this->redirect('Common/login/res/login-war/type/war');
 
         $user_model = M('User');
         $student = $user_model->where("number = '$student_id'")->select()[0];

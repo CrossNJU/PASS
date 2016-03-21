@@ -40,7 +40,7 @@ class CommonController extends Controller
                 $data['permission'] = 1;
                 if($user_model->create($data)){
                     $user_model->add();
-                    $this->redirect('Home/Common/login/res/'.'reg-suc/type/'.'suc');
+                    $this->redirect('Common/login/res/'.'reg-suc/type/'.'suc');
                 }else {
                     $this->msg = "注册失败!";
                     $this->type = "danger";
@@ -102,7 +102,7 @@ class CommonController extends Controller
 
         $this->msg = "";
         $sub = '找回密码';
-        $prefix = C('URL_HEAD').'Home/Common/pwd_reset/id/';
+        $prefix = C('URL_HEAD').'Common/pwd_reset/id/';
         $body = '点击一下链接,或复制链接到浏览器打开:<br>'.$prefix;
 
         $common_logic = D('Common','Logic');
@@ -148,7 +148,7 @@ class CommonController extends Controller
             if($user->create($row)){
                 $user->save();
                 session('reset_ip','null');
-                $this->redirect('Home/Common/login/res/reset-suc/type/suc');
+                $this->redirect('Common/login/res/reset-suc/type/suc');
             }else{
                 $this->msg = "重置失败!";
                 $this->type = "danger";
