@@ -110,6 +110,32 @@ function  validate_phone(str){
     }
     return "包含非法字符";
 }
+
+function  validate_name(str){
+    //alert("kong");
+    if(validate_null(str)){
+        return "内容为空";
+    }
+    var reg = new RegExp("^[\u4E00-\u9FA5]{2,10}$");
+    if(reg.test(str)){
+        return null;
+    }
+
+    return "请输入2-10位的中文名";
+}
+
+function validate_pwd(str){
+    //if (s.length > 20 || s.length < 6){
+    //    return "请输入6-20位的密码"
+    //}
+
+    var reg = new RegExp("^[a-zA-Z0-9]{6,20}$");
+    if(reg.test(str)){
+        return null;
+    }
+    return "密码为6-20位，由数字字母组成";
+}
+
 function showValidateError(){
     showStateBar("danger","信息填写错误");
 }

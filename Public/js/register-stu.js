@@ -30,7 +30,7 @@ function checkRegister(){
         $("input[id = 'add_id']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_name)){
+    if(valiResult = validate_name(stu_name)){
         showValidateError();
         $("input[id = 'add_name']").next(".hint").html(valiResult);
         result = false;
@@ -61,7 +61,7 @@ function checkRegister(){
         $("input[id = 'add_phone']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_pwd)){
+    if(valiResult = validate_pwd(stu_pwd)){
         showValidateError();
         $("input[id = 'add_pwd']").next(".hint").html(valiResult);
         result = false;

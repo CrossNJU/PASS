@@ -112,7 +112,7 @@ function checkTea(){
         $("input[id = 'tea_id']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(tea_name)){
+    if(valiResult = validate_name(tea_name)){
         showValidateError();
         $("input[id = 'tea_name']").next(".hint").html(valiResult);
         result = false;
@@ -137,7 +137,7 @@ function checkTea(){
         $("input[id = 'tea_phone']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(tea_pwd)){
+    if(valiResult = validate_pwd(tea_pwd)){
         showValidateError();
         $("input[id = 'tea_pwd']").next(".hint").html(valiResult);
         result = false;
@@ -169,7 +169,7 @@ function checkStu(){
         $("input[id = 'stu_id']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_name)){
+    if(valiResult = validate_name(stu_name)){
         showValidateError();
         $("input[id = 'stu_name']").next(".hint").html(valiResult);
         result = false;
@@ -199,7 +199,7 @@ function checkStu(){
         $("input[id = 'stu_phone']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_pwd)){
+    if(valiResult = validate_pwd(stu_pwd)){
         showValidateError();
         $("input[id = 'stu_pwd']").next(".hint").html(valiResult);
         result = false;
