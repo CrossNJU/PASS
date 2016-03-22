@@ -19,8 +19,8 @@
 <{include file="Common/header"/}>
 <div class="nav">
     <div class="wrapper">
-        <a class="nav-btn nav-btn-active " href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
-        <a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
+        <a class="nav-btn nav-btn-active " href="__ROOT__/Student/my_assignment">我的作业</a>
+        <a class="nav-btn" href="__ROOT__/Student/my_course">我的课程</a>
     </div>
 </div>
 
@@ -44,10 +44,10 @@
                 <{if condition="$homework['isSubmit'] eq true"}>
                 <{if condition="$homework['isWarning'] eq true"}>
                 <a class="btn btn-dangerous"
-                   href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">被提醒重新提交</a>
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">被提醒重新提交</a>
                 <{else/}>
                 <a class="btn"
-                   href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
                 <{/if}>
 
                 <{if condition="$homework['type'] neq 'word'"}>
@@ -60,7 +60,7 @@
                 <{/if}>
                 <{else /}>
                 <a class="btn btn-primary"
-                   href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
                 <{/if}>
             </div>
         </div>
