@@ -68,7 +68,7 @@ $(document).ready(function (){
                 async:true,
                 type:"post",
                 url:"/PASS/Teacher/reupload",
-                data:"stu_id=S1"+"&assignment_id="+homeworkId,
+                data:"stu_id="+studentId+"&assignment_id="+homeworkId,
                 success: function(msg){
                     if(msg == 1){
                         showStateBar("success","提醒重新提交成功");

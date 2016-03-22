@@ -64,6 +64,9 @@ $(document).ready(function () {
     $(document).on("click",".preview-wrapper .close-btn",function(){
         $(".preview-wrapper").fadeOut(function(){
             $("body").css("overflow","auto");
+            if($("#really-cool-video").length){
+                $("#really-cool-video")[0].pause();
+            }
         });
     });
 });

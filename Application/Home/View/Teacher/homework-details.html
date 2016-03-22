@@ -71,9 +71,9 @@
 
 					</div>
 					<{if condition="$submit['isWarning'] eq true"}>
-					<a class="btn btn-small btn-disabled again-btn" data-status=0 data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">已提醒重交</a>
+					<a class="btn btn-small btn-disabled again-btn" data-status=0 data-stuid="<{$submit['studentNum']}>" data-hwid="<{$homework['id']}>">已提醒重交</a>
 					<{else /}>
-					<a class="btn btn-small again-btn" data-status=1 data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">提醒重交</a>
+					<a class="btn btn-small again-btn" data-status=1 data-stuid="<{$submit['studentNum']}>" data-hwid="<{$homework['id']}>">提醒重交</a>
 					<{/if}>
 
 					<{if condition="$homework['type'] eq 'word'"}>
