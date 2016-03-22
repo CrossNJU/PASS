@@ -49,7 +49,7 @@
 					<p class="comment">[<span><{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
 						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span>]
 						<span><{$homework['num']}> - <{$homework['name']}></span></p>
-					<p class="comment">要求: <span class="warning-text">[<{switch name="$homework['type']"}>
+					<p class="comment">要求: <span class="warning-text">[<{switch name="homework['type']"}>
 								<{case value="pdf"}>PDF格式<{/case}>
 								<{case value="word"}>WORD/PPT格式<{/case}>
 								<{case value="mp4"}>MP4格式<{/case}>
@@ -72,11 +72,6 @@
 					<div class="clear"></div>
 				</div>
 				<{/foreach}>
-
-				<{empty name="courses"}>
-				<div class="tip">φ(￣ー￣ )居然这么不好学，快点右上方的按钮来加入课程吧</div>
-				<{/empty}>
-
 				<!-- <div class="homework">
 					<div class="rect"></div>
 					<p class="comment">[<span>未提交</span>, <span>未截止</span>]<span>PA021 - 当代社会科学领域的马克思主义哲学期末论文</span></p>
@@ -88,6 +83,10 @@
 				</div> -->
 			</div>
 			<{/foreach}>
+
+			<{empty name="courses"}>
+			<div class="tip">φ(￣ー￣ )居然这么不好学，快点右上方的按钮来加入课程吧</div>
+			<{/empty}>
 		</div>
 
 	</div>

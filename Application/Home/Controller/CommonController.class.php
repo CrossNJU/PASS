@@ -78,6 +78,7 @@ class CommonController extends Controller
                 session("user", $id);
                 session("per", $per);
                 session("username",$user_logic->get_user_name($id));
+                $validate_logic->sendMsg('登录成功','success');
                 switch ($per){
                     case "1": if(session('?forUrl')) $this->redirect(session('forUrl'));
                         else $this->redirect('Student/my_course');break;
