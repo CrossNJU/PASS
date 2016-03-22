@@ -61,6 +61,7 @@ class DataLogic
         $data['academy'] = '哲学系';
         $data['speciality'] = '哲学';
         $data['save_time'] = date("y-m-d");
+        if($per == 1) $data['grade'] = 2012;
         $user_model = D('User');
         if($user_model->create($data)) $user_model->add();
         else echo $user_model->getError();
