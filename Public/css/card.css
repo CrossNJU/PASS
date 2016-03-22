@@ -117,6 +117,16 @@ a {
     color: #a5a5a5;
 }
 
+.btn-dangerous {
+    background-color: #E35050;
+    border-color: #E35050;
+    color: #ffffff;
+}
+
+.btn-dangerous:hover {
+    background-color: #f14646;
+}
+
 .btn-small {
     height: 36px;
     padding: 0px 22px 0px 22px;

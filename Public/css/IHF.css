@@ -105,4 +105,14 @@ select.text{
     height: 44px;
 }
 
+.readonly-input[type="text"], select.readonly-input {
+    background-color: #f4f4f4;
+    border-color: #a5a5a5;
+    color:#a5a5a5;
+}
+
+.readonly-input[type="text"]:focus, select.readonly-input {
+    box-shadow: none;
+}
+
 
