@@ -45,6 +45,7 @@ ul li{
     clear:both;
 }
 input[type="text"],input[type="password"]{
+    color: #4a4a4a;
     padding-left: 5px;
 }
 input,textarea,select.text{

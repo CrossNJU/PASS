@@ -73,6 +73,14 @@ $(document).ready(function(){
         }
         console.log(pwd);
     });
+
+
+    $(document).on("click",".cancel-modify",function(){
+        showDialog("确定放弃修改？");
+        $(".confirm-btn").click(function () {
+            history.back(-1);
+        });
+    });
 });
 
 
@@ -262,3 +270,4 @@ function show(){
         showStateBar($p2,$p1);
     }
 }
+

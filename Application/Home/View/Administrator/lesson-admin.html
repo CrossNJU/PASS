@@ -35,12 +35,30 @@
             </div>
             </form>
             <{foreach item="course" name="courses"}>
-            <div class="homework homework-manage" >
+            <div class="homework student-manage" >
                 <div class="num"><{$course['order']}></div>
                 <div class="homework-info">
                     <p class="class-title homework-title"><{$course['num']}>-<{$course['name']}>（<{$course['nameOfTea']}>）</p>
-                    <p class="homework-total comment">共  <{$course['numOfHomework']}> 份作业</p>
-                    <br>
+                    <p class="teacher-class-num comment">共  <{$course['numOfHomework']}> 份作业</p>
+                    <!--<table class="admi-class-detail">-->
+                        <!--<{foreach item="homework" name="course['homeworks']"}>-->
+                        <!--<{if condition="$homework['isEnd'] eq true"}>-->
+                        <!--<tr>-->
+                            <!--<td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>-->
+                            <!--<td><a class="download download-hwk" herf="#">批量下载</a></td>-->
+                            <!--<td style="display: none" class="hwk_id"><{$homework['id']}></td>-->
+                        <!--</tr>-->
+                        <!--<{else /}>-->
+                        <!--<tr>-->
+                            <!--<td><p class="homework-check comment">[未截止] <{$homework['name']}></p></td>-->
+                            <!--<td><a class="download download-hwk" herf="#">批量下载</a></td>-->
+                            <!--<td style="display: none" class="hwk_id"><{$homework['id']}></td>-->
+                        <!--</tr>-->
+                        <!--<{/if}>-->
+                        <!--<{/foreach}>-->
+
+                    <!--</table>-->
+
                     <table class="admi-class-detail">
                         <{foreach item="homework" name="course['homeworks']"}>
                         <{if condition="$homework['isEnd'] eq true"}>
@@ -59,6 +77,7 @@
                         <{/foreach}>
 
                     </table>
+
 
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$course['num']}>" href="javascript:void(0)">移除</a>
