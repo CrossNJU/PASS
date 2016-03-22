@@ -59,6 +59,17 @@ $(document).ready(function(){
             }
         }
 
+    alert(cou_tea);
+    var ctea = document.getElementById("cou_tea");
+    if (ctea!=null){
+        for(var i = 0;i < ctea.length;i++){
+            if (ctea[i].value == cou_tea){
+                ctea[i].selected = true;
+                break;
+            }
+        }
+    }
+
     showHint();
 
     $(".set-pwd").on('focus',function(){
