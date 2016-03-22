@@ -17,7 +17,7 @@ class CourseLogic
         $assignments = $assignment_dis_model->where("assNumber = '$assNumber'")->order('submittime desc')->select();
         $cou = 0;
         foreach ($assignments as $assignment){
-            if(($type == 1 && $assignment['issubmitted'] == 1)||($type == 2 && $assignment['isexamined'] != 1))
+            if(($type == 1 && $assignment['issubmitted'] == 1)||($type == 2 && $assignment['isexamined'] != 0))
                 $cou ++;
         }
         return $cou;
