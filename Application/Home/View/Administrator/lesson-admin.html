@@ -59,17 +59,17 @@
 
                     <!--</table>-->
 
-                    <table class="admi-class-detail">
+                    <table class="homework-check admi-class-detail">
                         <{foreach item="homework" name="course['homeworks']"}>
                         <{if condition="$homework['isEnd'] eq true"}>
                         <tr>
-                            <td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>
+                            <td><p class="comment-hwk">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>
                             <td><a class="download download-hwk" herf="#">批量下载</a></td>
                             <td style="display: none" class="hwk_id"><{$homework['id']}></td>
                         </tr>
                         <{else /}>
                         <tr>
-                            <td><p class="homework-check comment">[未截止] <{$homework['name']}></p></td>
+                            <td><p class="comment-hwk">[未截止] <{$homework['name']}></p></td>
                             <td><a class="download download-hwk" herf="#">批量下载</a></td>
                             <td style="display: none" class="hwk_id"><{$homework['id']}></td>
                         </tr>

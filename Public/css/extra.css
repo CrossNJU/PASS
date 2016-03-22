@@ -31,11 +31,12 @@
 
 }
 table tr td:nth-child(1){
+    vertical-align: top;
     width:680px;
 }
 table tr td:nth-child(2){
     text-align: right;
-    vertical-align: bottom;
+    vertical-align: top;
     width:240px;
 }
 
@@ -43,9 +44,20 @@ table tr td:nth-child(2){
     margin-top: 19px;
 }
 /*.admi-class-info:hover{*/
-    /*background-color: #f3f8ff;*/
+/*background-color: #f3f8ff;*/
 /*}*/
-
+table.homework-check{
+    margin-top:19px;
+}
+table.homework-check tr p{
+    /*margin-bottom: 11px;*/
+    /*border-collapse: separate;*/
+    /*border-spacing: 0px 11px;*/
+    margin-bottom: 11px;
+}
+table.homework-check tr:last-child p{
+    margin-bottom: 0px;
+}
 .teacher-info{
     width: 500px;
 }
@@ -129,4 +141,11 @@ input[type="submit"]{
 
 .teacher-class-num{
     margin-bottom: 0px;
+}
+
+.comment-hwk {
+    margin-bottom: 11px;
+    font-size: 14px;
+    line-height: 18px;
+    color: #787878;
 }

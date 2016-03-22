@@ -46,7 +46,7 @@
                     <p class="student-name homework-title"><{$student['name']}>（<{$student['num']}>）</p>
                     <p class="teacher-class-num comment"><{$student['major']}> <{$student['grade']}> 共选<{$student['numOfClass']}>门课</p>
                     <!--<br>-->
-                    <div class="admi-class-detail test-1">
+                    <div class="admi-class-detail test-1" style="display: none;">
                         <{foreach item="class" name="student['classes']"}>
                         <p class="homework-check comment class-name"><{$class['name']}></p>
                         <{/foreach}>
@@ -60,7 +60,7 @@
                 <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
                 <input type="text" class="del-stuid" style="display: none" value="<{$student['num']}>">
                 <a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/index.php/Home/Administer/student_add/id/<{$student['num']}>">修改</a>
-                <a class="btn btn-small up" href="javascript:void(0)">收起选课情况</a>
+                <a class="btn btn-small up" href="javascript:void(0)">展开选课情况</a>
 
                 <div class="clear"></div>
             </div>
