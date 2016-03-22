@@ -19,16 +19,16 @@
 <body onload="show()">
 <input style="display: none" id="msg" value="<{$msg}>">
 <input style="display: none" id="type" value="<{$type}>">
-<div class="content">
-    <{include file="Common/header-admin"/}>
-    <div class="nav">
-        <div class="wrapper">
-            <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
-            <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
-            <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
-        </div>
+<{include file="Common/header-admin"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn" href="__ROOT__/Administer/teacher_manage">教师管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/student_manage">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/course_manage">课程管理</a>
     </div>
+</div>
 
+<div class="content">
     <div class="wrapper">
         <form name="aca_spe_form" method="post" onsubmit="return checkTea();return false;">
             <div class="card">

@@ -16,17 +16,17 @@
 <body onload="show()">
 <input style="display: none" id="msg" value="<{$msg}>">
 <input style="display: none" id="type" value="<{$type}>">
+<{include file="Common/header-common"/}>
+
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn nav-btn-active" href="#">登录</a>
+        <a class="nav-btn" href="__ROOT__/Common/register">学生注册</a>
+    </div>
+</div>
+
 <!--<form method="post">-->
 <div class="content">
-    <{include file="Common/header-common"/}>
-
-    <div class="nav">
-        <div class="wrapper">
-            <a class="nav-btn nav-btn-active" href="#">登录</a>
-            <a class="nav-btn" href="__ROOT__/index.php/Home/Common/register">学生注册</a>
-        </div>
-    </div>
-
     <form method="post">
         <div class="wrapper">
             <div class="card">
@@ -53,7 +53,7 @@
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">&nbsp&nbsp&nbsp登录&nbsp&nbsp&nbsp</a>-->
                     <input type="submit" class="btn-primary btn sbtn" name="login" id="loginbtn" value="   登录   ">
-                    <a class="btn" href="__ROOT__/Home/Common/find_pwd">忘记密码</a>
+                    <a class="btn" href="__ROOT__/Common/find_pwd">忘记密码</a>
                 </div>
 
             </div>

@@ -11,7 +11,7 @@ $(document).ready(function(){
                 async: false,
                 data: "teacher_id="+id,
                 //url:"teacher_del",
-                url:"/PASS/Home/Administer/teacher_del",
+                url:"/PASS/Administer/teacher_del",
                 type: "post",
                 success: function(msg){
                     if(msg == -1){

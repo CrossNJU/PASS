@@ -10,7 +10,7 @@ $(document).ready(function(){
             jQuery.ajax({
                 async: false,
                 data: "course_id="+id,
-                url:"/PASS/Home/Administer/course_del",
+                url:"/PASS/Administer/course_del",
                 type: "post",
                 success: function(msg){
                     if(msg == -1){

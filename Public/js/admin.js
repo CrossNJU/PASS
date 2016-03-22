@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 function toAdd(){
     //$('#btn-add-stu').click(function(){
-        window.location.href="__ROOT__/index.php/Home/Administer/student_add";
+        window.location.href="__ROOT__/Administer/student_add";
     //window.location
     //})
 }

@@ -20,16 +20,16 @@
 <body onload="show()">
 <input style="display: none" id="msg" value="<{$msg}>">
 <input style="display: none" id="type" value="<{$type}>">
+<{include file="Common/header-admin"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn nav-btn-active" href="#">教师管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/student_manage">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/course_manage">课程管理</a>
+    </div>
+</div>
 
 <div class="content">
-    <{include file="Common/header-admin"/}>
-    <div class="nav">
-        <div class="wrapper">
-            <a class="nav-btn nav-btn-active" href="#">教师管理</a>
-            <a class="nav-btn" href="__ROOT__/Home/Administer/student_manage">学生管理</a>
-            <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
-        </div>
-    </div>
 
     <div class="wrapper">
         <div class="card">
@@ -37,7 +37,7 @@
             <div class="admi-class">
                 <input class="text-find" type="text" name="search" placeholder="输入教师姓名或工号以查询"/>
                 <input class="btn-primary btn sbtn" type="submit" name="find" value="查找教师"/>
-                <a class="input-button-add btn" id="btn-add-tea" href="__ROOT__/Home/Administer/teacher_add">添加新教师（目前共有<{$numbers}>名）</a>
+                <a class="input-button-add btn" id="btn-add-tea" href="__ROOT__/Administer/teacher_add">添加新教师（目前共有<{$numbers}>名）</a>
             </div>
             </form>
             <{foreach item="teacher" name="teachers"}>
@@ -58,8 +58,8 @@
 
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$teacher['num']}>" href="javascript:void(0)">移除</a>
-                <a class="btn btn-small" href="__ROOT__/Home/Administer/teacher_add/id/<{$teacher['num']}>">修改</a>
-                <a class="btn-primary btn btn-small" href="__ROOT__/Home/Administer/course_add/teacher_id/<{$teacher['num']}>">添加课程</a>
+                <a class="btn btn-small" href="__ROOT__/Administer/teacher_add/id/<{$teacher['num']}>">修改</a>
+                <a class="btn-primary btn btn-small" href="__ROOT__/Administer/course_add/teacher_id/<{$teacher['num']}>">添加课程</a>
 
                 <div class="clear"></div>
             </div>

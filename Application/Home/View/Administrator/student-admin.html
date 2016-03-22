@@ -18,17 +18,15 @@
 <input style="display: none" id="msg" value="<{$msg}>">
 <input style="display: none" id="type" value="<{$type}>">
 <!--<body>-->
-<div class="content">
-    <{include file="Common/header-admin"/}>
-
-    <div class="nav">
-        <div class="wrapper">
-            <a class="nav-btn" href="__ROOT__/Home/Administer/teacher_manage">教师管理</a>
-            <a class="nav-btn nav-btn-active" href="#">学生管理</a>
-            <a class="nav-btn" href="__ROOT__/Home/Administer/course_manage">课程管理</a>
-        </div>
+<{include file="Common/header-admin"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn" href="__ROOT__/Administer/teacher_manage">教师管理</a>
+        <a class="nav-btn nav-btn-active" href="#">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/course_manage">课程管理</a>
     </div>
-
+</div>
+<div class="content">
     <div class="wrapper">
         <div class="card">
             <form method="post" action="student_manage">
@@ -36,7 +34,7 @@
                 <input class="text-find" type="text" name="search" placeholder="输入学生姓名或学号以查询"/>
                 <input class="btn-primary btn sbtn" type="submit" name="find" value="查找学生"/>
                 <!--<input class="input-button-add btn" id="btn-add-stu" type="button" value="添加新学生（目前共有<{$numbers}>名）" onclick="toAdd()"/>-->
-                <a class="input-button-add btn" id="btn-add-stu" href="__ROOT__/index.php/Home/Administer/student_add">添加新学生（目前共有<{$numbers}>名）</a>
+                <a class="input-button-add btn" id="btn-add-stu" href="__ROOT__/Administer/student_add">添加新学生（目前共有<{$numbers}>名）</a>
             </div>
             </form>
             <{foreach item="student" name="students"}>
@@ -54,12 +52,12 @@
 
                     <!--<a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>-->
                     <!--<input type="text" class="del-stuid" style="display: none" value="<{$student['num']}>">-->
-                    <!--<a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/index.php/Home/Administer/student_add/id/<{$student['num']}>">修改</a>-->
+                    <!--<a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/Administer/student_add/id/<{$student['num']}>">修改</a>-->
                     <!--<a class="btn btn-small up" href="javascript:void(0)">收起选课情况</a>-->
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
                 <input type="text" class="del-stuid" style="display: none" value="<{$student['num']}>">
-                <a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/index.php/Home/Administer/student_add/id/<{$student['num']}>">修改</a>
+                <a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/Administer/student_add/id/<{$student['num']}>">修改</a>
                 <a class="btn btn-small up" href="javascript:void(0)">展开选课情况</a>
 
                 <div class="clear"></div>
