@@ -41,6 +41,5 @@ class CourseModel extends Model
     protected $_validate = array(
         array('students','number','学生人数格式有误!'),
         array('title','require','请填写课程标题!'),
-        array('depict','require','请输入课程要求!'),
     );
 }

@@ -232,6 +232,7 @@ class StudentController extends Controller
         $course_dis_model = M('Coursedis');
         $data['cNumber'] = $course_id;
         $data['stdNumber'] = $student_id;
+        $data['add_time'] = date("y-m-d");
         $course_dis_model->add($data);
 
         $assignment_model = M('Assignment');
@@ -259,7 +260,7 @@ class StudentController extends Controller
         $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
         $upload->savePath = '';
         $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
-        $upload->saveName = 'source';
+//        $upload->saveName = 'source';
         $upload->replace = true;
 
         if(isset($_REQUEST['sub'])) {
@@ -271,12 +272,11 @@ class StudentController extends Controller
                 $real_info = $info['doc'];
                 $url = $real_info['savepath'];
                 $assignment_dis_model = M('Assignmentdis');
-                $assignment = $assignment_dis_model
-                    ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
-                    ->select()[0];
-                if($assignment['issubmitted']==0){
-                    $data['isSubmitted'] = 1;
-                }
+//                $assignment = $assignment_dis_model
+//                    ->where("stdNumber = '$student_id' AND assNumber = '$assignment_id'")
+//                    ->select()[0];
+                $data['isSubmitted'] = 1;
+                $data['isWarning'] = 0;
                 $data['url'] = $url;
                 $data['submitTime'] = date("y-m-d h:i");
                 $data['submitName'] = $real_info['name'];

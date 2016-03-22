@@ -349,8 +349,7 @@ class TeacherController extends Controller
 
         $assignment = $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->select()[0];
-        $assignment['isSubmitted'] = 1;
-        $assignment['isExamined'] = -1;
+        $assignment['isWarning'] = 1;
         $assignment_dis_model
             ->where("stdNumber = '$stu_id' AND assNumber = '$assignment_id'")->save($assignment);
 

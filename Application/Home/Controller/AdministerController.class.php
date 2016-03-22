@@ -192,6 +192,7 @@ class AdministerController extends Controller
             $course_detail = array(
                 'order' => $i +1,
                 'num' => $course['number'],
+                'number' => $course['number_display'],
                 'name' => $course['title'],
                 'nameOfTea' => $user_logic->get_user_name($course['teacher']),
                 'numOfHomework' => $course['assignments'],
@@ -260,13 +261,14 @@ class AdministerController extends Controller
             if($id == NULL) {
                 $data['assignments'] = 0;
                 $data['selected'] = 0;
+                $data['create_time'] = date("y-m-d");
             }
             $teacher = $data['teacher'];
             $search_teacher = $user_model->where("number = '$teacher'")->select();
-            if(count($search_teacher)==0){
+            if($id ==  NULL && count($search_teacher)==0){
                 $validate_logic->sendMsg('教师不存在','warning',0);
-            }elseif($id == NULL && $course_id = $course_model->create($data)) {
-                $course_model->add();
+            }elseif($id == NULL && $course_model->create($data)) {
+                $course_id = $course_model->add();
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);

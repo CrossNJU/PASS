@@ -119,6 +119,7 @@ class CourseLogic
         $data['cNumber'] = $course_id;
         $data['isSubmitted'] = 0;
         $data['isExamined'] = 0;
+        $data['isWarning'] = 0;
         $assignment_dis_model->add($data);
     }
 
