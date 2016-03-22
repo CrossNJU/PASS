@@ -231,9 +231,9 @@ function checkLesson(){
         //document.getElementById("cou_name").style.visibility = 'hidden';
         result = false;
     }
-    if(valiResult = validate_null(cou_tea)){
+    if(valiResult = validate_teacher(cou_tea)){
         showValidateError();
-        $("input[id = 'cou_tea']").next(".hint").html(valiResult);
+        $("select[id = 'cou_tea']").next(".hint").html(valiResult);
         result = false;
     }
     if(valiResult = validate_year(cou_year)){
