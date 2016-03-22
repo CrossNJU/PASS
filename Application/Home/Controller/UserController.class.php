@@ -21,9 +21,13 @@ class UserController extends Controller
 //        $phone = I('post.phone','wrong','/^[1][358][0-9]{9}$/');
 //        $phone = I('post.phone','wrong','/^[0-9A-Za-z]{6,20}$/');
 //        $phone = I('post.phone','wrong','/^[\x{4e00}-\x{9fa5}]{2,4}$/u');
-        $phone = I('post.phone','wrong','/^[0-9A-Za-z]{6,20}$/');
-        echo $phone;
-        $this->display('User:val');
+//        $phone = I('post.phone','wrong','/^[0-9A-Za-z]{6,20}$/');
+//        echo $phone;
+//        $this->display('User:val');
+//        phpinfo();
+        echo phpversion()."\n";
+        echo ini_get("upload_max_filesize")."\n";
+        echo ini_get("post_max_size")."\n";
     }
 //
 //    public function test_1(){
