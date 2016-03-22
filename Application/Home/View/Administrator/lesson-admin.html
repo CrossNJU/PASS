@@ -39,24 +39,6 @@
                 <div class="homework-info">
                     <p class="class-title homework-title"><{$course['num']}>-<{$course['name']}>（<{$course['nameOfTea']}>）</p>
                     <p class="teacher-class-num comment">共  <{$course['numOfHomework']}> 份作业</p>
-                    <!--<table class="admi-class-detail">-->
-                        <!--<{foreach item="homework" name="course['homeworks']"}>-->
-                        <!--<{if condition="$homework['isEnd'] eq true"}>-->
-                        <!--<tr>-->
-                            <!--<td><p class="homework-check comment">[已批阅 <{$homework['corrected']}>/<{$homework['numOfSubmit']}>] <{$homework['name']}></p></td>-->
-                            <!--<td><a class="download download-hwk" herf="#">批量下载</a></td>-->
-                            <!--<td style="display: none" class="hwk_id"><{$homework['id']}></td>-->
-                        <!--</tr>-->
-                        <!--<{else /}>-->
-                        <!--<tr>-->
-                            <!--<td><p class="homework-check comment">[未截止] <{$homework['name']}></p></td>-->
-                            <!--<td><a class="download download-hwk" herf="#">批量下载</a></td>-->
-                            <!--<td style="display: none" class="hwk_id"><{$homework['id']}></td>-->
-                        <!--</tr>-->
-                        <!--<{/if}>-->
-                        <!--<{/foreach}>-->
-
-                    <!--</table>-->
 
                     <table class="homework-check admi-class-detail">
                         <{foreach item="homework" name="course['homeworks']"}>
@@ -86,9 +68,8 @@
             <{/foreach}>
         </div>
     </div>
-
-    <{include file="Common/footer"/}>
 </div>
+<{include file="Common/footer"/}>
 
 </body>
 </html>
