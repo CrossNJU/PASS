@@ -138,7 +138,7 @@ class TeacherController extends Controller
         }
 
         $assignment_not_examine_all = $assignment_dis_model
-            ->where("assNumber = '$assignment_id' AND isExamined = 0")
+            ->where("assNumber = '$assignment_id' AND isSubmitted = 1 AND isExamined = 0")
             ->order('submittime')
             ->select();
         if(count($assignment_not_examine_all)>0)
