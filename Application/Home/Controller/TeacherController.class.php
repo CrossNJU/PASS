@@ -289,12 +289,17 @@ class TeacherController extends Controller
                 foreach ($students as $i){
                     $course_logic->assignment_dis($course_id, $assignment_id_new,$i['stdnumber']);
                 }
+
+                $validate_logic->sendMsg('布置新作业成功!','success');
+                $this->redirect('Teacher/my_assignments');
             }elseif($assignment_id != NULL && $assignment_model->create($data)){
                 $assignment_model->where("number = '$assignment_id'")->save();
-            }
 
-            $validate_logic->sendMsg('布置新作业成功!','success');
-            $this->redirect('Teacher/my_assignments');
+                $validate_logic->sendMsg('修改作业成功!','success');
+                $this->redirect('Teacher/my_assignments');
+            }else{
+                $validate_logic->sendMsg($assignment_model->getError(),'danger',0);
+            }
         }
 
         $this->course = $course_logic->get_course_name($course_id);
