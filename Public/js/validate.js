@@ -96,6 +96,14 @@ function validate_season(str){
     }
 }
 
+function validate_teacher(str){
+    if (str == '请选择教师'){
+        return "请选择教师";
+    }else {
+        return null;
+    }
+}
+
 function  validate_phone(str){
     //alert("kong");
     if(validate_null(str)){

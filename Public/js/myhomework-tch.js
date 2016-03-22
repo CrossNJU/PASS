@@ -9,7 +9,7 @@ $(document).ready(function() {
         $(".confirm-btn").click(function() {
             jQuery.ajax({
                 async: false,
-                url: "/PASS/index.php/Home/Teacher/assignment_delete",
+                url: "/PASS/Teacher/assignment_delete",
                 data: "assignment_id=" + hwid,
                 success: function (msg) {
                     if (msg == 1) {

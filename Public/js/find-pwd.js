@@ -6,7 +6,7 @@ $(document).ready(function(){
 });
 
 function showHint(){
-    $("input[name!='send'],textarea,select").after("<span class='hint'></span>");
+    $("input[name!='send'][id!='msg'][id!='type'],textarea,select").after("<span class='hint'></span>");
 }
 
 

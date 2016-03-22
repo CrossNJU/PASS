@@ -1,94 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>我的作业</title>
+    <meta charset="UTF-8">
+    <title>我的作业</title>
 
-	<link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico" >
+    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico">
 
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
-	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
-	<script src="__PUBLIC__/js/jquery.js"></script>
-	<script src="__PUBLIC__/js/main.js"></script>
-	<script	src="__PUBLIC__/js/myhomework-stu.js"></script>
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script src="__PUBLIC__/js/main.js"></script>
+    <script src="__PUBLIC__/js/myhomework-stu.js"></script>
 </head>
 <body>
-    <{include file="Common/header"/}>
-	<div class="nav">
-		<div class="wrapper">
-			<a class="nav-btn nav-btn-active " href="__ROOT__/index.php/Home/Student/my_assignment">我的作业</a>
-			<a class="nav-btn" href="__ROOT__/index.php/Home/Student/my_course">我的课程</a>
-		</div>
-	</div>
+<{include file="Common/header"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn nav-btn-active " href="__ROOT__/Student/my_assignment">我的作业</a>
+        <a class="nav-btn" href="__ROOT__/Student/my_course">我的课程</a>
+    </div>
+</div>
 
-	<div class="content">
-		<div class="wrapper">
-			<{foreach item="homework" name="homeworkDetails"}>
-			<div class="card">
-				<div class="card-info">
-					<p class="comment class-num"><{$homework['num']}></p>
-					<h3 class="card-title"><{$homework['name']}></h3>
-					<p class="comment">课程: <{$homework['courseName']}></p>
-					<p class="comment">要求: <span class="warning-text">[<{switch name="homework['type']"}>
+<div class="content">
+    <div class="wrapper">
+        <{foreach item="homework" name="homeworkDetails"}>
+        <div class="card">
+            <div class="card-info">
+                <p class="comment class-num"><{$homework['num']}></p>
+                <h3 class="card-title"><{$homework['name']}></h3>
+                <p class="comment">课程: <{$homework['courseName']}></p>
+                <p class="comment">要求: <span class="warning-text">[<{switch name="homework['type']"}>
 								<{case value="pdf"}>PDF格式<{/case}>
 								<{case value="word"}>WORD/PPT格式<{/case}>
 								<{case value="mp4"}>MP4格式<{/case}>
 								<{default /}>未知格式
 							<{/switch}>]</span><{$homework['require']}></p>
-					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-					<p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
-						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
-					<{if condition="$homework['isSubmit'] eq true"}>
-					<a class="btn" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
-						<{if condition="$homework['type'] neq 'word'"}>
-						<a class="btn preview-btn"
-							   data-type="<{$homework['type']}>"
-							   data-url="<{$homework['fileUrl']}>"
-							   data-classNum="<{$homework['num']}>"
-							   data-name="<{$homework['submitName']}>"
-						   data-time="<{$homework['submitTime']}>">预览作业</a>
-						<{/if}>
-					<{else /}>
-					<a class="btn btn-primary" href="__ROOT__/index.php/Home/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
-					<{/if}>
-				</div>
-			</div>
-			<{/foreach}>
+                <p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
+                <p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+                    <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
+                <{if condition="$homework['isSubmit'] eq true"}>
+                <{if condition="$homework['isWarning'] eq true"}>
+                <a class="btn btn-dangerous"
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">被提醒重新提交</a>
+                <{else/}>
+                <a class="btn"
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
+                <{/if}>
 
-			<{empty name="homeworkDetails"}>
-			<div class="tip">(●′ω`●)恭喜你还没有任何作业，快回去打撸啊撸吧</div>
-			<{/empty}>
+                <{if condition="$homework['type'] neq 'word'"}>
+                <a class="btn preview-btn"
+                   data-type="<{$homework['type']}>"
+                   data-url="<{$homework['fileUrl']}>"
+                   data-classNum="<{$homework['num']}>"
+                   data-name="<{$homework['submitName']}>"
+                   data-time="<{$homework['submitTime']}>">预览作业</a>
+                <{/if}>
+                <{else /}>
+                <a class="btn btn-primary"
+                   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
+                <{/if}>
+            </div>
+        </div>
+        <{/foreach}>
 
-			<!-- <div class="card">
-				<div class="card-info">
-					<p class="comment class-num">PC053 - 2016春</p>
-					<h3 class="card-title">当代社会科学领域的马克思主义哲学期末论文</h3>
-					<p class="comment">课程: 当代社会科学领域的马克思主义哲学</p>
-					<p class="comment">要求: 8000字以上，围绕当代社会科学领域的马克思主义哲学展开论文</p>
-					<p class="comment">时间: <span>2016.01.19 - 2016.02.20</span></p>
-					<p class="comment">状态: 未提交，未截止</p>
-					<a class="btn btn-active" href="#">提交作业</a>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card-info">
-					<p class="comment class-num">PC053 - 2016春</p>
-					<h3 class="card-title">当代社会科学领域的马克思主义哲学</h3>
-					<p class="comment">课程: 当代社会科学领域的马克思主义哲学</p>
-					<p class="comment">要求: 8000字以上，围绕当代社会科学领域的马克思主义哲学展开论文</p>
-					<p class="comment">时间: <span>2016.01.19 - 2016.02.20</span></p>
-					<p class="comment">状态: 已提交，已截止</p>
-					<a class="btn" href="#">预览作业</a>
-					<a class="btn" href="#">重新提交</a>
-				</div>
-			</div> -->
+        <{empty name="homeworkDetails"}>
+        <div class="tip">(●′ω`●)恭喜你还没有任何作业，快回去打撸啊撸吧</div>
+        <{/empty}>
 
-		</div>
-	</div>
-    <{include file="Common/footer"/}>
-	<{include file="Student/preview"/}>
+        <!-- <div class="card">
+            <div class="card-info">
+                <p class="comment class-num">PC053 - 2016春</p>
+                <h3 class="card-title">当代社会科学领域的马克思主义哲学期末论文</h3>
+                <p class="comment">课程: 当代社会科学领域的马克思主义哲学</p>
+                <p class="comment">要求: 8000字以上，围绕当代社会科学领域的马克思主义哲学展开论文</p>
+                <p class="comment">时间: <span>2016.01.19 - 2016.02.20</span></p>
+                <p class="comment">状态: 未提交，未截止</p>
+                <a class="btn btn-active" href="#">提交作业</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-info">
+                <p class="comment class-num">PC053 - 2016春</p>
+                <h3 class="card-title">当代社会科学领域的马克思主义哲学</h3>
+                <p class="comment">课程: 当代社会科学领域的马克思主义哲学</p>
+                <p class="comment">要求: 8000字以上，围绕当代社会科学领域的马克思主义哲学展开论文</p>
+                <p class="comment">时间: <span>2016.01.19 - 2016.02.20</span></p>
+                <p class="comment">状态: 已提交，已截止</p>
+                <a class="btn" href="#">预览作业</a>
+                <a class="btn" href="#">重新提交</a>
+            </div>
+        </div> -->
+
+    </div>
+</div>
+<{include file="Common/footer"/}>
+<{include file="Student/preview"/}>
 </body>
 </html>
