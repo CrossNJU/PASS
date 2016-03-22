@@ -26,7 +26,7 @@
 .download{
     color: #57BEED;
     font-size: 14px;
-
+    cursor: pointer;
     margin-bottom: 11px;
     text-decoration: underline;
 
@@ -39,9 +39,9 @@ table tr td:nth-child(2){
     width:240px;
 }
 
-/*.admi-class-detail{*/
-    /*width:840px;*/
-/*}*/
+.admi-class-detail .homework-check:first-child{
+    margin-top: 19px;
+}
 /*.admi-class-info:hover{*/
     /*background-color: #f3f8ff;*/
 /*}*/
@@ -107,7 +107,7 @@ input[type="submit"]{
 }
 .sbtn{
     vertical-align:top;
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
 }
 #respond,#mail-attention-null,#mail-attention-wrong{
     display: none;
@@ -124,4 +124,8 @@ input[type="submit"]{
 .student-manage .btn-small {
     margin-top: 0;
     float: right;
+}
+
+.teacher-class-num{
+    margin-bottom: 0px;
 }

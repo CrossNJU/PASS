@@ -32,23 +32,23 @@
         <form method="post" onsubmit="return checkLesson();return false;">
             <div class="card">
                 <div class="admi-add-class admi-class">
-                    <h3 class="card-title">添加新课程</h3>
+                    <h3 class="card-title">修改课程信息</h3>
                 </div>
 
                 <div class="admi-class-info" >
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">课程名称</p>
                         <input class="text" type="text" name="title" id="cou_name" value="<{$course['title']}>"/>
-                        <span class="hint"></span>
+                        <!--<span class="hint"></span>-->
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">授课教师工号</p>
                         <input class="text" type="text" name="teacher" id="cou_tea" value="<{$course['teacher']}>"/>
-                        <span class="hint"></span>
+                        <!--<span class="hint"></span>-->
                     </div>
 
-                    <input style="display: none" id="cou_year_temp" value="<{$course['year']}>">
-                    <input style="display: none" id="cou_sea_temp" value="<{$course['season']}>">
+                    <!--<input class="temp_info" style="display: none" id="cou_year_temp" value="<{$course['year']}>">-->
+                    <!--<input class="temp_info" style="display: none" id="cou_sea_temp" value="<{$course['season']}>">-->
 
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">时间</p>
@@ -64,23 +64,23 @@
                             <option value = "春季">春季</option>
                             <option value = "秋季">秋季</option>
                         </select>
-                        <span class="hint"></span>
+                        <!--<span class="hint"></span>-->
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">人数</p>
                         <input class="text" type="text" name="people" id="cou_num" value="<{$course['selected']}>"/>
-                        <span class="hint"></span>
+                        <!--<span class="hint"></span>-->
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">描述</p>
                         <textarea class="class-homework-request textarea" id="cou_des" name="depict"><{$course['depict']}></textarea>
-                        <span class="hint"></span>
+                        <!--<span class="hint"></span>-->
                     </div>
 
                 </div>
                 <div class="admi-class-choose admi-class-info">
-                    <input type="submit" class="btn sbtn" name="add" value="完成修改">
-                    <span class="hint"></span>
+                    <input type="submit" class="btn-primary btn sbtn" name="add" value="完成修改">
+                    <!--<span class="hint"></span>-->
                 </div>
 
             </div>
@@ -89,5 +89,10 @@
     </div>
     <{include file="Common/footer"/}>
 </div>
+
+<script>
+    var cou_year = "<{$course['year']}>";
+    var cou_sea = "<{$course['season']}>";
+</script>
 </body>
 </html>

@@ -47,8 +47,8 @@
                         <input class="text" type="text" name="name" id="tea_name" value="<{$teacher['name']}>"/>
                         <span class="hint"></span>
                     </div>
-                    <input style="display: none" id="tea_aca_temp" value="<{$teacher['academy']}>">
-                    <input style="display: none" id="tea_spe_temp" value="<{$teacher['speciality']}>">
+                    <!--<input class="temp_info" style="display: none" id="tea_aca_temp" value="<{$teacher['academy']}>">-->
+                    <!--<input class="temp_info" style="display: none" id="tea_spe_temp" value="<{$teacher['speciality']}>">-->
 
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">添加新教师</a>-->
-                    <input type="submit" class="btn sbtn" id="add-tea" name="add" value="完成修改">
+                    <input type="submit" class="btn-primary btn sbtn" id="add-tea" name="add" value="完成修改">
                 </div>
 
             </div>
@@ -127,6 +127,11 @@
 
     <{include file="Common/footer"/}>
 </div>
+
+<script>
+    var aca = "<{$teacher['academy']}>";
+    var spe = "<{$teacher['speciality']}>";
+</script>
 
 </body>
 </html>

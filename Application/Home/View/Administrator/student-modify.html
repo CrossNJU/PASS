@@ -138,7 +138,7 @@
 
                 <div class="admi-class-choose admi-class-info">
                     <!--<a class="btn">添加新学生</a>-->
-                    <input type="submit" class="btn sbtn" id="add-stu-btn" name="register" value="完成修改">
+                    <input type="submit" class="btn-primary btn sbtn" id="add-stu-btn" name="register" value="完成修改">
                 </div>
 
             </div>
@@ -148,19 +148,14 @@
         <div class="card input-card">
             <div class="card-info">
                 <h3 class="card-title">修改密码</h3>
-                <form id="password-form" method="post" action="" onsubmit="return   validatePwd()">
-                    <div class="admi-class-info-detil">
-                        <p class="comment">原密码</p>
-                        <input  class="text" type="password" name="old_pwd" placeholder="原密码">
-                    </div>
-                    <div class="admi-class-info-detil">
-                        <p class="comment">新密码</p>
-                        <input  class="text" type="password" name="new_pwd" placeholder="新密码">
-                    </div>
-                    <div class="admi-class-info-detil">
-                        <p class="comment">重复新密码</p>
-                        <input  class="text" type="password" id="new_pwd_repeat" placeholder="重复新密码">
-                    </div>
+                <form id="password-form" method="post" action="">
+                    <p class="comment">原密码</p>
+                    <input type="text" name="old_pwd" placeholder="原密码">
+                    <p class="comment">新密码</p>
+                    <input type="text" name="new_pwd" placeholder="新密码">
+                    <p class="comment">重复新密码</p>
+                    <input type="text" placeholder="重复新密码">
+                    <br/>
                     <input class="btn" type="submit" name="save_pwd" value="修改密码">
                     <!--<a class="btn" href="#">修改密码</a>-->
                 </form>

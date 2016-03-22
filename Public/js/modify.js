@@ -5,8 +5,8 @@
 var pwd = false;
 
 $(document).ready(function(){
-    var cou_year = $("#cou_year_temp").val();
-    var cou_sea = $("#cou_sea_temp").val();
+    //var cou_year = $("#cou_year_temp").val();
+    //var cou_sea = $("#cou_sea_temp").val();
     //alert(aca);
     //alert(spe);
     //$("#tea_aca option[value = aca]").attr("selected", true);
@@ -15,49 +15,49 @@ $(document).ready(function(){
 
     var s1 = document.getElementById("tea_aca");
     if (s1!=null)
-    for(var i = 0;i < s1.length;i++){
-        if(s1[i].value == aca){
-            //alert("in");
-            s1[i].selected = true;
-            redirec(i);
-            break;
+        for(var i = 0;i < s1.length;i++){
+            if(s1[i].value == aca){
+                //alert("in");
+                s1[i].selected = true;
+                redirec(i);
+                break;
+            }
         }
-    }
 
     var s2 = document.getElementById("tea_spe");
     if (s2!=null)
-    for(var i = 0;i < s2.length;i++){
-        if(s2[i].value == spe){
-            s2[i].selected = true;
-            break;
+        for(var i = 0;i < s2.length;i++){
+            if(s2[i].value == spe){
+                s2[i].selected = true;
+                break;
+            }
         }
-    }
     var s3 = document.getElementById("stu_grade");
     if (s3!=null)
-    for(var i = 0;i < s3.length;i++){
-        if(s3[i].value == grade){
-            s3[i].selected = true;
-            break;
+        for(var i = 0;i < s3.length;i++){
+            if(s3[i].value == grade){
+                s3[i].selected = true;
+                break;
+            }
         }
-    }
 
     var syear = document.getElementById("cou_year");
     if (syear!=null)
-    for(var i = 0;i < syear.length;i++){
-        if(syear[i].value == cou_year){
-            syear[i].selected = true;
-            break;
+        for(var i = 0;i < syear.length;i++){
+            if(syear[i].value == cou_year){
+                syear[i].selected = true;
+                break;
+            }
         }
-    }
 
     var ssea = document.getElementById("cou_sea");
     if (ssea!=null)
-    for(var i = 0;i < ssea.length;i++){
-        if(ssea[i].value == cou_sea){
-            ssea[i].selected = true;
-            break;
+        for(var i = 0;i < ssea.length;i++){
+            if(ssea[i].value == cou_sea){
+                ssea[i].selected = true;
+                break;
+            }
         }
-    }
 
     showHint();
 
@@ -81,7 +81,7 @@ $(document).ready(function(){
  */
 
 function showHint(){
-    $("input[name!='add'][id!='msg'][id!='type'],textarea,select").after("<span class='hint'></span>");
+    $("input[name!='add'][id!='msg'][id!='type'],select[id!='cou_year'],textarea,select").after("<span class='hint'></span>");
 }
 
 function checkTea(){
@@ -124,7 +124,7 @@ function checkTea(){
         $("input[id = 'tea_email']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(tea_phone)){
+    if(valiResult = validate_phone(tea_phone)){
         showValidateError();
         $("input[id = 'tea_phone']").next(".hint").html(valiResult);
         result = false;
@@ -186,7 +186,7 @@ function checkStu(){
         $("input[id = 'stu_email']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_phone)){
+    if(valiResult = validate_phone(stu_phone)){
         showValidateError();
         $("input[id = 'stu_phone']").next(".hint").html(valiResult);
         result = false;
@@ -218,7 +218,6 @@ function checkLesson(){
 
     if(valiResult = validate_null(cou_name)){
         showValidateError();
-        alert(valiResult);
         $("input[name = 'title']").next(".hint").html(valiResult);
         //$("input[name = 'title']").css("display","none");
         //document.getElementById("cou_name").style.visibility = 'hidden';
@@ -231,60 +230,25 @@ function checkLesson(){
     }
     if(valiResult = validate_year(cou_year)){
         showValidateError();
-        //$("input[id = 'cou_year']").next(".hint").html(valiResult);
-        time = false;
+        $("select[id = 'cou_sea']").next(".hint").html(valiResult);
+        //time = false;
         result = false;
     }
     if(valiResult = validate_season(cou_sea)){
         showValidateError();
-        //$("input[id = 'cou_sea']").next(".hint").html(valiResult);
-        time = false;
+        $("select[id = 'cou_sea']").next(".hint").html(valiResult);
+        //time = false;
         result = false;
     }
-    if(!time){
-        $("input[id = 'cou_sea']").next(".hint").html("请选择时间");
-    }
-
 
     if(valiResult = validate_null(cou_num)){
         showValidateError();
-        $("input[id = 'cou_num']").next(".hint").html(valiResult);
+        $("select[id = 'cou_num']").next(".hint").html(valiResult);
         result = false;
     }
     if(valiResult = validate_null(cou_des)){
         showValidateError();
         $("textarea[id = 'cou_des']").next(".hint").html(valiResult);
-        result = false;
-    }
-
-    return result;
-}
-
-function validatePwd() {
-    var result = true;
-
-    var old_pwd = $("input[name='old_pwd']").val();
-    var new_pwd = $("input[name='new_pwd']").val();
-    var new_pwd_repeat = $("input#new_pwd_repeat").val();
-
-    var valiResult;
-    if(valiResult = validate_null(old_pwd)){
-        showValidateError();
-        $("input[name='old_pwd']").next(".hint").html(valiResult);
-        result = false;
-    }
-    if(valiResult = validate_null(new_pwd)){
-        showValidateError();
-        $("input[name='new_pwd']").next(".hint").html(valiResult);
-        result = false;
-    }
-    if(valiResult = validate_null(old_pwd)){
-        showValidateError();
-        $("input#new_pwd_repeat").next(".hint").html(valiResult);
-        result = false;
-    }
-    if(new_pwd != new_pwd_repeat) {
-        $("input[name='new_pwd']").next(".hint").html("两次密码输入不一致");
         result = false;
     }
 

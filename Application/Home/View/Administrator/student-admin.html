@@ -34,7 +34,7 @@
             <form method="post" action="student_manage">
             <div class="admi-class">
                 <input class="text-find" type="text" name="search" placeholder="输入学生姓名或学号以查询"/>
-                <input class="btn sbtn" type="submit" name="find" value="查找学生"/>
+                <input class="btn-primary btn sbtn" type="submit" name="find" value="查找学生"/>
                 <!--<input class="input-button-add btn" id="btn-add-stu" type="button" value="添加新学生（目前共有<{$numbers}>名）" onclick="toAdd()"/>-->
                 <a class="input-button-add btn" id="btn-add-stu" href="__ROOT__/index.php/Home/Administer/student_add">添加新学生（目前共有<{$numbers}>名）</a>
             </div>
@@ -45,17 +45,17 @@
                 <div class="teacher-info homework-info test">
                     <p class="student-name homework-title"><{$student['name']}>（<{$student['num']}>）</p>
                     <p class="teacher-class-num comment"><{$student['major']}> <{$student['grade']}> 共选<{$student['numOfClass']}>门课</p>
-                    <br>
+                    <!--<br>-->
                     <div class="admi-class-detail test-1">
                         <{foreach item="class" name="student['classes']"}>
-                        <!--<tr>-->
-                            <!--<td><p class="homework-check comment class-name"><{$class['name']}></p></td>-->
-                        <!--</tr>-->
                         <p class="homework-check comment class-name"><{$class['name']}></p>
-
                         <{/foreach}>
                     </div>
 
+                    <!--<a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>-->
+                    <!--<input type="text" class="del-stuid" style="display: none" value="<{$student['num']}>">-->
+                    <!--<a class="btn btn-small" id="btn-modify-stu" href="__ROOT__/index.php/Home/Administer/student_add/id/<{$student['num']}>">修改</a>-->
+                    <!--<a class="btn btn-small up" href="javascript:void(0)">收起选课情况</a>-->
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$student['num']}>" href="javascript:void(0)">移除</a>
                 <input type="text" class="del-stuid" style="display: none" value="<{$student['num']}>">

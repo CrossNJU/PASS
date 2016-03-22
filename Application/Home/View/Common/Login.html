@@ -5,17 +5,19 @@
     <title>登录</title>
 
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
 
     <script type="text/javascript" src="__PUBLIC__/js/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/login.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/main.js"></script>
 </head>
 <body onload="show()">
-    <input style="display: none" id="msg" value="<{$msg}>">
-    <input style="display: none" id="type" value="<{$type}>">
+<input style="display: none" id="msg" value="<{$msg}>">
+<input style="display: none" id="type" value="<{$type}>">
+<!--<form method="post">-->
+<div class="content">
     <{include file="Common/header-common"/}>
 
     <div class="nav">
@@ -25,40 +27,40 @@
         </div>
     </div>
 
-    <div class="content">
-        <form method="post">
-            <div class="wrapper">
-                <div class="card">
-                    <div class="admi-add-class admi-class">
-                        <h3 class="card-title">登录</h3>
-                    </div>
-
-                    <div class="admi-class-info" >
-                        <div class="admi-class-info-detil">
-                            <p class="admi-class-info-detail comment">学号/工号</p>
-                            <input class="text" type="text" name="id" id="login-id" placeholder="学号/工号"/>
-                        </div>
-                        <div class="admi-class-info-detil">
-                            <p class="admi-class-info-detail comment">密码</p>
-                            <input class="text" type="password" name="pwd" id="login-pwd" placeholder="密码"/>
-                        </div>
-                    </div>
-                    <div class="login-remember admi-class-info">
-                        <!--<form class="comment">-->
-                        <!--<input type="checkbox" name="rememberMe" id="rememberMe">-->
-                        <!--记住我-->
-                        <!--</form>-->
-                    </div>
-                    <div class="admi-class-choose admi-class-info">
-                        <!--<a class="btn">&nbsp&nbsp&nbsp登录&nbsp&nbsp&nbsp</a>-->
-                        <input type="submit" class="btn sbtn" name="login" id="loginbtn" value="   登录   ">
-                        <a class="btn" href="__ROOT__/Home/Common/find_pwd">忘记密码</a>
-                    </div>
-
+    <form method="post">
+        <div class="wrapper">
+            <div class="card">
+                <div class="admi-add-class admi-class">
+                    <h3 class="card-title">登录</h3>
                 </div>
+
+                <div class="admi-class-info" >
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">学号</p>
+                        <input class="text" type="text" name="id" id="login-id" placeholder="学号"/>
+                    </div>
+                    <div class="admi-class-info-detil">
+                        <p class="admi-class-info-detail comment">密码</p>
+                        <input class="text" type="password" name="pwd" id="login-pwd" placeholder="密码"/>
+                    </div>
+                </div>
+                <div class="login-remember admi-class-info">
+                    <!--<form class="comment">-->
+                    <!--<input type="checkbox" name="rememberMe" id="rememberMe">-->
+                    <!--记住我-->
+                    <!--</form>-->
+                </div>
+                <div class="admi-class-choose admi-class-info">
+                    <!--<a class="btn">&nbsp&nbsp&nbsp登录&nbsp&nbsp&nbsp</a>-->
+                    <input type="submit" class="btn-primary btn sbtn" name="login" id="loginbtn" value="   登录   ">
+                    <a class="btn" href="__ROOT__/Home/Common/find_pwd">忘记密码</a>
+                </div>
+
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
     <{include file="Common/footer"/}>
+</div>
+<!--</form>-->
 </body>
 </html>

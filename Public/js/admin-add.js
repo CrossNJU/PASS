@@ -14,28 +14,28 @@ function redirec(x){
     }
     select_spe[0][0] = new Option("专业","专业");
 
-    select_spe[1][0] = new Option("中国语言文学类","中国语言文学类");
+    select_spe[1][0] = new Option("请选择专业","请选择专业");
     select_spe[1][1] = new Option("汉语言文学","汉语言文学");
     select_spe[1][2] = new Option("汉语言文学（作家班）","汉语言文学（作家班）");
     select_spe[1][3] = new Option("戏剧影视文学","戏剧影视文学");
     select_spe[1][4] = new Option("中文基地","中文基地");
 
-    select_spe[2][0] = new Option("历史学类","历史学类");
+    select_spe[2][0] = new Option("请选择专业","请选择专业");
     select_spe[2][1] = new Option("历史学","历史学");
     select_spe[2][2] = new Option("考古学","考古学");
     select_spe[2][3] = new Option("考古学（文物鉴定）","考古学（文物鉴定）");
     select_spe[2][4] = new Option("历史基地","历史基地");
 
-    select_spe[3][0] = new Option("法学类","法学类");
+    select_spe[3][0] = new Option("请选择专业","请选择专业");
     select_spe[3][1] = new Option("法学","法学");
     select_spe[3][2] = new Option("法学（第二学位）","法学（第二学位）");
     select_spe[3][3] = new Option("法学（运动员班）","法学（运动员班）");
 
-    select_spe[4][0] = new Option("哲学类","哲学类");
+    select_spe[4][0] = new Option("请选择专业","请选择专业");
     select_spe[4][1] = new Option("哲学","哲学");
     select_spe[4][2] = new Option("哲学基地","哲学基地");
 
-    select_spe[5][0] = new Option("新闻传播学类","新闻传播学类");
+    select_spe[5][0] = new Option("请选择专业","请选择专业");
     select_spe[5][1] = new Option("新闻学","新闻学");
     select_spe[5][2] = new Option("广告学","广告学");
     select_spe[5][3] = new Option("广播电视新闻学","广播电视新闻学");
@@ -44,7 +44,7 @@ function redirec(x){
     select_spe[5][6] = new Option("广播电视学","广播电视学");
     select_spe[5][7] = new Option("新闻学（传媒实验班）","新闻学（传媒实验班）");
 
-    select_spe[6][0] = new Option("公共管理类","公共管理类");
+    select_spe[6][0] = new Option("请选择专业","请选择专业");
     select_spe[6][1] = new Option("政治学与行政学","政治学与行政学");
     select_spe[6][2] = new Option("行政管理","行政管理");
     select_spe[6][3] = new Option("国际政治","国际政治");
@@ -56,7 +56,7 @@ function redirec(x){
     select_spe[6][9] = new Option("行政管理（新疆班）","行政管理（新疆班）");
     select_spe[6][10] = new Option("政治学类","政治学类");
 
-    select_spe[7][0] = new Option("文科类","文科类");
+    select_spe[7][0] = new Option("请选择专业","请选择专业");
     select_spe[7][1] = new Option("信息管理与信息系统","信息管理与信息系统");
     select_spe[7][2] = new Option("图书馆学","图书馆学");
     select_spe[7][3] = new Option("档案学","档案学");
@@ -64,12 +64,12 @@ function redirec(x){
     select_spe[7][5] = new Option("理科类","理科类");
     select_spe[7][6] = new Option("档案学（第二学士学位）","档案学（第二学士学位）");
 
-    select_spe[8][0] = new Option("社会学类","社会学类");
+    select_spe[8][0] = new Option("请选择专业","请选择专业");
     select_spe[8][1] = new Option("社会学","社会学");
     select_spe[8][2] = new Option("社会工作","社会工作");
     select_spe[8][3] = new Option("应用心理学","应用心理学");
 
-    select_spe[9][0] = new Option("经济学类","经济学类");
+    select_spe[9][0] = new Option("请选择专业","请选择专业");
     select_spe[9][1] = new Option("经济学","经济学");
     select_spe[9][2] = new Option("国际经济与贸易","国际经济与贸易");
     select_spe[9][3] = new Option("工商管理","工商管理");
@@ -86,7 +86,7 @@ function redirec(x){
     select_spe[9][14] = new Option("金融工程","金融工程");
     select_spe[9][15] = new Option("经济学（产业经济方向）","经济学（产业经济方向）");
 
-    select_spe[10][0] = new Option("外语类","外语类");
+    select_spe[10][0] = new Option("请选择专业","请选择专业");
     select_spe[10][1] = new Option("英语","英语");
     select_spe[10][2] = new Option("俄语","俄语");
     select_spe[10][3] = new Option("日语","日语");
@@ -97,27 +97,27 @@ function redirec(x){
     select_spe[10][8] = new Option("应用英语强化班","应用英语强化班");
     select_spe[10][9] = new Option("朝鲜语","朝鲜语");
 
-    select_spe[11][0] = new Option("数学类","数学类");
+    select_spe[11][0] = new Option("请选择专业","请选择专业");
     select_spe[11][1] = new Option("数学与应用数学","数学与应用数学");
     select_spe[11][2] = new Option("信息与计算科学","信息与计算科学");
     select_spe[11][3] = new Option("统计学","统计学");
     select_spe[11][4] = new Option("应用模块","应用模块");
     select_spe[11][5] = new Option("数学（英才计划）","数学（英才计划）");
 
-    select_spe[12][0] = new Option("物理学类","物理学类");
+    select_spe[12][0] = new Option("请选择专业","请选择专业");
     select_spe[12][1] = new Option("物理学","物理学");
     select_spe[12][2] = new Option("应用物理学","应用物理学");
     select_spe[12][3] = new Option("声学","声学");
     select_spe[12][4] = new Option("物理基地","物理基地");
     select_spe[12][5] = new Option("物理学（英才计划）","物理学（英才计划）");
 
-    select_spe[13][0] = new Option("化学类","化学类");
+    select_spe[13][0] = new Option("请选择专业","请选择专业");
     select_spe[13][1] = new Option("化学","化学");
     select_spe[13][2] = new Option("应用化学","应用化学");
     select_spe[13][3] = new Option("化学（基地）","化学（基地）");
     select_spe[13][4] = new Option("化学（英才计划）","化学（英才计划）");
 
-    select_spe[14][0] = new Option("生物科学类","生物科学类");
+    select_spe[14][0] = new Option("请选择专业","请选择专业");
     select_spe[14][1] = new Option("生物技术","生物技术");
     select_spe[14][2] = new Option("生物科学","生物科学");
     select_spe[14][3] = new Option("生态学","生态学");
@@ -125,7 +125,7 @@ function redirec(x){
     select_spe[14][5] = new Option("生物科学（基地）","生物科学（基地）");
     select_spe[14][6] = new Option("生物科学（英才计划）","生物科学（英才计划）");
 
-    select_spe[15][0] = new Option("地质学类","地质学类");
+    select_spe[15][0] = new Option("请选择专业","请选择专业");
     select_spe[15][1] = new Option("地质学","地质学");
     select_spe[15][2] = new Option("地球化学","地球化学");
     select_spe[15][3] = new Option("地质工程","地质工程");
@@ -138,7 +138,7 @@ function redirec(x){
     select_spe[15][10] = new Option("地科基地","地科基地");
     select_spe[15][11] = new Option("地质学（地球物理学方向）","地质学（地球物理学方向）");
 
-    select_spe[16][0] = new Option("地理科学类","地理科学类");
+    select_spe[16][0] = new Option("请选择专业","请选择专业");
     select_spe[16][1] = new Option("资源环境与城乡规划管理","资源环境与城乡规划管理");
     select_spe[16][2] = new Option("地理信息系统","地理信息系统");
     select_spe[16][3] = new Option("城市规划","城市规划");
@@ -151,13 +151,13 @@ function redirec(x){
     select_spe[16][10] = new Option("地理基地","地理基地");
     select_spe[16][11] = new Option("海洋基地","海洋基地");
 
-    select_spe[17][0] = new Option("大气科学类","大气科学类");
+    select_spe[17][0] = new Option("请选择专业","请选择专业");
     select_spe[17][1] = new Option("大气科学","大气科学");
     select_spe[17][2] = new Option("应用气象学","应用气象学");
     select_spe[17][3] = new Option("大气科学（基地）","大气科学（基地）");
     select_spe[17][4] = new Option("应用气象学（基地）","应用气象学（基地）");
 
-    select_spe[18][0] = new Option("电子信息类","电子信息类");
+    select_spe[18][0] = new Option("请选择专业","请选择专业");
     select_spe[18][1] = new Option("电子信息科学与技术","电子信息科学与技术");
     select_spe[18][2] = new Option("声学","声学");
     select_spe[18][3] = new Option("通信工程","通信工程");
@@ -165,7 +165,7 @@ function redirec(x){
     select_spe[18][5] = new Option("微电子学","微电子学");
     select_spe[18][6] = new Option("微电子科学与工程","微电子科学与工程");
 
-    select_spe[19][0] = new Option("材料类","材料类");
+    select_spe[19][0] = new Option("请选择专业","请选择专业");
     select_spe[19][1] = new Option("材料物理","材料物理");
     select_spe[19][2] = new Option("材料化学","材料化学");
     select_spe[19][3] = new Option("光电信息科学与工程","光电信息科学与工程");
@@ -173,24 +173,24 @@ function redirec(x){
     select_spe[19][5] = new Option("生物医学工程","生物医学工程");
     select_spe[19][6] = new Option("光电信息工程","光电信息工程");
 
-    select_spe[20][0] = new Option("环境科学与工程","环境科学与工程");
+    select_spe[20][0] = new Option("请选择专业","请选择专业");
     select_spe[20][1] = new Option("环境工程","环境工程");
     select_spe[20][2] = new Option("环境科学","环境科学");
     select_spe[20][3] = new Option("环境科学（环化）","环境科学（环化）");
     select_spe[20][4] = new Option("环境科学（环生）","环境科学（环生）");
     select_spe[20][5] = new Option("环境科学（环规）","环境科学（环规）");
 
-    select_spe[21][0] = new Option("天文学类","天文学类");
+    select_spe[21][0] = new Option("请选择专业","请选择专业");
     select_spe[21][1] = new Option("天文学","天文学");
     select_spe[21][2] = new Option("空间科学与技术","空间科学与技术");
     select_spe[21][3] = new Option("天文基地","天文基地");
     select_spe[21][4] = new Option("天文学（英才计划）","天文学（英才计划）");
 
-    select_spe[22][0] = new Option("计算机科学类","计算机科学类");
+    select_spe[22][0] = new Option("请选择专业","请选择专业");
     select_spe[22][1] = new Option("计算机科学与技术","计算机科学与技术");
     select_spe[22][2] = new Option("计算机科学与技术（英才计划）","计算机科学与技术（英才计划）");
 
-    select_spe[23][0] = new Option("医学类","医学类");
+    select_spe[23][0] = new Option("请选择专业","请选择专业");
     select_spe[23][1] = new Option("医学类（5+3）","医学类（5+3）");
     select_spe[23][2] = new Option("临床医学","临床医学");
     select_spe[23][3] = new Option("临床医学（5+3）","临床医学（5+3）");
@@ -200,7 +200,7 @@ function redirec(x){
     select_spe[23][7] = new Option("临床医学（军总）","临床医学（军总）");
     select_spe[23][8] = new Option("基础医学","基础医学");
 
-    select_spe[24][0] = new Option("应用文科强化班","应用文科强化班");
+    select_spe[24][0] = new Option("请选择专业","请选择专业");
     select_spe[24][1] = new Option("理科强化班","理科强化班");
     select_spe[24][2] = new Option("理强（数理方向）","理强（数理方向）");
     select_spe[24][3] = new Option("理强（生物化学）","理强（生物化学）");
@@ -245,12 +245,12 @@ function redirec(x){
     select_spe[24][42] = new Option("理强(信息与计算科学)","理强(信息与计算科学)");
     select_spe[24][43] = new Option("理强(生物学)","理强(生物学)");
 
-    select_spe[25][0] = new Option("软件学类","软件学类");
+    select_spe[25][0] = new Option("请选择专业","请选择专业");
     select_spe[25][1] = new Option("软件工程","软件工程");
 
     select_spe[26][0] = new Option("教育技术学类","教育技术学类");
 
-    select_spe[27][0] = new Option("管理科学与工程类","管理科学与工程类");
+    select_spe[27][0] = new Option("请选择专业","请选择专业");
     select_spe[27][1] = new Option("自动化","自动化");
     select_spe[27][2] = new Option("工业工程","工业工程");
     select_spe[27][3] = new Option("金融工程","金融工程");
@@ -259,12 +259,12 @@ function redirec(x){
     select_spe[27][6] = new Option("自动化类","自动化类");
     select_spe[27][7] = new Option("电气信息类","电气信息类");
 
-    select_spe[28][0] = new Option("海外教育类","海外教育类");
+    select_spe[28][0] = new Option("请选择专业","请选择专业");
     select_spe[28][1] = new Option("对外汉语","对外汉语");
     select_spe[28][2] = new Option("汉语言","汉语言");
     select_spe[28][3] = new Option("汉语国际教育","汉语国际教育");
 
-    select_spe[29][0] = new Option("建筑学","建筑学");
+    select_spe[29][0] = new Option("请选择专业","请选择专业");
     select_spe[29][1] = new Option("城市规划","城市规划");
     select_spe[29][2] = new Option("城乡规划","城乡规划");
     select_spe[29][3] = new Option("建筑基地","建筑基地");

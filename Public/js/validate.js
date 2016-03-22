@@ -65,7 +65,7 @@ function validate_aca(str){
 }
 
 function validate_spe(str){
-    if (str == '专业'){
+    if (str == '请选择专业'){
         return "请选择专业";
     }else {
         return null;
@@ -82,7 +82,7 @@ function validate_grade(str){
 
 function validate_year(str){
     if (str == '年份'){
-        return "请选择年份";
+        return "请选择时间";
     }else {
         return null;
     }
@@ -90,12 +90,26 @@ function validate_year(str){
 
 function validate_season(str){
     if (str == '季节'){
-        return "请选择季节";
+        return "请选择时间";
     }else {
         return null;
     }
 }
 
+function  validate_phone(str){
+    //alert("kong");
+    if(validate_null(str)){
+        return "内容为空";
+    }
+    var reg = new RegExp("^[0-9]*$");
+    if(reg.test(str)){
+        if(str.length != 11){
+            return "请输入11位手机号";
+        }
+        return null;
+    }
+    return "包含非法字符";
+}
 function showValidateError(){
     showStateBar("danger","信息填写错误");
 }

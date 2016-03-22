@@ -56,7 +56,7 @@ function checkRegister(){
         $("input[id = 'add_email']").next(".hint").html(valiResult);
         result = false;
     }
-    if(valiResult = validate_null(stu_phone)){
+    if(valiResult = validate_phone(stu_phone)){
         showValidateError();
         $("input[id = 'add_phone']").next(".hint").html(valiResult);
         result = false;
