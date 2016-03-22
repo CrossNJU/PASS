@@ -17,7 +17,11 @@
 
 </head>
 <body onload="show()">
+<{if condition="$isAdmin neq true"}>
+<{include file="Common/header"/}>
+<{else /}>
 <{include file="Common/header-admin"/}>
+<{/if}>
 <div class="nav">
     <div class="wrapper">
         <{if condition="$isAdmin eq true"}>
@@ -143,13 +147,13 @@
         <div class="card input-card">
             <div class="card-info">
                 <h3 class="card-title">修改密码</h3>
-                <form id="password-form" method="post" action="">
+                <form id="password-form" method="post" action="" onsubmit="return checkPwd();return false;">
                     <p class="comment">原密码</p>
-                    <input type="text" name="old_pwd" placeholder="原密码">
+                    <input type="password" name="old_pwd" id="old_pwd" placeholder="原密码">
                     <p class="comment">新密码</p>
-                    <input type="text" name="new_pwd" placeholder="新密码">
+                    <input type="password" name="new_pwd" id="new_pwd" placeholder="新密码">
                     <p class="comment">重复新密码</p>
-                    <input type="text" placeholder="重复新密码">
+                    <input type="password" id="new_pwd2" placeholder="重复新密码">
                     <br/>
                     <input class="btn" type="submit" name="save_pwd" value="修改密码">
                     <!--<a class="btn" href="#">修改密码</a>-->
@@ -166,6 +170,7 @@
         var aca = "<{$student['academy']}>";
         var spe = "<{$student['speciality']}>";
         var grade = "<{$student['grade']}>";
+        alert(grade);
     </script>
 </div>
 <{include file="Common/footer"/}>

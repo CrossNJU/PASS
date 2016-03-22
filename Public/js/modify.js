@@ -274,6 +274,50 @@ function checkLesson(){
     return result;
 }
 
+function  checkPwd(){
+
+    var result = true;
+
+    var old_pwd = document.getElementById("old_pwd").value;
+    var new_pwd = document.getElementById("new_pwd").value;
+    var new_pwd2 = document.getElementById("new_pwd2").value;
+
+    var valiResult;
+    $(".hint").html("");
+
+    if(valiResult = validate_null(old_pwd)){
+        showValidateError();
+        $("input[id='old_pwd']").next(".hint").html(valiResult);
+        result = false;
+    }
+
+    if(valiResult = validate_null(new_pwd)){
+        showValidateError();
+        $("input[id='new_pwd']").next(".hint").html(valiResult);
+        result = false;
+    }
+    if(valiResult = validate_null(new_pwd2)){
+        showValidateError();
+        $("input[id='new_pwd2']").next(".hint").html(valiResult);
+        result = false;
+    }
+
+    if ((!validate_null(new_pwd))&&(!validate_null(new_pwd2))){
+        if (new_pwd != new_pwd2){
+            showValidateError();
+            $("input[id='new_pwd2']").next(".hint").html("两次密码不一致");
+            result = false;
+        }
+        if(valiResult = validate_pwd(new_pwd)){
+            showValidateError();
+            $("input[id='new_pwd']").next(".hint").html(valiResult);
+            result = false;
+        }
+    }
+
+    return result;
+}
+
 function show(){
     var $p1 = $("#msg").val();
     var $p2 = $("#type").val();
