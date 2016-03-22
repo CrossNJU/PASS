@@ -374,4 +374,8 @@ class TeacherController extends Controller
         );
         $this->ajaxReturn($student_detail);
     }
+
+    public function _empty(){
+        $this->display('Common:not-found');
+    }
 }

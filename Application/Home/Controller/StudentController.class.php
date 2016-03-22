@@ -29,6 +29,7 @@ class StudentController extends Controller
 
         $stu = session('user');
         $user_model = D('User');
+        $user_logic = D('User','Logic');
         $student = $user_model->where("number = '$stu'")->select()[0];
         $this->student = $student;//学生原始信息,字段参见数据库
         $this->isAdmin = false;
@@ -42,11 +43,13 @@ class StudentController extends Controller
             $data['grade'] = I('post.grade');
             $data['email'] = I('post.email');
             if($user_model->save($data)) {
-                $validate_logic->sendMsg('保存成功','success',0);
+                $validate_logic->sendMsg('保存成功','success');
                 session('user',$data['number']);
+                session("username",$user_logic->get_user_name($data['number']));
                 $stu = session('user');
                 $student = $user_model->where("number = '$stu'")->select()[0];
                 $this->student = $student;
+                $this->redirect('Student/my_course');
             }
             else {
                 $validate_logic->sendMsg('保存失败','danger',0);
@@ -57,19 +60,21 @@ class StudentController extends Controller
             $old_in_db = $user_model->where("number = '$stu'")->getField('password');
             if(md5($old)!=$old_in_db) {
                 $validate_logic->sendMsg('原密码错误','danger',0);
+            }else{
+                $new = I('post.new_pwd');
+                $row['password'] = $new;
+                $row['number'] = $stu;
+                $res = $user_model->create($row);
+                if($res) {
+                    $user_model->save();
+                    $validate_logic->sendMsg('保存成功','success');
+                    $this->redirect('Student/my_course');
+                }
+                else {
+                    $validate_logic->sendMsg('保存失败','danger',0);
+                }
             }
 
-            $new = I('post.new_pwd');
-            $row['password'] = $new;
-            $row['number'] = $stu;
-            $res = $user_model->create($row);
-            if($res) {
-                $user_model->save();
-                $validate_logic->sendMsg('保存成功','success',0);
-            }
-            else {
-                $validate_logic->sendMsg('保存失败','danger',0);
-            }
         }
 
         $this->display('Administrator:student-modify');
@@ -110,6 +115,7 @@ class StudentController extends Controller
             $courses[$i] = $course_detail;
             $i ++;
         }
+//        dump($courses);
         $this->courses = $courses;
 
         $this->display('Student:mycourse-stu');
@@ -142,6 +148,7 @@ class StudentController extends Controller
                 $i ++;
             }
         }
+//        dump($assignments);
         $this->homeworkDetails = $assignments;
         $this->display('Student:myhomework-stu');
     }
@@ -296,5 +303,9 @@ class StudentController extends Controller
         $this->submit = $sub;
         $this->type = $assignment_detail['type'];
         $this->display('Student/submit');
+    }
+
+    public function _empty(){
+        $this->display('Common:not-found');
     }
 }

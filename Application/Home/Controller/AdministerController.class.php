@@ -147,6 +147,7 @@ class AdministerController extends Controller
                 $data['academy'] = I('post.aca');
                 $data['speciality'] = I('post.spe');
                 $data['grade'] = I('post.grade');
+                $data['save_time'] = date("y-m-d h:i:s");
                 $data['permission'] = 1;
                 if($id == NULL && $user_model->create($data)){
                     $user_model->add();
@@ -400,6 +401,7 @@ class AdministerController extends Controller
                $data['name'] = I('post.name');
                $data['academy'] = I('post.aca');
                $data['speciality'] = I('post.spe');
+               $data['save_time'] = date("y-m-d h:i:s");
                $data['permission'] = 2;
                if($id == NULL && $user_model->create($data)){
                    $user_model->add();
@@ -424,6 +426,10 @@ class AdministerController extends Controller
 
         if ($id== NULL) $this->display('Administrator:teacher-add');
         else $this->display('Administrator:teacher-modify');
+    }
+
+    public function _empty(){
+        $this->display('Common:not-found');
     }
 
 }

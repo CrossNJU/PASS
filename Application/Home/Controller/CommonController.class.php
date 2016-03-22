@@ -40,6 +40,7 @@ class CommonController extends Controller
                 $data['academy'] = I('post.aca');
                 $data['speciality'] = I('post.spe');
                 $data['grade'] = I('post.grade');
+                $data['save_time'] = date("y-m-d h:i:s");
                 $data['permission'] = 1;
                 if($user_model->create($data)){
                     $user_model->add();
@@ -135,7 +136,7 @@ class CommonController extends Controller
     public function pwd_reset($id)//.............................................................................重置密码
     {
         if (session('reset_ip')!= get_client_ip()){
-            $this->ajaxReturn("error!you are not allowed to see this page!");
+            $this->redirect('Common/not_found');
         }
         $validate_logic = D('Validate','Logic');
         $validate_logic->setSession();
@@ -156,5 +157,9 @@ class CommonController extends Controller
 
         }
         $this->display('Common:Password-Reset');
+    }
+
+    public function _empty(){
+        $this->display('Common:not-found');
     }
 }
