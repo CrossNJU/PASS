@@ -42,7 +42,9 @@
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['type'] eq 'word'" }>
+						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
 						<a class="btn batch-btn btn-primary" data-id="<{$homework['id']}>" >批量下载</a>
+						<{/if}>
 					<{else /}>
 						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
 							<a class="btn btn-primary" href="__ROOT__/index.php/Home/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
