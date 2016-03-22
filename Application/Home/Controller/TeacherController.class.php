@@ -187,16 +187,20 @@ class TeacherController extends Controller
             $data['mark'] = I('post.mark');
             $data['isExamined'] = 1;
 
-            $assignment_dis_model
-                ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
-                ->save($data);
+            if($assignment_dis_model->create($data)){
+                $assignment_dis_model
+                    ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
+                    ->save();
 
-            $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
-            if($ret) {
-                $validate_logic->sendMsg('保存成功','success');
-                $this->redirect('Teacher/assignment_detail/assignment_id/'.$assignment_id);
-            } else {
-                $validate_logic->sendMsg('保存失败','danger',0);
+                $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
+                if($ret) {
+                    $validate_logic->sendMsg('保存成功','success');
+                    $this->redirect('Teacher/assignment_detail/assignment_id/'.$assignment_id);
+                } else {
+                    $validate_logic->sendMsg('保存失败','danger',0);
+                }
+            }else{
+                $validate_logic->sendMsg($assignment_dis_model->getError(),'danger',0);
             }
         }
 
@@ -205,22 +209,30 @@ class TeacherController extends Controller
             $data['mark'] = I('post.mark');
             $data['isExamined'] = 1;
 
-            $assignment_dis_model
-                ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
-                ->save($data);
+            if($assignment_dis_model->create($data)){
+                $assignment_dis_model
+                    ->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'" )
+                    ->save();
 
-            $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
-            $assignment_next = $assignment_dis_model
-                ->where("assNumber = '$assignment_id' AND isExamined = 0")
-                ->select()[0];
-            if($assignment_next == null){
-                $validate_logic->sendMsg('保存成功','success');
-                $this->redirect('Teacher/assignment_detail/assignment_id/'
-                    .$assignment_id);
+                $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
+                if($ret){
+                    $assignment_next = $assignment_dis_model
+                        ->where("assNumber = '$assignment_id' AND isExamined = 0")
+                        ->select()[0];
+                    if($assignment_next == null){
+                        $validate_logic->sendMsg('保存成功','success');
+                        $this->redirect('Teacher/assignment_detail/assignment_id/'
+                            .$assignment_id);
+                    }else{
+                        $this->redirect('Teacher/assignment_to_modify/assignment_id/'
+                            .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
+                            .'/display/correct');
+                    }
+                }else {
+                    $validate_logic->sendMsg('保存失败','danger',0);
+                }
             }else{
-                $this->redirect('Teacher/assignment_to_modify/assignment_id/'
-                    .$assignment_id.'/student_id/'.$assignment_next['stdnumber']
-                    .'/display/correct');
+                $validate_logic->sendMsg($assignment_dis_model->getError(),'danger',0);
             }
         }
 
@@ -268,8 +280,8 @@ class TeacherController extends Controller
             $data['teacher'] = session('user');
             $data['type'] = I('post.type');
 
-            if($assignment_id == NULL){
-                $assignment_id_new = $assignment_model->add($data);
+            if($assignment_id == NULL && $assignment_model->create($data)){
+                $assignment_id_new = $assignment_model->add();
                 $data['number_display'] = $common_logic->get_display_number($assignment_id_new,2);
                 $data['number'] = $assignment_id_new;
                 $assignment_model->save($data);
@@ -277,11 +289,11 @@ class TeacherController extends Controller
                 foreach ($students as $i){
                     $course_logic->assignment_dis($course_id, $assignment_id_new,$i['stdnumber']);
                 }
-            }else{
-                $assignment_model->where("number = '$assignment_id'")->save($data);
+            }elseif($assignment_id != NULL && $assignment_model->create($data)){
+                $assignment_model->where("number = '$assignment_id'")->save();
             }
 
-            $validate_logic->sendMsg('删除成功','success');
+            $validate_logic->sendMsg('布置新作业成功!','success');
             $this->redirect('Teacher/my_assignments');
         }
 

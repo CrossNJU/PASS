@@ -42,7 +42,8 @@ class StudentController extends Controller
             $data['speciality'] = I('post.spe');
             $data['grade'] = I('post.grade');
             $data['email'] = I('post.email');
-            if($user_model->save($data)) {
+            if($user_model->create($data)) {
+                $user_model->add();
                 $validate_logic->sendMsg('保存成功','success');
                 session('user',$data['number']);
                 session("username",$user_logic->get_user_name($data['number']));

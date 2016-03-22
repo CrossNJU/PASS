@@ -153,15 +153,15 @@ class AdministerController extends Controller
                     $user_model->add();
                     $validate_logic->sendMsg('增加学生成功','success');
                     $this->redirect('Administer/student_manage');
-                }elseif ($id != NULL && $change_pwd && $user_model->create($data)){
+                }elseif ($id != NULL && $user_model->create($data)){
                     $user_model->save();
                     $validate_logic->sendMsg('修改学生成功','success');
                     $this->redirect('Administer/student_manage');
-                }elseif ($id != NULL && !$change_pwd && $user_model->save($data)){
-                    $validate_logic->sendMsg('修改学生成功','success');
-                    $this->redirect('Administer/student_manage');
+//                }elseif ($id != NULL && !$change_pwd && $user_model->save($data)){
+//                    $validate_logic->sendMsg('修改学生成功','success');
+//                    $this->redirect('Administer/student_manage');
                 } else {
-                    $validate_logic->sendMsg('增加/修改学生失败','danger',0);
+                    $validate_logic->sendMsg($user_model->getError(),'danger',0);
                 }
 
             }
@@ -239,7 +239,7 @@ class AdministerController extends Controller
         $validate_logic = D('Validate','Logic');
         if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
         $validate_logic->setSession();
-        $course_model = M('Course');
+        $course_model = D('Course');
         $user_model = M('User');
         $common_logic = D('Common', 'Logic');
 
@@ -265,19 +265,23 @@ class AdministerController extends Controller
             $search_teacher = $user_model->where("number = '$teacher'")->select();
             if(count($search_teacher)==0){
                 $validate_logic->sendMsg('教师不存在','warning',0);
-            }elseif($id == NULL && $course_id = $course_model->add($data)) {
+            }elseif($id == NULL && $course_id = $course_model->create($data)) {
+                $course_model->add();
                 $data['number'] = $course_id;
                 $data['number_display'] = $common_logic->get_display_number($course_id,1);
                 $course_model->save($data);
                 $validate_logic->sendMsg('增加课程成功','success');
                 $this->redirect('Administer/course_manage');
-            }elseif($id != NULL && $course_model->where("number = '$id'")->save($data)){
+            }elseif($id != NULL && $course_model->where("number = '$id'")->create($data)){
+                $course_model->save();
                 $validate_logic->sendMsg('修改课程成功','success');
                 $this->redirect('Administer/course_manage');
             }else {
-                $validate_logic->sendMsg('添加/修改课程失败','danger',0);
+                $validate_logic->sendMsg($course_model->getError(),'danger',0);
             }
         }
+
+        $this->teachers = $user_model->where("permission = 2")->select();
 
         if($id!= NULL) $this->display('Administrator:lesson-modify');
         else if($teacher_id!= NULL){
@@ -408,14 +412,14 @@ class AdministerController extends Controller
                    $validate_logic->sendMsg('增加教师成功','success');
                    $this->redirect('Administer/teacher_manage');
                }
-               elseif($id!=NULL && $change_pwd && $user_model->create($data)){
+               elseif($id!=NULL && $user_model->create($data)){
                    $user_model->save();
                    $validate_logic->sendMsg('修改教师成功','success');
                    $this->redirect('Administer/teacher_manage');
-               }
-               elseif($id!=NULL && !$change_pwd && $user_model->save($data)){
-                   $validate_logic->sendMsg('修改教师成功','success');
-                   $this->redirect('Administer/teacher_manage');
+//               }
+//               elseif($id!=NULL && !$change_pwd && $user_model->save($data)){
+//                   $validate_logic->sendMsg('修改教师成功','success');
+//                   $this->redirect('Administer/teacher_manage');
                } else{
                    $validate_logic->sendMsg('增加/修改教师失败','danger',0);
                }

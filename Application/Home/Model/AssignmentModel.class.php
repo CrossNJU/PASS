@@ -16,6 +16,8 @@ class AssignmentModel extends Model
         'number_display',
         'requi',
         'title',
+        'submitted',
+        'examined',
         'startTime',
         'endTime',
         'course',
@@ -27,6 +29,8 @@ class AssignmentModel extends Model
             'number_display' => 'varchar',
             'requi' => 'text',
             'title' => 'varchar',
+            'submitted' => 'int',
+            'examined' => 'int',
             'startTime' => 'date',
             'endTime' => 'date',
             'course' => 'varchar',
@@ -35,4 +39,8 @@ class AssignmentModel extends Model
         )
     );
     protected $pk = 'number';
+    protected $_validate = array(
+        array('requi','require','请输入作业要求!'),
+        array('title','require','请输入作业标题!'),
+    );
 }
