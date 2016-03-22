@@ -81,7 +81,7 @@ class StudentController extends Controller
         $this->display('Administrator:student-modify');
     }
 
-    public function my_course(){//..................................................学生-我的课程
+    public function my_course(){//...........................................................................学生-我的课程
 
         $validate_logic = D('Validate','Logic');
         if(!$validate_logic->checkLogin(1)) $this->redirect('Common/login');
@@ -122,7 +122,7 @@ class StudentController extends Controller
         $this->display('Student:mycourse-stu');
     }
 
-    public function my_assignment($reload=0){//..................................................学生-我的作业
+    public function my_assignment($reload=0){//.............................................................学生-我的作业
 
         if($reload == 1)
             session('forUrl','Student/my_assignment');

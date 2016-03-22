@@ -104,7 +104,7 @@ class TeacherController extends Controller
         $this->ajaxReturn(1);
     }
 
-    public function assignment_detail($assignment_id){//..............................作业详情
+    public function assignment_detail($assignment_id){//.........................................................作业详情
 
         $validate_logic = D('Validate','Logic');
         if(!$validate_logic->checkLogin(2)) $this->redirect('Common/login');
@@ -130,6 +130,7 @@ class TeacherController extends Controller
                 'studentName' => $user_logic->get_user_name($assignment['stdnumber']),
                 'studentNum' => $assignment['stdnumber'],
                 'isCorrected' => $assignment['isexamined'],
+                'isWarning' => $assignment['iswarning'],
                 'comment' => $assignment['comm'],
                 'score' => $assignment['mark'],
                 'upload' => $assignment['url'].$assignment['savename'],

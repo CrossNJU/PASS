@@ -77,6 +77,7 @@ class CourseLogic
                 'start' => $assignment['starttime'],
                 'end' => $assignment['endtime'],
                 'isSubmit' => $var['issubmitted'],
+                'isWarning' => $var['iswarning'],
                 'isEnd' => $common_logic->isEnded($assignment['endtime']),
 
                 'courseName' => $this->get_course_name($course_id),
