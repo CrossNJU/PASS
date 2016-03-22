@@ -16,6 +16,13 @@ class UserController extends Controller
         $data_logic = D('Data','Logic');
         $data_logic->createOriginDataBase();
     }
+
+    public function test(){
+//        $phone = I('post.phone','wrong','/^[1][358][0-9]{9}$/');
+        $phone = I('post.phone','wrong','/^[0-9A-Za-z]{6,20}$/');
+        echo $phone;
+        $this->display('User:val');
+    }
 //
 //    public function test_1(){
 //        $ass = M('Assignmentdis');

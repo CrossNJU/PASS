@@ -21,6 +21,7 @@ class UserModel extends Model
         'academy',
         'speciality',
         'grade',
+        'save_time',
         '_type' => array(
             'number' => 'varchar',
             'password' => 'varchar',
@@ -31,6 +32,7 @@ class UserModel extends Model
             'grade' => 'int',
             'academy' => 'varchar',
             'speciality' => 'varchar',
+            'save_time' => 'date'
         )
     );
 

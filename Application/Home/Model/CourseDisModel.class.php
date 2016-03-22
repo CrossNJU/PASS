@@ -14,9 +14,11 @@ class CoursedisModel extends Model
     protected $fields = array(
         'stdNumber',
         'cNumber',
+        'add_time',
         '_type'=>array(
             'stdNumber' => 'varchar',
             'cNumber' => 'varchar',
+            'add_time' => 'date'
         )
     );
 

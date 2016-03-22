@@ -21,6 +21,7 @@ class CourseModel extends Model
         'time',
         'assignments',
         'students',
+        'create_time',
         '_autoinc' => true,
         '_type'=>array(
             'number' => 'int',
@@ -31,7 +32,8 @@ class CourseModel extends Model
             'selected' => 'int',
             'time' => 'varchar',
             'assignments' => 'int',
-            'students' => 'int'
+            'students' => 'int',
+            'create_time' => 'date'
         )
     );
     protected $pk = 'number';
