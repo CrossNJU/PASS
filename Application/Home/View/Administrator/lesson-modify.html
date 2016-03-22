@@ -46,7 +46,7 @@
                         <select class="text" type="text" name="teacher"  id="cou_tea">
                             <option value="请选择教师" selected>请选择教师</option>
                             <{foreach item="teacher" name="teachers"}>
-                            <option value = "<{$teacher['name']}>(<{$teacher['number']}>)"><{$teacher['name']}>(<{$teacher['number']}>)</option>
+                            <option value = "<{$teacher['number']}>"><{$teacher['name']}>(<{$teacher['number']}>)</option>
                             <{/foreach}>
                         </select>
                         <span class="hint"></span>
