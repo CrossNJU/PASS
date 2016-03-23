@@ -50,8 +50,8 @@
                         <p class="admi-class-info-detail comment">院系</p>
                         <!--<input class="text" type="text" name="aca" placeholder="院系"/>-->
                         <select class="preselect text" name="aca" id="tea_aca" onchange="
-                        redirec(document.aca_spe_form.aca.options.selectedIndex),this.className=this.options[this.selectedIndex].className + ' text'">
-                            <option class="preselect" value="院系" selected>院系</option>
+                        redirec(document.aca_spe_form.aca.options.selectedIndex);this.className='text'">
+                            <option value="院系" selected>院系</option>
                             <option value="文学院">文学院</option>
                             <option value="历史学院">历史学院</option>
                             <option value="法学院">法学院</option>
@@ -89,9 +89,9 @@
                         <!--<input class="text" type="text" name="spe" placeholder="专业"/>-->
                         <!--<select class="text" name="spe" id="tea_spe"-->
                                 <!--onchange="redirec(document.aca_spe_form.spe.options.selectedIndex)">-->
-                        <select onchange="this.className=this.options[this.selectedIndex].className + ' text'"
+                        <select onclick="this.className='text'"
                                 class="preselect text" name="spe" id="tea_spe">
-                            <option class="preselect" value="专业" selected>专业</option>
+                            <option value="专业" selected>专业</option>
                         </select>
                         <span class="hint"></span>
                     </div>

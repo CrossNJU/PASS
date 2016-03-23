@@ -49,8 +49,8 @@
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">院系</p>
                         <!--<input class="text" type="text" name="aca" placeholder="院系"/>-->
-                        <select class="text" name="aca" id="tea_aca" onchange="
-                        redirec(document.aca_spe_form.aca.options.selectedIndex)">
+                        <select class="preselect text" name="aca" id="tea_aca" onchange="
+                        redirec(document.aca_spe_form.aca.options.selectedIndex);this.className='text">
                             <option value="院系" selected>院系</option>
                             <option value="文学院">文学院</option>
                             <option value="历史学院">历史学院</option>
@@ -89,7 +89,8 @@
                         <!--<input class="text" type="text" name="spe" placeholder="专业"/>-->
                         <!--<select class="text" name="spe" id="tea_spe"-->
                         <!--onchange="redirec(document.aca_spe_form.spe.options.selectedIndex)">-->
-                        <select class="text" name="spe" id="tea_spe">
+                        <select onchange="this.className='text'"
+                                class="preselect text" name="spe" id="tea_spe">
                             <option value="专业" selected>专业</option>
                             <!--<option value="2">22-25</option>-->
                             <!--<option value="3">26-29</option>-->
@@ -100,7 +101,8 @@
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">年级</p>
-                        <select class="text" name="grade" id="add_grade">
+                        <select onchange="this.className='text'"
+                                class="preselect text" name="grade" id="add_grade">
                             <option value="年级" selected>年级</option>
                             <option value="2010">2010</option>
                             <option value="2011">2011</option>

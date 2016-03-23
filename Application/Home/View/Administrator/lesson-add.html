@@ -41,19 +41,10 @@
                             <input class="text" type="text" name="title" id="cou_name" placeholder="课程名称"/>
                             <span class="hint"></span>
                         </div>
-                        <!--<div class="admi-class-info-detil">-->
-                            <!--<p class="admi-class-info-detail comment">授课教师工号</p>-->
-                            <!--<input class="text" type="text" name="teacher"  id="cou_tea" placeholder="授课教师工号"/>-->
-                            <!--<span class="hint"></span>-->
-                        <!--</div>-->
-
-                        <!--<{foreach item="class" name="student['classes']"}>-->
-                        <!--<p class="homework-check comment class-name"><{$class['name']}></p>-->
-                        <!--<{/foreach}>-->
-
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">授课教师</p>
-                            <select class="text" type="text" name="teacher"  id="cou_tea">
+                            <select onchange="this.className='text'"
+                                    class="preselect text" type="text" name="teacher"  id="cou_tea">
                             <option value="请选择教师" selected>请选择教师</option>
                             <{foreach item="teacher" name="teachers"}>
                             <option value = "<{$teacher['number']}>"><{$teacher['name']}>(<{$teacher['number']}>)</option>
@@ -65,13 +56,15 @@
                         <div class="admi-class-info-detil">
                             <p class="admi-class-info-detail comment">时间</p>
                             <!--<input class="text" type="text" name="time" id="cou_time" placeholder="时间"/>-->
-                            <select class="text" style="width: 269px" name="year" id="cou_year">
+                            <select onchange="this.className='text'"
+                                    class="preselect text" style="width: 269px" name="year" id="cou_year">
                                 <option value = "年份" selected>年份</option>
                                 <option value = "2016年">2016年</option>
                                 <option value = "2017年">2017年</option>
                                 <option value = "2018年">2018年</option>
                             </select>
-                            <select class="text" style="width: 269px" name="season" id="cou_sea">
+                            <select onchange="this.className='text'"
+                                    class="preselect text" style="width: 269px" name="season" id="cou_sea">
                                 <option value = "季节" selected>季节</option>
                                 <option value = "春季">春季</option>
                                 <option value = "秋季">秋季</option>
