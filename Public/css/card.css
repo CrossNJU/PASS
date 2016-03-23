@@ -408,7 +408,7 @@ b:after {
     box-sizing: border-box;
 }
 
-.input-card input[type="text"], .input-card .textarea,.card-info input[type="password"] {
+.input-card input[type="text"], .input-card .textarea,.card-info input[type="password"],.admi-class-info-detil input[type="password"] {
     width: 538px;
     margin-bottom: 10px;
     font-size: 18px;

@@ -29,15 +29,15 @@
 <div class="content">
     <div class="wrapper">
         <form name="aca_spe_form" id="aca_spe_form" method="post" onsubmit="return checkTea();return false;">
-            <div class="card">
-                <div class="admi-add-class admi-class">
+            <div class="card input-card">
+                <div class="admi-add-class">
                     <h3 class="card-title">修改教师信息</h3>
                 </div>
 
                 <div class="admi-class-info" >
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">工号</p>
-                        <input class="text" type="text" name="tea_id" id="tea_id" value="<{$teacher['number']}>"/>
+                        <input class="readonly-input" type="text" name="tea_id" id="tea_id" readonly="readonly" placeholder="工号" value="<{$teacher['number']}>"/>
                         <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">

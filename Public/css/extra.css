@@ -13,10 +13,12 @@
 }
 .admi-class-info{
     margin-left: 24px;
-    /*margin-bottom: 25px;*/
+    margin-bottom: 8px;
 }
 .admi-add-class{
-    margin-bottom: 18px;
+    padding-top: 27px;
+    margin-left: 24px;
+    padding-bottom: 5px;
 }
 .text-find{
     width:376px;
@@ -65,9 +67,9 @@ table.homework-check tr:last-child p{
 .teacher-info{
     width: 500px;
 }
-.admi-class-info-detil{
-    margin-bottom: 18px;
-}
+/*.admi-class-info-detil{*/
+    /*margin-bottom: 18px;*/
+/*}*/
 .admi-class-choose{
     padding-bottom: 40px;
 }

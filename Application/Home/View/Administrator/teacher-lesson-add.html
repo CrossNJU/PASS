@@ -30,8 +30,8 @@
 <div class="content">
     <div class="wrapper">
         <form method="post" onsubmit="return checkLesson();return false;">
-            <div class="card">
-                <div class="admi-add-class admi-class">
+            <div class="card input-card">
+                <div class="admi-add-class">
                     <h3 class="card-title">添加新课程</h3>
                 </div>
 
@@ -43,19 +43,22 @@
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">授课教师工号</p>
-                        <input class="text" type="text" name="teacher"  id="cou_tea" value="<{$teacher}>"/>
+                        <!--<input class="text" type="text" name="teacher"  id="cou_tea" value="<{$teacher}>"/>-->
+                        <input class="readonly-input" type="text" name="teacher" id="cou_tea" readonly="readonly" placeholder="工号" value="<{$teacher}>"/>
                         <span class="hint"></span>
                     </div>
                     <div class="admi-class-info-detil">
                         <p class="admi-class-info-detail comment">时间</p>
                         <!--<input class="text" type="text" name="time" id="cou_time" placeholder="时间"/>-->
-                        <select class="text" style="width: 269px" name="year" id="cou_year">
+                        <select onchange="this.className='text'"
+                                class="preselect text" style="width: 269px" name="year" id="cou_year">
                             <option value = "年份" selected>年份</option>
                             <option value = "2016年">2016年</option>
                             <option value = "2017年">2017年</option>
                             <option value = "2018年">2018年</option>
                         </select>
-                        <select class="text" style="width: 269px" name="season" id="cou_sea">
+                        <select onchange="this.className='text'"
+                                class="preselect text" style="width: 269px" name="season" id="cou_sea">
                             <option value = "季节" selected>季节</option>
                             <option value = "春季">春季</option>
                             <option value = "秋季">秋季</option>
@@ -75,7 +78,7 @@
 
                 </div>
                 <div class="admi-class-choose admi-class-info">
-                    <input type="submit" class="btn sbtn" name="add" value="添加新课程">
+                    <input type="submit" class="btn-primary btn sbtn" name="add" value="添加新课程">
                 </div>
 
             </div>
