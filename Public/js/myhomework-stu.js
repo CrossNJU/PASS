@@ -26,6 +26,7 @@ $(document).ready(function (){
     $(document).on("click",".preview-wrapper .close-btn",function(){
         $(".preview-wrapper").fadeOut(function(){
             $("body").css("overflow","auto");
+            $("#really-cool-video")[0].pause();
         });
     });
 });

@@ -43,7 +43,7 @@
 						<{/if}></span></p>
 					<{if condition="$homework['type'] eq 'word'" }>
 						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
-						<a class="btn batch-btn btn-primary" data-id="<{$homework['id']}>" >批量下载</a>
+						<a class="btn batch-btn btn-primary" data-id="<{$homework['num']}>" >批量下载</a>
 						<{/if}>
 					<{else /}>
 						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
@@ -62,7 +62,7 @@
 					<div class="num">1</div>
 					<div class="homework-info">
 						<p class="homework-title"><{$submit['name']}></p>
-						<p class="stu-info comment"><span class="stu-info-text"><{$submit['studentName']}>(<{$submit['studentNum']}>)</span><span class="stu-info-detail">查看学生详情</span></p>
+						<p class="stu-info comment"><span class="stu-info-text"><{$submit['studentName']}>(<{$submit['studentNum']}>)</span><span class="stu-info-detail" data-stuid="<{$submit['studentNum']}>">查看学生详情</span></p>
 						<{if condition="$submit['isCorrected'] eq true"}>
 						<div class="request">
 							<p class="homework-request comment"><{$submit['comment']}></p>
@@ -71,9 +71,9 @@
 
 					</div>
 					<{if condition="$submit['isWarning'] eq true"}>
-					<a class="btn btn-small btn-disabled again-btn" data-status=0 data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">已提醒重交</a>
+					<a class="btn btn-small btn-disabled again-btn" data-status=0 data-stuid="<{$submit['studentNum']}>" data-hwid="<{$homework['id']}>">已提醒重交</a>
 					<{else /}>
-					<a class="btn btn-small again-btn" data-status=1 data-stuid="<{$submit['student_id']}>" data-hwid="<{$homework['id']}>">提醒重交</a>
+					<a class="btn btn-small again-btn" data-status=1 data-stuid="<{$submit['studentNum']}>" data-hwid="<{$homework['id']}>">提醒重交</a>
 					<{/if}>
 
 					<{if condition="$homework['type'] eq 'word'"}>

@@ -218,7 +218,7 @@ class TeacherController extends Controller
                 $ret = $common_logic->save_as_word($data['comm'],$data['mark'],$student_id,$assignment_id);
                 if($ret){
                     $assignment_next = $assignment_dis_model
-                        ->where("assNumber = '$assignment_id' AND isExamined = 0")
+                        ->where("assNumber = '$assignment_id' AND isSubmitted AND isExamined = 0")
                         ->select()[0];
                     if($assignment_next == null){
                         $validate_logic->sendMsg('保存成功','success');

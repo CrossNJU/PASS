@@ -57,15 +57,20 @@
 							<{/switch}>]</span><span><{$homework['require']}></span></p>
 					<p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
 					<{if condition="$homework['isSubmit'] eq true"}>
-						<a class="btn btn-small" href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
-						<{if condition="$homework['type'] neq 'word'"}>
-						<a class="btn btn-small preview-btn"
-						   data-type="<{$homework['type']}>"
-						   data-url="<{$homework['fileUrl']}>"
-						   data-classNum="<{$homework['num']}>"
-						   data-name="<{$homework['submitName']}>"
-						   data-time="<{$homework['submitTime']}>">预览作业</a>
-						<{/if}>
+					<{if condition="$homework['isWarning'] eq true"}>
+					<a class="btn btn-small btn-dangerous"
+					   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">被提醒重新提交</a>
+					<{else/}>
+					<a class="btn  btn-small"
+					   href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">重新提交</a>
+					<{/if}>						<{if condition="$homework['type'] neq 'word'"}>
+					<a class="btn btn-small preview-btn"
+					   data-type="<{$homework['type']}>"
+					   data-url="<{$homework['fileUrl']}>"
+					   data-classNum="<{$homework['num']}>"
+					   data-name="<{$homework['submitName']}>"
+					   data-time="<{$homework['submitTime']}>">预览作业</a>
+					<{/if}>
 					<{else /}>
 					<a class="btn btn-primary btn-small" href="__ROOT__/Student/assignment_submit/assignment_id/<{$homework['id']}>">提交作业</a>
 					<{/if}>

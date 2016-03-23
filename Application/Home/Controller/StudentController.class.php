@@ -255,18 +255,20 @@ class StudentController extends Controller
 
         $upload = new Upload();
 
-        $upload->maxSize = 1000000000 ;// 设置附件上传大小
+        $upload->maxSize = 10000000 ;// 设置附件上传大小
         $upload->exts = array('pdf','doc','docx','ppt','pptx','mp4');// 设置附件上传类型
         $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
         $upload->savePath = '';
         $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
-//        $upload->saveName = 'source';
+        $upload->saveName = 'source';
         $upload->replace = true;
 
-        if(isset($_REQUEST['sub'])) {
+        if(isset($_POST['sub'])) {
+//            echo "in upload"."\n";
             $info = $upload->upload();
+//            echo "after upload"."\n";
             if(!$info) {
-                $validate_logic->sendMsg('上传失败','danger',0);
+                $validate_logic->sendMsg($upload->getError(),'danger',0);
             }
             else{
                 $real_info = $info['doc'];
