@@ -13,6 +13,7 @@ function redirec(x){
         select_spe[i] = new Array();
     }
     select_spe[0][0] = new Option("专业","专业");
+    //console.log(select_spe[0][0].);
 
     select_spe[1][0] = new Option("请选择专业","请选择专业");
     select_spe[1][1] = new Option("汉语言文学","汉语言文学");
