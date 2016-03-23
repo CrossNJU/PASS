@@ -40,6 +40,10 @@ table tr td:nth-child(2){
     width:240px;
 }
 
+option:nth-child(1){
+    color: #9a9a9a;
+}
+
 .admi-class-detail .homework-check:first-child{
     margin-top: 19px;
 }
@@ -152,3 +156,20 @@ input[type="submit"]{
 /*select{*/
     /*color: #9a9a9a;*/
 /*}*/
+
+.preselect{
+    color: #9a9a9a;
+    padding:10px 5px 10px 5px;
+    border-radius: 4px 4px;
+    border:1px solid #57BEED;
+    /*color:#4a4a4a;*/
+    font-size: 18px;
+    line-height: 24px;
+}
+
+
+.greenText{color:green; }
+
+.blueText{color:blue; }
+
+.redText{color:red; }

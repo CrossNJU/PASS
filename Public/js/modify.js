@@ -12,6 +12,10 @@ $(document).ready(function(){
     //$("#tea_aca option[value = aca]").attr("selected", true);
     //$("#tea_spe option[value = spe]").attr("selected", true);
 
+    //var color = $("#tea_aca option[value = aca]").color;
+    //$("#tea_aca").text.attr("color",color);
+
+
 
     var s1 = document.getElementById("tea_aca");
     if (s1!=null)

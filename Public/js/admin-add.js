@@ -6,16 +6,23 @@ function redirec(x){
 
     //alert("ininin");
 
+    var te = document.getElementById("stu_grade");
+    te.className += " testyryty";
+
+
     var select_aca_len = document.aca_spe_form.aca.options.length;
     var select_spe = new Array(select_aca_len);
 
     for(i = 0;i < select_aca_len;i++){
         select_spe[i] = new Array();
     }
-    select_spe[0][0] = new Option("专业","专业");
-    //console.log(select_spe[0][0].);
+    select_spe[0][0] = new Option("请选择专业","请选择专业");
+    //select_spe[0][0].addClass("preselect");
+    //alert(select_spe[0][0].className);
 
+    //s1.className = +"preselect";
     select_spe[1][0] = new Option("请选择专业","请选择专业");
+
     select_spe[1][1] = new Option("汉语言文学","汉语言文学");
     select_spe[1][2] = new Option("汉语言文学（作家班）","汉语言文学（作家班）");
     select_spe[1][3] = new Option("戏剧影视文学","戏剧影视文学");
@@ -278,7 +285,9 @@ function redirec(x){
             temp.options[i] = new Option(select_spe[x][i].text,
                 select_spe[x][i].value);
             temp.options[0].selected = true;
+
         }
+    temp.options[0].className = "preselect";
 }
 
 
