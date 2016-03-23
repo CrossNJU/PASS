@@ -121,7 +121,7 @@ $(document).ready(function (){
                         "<p class='comment'>手机:"+msg['phone']+"</p>"+
                     "</div>");
                 var card = $(".student-card");
-                var top = event.clientY-card.height()-70;
+                var top = event.clientY+document.body.scrollTop-card.height()-70;
                 var left = event.clientX-card.width()/2;
                 card.css("top",top+"px").css("left",left+"px");
                 card.fadeIn();
