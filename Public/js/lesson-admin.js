@@ -40,9 +40,9 @@ $(document).ready(function(){
             url:"download",
             type: "post",
             success: function(msg){
-                window.location.href = "http://localhost/PASS/" + msg;
-
-
+                if (msg == 'wrong'){
+                    showStateBar("warning","暂无作业");
+                }else window.location.href = "http://localhost/PASS/" + msg;
             },
             error: function(){
                 showStateBar("danger","批量下载失败");

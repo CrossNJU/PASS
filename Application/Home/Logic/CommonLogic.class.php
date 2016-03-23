@@ -20,11 +20,11 @@ class CommonLogic
         $url_base = C('URL_BASE');
 
         $section = $word->createSection();
-        $section->addTitle('Comments && marks:');
+        $section->addTitle(iconv('utf-8', 'GB2312//IGNORE','评语 和 分数:'));
         $section->addTextBreak(2);
-        $section->addText($comments);
+        $section->addText(iconv('utf-8', 'GB2312//IGNORE', $comments));
         $section->addTextBreak(2);
-        $section->addText($mark);
+        $section->addText(iconv('utf-8', 'GB2312//IGNORE', $mark));
 
         $output = \PHPWord_IOFactory::createWriter($word,'Word2007');
         $output->save($url_base.'assignments/'.$student_id.'/'.$assignment_id.'/modify.doc');
@@ -65,27 +65,30 @@ class CommonLogic
         $assignment_model = M('Assignment');
         $user_logic = D('User','Logic');
 
-        $assignment_true_id = $assignment_model->where("number = '$assignment_id'")->select()[0]['number_display'];
+        $assignment_true_title = $assignment_model->where("number = '$assignment_id'")->select()[0]['title'];
 
         $zip = new \ZipArchive();
         $url_base = C('URL_BASE');
-        $url = $url_base.'downloads/'.$assignment_true_id.'.zip';
+        $url = $url_base.'downloads/'.$assignment_true_title.'.zip';
         $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
             ->order('submittime desc')
             ->select();
+        $hasFile = false;
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){
-                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],'assignments/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
+                $hasFile = true;
+                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
             }
             if($assignment['isexamined'] == 1){
-                $zip->addFile($url_base.$assignment['url'].'modify.doc','assignments/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc');
+                $zip->addFile($url_base.$assignment['url'].'modify.doc',$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc');
             }
         }
         $zip->close();
         unset($zip);
-        return $url;
+        if($hasFile) return $url;
+        else return 'wrong';
     }
 
     public function sendEmail($sub, $address, $body){

@@ -25,9 +25,12 @@ class UserController extends Controller
 //        echo $phone;
 //        $this->display('User:val');
 //        phpinfo();
-        echo phpversion()."\n";
-        echo ini_get("upload_max_filesize")."\n";
-        echo ini_get("post_max_size")."\n";
+//        echo phpversion()."\n";
+//        echo ini_get("upload_max_filesize")."\n";
+//        echo ini_get("post_max_size")."\n";
+        $com = D('Common','Logic');
+        $url = $com->addToZip('12');
+        echo $url;
     }
 //
 //    public function test_1(){
