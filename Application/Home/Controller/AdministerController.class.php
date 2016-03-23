@@ -214,7 +214,7 @@ class AdministerController extends Controller
 
     protected function course_find($key){
         $course = M('Course');
-        $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%") OR (teacher like "%'.$key.'%")';
+        $where['_string']='(number_display like "%'.$key.'%")  OR (title like "%'.$key.'%") OR (teacher_name like "%'.$key.'%")';
         return $course->where($where)->order('create_time desc')->select();
     }
 
@@ -243,6 +243,7 @@ class AdministerController extends Controller
         $course_model = D('Course');
         $user_model = M('User');
         $common_logic = D('Common', 'Logic');
+        $user_logic = D('User','Logic');
 
         if($id != NULL){
             $cou = $course_model->where("number = '$id'")->select()[0];
@@ -255,6 +256,7 @@ class AdministerController extends Controller
         if(isset($_POST['add'])){
             $data['title'] = I('post.title');
             $data['teacher'] = I('post.teacher');
+            $data['teacher_name'] = $user_logic->get_user_name($data['teacher']);
             $data['depict'] = I('post.depict');
             $data['students'] = I('post.people');
             $data['time'] = I('post.year')." ".I('post.season');
