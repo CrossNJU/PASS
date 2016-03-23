@@ -284,8 +284,10 @@ function redirec(x){
     for(i = 0;i < select_spe[x].length;i++){
             temp.options[i] = new Option(select_spe[x][i].text,
                 select_spe[x][i].value);
+        if (i != 0){
+            temp.options[i].className = "text";
+        }
             temp.options[0].selected = true;
-
         }
     temp.options[0].className = "preselect";
 }
