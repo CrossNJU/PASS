@@ -42,12 +42,16 @@
 						<{else /}>已批阅<{$homework['corrected']}>/<{$homework['numOfSubmit']}>
 						<{/if}></span></p>
 					<{if condition="$homework['type'] eq 'word'" }>
-						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
-						<a class="btn batch-btn btn-primary" data-id="<{$homework['num']}>" >批量下载</a>
+						<{if condition="$homework['corrected'] neq $homework['numOfSubmit'] && $homework['numOfSubmit'] neq 0"}>
+						<a class="btn batch-btn btn-primary" data-id="<{$homework['num']}>">批量下载</a>
+						<{else/}>
+						<a class="btn btn-disabled" data-id="<{$homework['num']}>">批量下载</a>
 						<{/if}>
 					<{else /}>
-						<{if condition="$homework['corrected'] neq $homework['numOfSubmit']"}>
-							<a class="btn btn-primary" href="__ROOT__/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+						<{if condition="$homework['corrected'] neq $homework['numOfSubmit'] && $homework['numOfSubmit'] neq 0"}>
+						<a class="btn btn-primary" href="__ROOT__/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$homework['next_student_id']}>/display/correct">继续批阅(<{$homework['corrected']}>/<{$homework['numOfSubmit']}>)</a>
+						<{else/}>
+						<a class="btn btn-disabled">批阅完成</a>
 						<{/if}>
 					<{/if}>
 

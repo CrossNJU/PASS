@@ -39,8 +39,8 @@
 								<{default /}>未知格式
 							<{/switch}>]</span><{$homework['require']}></p>
                 <p class="comment">时间: <span><{$homework['start']}> - <{$homework['end']}></span></p>
-                <p class="comment">状态: <{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
-                    <span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
+                <p class="comment">状态: <span class="warning-text"><{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+                    <span class="warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span></p>
                 <{if condition="$homework['isSubmit'] eq true"}>
                 <{if condition="$homework['isWarning'] eq true"}>
                 <a class="btn btn-dangerous"

@@ -46,8 +46,8 @@
 				<{foreach item="homework" name="course['homework']"}>
 				<div class="homework">
 					<div class="rect"></div>
-					<p class="comment">[<span><{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
-						<span><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}></span>]
+					<p class="comment"><span class=" warning-text">[<{if condition="$homework['isSubmit'] eq true"}>已提交<{else /}>未提交<{/if}></span>,
+						<span class=" warning-text"><{if condition="$homework['isEnd'] eq true"}>已截止<{else /}>未截止<{/if}>]</span>
 						<span><{$homework['num']}> - <{$homework['name']}></span></p>
 					<p class="comment">要求: <span class="warning-text">[<{switch name="homework['type']"}>
 								<{case value="pdf"}>PDF格式<{/case}>
