@@ -104,9 +104,11 @@ $(document).ready(function (){
     添加查看学生信息的按钮监听
      */
     $(document).on("mouseover",".stu-info-detail",function(event){
+        var stu_id = $(this).attr("data-stuid");
+
         $.ajax({
             url:"/PASS/Teacher/student_detail",
-            data:"student_id=S1",
+            data:"student_id="+stu_id,
             type:"get",
             success: function(msg){
                 $("body").append(

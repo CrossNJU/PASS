@@ -23,6 +23,10 @@ $(document).ready(function (){
         console.log($(this).parent().height());
         $(this).css("height",height+"px");
     });
+
+    $("input[type=submit]").click(function() {
+        this.addClass("btn-disabled");
+    });
 });
 
 function showStateBar(type,text){
