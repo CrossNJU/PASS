@@ -27,7 +27,7 @@ class CourseLogic
         $common_logic = D('Common','Logic');
         $assignment_model = M('Assignment');
         $assignment_dis_model = M('Assignmentdis');
-        $assignments = $assignment_model->where("course = '$course_id'")->order('endtime desc')->select();
+        $assignments = $assignment_model->where("course = '$course_id'")->order('modify_time desc')->select();
         $homework = array();
         $i = 0;
         foreach ($assignments as $assignment_detail) {

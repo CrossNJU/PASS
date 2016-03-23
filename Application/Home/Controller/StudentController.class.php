@@ -237,7 +237,7 @@ class StudentController extends Controller
 
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
-        $assignments = $assignment_model->where("course = '$course_id'")->order('endtime desc')->select();
+        $assignments = $assignment_model->where("course = '$course_id'")->order('modify_time desc')->select();
         foreach ($assignments as $assignment){
             $course_logic->assignment_dis($course_id,$assignment['number'],$student_id);
         }
@@ -260,13 +260,12 @@ class StudentController extends Controller
         $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
         $upload->savePath = '';
         $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
-        $upload->saveName = 'source';
         $upload->replace = true;
 
         if(isset($_POST['sub'])) {
-//            echo "in upload"."\n";
+            $fileName = explode('.', $_FILES['doc']['name']);
+            $upload->saveName = $fileName[0];
             $info = $upload->upload();
-//            echo "after upload"."\n";
             if(!$info) {
                 $validate_logic->sendMsg($upload->getError(),'danger',0);
             }

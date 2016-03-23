@@ -60,7 +60,7 @@ class TeacherController extends Controller
         $teacher = session('user');
         $assignment_model = M('Assignment');
         $course_logic = D('Course','Logic');
-        $assignments = $assignment_model->where("teacher = '$teacher'")->order('endtime desc')->select();
+        $assignments = $assignment_model->where("teacher = '$teacher'")->order('modify_time desc')->select();
         $assignment_ret = array();
         $i = 0;
         foreach ($assignments as $assignment){
@@ -280,6 +280,7 @@ class TeacherController extends Controller
             $data['course'] = $course_id;
             $data['teacher'] = session('user');
             $data['type'] = I('post.type');
+            $data['modify_time'] = date("y-m-d");
 
             if($assignment_id == NULL && $assignment_model->create($data)){
                 $assignment_id_new = $assignment_model->add();
