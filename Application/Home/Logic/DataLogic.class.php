@@ -25,28 +25,28 @@ class DataLogic
         $assignment_model->where(1)->delete();
 
         $this->addAdministrator();
-        $this->addTeacher('131250001','陈晓燕',2);
-        $this->addTeacher('131250002','费祥林',2);
-        $this->addTeacher('131250003','骆冰',2);
-        $this->addTeacher('131250004','刘钦',2);
-        $this->addTeacher('141250011','陈睿',1);
-        $this->addTeacher('141250012','陈沐恩',1);
-        $this->addTeacher('141250013','陈丹妮',1);
-        $this->addTeacher('141250014','陈灿海',1);
-        $this->addTeacher('141250015','程翔',1);
+//        $this->addTeacher('131250001','陈晓燕',2);
+//        $this->addTeacher('131250002','费祥林',2);
+//        $this->addTeacher('131250003','骆冰',2);
+//        $this->addTeacher('131250004','刘钦',2);
+//        $this->addTeacher('141250011','陈睿',1);
+//        $this->addTeacher('141250012','陈沐恩',1);
+//        $this->addTeacher('141250013','陈丹妮',1);
+//        $this->addTeacher('141250014','陈灿海',1);
+//        $this->addTeacher('141250015','程翔',1);
     }
 
     private function addAdministrator(){
         $user_model = D('User');
-        $data['number'] = 'Admin01';
-        $data['password'] = '1234567';
-        $data['phone'] = '18309870987';
+        $data['number'] = '1402003';
+        $data['password'] = 'sy5502322';
+        $data['phone'] = '15261855293';
         $data['email'] = '1395314348@qq.com';
         $data['permission'] = 3;
-        $data['name'] = '陈睿';
-        $data['academy'] = '软件';
+        $data['name'] = '孙寅';
+        $data['academy'] = '哲学系';
         $data['save_time'] = date("y-m-d");
-        echo $data['password']."\n";
+//        echo $data['password']."\n";
         if($user_model->create($data)) $user_model->add();
         else echo $user_model->getError();
     }
