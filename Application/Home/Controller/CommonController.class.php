@@ -51,7 +51,7 @@ class CommonController extends Controller
                 }
             }
         }
-        $this->display('Common:Register-student');
+        $this->display('Common:Register-Student');
     }
 
     public function login()//................................................................登录
