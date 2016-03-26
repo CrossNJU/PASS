@@ -45,7 +45,7 @@ class CommonController extends Controller
                 if($user_model->create($data)){
                     $user_model->add();
                     $validate_logic->sendMsg('注册成功','success');
-                    $this->redirect('Common/login/res/'.'reg-suc/type/'.'suc');
+                    $this->redirect('Common/login');
                 }else {
                     $validate_logic->sendMsg('注册失败','danger',0);
                 }
@@ -162,5 +162,21 @@ class CommonController extends Controller
 
     public function _empty(){
         $this->display('Common:not-found');
+    }
+
+    public function feedback($number, $feedback){
+        $user_model = M('User');
+        $feedback_model = M('Feedback');
+        $user = $user_model->where("number = '$number'")->select()[0];
+        $data['number'] = $number;
+        $data['name'] = $user['name'];
+        $data['permission'] = $user['permission'];
+        $data['add_time'] = date("y-m-d");
+        $data['content'] = $feedback;
+        if($feedback_model->create($data)){
+            $feedback_model->add();
+            $this->ajaxReturn(1);
+        }
+        else $this->ajaxReturn(0);
     }
 }
