@@ -83,7 +83,7 @@ function showFeedbackDialog() {
 
         if(!$(".feedback-confirm-btn").hasClass(".disabled-btn")) {
             $.ajax({
-                url:"/PASS/Common/feedback",
+                url:rootUrl+"/Common/feedback",
                 data:"feedback="+feedback,
                 success:function(msg) {
                     if(msg == 1){
