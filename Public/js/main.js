@@ -64,7 +64,7 @@ function showFeedbackDialog() {
                     "<h3 class='card-title'>意见反馈</h3>" +
                     "<a class='close-btn' href='javascript:void(0)'><b></b></a> " +
                     "<div id='feedback-content'> " +
-                    "<textarea class='textarea' id='feedback-textarea' placeholder='感谢你对哲学系作业提交系统的支持与关注，请留下你的宝贵信息帮助我们做进一步的改进'></textarea> " +
+                    "<textarea class='textarea feedback-textarea' placeholder='感谢你对哲学系作业提交系统的支持与关注，请留下你的宝贵信息帮助我们做进一步的改进'></textarea> " +
                     "</div> " +
                     "<a class='btn btn-primary feedback-confirm-btn'>提交反馈</a> " +
                     "<a class='btn cancel-btn'>取消反馈</a> " +
@@ -72,11 +72,12 @@ function showFeedbackDialog() {
             "</div> " +
         "</div>");
 
-    var feedback = $("#feedback-textarea").val();
 
     $(".feedback-confirm-btn").click(function () {
-        if($("#feedback-textarea").val() == "") {
-            showStateBar("danger","输入的反馈为空");
+        var feedback = $(".feedback-textarea").val();
+
+        if(feedback == "") {
+            showStateBar("danger","反馈内容为空");
             return ;
         }
 
@@ -84,7 +85,7 @@ function showFeedbackDialog() {
 
         if(!$(".feedback-btn").hasClass(".disable-btn")) {
             $.ajax({
-                url:"PASS/Common/feedback",
+                url:"/PASS/Common/feedback",
                 data:"feedback="+feedback,
                 success:function(msg) {
                     if(msg == 1){
