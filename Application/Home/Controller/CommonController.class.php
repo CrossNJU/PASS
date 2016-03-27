@@ -164,9 +164,15 @@ class CommonController extends Controller
         $this->display('Common:not-found');
     }
 
-    public function feedback($number, $feedback){
+    public function feedback($feedback){
+
+        $validate_logic = D('Validate','Logic');
+        if(!session('?user')) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
         $user_model = M('User');
         $feedback_model = M('Feedback');
+        $number = session('user');
         $user = $user_model->where("number = '$number'")->select()[0];
         $data['number'] = $number;
         $data['name'] = $user['name'];
