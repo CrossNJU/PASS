@@ -91,6 +91,7 @@ function showFeedbackDialog() {
                         showStateBar("success","谢谢您的反馈");
                     }else {
                         fail();
+                        console.log(msg);
                     }
                 },
                 error: function() {
@@ -98,7 +99,7 @@ function showFeedbackDialog() {
                 }
             });
 
-            $(".feedback-confirm-btn").addClass(".disabled-btn")
+            $(".feedback-confirm-btn").addClass(".disabled-btn");
         }
         function fail() {
             showStateBar("danger","反馈失败，请稍后再试");
