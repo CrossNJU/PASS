@@ -75,6 +75,11 @@ function showFeedbackDialog() {
     var feedback = $("#feedback-textarea").val();
 
     $(".feedback-confirm-btn").click(function () {
+        if($("#feedback-textarea").val() == "") {
+            showStateBar("danger","输入的反馈为空");
+            return ;
+        }
+
         $(".feedback-confirm-btn").addClass(".disabled-btn");
 
         if(!$(".feedback-btn").hasClass(".disable-btn")) {
