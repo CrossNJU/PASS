@@ -91,7 +91,6 @@ function showFeedbackDialog() {
                         showStateBar("success","谢谢您的反馈");
                     }else {
                         fail();
-                        console.log(msg);
                     }
                 },
                 error: function() {

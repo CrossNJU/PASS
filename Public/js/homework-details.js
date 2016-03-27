@@ -33,7 +33,7 @@ $(document).ready(function (){
         $(".confirm-btn").click(function() {
             jQuery.ajax({
                 async: false,
-                url: "/PASS/Teacher/assignment_delete",
+                url: rootUrl+"/Teacher/assignment_delete",
                 data: "assignment_id=" + hwid,
                 dataType: "json",
                 success: function (msg) {
@@ -67,7 +67,7 @@ $(document).ready(function (){
             jQuery.ajax({
                 async:true,
                 type:"post",
-                url:"/PASS/Teacher/reupload",
+                url:rootUrl+"/Teacher/reupload",
                 data:"stu_id="+studentId+"&assignment_id="+homeworkId,
                 success: function(msg){
                     if(msg == 1){
@@ -107,7 +107,7 @@ $(document).ready(function (){
         var stu_id = $(this).attr("data-stuid");
 
         $.ajax({
-            url:"/PASS/Teacher/student_detail",
+            url:rootUrl+"/Teacher/student_detail",
             data:"student_id="+stu_id,
             type:"get",
             success: function(msg){

@@ -20,7 +20,7 @@ $(document).ready(function () {
             jQuery.ajax({
                 async: false,
                 data: "course_id=" + id,
-                url: "/PASS/Student/course_remove",
+                url: rootUrl+"/Student/course_remove",
                 type: "post",
                 success: function (msg) {
                     if (msg == -1) {
