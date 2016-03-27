@@ -81,9 +81,7 @@ function showFeedbackDialog() {
             return ;
         }
 
-        $(".feedback-confirm-btn").addClass(".disabled-btn");
-
-        if(!$(".feedback-btn").hasClass(".disable-btn")) {
+        if(!$(".feedback-confirm-btn").hasClass(".disabled-btn")) {
             $.ajax({
                 url:"/PASS/Common/feedback",
                 data:"feedback="+feedback,
@@ -99,6 +97,8 @@ function showFeedbackDialog() {
                     fail();
                 }
             });
+
+            $(".feedback-confirm-btn").addClass(".disabled-btn")
         }
         function fail() {
             showStateBar("danger","反馈失败，请稍后再试");
