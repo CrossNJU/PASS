@@ -54,7 +54,7 @@ class AdministerController extends Controller
 
     protected function user_show($per){
         $user_model = M('User');
-        return $user_model->where("permission = '$per'")->order('number desc')->select();
+        return $user_model->where("permission = '$per'")->order('number')->select();
     }
 
     protected function user_find($per, $key){
