@@ -37,7 +37,7 @@ function validate(){
         console.log("time");
         result = false;
         showValidateError();
-        $("input[name='endTime']").next(".hint").html(valiResult);
+        $("input[name='endTime']").next().next().next(".hint").html(valiResult);
     }
 
     if(valiResult = validate_null(require)) {
