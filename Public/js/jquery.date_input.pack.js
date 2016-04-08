@@ -42,7 +42,8 @@ DateInput = (function($) {
 				tableShell += "<th>" + this + "</th>"
 			});
 			tableShell += "</tr></thead><tbody></tbody></table>";
-			this.dateSelector = this.rootLayers = $('<div class="date_selector"></div>').append(nav, tableShell).insertAfter(this.input);
+			//this.dateSelector = this.rootLayers = $('<div class="date_selector"></div>').append(nav, tableShell).insertAfter(this.input);
+            this.dateSelector = this.rootLayers = $('<div class="date_selector"></div>').append(nav, tableShell).insertAfter($("#endTime"));
 			if ($.browser.msie && $.browser.version < 7) {
 				this.ieframe = $('<iframe class="date_selector_ieframe" frameborder="0" src="#"></iframe>').insertBefore(this.dateSelector);
 				this.rootLayers = this.rootLayers.add(this.ieframe);
@@ -121,15 +122,23 @@ DateInput = (function($) {
 			$(document.body).unbind("keydown", this.keydownHandler)
 		},
 		hideIfClickOutside: function(event) {
+            //if (event.target == $(".next")){
+            //    return
+            //}
+
 			if (event.target != this.input[0] && !this.insideSelector(event)) {
 				this.hide()
 			}
 		},
 		insideSelector: function(event) {
 			var offset = this.dateSelector.position();
+
+            //console.log(event.pageX+" "+event.pageY);
+            //console.log(this.dateSelector.outerHeight+" "+this.dateSelector.outerWidth);
 			offset.right = offset.left + this.dateSelector.outerWidth();
 			offset.bottom = offset.top + this.dateSelector.outerHeight();
-			return event.pageY < offset.bottom && event.pageY > offset.top && event.pageX < offset.right && event.pageX > offset.left
+            //console.log(offset);
+			return event.pageY - 220 < offset.bottom && event.pageY - 220 > offset.top && event.pageX < offset.right && event.pageX > offset.left
 		},
 		keydownHandler: function(event) {
 			switch (event.keyCode) {
@@ -178,9 +187,10 @@ DateInput = (function($) {
 		setPosition: function() {
 			var offset = this.input.offset();
 			this.rootLayers.css({
-				//top: offset.top + this.input.outerHeight(),
-                top: auto,
+				top: offset.top + this.input.outerHeight() - 220,
+                //top: auto,
 				left: offset.left
+                //left:auto
 			});
 			if (this.ieframe) {
 				this.ieframe.css({

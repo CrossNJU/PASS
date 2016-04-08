@@ -11,8 +11,8 @@
 .date_selector .nav-date{width: 17.5em;}
 .date_selector .nav-date p{clear: none;}
 .date_selector .month_nav, .date_selector .year_nav{margin: 0 0 3px 0;padding: 0;display: block;position: relative;text-align: center;}
-.date_selector .month_nav{float: left;width: 55%;}
-.date_selector .year_nav{float: right;width: 42%;margin-right: -8px;}
+.date_selector .month_nav{float: left;width: 45%;}
+.date_selector .year_nav{float: left;width: 45%;margin-left: 11px;}
 .date_selector .month_name, .date_selector .year_name{font-weight: bold;line-height: 20px;}
 .date_selector .button{display: block;position: absolute;top: 0;width:18px;height:18px;line-height:16px;font-weight:bold;color:#5985c7;text-align: center;font-size:12px;overflow:hidden;border: 1px solid #ccc;border-radius:2px;}
 .date_selector .button:hover, .date_selector .button.hover{background:#5985c7;color: #fff;cursor: pointer;border-color:#3a930d;}
@@ -31,3 +31,7 @@
 /*.choose-date{*/
     /*width:226px;background: #fefefe;border: 1px solid #bbb;font-size: 14px;color: #333;padding: 7px;border-radius: 3px;*/
 /*}*/
+input[type='text']:focus{
+    outline-offset: 0px;
+    /*background-color: red;*/
+}
