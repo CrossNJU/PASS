@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--<meta charset="UTF-8">-->
 	<{if condition="$isModify eq false"}>
 	<title>布置新作业</title>
 	<{else/}>
@@ -14,11 +15,15 @@
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/dateSelect.css">
 
 	<script src="__PUBLIC__/js/jquery.js"></script>
 	<script src="__PUBLIC__/js/main.js"></script>
 	<script src="__PUBLIC__/js/validate.js"></script>
 	<script	src="__PUBLIC__/js/homework-new.js"></script>
+    <script src="__PUBLIC__/js/jquery-1.8.2.min.js"></script>
+    <script	src="__PUBLIC__/js/jquery.date_input.pack.js"></script>
+
 </head>
 <body>
     <{include file="Common/header"/}>
@@ -54,8 +59,14 @@
 							<option value="mp4">MP4(提供预览功能)</option>
 						</select>
 						<p class="comment">开始/截止时间</p>
-						<input class="time" name="startTime" type="date" value="<{$homework['start']}>"/>
-						<input class="time" name="endTime" type="date" value="<{$homework['end']}>"/>
+
+
+                        <input style="width: 260px" name="startTime" type="text" class="time date_picker choose-date" value="<{$homework['start']}>">
+                        <input style="width: 260px" name="endTime" type="text" class="time date_picker choose-date" value="<{$homework['end']}>">
+
+
+						<!--<input class="time" name="startTime" type="date" value="<{$homework['start']}>"/>-->
+						<!--<input class="time" name="endTime" type="date" value="<{$homework['end']}>"/>-->
 						<p class="comment">作业要求</p>
 						<textarea class="textarea" name="requi" placeholder="作业要求"><{$homework['require']}></textarea>
 						<br/>

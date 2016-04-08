@@ -32,11 +32,11 @@
     text-decoration: underline;
 
 }
-table tr td:nth-child(1){
+table.admi-class-detail tr td:nth-child(1){
     vertical-align: top;
     width:680px;
 }
-table tr td:nth-child(2){
+table.admi-class-detail tr td:nth-child(2){
     text-align: right;
     vertical-align: top;
     width:240px;
