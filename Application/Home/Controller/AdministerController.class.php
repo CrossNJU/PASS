@@ -436,6 +436,32 @@ class AdministerController extends Controller
         else $this->display('Administrator:teacher-modify');
     }
 
+    public function course_student($course_id){
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $course_dis_model = M('Coursedis');
+        $user_model = M('User');
+        $student_ids = $course_dis_model->where("cNumber = '$course_id'")->select();
+        $ret = [];
+        $i = 0;
+        foreach($student_ids as $student_id){
+            $id = $student_id['stdnumber'];
+            $student = $user_model->where("number = '$id'")->select()[0];
+            $ret[$i] = [
+                'id' => $student['number'],
+                'name' => $student['name'],
+                'academy' => $student['academy'],
+                'speciality' => $student['speciality']
+            ];
+//            $ret[$i] = $student;
+            $i++;
+        }
+        $this->ajaxReturn($ret);
+    }
+
     public function _empty(){
         $this->display('Common:not-found');
     }
