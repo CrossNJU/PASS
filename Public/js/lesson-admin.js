@@ -87,7 +87,7 @@ $(document).ready(function(){
                         "</div>");
                 }
                 if(stus.length == 0) {
-                    $(".student-table").append("<p class='no-tip'>还没有学生选择该课程……</p>");
+                    $(".student-table").append("<p class='no-tip'>本课程暂无选课学生</p>");
                 }
 
 
