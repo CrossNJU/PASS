@@ -177,7 +177,7 @@ class CommonController extends Controller
         $data['number'] = $number;
         $data['name'] = $user['name'];
         $data['permission'] = $user['permission'];
-        $data['add_time'] = date("y-m-d");
+        $data['add_time'] = date("Y-m-d H:i");
         $data['content'] = $feedback;
         if($feedback_model->create($data)){
             $feedback_model->add();

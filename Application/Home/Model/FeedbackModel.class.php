@@ -24,7 +24,7 @@ class FeedbackModel extends Model
             'number' => 'varchar',
             'permission' => 'tinyint',
             'name' => 'varchar',
-            'add_time' => 'date',
+            'add_time' => 'datetime',
             'content' => 'text',
         )
     );

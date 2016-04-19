@@ -436,6 +436,7 @@ class AdministerController extends Controller
         else $this->display('Administrator:teacher-modify');
     }
 
+    //查看选择某门课程的学生信息
     public function course_student($course_id){
 
         $validate_logic = D('Validate','Logic');
@@ -460,6 +461,19 @@ class AdministerController extends Controller
             $i++;
         }
         $this->ajaxReturn($ret);
+    }
+
+    // 查看反馈信息
+    // 返回字段 feedback[i=>['number','name','permission','content','add_time']]
+    // 显示页面 Administrator/feedback
+    public function check_feedback(){
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(3)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $feedback_model = M('Feedback');
+        $this->feedback = $feedback_model->select();
+        $this->display('Administrator:feedback');
     }
 
     public function _empty(){
