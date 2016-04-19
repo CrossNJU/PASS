@@ -60,6 +60,8 @@ $(document).ready(function(){
             data: "course_id="+id,
             url: rootUrl+"/Administer/course_student",
             success: function(stus) {
+                $("body").css("overflow","hidden");
+
                 $("body").append("" +
                     "<div class='modal-wrapper select-wrapper'>" +
                         "<div class='card select-card'>" +
