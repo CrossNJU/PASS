@@ -62,11 +62,10 @@
                         <{/foreach}>
 
                     </table>
-
-
                 </div>
                 <a class="btn btn-small admin-remove-btn" data-id="<{$course['num']}>" href="javascript:void(0)">移除</a>
                 <a class="btn btn-small" href="__ROOT__/Administer/course_add/id/<{$course['num']}>">修改</a>
+                <a class="btn btn-small btn-primary stu-btn" data-id="<{$course['num']}>" data-class="<{$course['number']}>-<{$course['name']}>（<{$course['nameOfTea']}>）">查看选课情况</a>
                 <div class="clear"></div>
             </div>
             <{/foreach}>
@@ -77,6 +76,8 @@
     </div>
 </div>
 <{include file="Common/footer"/}>
+
+<!--<{include file="Administrator/_select-condition"/}>-->
 
 </body>
 </html>

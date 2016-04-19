@@ -117,7 +117,7 @@ function showFeedbackDialog() {
 function closeFunc (){
     $(".modal-wrapper").fadeOut(function(){
         $("body").css("overflow","auto");
-        $(".dialog-wrapper,.feedback-wrapper").remove();
+        $(".dialog-wrapper,.feedback-wrapper,.select-wrapper").remove();
     });
 }
 

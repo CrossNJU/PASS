@@ -481,6 +481,74 @@ b:after {
     font-size: 16px;
 }
 
+.modal-wrapper.select-wrapper {
+    line-height: inherit;
+}
+
+.modal-wrapper .select-card {
+    position:absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: block;
+    height: 600px;
+    width: 800px;
+    margin: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.select-card .card-title, .select-card .student-table-cell {
+    box-sizing: border-box;
+    padding: 15px 24px;
+}
+.select-card .card-title {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.student-table-cell {
+    display: inline-block;
+    width: 49.9%;
+    border-top: solid #A5A5A5 1px;
+}
+
+.student-table-cell-invisible * {
+    visibility: hidden;
+}
+
+.student-table-cell .num {
+    margin-right: 10px;
+}
+
+.student-table-cell .stu-info {
+    margin-bottom: 0;
+}
+
+.student-table-cell:nth-child(1),.student-table-cell:nth-child(2) {
+    border-top: none;
+}
+.student-table-cell:nth-last-child(1),.student-table-cell:nth-last-child(2) {
+    border-bottom: solid #A5A5A5 1px;
+}
+
+.student-table-cell:nth-child(even) {
+    /*margin-left: -5px;*/
+    border-left: solid #A5A5A5 1px;
+}
+
+.student-table-cell:nth-child(4n+1),.student-table-cell:nth-child(4n+2) {
+    /*margin-top: 1px;*/
+    background-color: #f3f8ff;
+}
+
+.select-card .no-tip {
+    font-size: 20px;
+    color: #787878;
+    text-align: center;
+}
+
 .toast {
     position: fixed;
     z-index: 10000;

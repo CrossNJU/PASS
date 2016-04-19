@@ -50,6 +50,53 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on("click",".stu-btn",function() {
+        var btn = $(this);
+        var id = btn.attr("data-id");
+        var classMsg = btn.attr("data-class");
+
+        $.ajax({
+            async: true,
+            data: "course_id="+id,
+            url: rootUrl+"/Administer/course_student",
+            success: function(stus) {
+                $("body").append("" +
+                    "<div class='modal-wrapper select-wrapper'>" +
+                        "<div class='card select-card'>" +
+                            "<h3 class='card-title'>"+classMsg+" 选课情况</h3>" +
+                            "<a class='close-btn' href='javascript:void(0)'><b></b></a>" +
+                            "<div class='student-table'>" +
+                            "</div>" +
+                        "</div>" +
+                    "</div>");
+
+                for(var i = 0; i < stus.length; i++) {
+                    $(".student-table").append(""+
+                        "<div class='student-table-cell'>" +
+                            "<div class='num'>"+(i+1)+"</div>"+
+                            "<p class='homework-title'>"+stus[i]['name']+"</p>" +
+                            "<p class='stu-info comment'>"+stus[i]['academy']+" "+stus[i]['speciality']+"</p>" +
+                        "</div>");
+                }
+                if(stus.length % 2 == 1) {
+                    $(".student-table").append(""+
+                        "<div class='student-table-cell student-table-cell-invisible'>" +
+                            "<div class='num'>0</div>"+
+                            "<p class='homework-title'>Nothing</p>" +
+                            "<p class='stu-info comment'>Nothing</p>" +
+                        "</div>");
+                }
+                if(stus.length == 0) {
+                    $(".student-table").append("<p class='no-tip'>还没有学生选择该课程……</p>");
+                }
+
+
+                $(".select-wrapper").fadeIn();
+            }
+        })
+    })
+
+
 })
 
 
