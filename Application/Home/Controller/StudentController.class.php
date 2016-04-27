@@ -166,7 +166,7 @@ class StudentController extends Controller
         $course_model = M('Course');
         $assign_dis_model = M('Assignmentdis');
 
-        $assign_dis_model->where("cNumber = '$course_id'")->delete();
+        $assign_dis_model->where("cNumber = '$course_id' AND stdNumber = '$student_id'")->delete();
         $course_model->where("number = '$course_id'")->setDec('selected');
         $course_dis_model->where("stdNumber = '$student_id' AND cNumber = '$course_id'")
             ->delete();
