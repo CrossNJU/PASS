@@ -131,7 +131,7 @@ class AdministerController extends Controller
 
             $student_id = I('post.stu_id');
             $rows = $user_model->where("number = '$student_id'")->select();
-            $change_pwd = false;
+            //$change_pwd = false;
             if($id == NULL && count($rows)>0){
                 $validate_logic->sendMsg('学生已存在','warning',0);
             }else{
@@ -139,7 +139,7 @@ class AdministerController extends Controller
                 $data['number'] = $student_id;
                 if(I('post.pwd')!=null){
                     $data['password'] = I('post.pwd');
-                    $change_pwd = true;
+                    //$change_pwd = true;
                 }
                 $data['phone'] = I('post.phone');
                 $data['email'] = I('post.email');
@@ -153,8 +153,8 @@ class AdministerController extends Controller
                     $user_model->add();
                     $validate_logic->sendMsg('增加学生成功','success');
                     $this->redirect('Administer/student_manage');
-                }elseif ($id != NULL && $user_model->create($data)){
-                    $user_model->save();
+                }elseif ($id != NULL && $user_model->save($data)){
+                    //$user_model->save();
                     $validate_logic->sendMsg('修改学生成功','success');
                     $this->redirect('Administer/student_manage');
 //                }elseif ($id != NULL && !$change_pwd && $user_model->save($data)){
