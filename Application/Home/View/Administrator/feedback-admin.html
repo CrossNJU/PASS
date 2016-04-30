@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <title>作业详情</title>
+
+    <link rel="shortcut icon" href="__PUBLIC__/img/favicon.ico" >
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/IHF.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/card.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/extra.css">
+
+    <script src="__PUBLIC__/js/jquery.js"></script>
+    <script	src="__PUBLIC__/js/main.js"></script>
+    <script src="__PUBLIC__/plugins/clamp.js"></script>
+    <script src="__PUBLIC__/js/feedback-admin.js"></script>
+</head>
+<body>
+<{include file="Common/header"/}>
+<div class="nav">
+    <div class="wrapper">
+        <a class="nav-btn" href="#">教师管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/student_manage">学生管理</a>
+        <a class="nav-btn" href="__ROOT__/Administer/course_manage">课程管理</a>
+        <a class="nav-btn nav-btn-active" href="__ROOT__/Administer/check_feedback">反馈查看</a>
+    </div>
+</div>
+
+<div class="content">
+    <div class="wrapper">
+        <div class="card">
+            <{foreach item="fb" name="feedback"}>
+            <div class="homework homework-manage feedback">
+                <p class="homework-title"><{$fb['name']}> <{switch name="fb['permission']"}>
+                    <{case value="1"}>学生<{/case}>
+                    <{case value="2"}>老师<{/case}>
+                    <{case value="3"}>管理员<{/case}>
+                    <{/switch}> (<{$fb['number']}>)</p>
+                <p class="comment feedback-time"><{$fb['add_time']}></p>
+                <p class="comment feedback-text"><{$fb['content']}></p>
+                <!--<a href="#" class="expand-link">展开</a>-->
+            </div>
+
+            <{/foreach}>
+            <!--<div class="homework homework-manage">-->
+                <!--<p class="homework-title">张亮 教师 （0001）</p>-->
+                <!--<p class="comment feedback-time">2016.04.12 10:36</p>-->
+                <!--<p class="comment feedback-text">的图片支持Retina就好了要是header里的图片支持Retina就好了要是header里的图片支持Retina就好了要是header里的图片支持Retina就好了要是header里的图片支持Retina就好了要是header里的图片支持Retina就好了</p>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<{include file="Common/footer"/}>
+
+</body>
+</html>

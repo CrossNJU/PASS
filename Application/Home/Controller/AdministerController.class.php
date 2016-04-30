@@ -473,7 +473,7 @@ class AdministerController extends Controller
 
         $feedback_model = M('Feedback');
         $this->feedback = $feedback_model->select();
-        $this->display('Administrator:feedback');
+        $this->display('Administrator:feedback-admin');
     }
 
     public function _empty(){
