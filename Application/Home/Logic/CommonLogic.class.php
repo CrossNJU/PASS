@@ -78,9 +78,8 @@ class CommonLogic
         $hasFile = false;
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){
-                //$hasFile = true;
-                return $url_base.$assignment['url'].$assignment['savename'];
-                //$zip->addFile($url_base.$assignment['url'].$assignment['savename'],$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
+                $hasFile = true;
+                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
             }
             if($assignment['isexamined'] == 1){
                 $zip->addFile($url_base.$assignment['url'].'modify.doc',$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc');
