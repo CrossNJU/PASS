@@ -42,7 +42,7 @@ $(document).ready(function(){
             success: function(msg){
                 if (msg == 'wrong'){
                     showStateBar("warning","暂无作业");
-                }else window.location.href = "http://localhost/PASS/" + msg;
+                }else window.location.href = C('URL_HEAD') + msg;
             },
             error: function(){
                 showStateBar("danger","批量下载失败");

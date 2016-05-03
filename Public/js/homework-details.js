@@ -95,7 +95,7 @@ $(document).ready(function (){
             data:"assignment_id=" + homeworkId,
             type:"get",
             success: function (msg) {
-                window.location.href = publicUrl+"/uploads/downloads/"+homeworkId+".zip";
+                window.location.href = publicUrl+msg;//+"/uploads/downloads/"+homeworkId+".zip";
             }
         })
     })

@@ -82,7 +82,7 @@
 					<{/if}>
 
 					<{if condition="$homework['type'] eq 'word'"}>
-					<a class="btn btn-primary btn-small" href="__PUBLIC__/uploads/<{$submit['upload']}>">下载</a>
+					<a class="btn btn-primary btn-small" href="__PUBLIC__<{$submit['upload']}>">下载</a>
 					<{else /}>
 						<{if condition="$submit['isCorrected'] eq true"}>
 						<a class="btn btn-small" href="__ROOT__/Teacher/assignment_to_modify/assignment_id/<{$homework['id']}>/student_id/<{$submit['studentNum']}>/display/modify">修改</a>

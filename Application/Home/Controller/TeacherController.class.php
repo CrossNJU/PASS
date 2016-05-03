@@ -333,7 +333,7 @@ class TeacherController extends Controller
 
         $common_logic = D('Common','Logic');
         $url = $common_logic->addToZip($assignment_id);
-        if($url) $this->ajaxReturn(1);
+        if($url) $this->ajaxReturn($url);
         else $this->ajaxReturn(0);
     }
 
