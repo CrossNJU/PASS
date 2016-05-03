@@ -70,6 +70,7 @@ class CommonLogic
         $zip = new \ZipArchive();
         $url_base = C('URL_BASE');
         $url = $url_base.'/downloads/'.$assignment_true_title.'.zip';
+        $real_url = '/downloads/'.$assignment_true_title.'.zip';
         $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
@@ -87,7 +88,7 @@ class CommonLogic
         }
         $zip->close();
         unset($zip);
-        if($hasFile) return $url;
+        if($hasFile) return $real_url;
         else return 'wrong';
     }
 
