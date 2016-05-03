@@ -27,7 +27,7 @@ class CommonLogic
         $section->addText(iconv('utf-8', 'GB2312//IGNORE', $mark));
 
         $output = \PHPWord_IOFactory::createWriter($word,'Word2007');
-        $output->save($url_base.'assignments/'.$student_id.'/'.$assignment_id.'/modify.doc');
+        $output->save($url_base.'/uploads/assignments/'.$student_id.'/'.$assignment_id.'/modify.doc');
 
         return 1;
     }
@@ -69,7 +69,7 @@ class CommonLogic
 
         $zip = new \ZipArchive();
         $url_base = C('URL_BASE');
-        $url = $url_base.'downloads/'.$assignment_true_title.'.zip';
+        $url = $url_base.'/downloads/'.$assignment_true_title.'.zip';
         $zip->open($url,\ZIPARCHIVE::CREATE | \ZIPARCHIVE::OVERWRITE);
 
         $assignments = $assignment_dis_model->where("assNumber = '$assignment_id'")
