@@ -78,7 +78,7 @@ class CommonLogic
         $hasFile = false;
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){
-                $hasFile = true;
+                //$hasFile = true;
                 return $url_base.$assignment['url'].$assignment['savename'];
                 //$zip->addFile($url_base.$assignment['url'].$assignment['savename'],$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
             }
