@@ -258,9 +258,9 @@ class StudentController extends Controller
 
         $upload->maxSize = 10000000 ;// 设置附件上传大小
         $upload->exts = array('pdf','doc','docx','ppt','pptx','mp4');// 设置附件上传类型
-        $upload->rootPath = C('URL_BASE'); // 设置附件上传根目录
-        $upload->savePath = '';
-        $upload->subName = 'assignments/'.$student_id.'/'.$assignment_id;
+        $upload->rootPath = './Public'; // 设置附件上传根目录
+        $upload->savePath = '/uploads';
+        $upload->subName = '/assignments/'.$student_id.'/'.$assignment_id;
         $upload->replace = true;
 
         if(isset($_POST['sub'])) {
