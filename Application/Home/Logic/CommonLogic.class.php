@@ -80,10 +80,14 @@ class CommonLogic
         foreach ($assignments as $assignment) {
             if($assignment['issubmitted'] == 1){
                 $hasFile = true;
-                $zip->addFile($url_base.$assignment['url'].$assignment['savename'],$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname']);
+                $save_name = $assignment_true_title.'/'.$assignment['stdnumber'].'-'.$user_logic->get_user_name($assignment['stdnumber']).'/'.$assignment['submitname'];
+                $to_save = iconv("utf-8", 'GB2312//IGNORE', $save_name);
+                $zip->addFile($url_base.$assignment['url'].$assignment['savename'], $to_save);
             }
             if($assignment['isexamined'] == 1){
-                $zip->addFile($url_base.$assignment['url'].'modify.doc',$assignment_true_title.'/'.$assignment['stdnumber'].$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc');
+                $file_name = $assignment_true_title.'/'.$assignment['stdnumber'].'-'.$user_logic->get_user_name($assignment['stdnumber']).'/批阅详情.doc';
+                $to_save = iconv("utf-8", 'GB2312//IGNORE', $file_name);
+                $zip->addFile($url_base.$assignment['url'].'modify.doc', $to_save);
             }
         }
         $zip->close();
