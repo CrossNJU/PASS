@@ -332,9 +332,28 @@ class TeacherController extends Controller
         $validate_logic->setSession();
 
         $common_logic = D('Common','Logic');
+        $assignment_dis_model = M('Assignmentdis');
         $url = $common_logic->addToZip($assignment_id);
-        if($url) $this->ajaxReturn($url);
+        if($url) {
+            $assignment_dis_model->where("assNumber = '$assignment_id' AND isSubmitted = 1")->setField("isExamined", 1);
+            $this->ajaxReturn($url);
+        }
         else $this->ajaxReturn(0);
+    }
+
+    public function download_single($assignment_id, $student_id){
+
+        $validate_logic = D('Validate','Logic');
+        if(!$validate_logic->checkLogin(2)) $this->redirect('Common/login');
+        $validate_logic->setSession();
+
+        $assignment_dis_model = M('Assignmentdis');
+        $submit = $assignment_dis_model->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")->getField("isSubmitted");
+        if($submit == 0) $this->ajaxReturn(0);
+
+        $assignment_dis_model->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")->setField("isExamined", 1);
+
+        $this->ajaxReturn(1);
     }
 
     public function reupload($stu_id,$assignment_id){//..............................................教师-发邮件要求学生重交作业
