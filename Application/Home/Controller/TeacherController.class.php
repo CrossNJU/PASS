@@ -352,8 +352,9 @@ class TeacherController extends Controller
         if($submit == 0) $this->ajaxReturn(0);
 
         $assignment_dis_model->where("assNumber = '$assignment_id' AND stdNumber = '$student_id'")->setField("isExamined", 1);
+        $number = $assignment_dis_model->where("assNumber = '$assignment_id' AND isExamined = 1")->select();
 
-        $this->ajaxReturn(1);
+        $this->ajaxReturn(count($number));
     }
 
     public function reupload($stu_id,$assignment_id){//..............................................教师-发邮件要求学生重交作业
