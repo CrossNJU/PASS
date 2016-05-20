@@ -99,6 +99,23 @@ $(document).ready(function (){
             }
         })
     })
+    
+    $(document).on("click", ".download-btn", function() {
+        var btn = $(this);
+        var hwid = btn.attr("data-hwid");
+        var stuid = btn.attr("data-stuid");
+        var sum = btn.attr("data-sum");
+        $.ajax({
+            url:rootUrl+"/Teacher/download_single",
+            data: "assignment_id="+hwid+"&student_id="+stuid,
+            type: "get",
+            success: function (msg) {
+                $("#corrected-num").html("已批阅" + msg + "/" + sum);
+            }
+        })
+    });
+    
+    
 
     /*
     添加查看学生信息的按钮监听
