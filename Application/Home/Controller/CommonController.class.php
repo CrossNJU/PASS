@@ -105,7 +105,7 @@ class CommonController extends Controller
         $validate_logic->setSession();
 
         $sub = '找回密码';
-        $prefix = C('URL_HEAD').'Common/pwd_reset/id/';
+        $prefix = C('URL_HEAD').'/Common/pwd_reset/id/';
         $body = '点击一下链接,或复制链接到浏览器打开:<br>'.$prefix;
 
         $common_logic = D('Common','Logic');
