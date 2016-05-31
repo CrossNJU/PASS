@@ -325,7 +325,7 @@ class TeacherController extends Controller
         $this->display('Teacher:homework-new');
     }
 
-    public function download($assignment_id){//.............................................................教师-下载作业
+    public function download($assignment_id, $is_pdf){//.............................................................教师-下载作业
 
         $validate_logic = D('Validate','Logic');
         if(!$validate_logic->checkLogin(2)) $this->redirect('Common/login');
@@ -335,7 +335,7 @@ class TeacherController extends Controller
         $assignment_dis_model = M('Assignmentdis');
         $url = $common_logic->addToZip($assignment_id);
         if($url) {
-            $assignment_dis_model->where("assNumber = '$assignment_id' AND isSubmitted = 1")->setField("isExamined", 1);
+            if(!$is_pdf) $assignment_dis_model->where("assNumber = '$assignment_id' AND isSubmitted = 1")->setField("isExamined", 1);
             $this->ajaxReturn($url);
         }
         else $this->ajaxReturn(0);
