@@ -89,10 +89,11 @@ $(document).ready(function (){
     $(document).on("click",".batch-btn",function(){
         var btn = $(this);
         var homeworkId = btn.attr("data-id");
+        var is_pdf = btn.attr("data-pdf");
         $.ajax({
             async:true,
             url:"../../download",
-            data:"assignment_id=" + homeworkId,
+            data:"assignment_id=" + homeworkId + "&is_pdf=" + is_pdf,
             type:"get",
             success: function (msg) {
                 window.location.href = publicUrl+msg;//+"/uploads/downloads/"+homeworkId+".zip";
