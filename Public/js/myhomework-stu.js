@@ -15,10 +15,10 @@ $(document).ready(function (){
         if(type == 'mp4'){
             $("#preview-content").html(
                 "<video id='really-cool-video' class='video-js vjs-default-skin' controls = 'controls'preload='auto' height='360' data-setup='{}'>"+
-                    "<source src='"+publicUrl+"/uploads/"+url+"' type='video/mp4'>"+
+                    "<source src='"+publicUrl+url+"' type='video/mp4'>"+
                 "</video>");
         }else {
-            $("#preview-content").html("<iframe class='pdf' src='"+publicUrl+"/plugins/generic/web/viewer.html?file="+publicUrl+"/uploads/"+url+"'></iframe>");
+            $("#preview-content").html("<iframe class='pdf' src='"+publicUrl+"/plugins/generic/web/viewer.html?file="+publicUrl+url+"'></iframe>");
         }
         $("#preview-modal").fadeIn();
         $("body").css("overflow", "hidden");
