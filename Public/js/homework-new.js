@@ -21,31 +21,31 @@ function validate(){
     var title = $("input[name='title']").val();
     var startTime = $("input[name='startTime']").val();
     var endTime = $("input[name='endTime']").val();
-    var require = $("textarea[name='requi']").val();
+    // var require = $("textarea[name='requi']").val();
 
     var valiResult;
     $(".hint").html("");
 
     if(valiResult = validate_null(title)){
-        console.log("title");
+        // console.log("title");
         result = false;
         showValidateError();
         $("input[name='title']").next(".hint").html(valiResult);
     }
 
     if(valiResult = validate_time(startTime,endTime)){
-        console.log("time");
+        // console.log("time");
         result = false;
         showValidateError();
         $("input[name='endTime']").next().next().next(".hint").html(valiResult);
     }
 
-    if(valiResult = validate_null(require)) {
-        console.log("requi");
-        result = false;
-        showValidateError();
-        $("textarea[name='requi']").next(".hint").html(valiResult);
-    }
+    // if(valiResult = validate_null(require)) {
+    //     // console.log("requi");
+    //     result = false;
+    //     showValidateError();
+    //     $("textarea[name='requi']").next(".hint").html(valiResult);
+    // }
 
     return result;
 }
