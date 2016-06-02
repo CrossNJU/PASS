@@ -37,7 +37,7 @@
 					<p class="comment"><{$submit['studentName']}>(<{$submit['studentNum']}>)</p>
 				</div>
 				<{if condition="$homework['type'] eq 'pdf'"}>
-				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=__PUBLIC__/uploads/<{$submit['fileUrl']}>"></iframe>
+				<iframe class="pdf" src="__PUBLIC__/plugins/generic/web/viewer.html?file=__PUBLIC__<{$submit['fileUrl']}>"></iframe>
 				<{else /}>
 				<video id="really-cool-video" class="video-js vjs-default-skin" controls = "controls"
 					   preload="auto" data-setup='{}'>
