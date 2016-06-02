@@ -380,7 +380,7 @@ class TeacherController extends Controller
         $teacher_name = $user_logic->get_user_name(session('user'));
         $assignment_name = $course_logic->get_assignment_name($assignment['assnumber']);
         $stu_name = $user_logic->get_user_name($stu_id);
-        $prefix = C('URL_HEAD').'Student/my_assignment/reload/1';
+        $prefix = C('URL_HEAD').'/Student/my_assignment/reload/1';
 
         $body = $stu_name."同学,你好!<br>"."<p>你的老师 $teacher_name 要求你重新提交<em>
             课程 $course_name</em> 的作业:<em> $assignment_name </em></p><br>"."详情请与老师联系!<br>"
