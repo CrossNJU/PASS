@@ -138,7 +138,7 @@ class AdministerController extends Controller
 
                 $data['number'] = $student_id;
                 if(I('post.pwd')!=null){
-                    $data['password'] = I('post.pwd');
+                    $data['password'] = md5(I('post.pwd'));
                     //$change_pwd = true;
                 }
                 $data['phone'] = I('post.phone');
