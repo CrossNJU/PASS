@@ -6,7 +6,7 @@
     padding: 0px;
 }
 .header{
-    background-image: url("../../Public/img/header.png");
+    background-image: url("../../Public/img/header1.png");
     background-size: cover;
     height: 161px;
 }
@@ -118,5 +118,3 @@ select.preselect{
 .readonly-input[type="text"]:focus, select.readonly-input {
     box-shadow: none;
 }
-
-

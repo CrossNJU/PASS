@@ -48,7 +48,7 @@ function showStateBar(type,text){
 }
 
 function showDialog(text){
-    $("body").prepend("<div class='modal-wrapper dialog-wrapper'> <div class='dialog'> <p class='warning-text'>"+text+"</p> <a href='javascript:void(0)' class='btn confirm-btn'>确认</a> <a href='javascript:void(0)' class='btn btn-active'>取消</a> </div> </div>");
+    $("body").prepend("<div class='modal-wrapper dialog-wrapper'> <div class='dialog'> <p class='warning-text'>"+text+"</p> <a href='javascript:void(0)' class='btn btn-dangerous confirm-btn'>确认</a> <a href='javascript:void(0)' class='btn btn-primary'>取消</a> </div> </div>");
     $('.dialog-wrapper').fadeIn();
     $("body").css("overflow","hidden");
     $(".dialog .btn").on("click",closeFunc);
@@ -125,5 +125,6 @@ function minHeight(){
     //console.log(window.innerHeight);
     var minHeight = window.innerHeight - 280;
     $(".content").css("minHeight",minHeight+"px");
+    $(".login-content").css("minHeight", minHeight+62+"px");
 }
 
