@@ -124,7 +124,7 @@ a {
     background-image: linear-gradient(-180deg, #FFFFFF 0%, #DCDCDD 100%);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-active:hover {
     background-image: linear-gradient(-180deg, #57BEED 0%, #2486B3 100%);
 }
 
