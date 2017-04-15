@@ -135,6 +135,11 @@ input[type="submit"]{
     color: #FFFFFF;
 }
 
+.header-userbar:hover {
+    color: #57BEED;
+    text-decoration: underline;
+}
+
 .student-manage {
     padding-right: 18px;
     overflow: hidden;

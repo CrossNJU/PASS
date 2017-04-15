@@ -68,9 +68,9 @@
 					<{/if}>
 				</div>
 
-				<{foreach item="submit" name="homework['submit']"}>
+				<{foreach item="submit" name="homework['submit']" key='index'}>
 				<div class="homework homework-manage">
-					<div class="num">1</div>
+					<div class="num"><{$index+1}></div>
 					<div class="homework-info">
 						<p class="homework-title"><{$submit['name']}></p>
 						<p class="stu-info comment"><span class="stu-info-text"><{$submit['studentName']}>(<{$submit['studentNum']}>)</span><span class="stu-info-detail" data-stuid="<{$submit['studentNum']}>">查看学生详情</span></p>

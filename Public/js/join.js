@@ -16,7 +16,7 @@ $(document).ready(function () {
                     if (msg == -1) {
                         showStateBar("danger", "课程添加失败");
                     } else if(msg == 1) {
-                        showStateBar("success", "课程添加成功");
+                        // showStateBar("success", "课程添加成功");
                         btn.attr("data-status","remove");
                         btn.html("已添加课程");
                         btn.css("width","90px");
@@ -42,7 +42,7 @@ $(document).ready(function () {
                     if (msg == -1) {
                         showStateBar("danger", "课程退选失败");
                     } else if(msg == 1) {
-                        showStateBar("success", "课程退选成功");
+                        // showStateBar("success", "课程退选成功");
                         btn.attr("data-status","join");
                         btn.unbind("mouseenter").unbind("mouseleave");
                         btn.html("加入课程");
